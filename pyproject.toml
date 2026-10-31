@@ -16,6 +16,7 @@ ignore = ["S101"]  # assert is fine in tests
 "config/settings/*.py" = ["F403", "F405"]
 "**/tests/*.py" = ["S105", "S106"]
 "config/settings/test.py" = ["S105"]
+"**/demo.py" = ["E501"]  # long translated demo copy
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings.test"

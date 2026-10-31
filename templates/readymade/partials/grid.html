@@ -1,0 +1,17 @@
+{% load i18n %}
+{# Swapped as a whole by the industry tabs (HX-Target: template-grid). #}
+<section id="template-grid" class="container-site pb-12" aria-label="{% translate 'Website templates' %}">
+  {% url 'readymade:list' as list_url %}{% translate "Filter by industry" as tabs_label %}
+  {% include "components/filter_tabs.html" with items=industries active=active_industry base_url=list_url param="industry" target="template-grid" label=tabs_label %}
+
+  {% if templates %}
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for template in templates %}
+      {% cycle "0" "0.1" "0.2" as delay silent %}
+      {% include "readymade/partials/card.html" %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="rounded-card border border-ink-800 p-10 text-center text-ink-300">{% translate "New ready-made websites are on the way — check back soon." %}</p>
+  {% endif %}
+</section>

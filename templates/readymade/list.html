@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Ready-made Websites" %} · {{ site_settings.site_name }}{% endblock %}
+{% block meta_description %}{% translate "Professional website designs for restaurants, tourism, car rental, real estate and more — customised with your brand and launched fast." %}{% endblock %}
+
+{% block content %}
+<section class="container-site pt-24 pb-12 sm:pt-32">
+  <p data-reveal class="eyebrow">{% translate "Ready-made Websites" %}</p>
+  <h1 data-split class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{% translate "Your new website, ready in days." %}</h1>
+  <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-lg text-ink-300">{% translate "Choose a design made for your industry. We customise it with your logo, colours, content and domain, then launch it for you." %}</p>
+  <ol data-reveal data-reveal-delay="0.3" class="mt-10 grid gap-4 text-sm sm:grid-cols-3">
+    <li class="rounded-card border border-ink-800 p-5"><span class="font-display font-bold text-neon-cyan">01</span> {% translate "Pick a design and send us an enquiry." %}</li>
+    <li class="rounded-card border border-ink-800 p-5"><span class="font-display font-bold text-neon-cyan">02</span> {% translate "We customise it with your brand and content." %}</li>
+    <li class="rounded-card border border-ink-800 p-5"><span class="font-display font-bold text-neon-cyan">03</span> {% translate "We launch it on your domain and hand it over." %}</li>
+  </ol>
+</section>
+
+{% include "readymade/partials/grid.html" %}
+
+{% translate "Don't see your industry?" as cta_heading %}{% translate "We also build fully custom websites. Tell us what you need." as cta_text %}
+{% include "components/cta_band.html" with heading=cta_heading text=cta_text %}
+{% endblock %}

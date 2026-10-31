@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block content %}
+{# --- Hero --- #}
 <section class="hero relative isolate overflow-hidden">
   {# Placeholder background — replaced by the Three.js visual in Phase 6. #}
   <div class="hero-glow" aria-hidden="true"></div>
@@ -21,14 +22,77 @@
   </div>
 </section>
 
-<section class="border-y border-ink-800 bg-ink-900/60" aria-label="{% translate 'Key figures' %}">
-  <dl class="container-site grid grid-cols-2 gap-8 py-14 lg:grid-cols-4">
-    {% for value, label in site_settings.stats %}
-    <div data-reveal data-reveal-delay="0.{{ forloop.counter0 }}">
-      <dt class="text-sm uppercase tracking-widest text-ink-400">{{ label }}</dt>
-      <dd class="mt-2 font-display text-5xl font-bold">{{ value }}<span class="text-neon-cyan">+</span></dd>
+{% include "components/stats.html" %}
+
+{# --- Featured projects: pinned horizontal scroll on desktop, swipe on mobile --- #}
+{% if featured_projects %}
+<section class="mt-28 overflow-hidden" data-hscroll x-data="videoModal" @open-video.window="show($event.detail)">
+  <div class="container-site flex flex-wrap items-end justify-between gap-6">
+    {% translate "Selected work" as eyebrow %}{% translate "Projects we're proud of." as title %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+    <a href="{% url 'portfolio:list' %}" class="btn-ghost">{% translate "View all projects" %} &rarr;</a>
+  </div>
+  <div data-hscroll-track class="hscroll-track container-site mt-12">
+    {% for project in featured_projects %}
+      <div class="hscroll-item">{% include "portfolio/partials/card.html" %}</div>
+    {% endfor %}
+  </div>
+  {% include "components/video_modal.html" %}
+</section>
+{% endif %}
+
+{# --- Services --- #}
+{% if service_groups %}
+<section class="container-site mt-28">
+  {% translate "What we do" as eyebrow %}{% translate "Websites and AI marketing, under one roof." as title %}
+  {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+  <div class="mt-14 grid gap-6 lg:grid-cols-2">
+    {% for group in service_groups %}
+    <div data-reveal data-reveal-delay="0.{{ forloop.counter0 }}" class="rounded-card border border-ink-800 bg-ink-900 p-8">
+      <h3 class="font-display text-2xl font-bold">{{ group.name }}</h3>
+      {% if group.intro %}<p class="mt-2 text-ink-300">{{ group.intro }}</p>{% endif %}
+      <ul class="mt-6 divide-y divide-ink-800">
+        {% for service in group.services.all %}
+        <li>
+          <a href="{{ service.get_absolute_url }}" class="group flex items-center gap-4 py-4">
+            <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-ink-800 text-neon-cyan">{% include "components/icon.html" with name=service.icon %}</span>
+            <span class="flex-1">
+              <span class="block font-semibold group-hover:text-neon-cyan">{{ service.title }}</span>
+              <span class="block text-sm text-ink-400">{{ service.summary }}</span>
+            </span>
+            <span aria-hidden="true" class="text-ink-400 transition group-hover:translate-x-1 group-hover:text-neon-cyan">&rarr;</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
     {% endfor %}
-  </dl>
+  </div>
 </section>
+{% endif %}
+
+{# --- Ready-made websites --- #}
+{% if featured_templates %}
+<section class="container-site mt-28">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    {% translate "Ready-made websites" as eyebrow %}{% translate "Launch fast with a ready-made site." as title %}{% translate "Pick a design for your industry and we'll customise it with your brand, content and domain." as intro %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro %}
+    <a href="{% url 'readymade:list' %}" class="btn-ghost">{% translate "Browse all" %} &rarr;</a>
+  </div>
+  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for template in featured_templates %}
+      {% cycle "0" "0.1" "0.2" as delay silent %}
+      {% include "readymade/partials/card.html" %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% include "components/process.html" %}
+
+{% if show_pricing %}
+{# Pricing teaser — enabled in Phase 5. #}
+{% endif %}
+
+{% include "components/cta_band.html" %}
 {% endblock %}

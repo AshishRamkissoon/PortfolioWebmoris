@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webmoris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 11:55-0700\n"
+"POT-Creation-Date: 2026-10-31 12:11-0700\n"
 "PO-Revision-Date: 2026-10-31 12:00+0400\n"
 "Last-Translator: Webmoris\n"
 "Language-Team: Kreol Morisien\n"
@@ -14,151 +14,244 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\apps\core\models.py:9
+#: .\apps\core\models.py:14
 msgid "International format, digits only, no + or spaces (e.g. 23057123456)."
 msgstr ""
 
-#: .\apps\core\models.py:33
+#: .\apps\core\models.py:38
 msgid "site name"
 msgstr ""
 
-#: .\apps\core\models.py:34
+#: .\apps\core\models.py:39
 msgid "tagline"
 msgstr ""
 
-#: .\apps\core\models.py:35
+#: .\apps\core\models.py:40
 msgid "footer about text"
 msgstr ""
 
-#: .\apps\core\models.py:37
+#: .\apps\core\models.py:42
 msgid "show announcement bar"
 msgstr ""
 
-#: .\apps\core\models.py:38
+#: .\apps\core\models.py:43
 msgid "announcement text"
 msgstr ""
 
-#: .\apps\core\models.py:39
+#: .\apps\core\models.py:44
 msgid "announcement link"
 msgstr ""
 
-#: .\apps\core\models.py:41
+#: .\apps\core\models.py:46
 msgid "projects delivered"
 msgstr ""
 
-#: .\apps\core\models.py:42
+#: .\apps\core\models.py:47
 msgid "years of experience"
 msgstr ""
 
-#: .\apps\core\models.py:43
+#: .\apps\core\models.py:48
 msgid "happy clients"
 msgstr ""
 
-#: .\apps\core\models.py:44
+#: .\apps\core\models.py:49
 msgid "countries served"
 msgstr ""
 
-#: .\apps\core\models.py:47
+#: .\apps\core\models.py:52
 msgid "WhatsApp number"
 msgstr ""
 
-#: .\apps\core\models.py:50
+#: .\apps\core\models.py:55
 msgid "WhatsApp pre-filled message"
 msgstr ""
 
-#: .\apps\core\models.py:52
+#: .\apps\core\models.py:57
 msgid "Calendly URL"
 msgstr ""
 
-#: .\apps\core\models.py:54
+#: .\apps\core\models.py:59
 msgid "contact email"
 msgstr ""
 
-#: .\apps\core\models.py:55
+#: .\apps\core\models.py:60
 msgid "contact phone"
 msgstr ""
 
-#: .\apps\core\models.py:56
+#: .\apps\core\models.py:61
 msgid "address"
 msgstr ""
 
-#: .\apps\core\models.py:64
+#: .\apps\core\models.py:69
 msgid "default SEO title"
 msgstr ""
 
-#: .\apps\core\models.py:65
+#: .\apps\core\models.py:70
 msgid "default meta description"
 msgstr ""
 
-#: .\apps\core\models.py:68 .\apps\core\models.py:69
+#: .\apps\core\models.py:73 .\apps\core\models.py:74
 msgid "site settings"
 msgstr ""
 
-#: .\apps\core\models.py:97
+#: .\apps\core\models.py:102
 msgid "Projects delivered"
 msgstr "Proze livre"
 
-#: .\apps\core\models.py:98
+#: .\apps\core\models.py:103
 msgid "Years of experience"
 msgstr "Lane lexperyans"
 
-#: .\apps\core\models.py:99
+#: .\apps\core\models.py:104
 msgid "Happy clients"
 msgstr "Klian satisfe"
 
-#: .\apps\core\models.py:100
+#: .\apps\core\models.py:105
 msgid "Countries served"
 msgstr "Pei servi"
+
+#: .\apps\core\models.py:112
+msgid "story heading"
+msgstr ""
+
+#: .\apps\core\models.py:113
+msgid "our story"
+msgstr ""
+
+#: .\apps\core\models.py:114
+msgid "mission"
+msgstr ""
+
+#: .\apps\core\models.py:116
+msgid "values"
+msgstr ""
+
+#: .\apps\core\models.py:116
+msgid "One per line, as “Title: description”."
+msgstr ""
+
+#: .\apps\core\models.py:119
+msgid "tools & technologies"
+msgstr ""
+
+#: .\apps\core\models.py:119 .\apps\portfolio\models.py:44
+msgid "Comma-separated."
+msgstr ""
+
+#: .\apps\core\models.py:123 .\apps\core\models.py:124
+msgid "about page"
+msgstr ""
+
+#: .\apps\core\models.py:145 .\apps\portfolio\models.py:12
+#: .\apps\readymade\models.py:21 .\apps\readymade\models.py:47
+#: .\apps\services\models.py:11
+msgid "name"
+msgstr ""
+
+#: .\apps\core\models.py:146
+msgid "role"
+msgstr ""
+
+#: .\apps\core\models.py:147
+msgid "short bio"
+msgstr ""
+
+#: .\apps\core\models.py:149
+msgid "photo"
+msgstr ""
+
+#: .\apps\core\models.py:155
+msgid "show on site"
+msgstr ""
+
+#: .\apps\core\models.py:156 .\apps\core\models.py:176
+#: .\apps\portfolio\models.py:14 .\apps\portfolio\models.py:90
+#: .\apps\portfolio\models.py:134 .\apps\portfolio\models.py:162
+#: .\apps\readymade\models.py:23 .\apps\readymade\models.py:101
+#: .\apps\readymade\models.py:139 .\apps\services\models.py:14
+#: .\apps\services\models.py:55 .\apps\services\models.py:77
+msgid "order"
+msgstr ""
+
+#: .\apps\core\models.py:160
+msgid "team member"
+msgstr ""
+
+#: .\apps\core\models.py:161
+msgid "team members"
+msgstr ""
+
+#: .\apps\core\models.py:174 .\apps\core\models.py:193
+#: .\apps\portfolio\models.py:34 .\apps\services\models.py:44
+msgid "title"
+msgstr ""
+
+#: .\apps\core\models.py:175 .\apps\readymade\models.py:56
+#: .\apps\services\models.py:48
+msgid "description"
+msgstr ""
+
+#: .\apps\core\models.py:180
+msgid "process step"
+msgstr ""
+
+#: .\apps\core\models.py:181
+msgid "process steps"
+msgstr ""
+
+#: .\apps\core\models.py:189 .\templates\partials\footer.html:37
+msgid "Privacy Policy"
+msgstr "Politik konfidansialite"
+
+#: .\apps\core\models.py:190 .\templates\partials\footer.html:38
+msgid "Terms & Conditions"
+msgstr "Term ek kondisyon"
+
+#: .\apps\core\models.py:192
+msgid "page"
+msgstr ""
+
+#: .\apps\core\models.py:194
+msgid "content"
+msgstr ""
+
+#: .\apps\core\models.py:194
+msgid "Plain text. Blank lines start paragraphs."
+msgstr ""
+
+#: .\apps\core\models.py:195
+msgid "last updated"
+msgstr ""
+
+#: .\apps\core\models.py:199
+msgid "legal page"
+msgstr ""
+
+#: .\apps\core\models.py:200
+msgid "legal pages"
+msgstr ""
 
 #: .\apps\core\uploads.py:37
 #, python-format
 msgid "File too large: the maximum size is %(max)s MB."
 msgstr ""
 
-#: .\apps\core\urls.py:16
-msgid "Ready-made Websites"
-msgstr "Sit web tou-pare"
-
-#: .\apps\core\urls.py:17 .\templates\partials\nav_links.html:4
-#: .\templates\portfolio\detail.html:25
-msgid "Services"
-msgstr "Servis"
-
-#: .\apps\core\urls.py:18 .\templates\partials\nav_links.html:5
+#: .\apps\core\urls.py:20 .\templates\partials\nav_links.html:5
 msgid "Pricing"
 msgstr "Pri"
 
-#: .\apps\core\urls.py:19 .\templates\partials\nav_links.html:6
-msgid "About"
-msgstr "Lor nou"
-
-#: .\apps\core\urls.py:20 .\templates\partials\nav_links.html:7
+#: .\apps\core\urls.py:21 .\templates\partials\nav_links.html:7
 msgid "Contact"
 msgstr "Kontak"
-
-#: .\apps\core\urls.py:21 .\templates\partials\footer.html:37
-msgid "Privacy Policy"
-msgstr "Politik konfidansialite"
-
-#: .\apps\core\urls.py:22 .\templates\partials\footer.html:38
-msgid "Terms & Conditions"
-msgstr "Term ek kondisyon"
 
 #: .\apps\core\video.py:41
 msgid "Use a YouTube or Vimeo video link."
 msgstr ""
 
-#: .\apps\portfolio\models.py:12
-msgid "name"
-msgstr ""
-
 #: .\apps\portfolio\models.py:13 .\apps\portfolio\models.py:35
+#: .\apps\readymade\models.py:22 .\apps\readymade\models.py:48
+#: .\apps\services\models.py:12 .\apps\services\models.py:45
 msgid "slug"
-msgstr ""
-
-#: .\apps\portfolio\models.py:14 .\apps\portfolio\models.py:90
-#: .\apps\portfolio\models.py:134 .\apps\portfolio\models.py:162
-msgid "order"
 msgstr ""
 
 #: .\apps\portfolio\models.py:18
@@ -169,15 +262,12 @@ msgstr ""
 msgid "categories"
 msgstr ""
 
-#: .\apps\portfolio\models.py:34
-msgid "title"
-msgstr ""
-
 #: .\apps\portfolio\models.py:36
 msgid "client"
 msgstr "klian"
 
-#: .\apps\portfolio\models.py:37
+#: .\apps\portfolio\models.py:37 .\apps\readymade\models.py:27
+#: .\apps\readymade\models.py:53
 msgid "industry"
 msgstr ""
 
@@ -185,16 +275,12 @@ msgstr ""
 msgid "year"
 msgstr ""
 
-#: .\apps\portfolio\models.py:42
+#: .\apps\portfolio\models.py:42 .\apps\readymade\models.py:55
 msgid "short description"
 msgstr ""
 
 #: .\apps\portfolio\models.py:44
 msgid "services provided"
-msgstr ""
-
-#: .\apps\portfolio\models.py:44
-msgid "Comma-separated."
 msgstr ""
 
 #: .\apps\portfolio\models.py:47
@@ -217,7 +303,7 @@ msgstr ""
 msgid "the results"
 msgstr ""
 
-#: .\apps\portfolio\models.py:58
+#: .\apps\portfolio\models.py:58 .\apps\readymade\models.py:74
 msgid "cover image"
 msgstr ""
 
@@ -225,11 +311,11 @@ msgstr ""
 msgid "live site URL"
 msgstr ""
 
-#: .\apps\portfolio\models.py:75
+#: .\apps\portfolio\models.py:75 .\apps\readymade\models.py:90
 msgid "video link"
 msgstr ""
 
-#: .\apps\portfolio\models.py:78
+#: .\apps\portfolio\models.py:78 .\apps\readymade\models.py:93
 msgid "YouTube or Vimeo link."
 msgstr ""
 
@@ -241,19 +327,22 @@ msgstr ""
 msgid "MP4 or WebM, max 50 MB. Used when no video link is set."
 msgstr ""
 
-#: .\apps\portfolio\models.py:88
+#: .\apps\portfolio\models.py:88 .\apps\readymade\models.py:99
+#: .\apps\services\models.py:54
 msgid "published"
 msgstr ""
 
-#: .\apps\portfolio\models.py:89
+#: .\apps\portfolio\models.py:89 .\apps\readymade\models.py:100
 msgid "featured on home page"
 msgstr ""
 
-#: .\apps\portfolio\models.py:92
+#: .\apps\portfolio\models.py:92 .\apps\readymade\models.py:102
+#: .\apps\services\models.py:56
 msgid "SEO title"
 msgstr ""
 
-#: .\apps\portfolio\models.py:93
+#: .\apps\portfolio\models.py:93 .\apps\readymade\models.py:103
+#: .\apps\services\models.py:57
 msgid "meta description"
 msgstr ""
 
@@ -294,7 +383,7 @@ msgstr "Ordinater"
 msgid "Mobile"
 msgstr "Mobil"
 
-#: .\apps\portfolio\models.py:152
+#: .\apps\portfolio\models.py:152 .\apps\readymade\models.py:130
 msgid "image"
 msgstr ""
 
@@ -302,27 +391,171 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#: .\apps\portfolio\models.py:161
+#: .\apps\portfolio\models.py:161 .\apps\readymade\models.py:138
 msgid "caption"
 msgstr ""
 
-#: .\apps\portfolio\models.py:166
+#: .\apps\portfolio\models.py:166 .\apps\readymade\models.py:143
 msgid "screenshot"
 msgstr ""
 
-#: .\apps\portfolio\models.py:167
+#: .\apps\portfolio\models.py:167 .\apps\readymade\models.py:144
 msgid "screenshots"
 msgstr ""
 
-#: .\config\settings\base.py:89
+#: .\apps\readymade\models.py:11 .\apps\services\models.py:7
+msgid "One per line."
+msgstr ""
+
+#: .\apps\readymade\models.py:28
+msgid "industries"
+msgstr ""
+
+#: .\apps\readymade\models.py:44
+msgid "Available"
+msgstr ""
+
+#: .\apps\readymade\models.py:45
+msgid "Coming soon"
+msgstr ""
+
+#: .\apps\readymade\models.py:57
+msgid "included features"
+msgstr ""
+
+#: .\apps\readymade\models.py:58
+msgid "pages included"
+msgstr ""
+
+#: .\apps\readymade\models.py:61
+msgid "starting price"
+msgstr ""
+
+#: .\apps\readymade\models.py:67
+msgid "Leave empty to show “Price on request”."
+msgstr ""
+
+#: .\apps\readymade\models.py:70
+msgid "currency"
+msgstr ""
+
+#: .\apps\readymade\models.py:88
+msgid "live demo URL"
+msgstr ""
+
+#: .\apps\readymade\models.py:97
+msgid "status"
+msgstr ""
+
+#: .\apps\readymade\models.py:109
+msgid "website template"
+msgstr ""
+
+#: .\apps\readymade\models.py:110
+msgid "website templates"
+msgstr ""
+
+#: .\apps\services\models.py:13
+msgid "intro"
+msgstr ""
+
+#: .\apps\services\models.py:18
+msgid "service group"
+msgstr ""
+
+#: .\apps\services\models.py:19
+msgid "service groups"
+msgstr ""
+
+#: .\apps\services\models.py:32
+msgid "Code"
+msgstr ""
+
+#: .\apps\services\models.py:33
+msgid "Shopping cart"
+msgstr ""
+
+#: .\apps\services\models.py:34
+msgid "Rocket"
+msgstr ""
+
+#: .\apps\services\models.py:35
+msgid "Refresh"
+msgstr ""
+
+#: .\apps\services\models.py:36
+msgid "Sparkles"
+msgstr ""
+
+#: .\apps\services\models.py:37
+msgid "Chat"
+msgstr ""
+
+#: .\apps\services\models.py:38
+msgid "Megaphone"
+msgstr ""
+
+#: .\apps\services\models.py:39
+msgid "Chart"
+msgstr ""
+
+#: .\apps\services\models.py:42
+msgid "group"
+msgstr ""
+
+#: .\apps\services\models.py:46
+msgid "icon"
+msgstr ""
+
+#: .\apps\services\models.py:47
+msgid "summary"
+msgstr ""
+
+#: .\apps\services\models.py:49
+msgid "benefits"
+msgstr ""
+
+#: .\apps\services\models.py:50
+msgid "what you get"
+msgstr ""
+
+#: .\apps\services\models.py:52
+msgid "related projects"
+msgstr ""
+
+#: .\apps\services\models.py:63
+msgid "service"
+msgstr ""
+
+#: .\apps\services\models.py:64
+msgid "services"
+msgstr ""
+
+#: .\apps\services\models.py:75
+msgid "question"
+msgstr ""
+
+#: .\apps\services\models.py:76
+msgid "answer"
+msgstr ""
+
+#: .\apps\services\models.py:81 .\templates\services\detail.html:65
+msgid "FAQ"
+msgstr "FAQ"
+
+#: .\apps\services\models.py:82
+msgid "FAQs"
+msgstr ""
+
+#: .\config\settings\base.py:92
 msgid "English"
 msgstr "Angle"
 
-#: .\config\settings\base.py:90
+#: .\config\settings\base.py:93
 msgid "French"
 msgstr "Franse"
 
-#: .\config\settings\base.py:91
+#: .\config\settings\base.py:94
 msgid "Mauritian Creole"
 msgstr "Kreol Morisien"
 
@@ -342,7 +575,7 @@ msgstr "Kapav lien-la kase ouswa paz-la finn sanz plas."
 msgid "Back to home"
 msgstr "Retourn lor paz akey"
 
-#: .\templates\404.html:13 .\templates\pages\home.html:19
+#: .\templates\404.html:13 .\templates\pages\home.html:20
 msgid "View Our Work"
 msgstr "Get nou travay"
 
@@ -350,26 +583,148 @@ msgstr "Get nou travay"
 msgid "Skip to content"
 msgstr "Al direk lor kontni"
 
-#: .\templates\pages\home.html:10
-msgid "Web development & AI marketing · Mauritius"
-msgstr "Devlopman web & marketing IA · Moris"
+#: .\templates\components\cta_band.html:6
+msgid "Ready to grow your business online?"
+msgstr "Pare pou fer ou biznes grandi lor internet?"
 
-#: .\templates\pages\home.html:12
-msgid "We build websites that"
-msgstr "Nou fer sit web ki"
+#: .\templates\components\cta_band.html:7
+msgid "Tell us about your project and we'll get back to you with a tailored quote."
+msgstr "Dir nou ki ou proze ete ek nou pou avoy ou enn devi lor mezir."
 
-#: .\templates\pages\home.html:12
-msgid "win clients."
-msgstr "atir klian."
-
-#: .\templates\pages\home.html:18 .\templates\partials\header.html:15
-#: .\templates\partials\header.html:35 .\templates\portfolio\detail.html:121
+#: .\templates\components\cta_band.html:9 .\templates\pages\home.html:19
+#: .\templates\partials\header.html:15 .\templates\partials\header.html:35
+#: .\templates\services\detail.html:20
 msgid "Get a Quote"
 msgstr "Demann enn devi"
 
-#: .\templates\pages\home.html:24
+#: .\templates\components\cta_band.html:11
+msgid "Book a call"
+msgstr "Rezerv enn apel"
+
+#: .\templates\components\filter_tabs.html:7
+msgid "All"
+msgstr "Tou"
+
+#: .\templates\components\gallery.html:8
+msgid "Project screenshot"
+msgstr "Kapser ekran proze"
+
+#: .\templates\components\gallery.html:15
+msgid "Screenshot viewer"
+msgstr "Vizyoner kapser"
+
+#: .\templates\components\gallery.html:21
+msgid "Previous"
+msgstr "Avan"
+
+#: .\templates\components\gallery.html:23
+msgid "Next"
+msgstr "Apre"
+
+#: .\templates\components\gallery.html:24
+#: .\templates\components\video_modal.html:9
+msgid "Close"
+msgstr "Ferme"
+
+#: .\templates\components\process.html:4
+msgid "How we work"
+msgstr "Kouma nou travay"
+
+#: .\templates\components\process.html:4
+msgid "From first call to launch — and beyond."
+msgstr "Depi premie apel ziska lansman — ek plis."
+
+#: .\templates\components\stats.html:3
 msgid "Key figures"
 msgstr "Shif kle"
+
+#: .\templates\pages\about.html:4 .\templates\partials\nav_links.html:6
+msgid "About"
+msgstr "Lor nou"
+
+#: .\templates\pages\about.html:9
+msgid "About us"
+msgstr "Lor nou"
+
+#: .\templates\pages\about.html:11
+msgid "A Mauritian agency building for the web — and for AI."
+msgstr "Enn azans Morisien ki konstrir pou internet — ek pou IA."
+
+#: .\templates\pages\about.html:20
+msgid "Our mission"
+msgstr "Nou misyon"
+
+#: .\templates\pages\about.html:31
+msgid "What we stand for"
+msgstr "Seki nou defann"
+
+#: .\templates\pages\about.html:31
+msgid "Our values"
+msgstr "Nou bann valer"
+
+#: .\templates\pages\about.html:46
+msgid "The team"
+msgstr "Lekip"
+
+#: .\templates\pages\about.html:46
+msgid "The people behind your project."
+msgstr "Bann dimounn deryer ou proze."
+
+#: .\templates\pages\about.html:71
+msgid "Tools & technologies we use"
+msgstr "Zouti ek teknolozi ki nou servi"
+
+#: .\templates\pages\home.html:11
+msgid "Web development & AI marketing · Mauritius"
+msgstr "Devlopman web & marketing IA · Moris"
+
+#: .\templates\pages\home.html:13
+msgid "We build websites that"
+msgstr "Nou fer sit web ki"
+
+#: .\templates\pages\home.html:13
+msgid "win clients."
+msgstr "atir klian."
+
+#: .\templates\pages\home.html:31
+msgid "Selected work"
+msgstr "Travay swazi"
+
+#: .\templates\pages\home.html:31
+msgid "Projects we're proud of."
+msgstr "Proze ki nou fier."
+
+#: .\templates\pages\home.html:33
+msgid "View all projects"
+msgstr "Get tou proze"
+
+#: .\templates\pages\home.html:47
+msgid "What we do"
+msgstr "Seki nou fer"
+
+#: .\templates\pages\home.html:47
+msgid "Websites and AI marketing, under one roof."
+msgstr "Sit web ek marketing IA, anba enn sel twa."
+
+#: .\templates\pages\home.html:78
+msgid "Ready-made websites"
+msgstr "Sit tou-pare"
+
+#: .\templates\pages\home.html:78
+msgid "Launch fast with a ready-made site."
+msgstr "Lans vit avek enn sit tou-pare."
+
+#: .\templates\pages\home.html:78
+msgid "Pick a design for your industry and we'll customise it with your brand, content and domain."
+msgstr "Swazir enn design pou ou sekter ek nou adapte li avek ou mark, ou kontni ek ou domenn."
+
+#: .\templates\pages\home.html:80
+msgid "Browse all"
+msgstr "Get tou"
+
+#: .\templates\pages\legal.html:9
+msgid "Last updated"
+msgstr "Dernie mizazour"
 
 #: .\templates\pages\placeholder.html:10
 msgid "This page is being built. Check back soon."
@@ -411,6 +766,11 @@ msgstr "Portfolio"
 #: .\templates\partials\nav_links.html:3
 msgid "Ready-made Sites"
 msgstr "Sit tou-pare"
+
+#: .\templates\partials\nav_links.html:4 .\templates\portfolio\detail.html:25
+#: .\templates\services\list.html:4 .\templates\services\list.html:9
+msgid "Services"
+msgstr "Servis"
 
 #: .\templates\partials\whatsapp_button.html:3
 msgid "Chat with us on WhatsApp"
@@ -460,7 +820,7 @@ msgstr "Rezilta"
 msgid "Built with"
 msgstr "Fer avek"
 
-#: .\templates\portfolio\detail.html:77
+#: .\templates\portfolio\detail.html:77 .\templates\readymade\detail.html:56
 msgid "Screenshots"
 msgstr "Kapser ekran"
 
@@ -468,35 +828,31 @@ msgstr "Kapser ekran"
 msgid "Screenshot type"
 msgstr "Tip kapser"
 
-#: .\templates\portfolio\detail.html:102
+#: .\templates\portfolio\detail.html:102 .\templates\readymade\detail.html:63
 msgid "Walkthrough"
 msgstr "Prezantasion video"
 
-#: .\templates\portfolio\detail.html:105
+#: .\templates\portfolio\detail.html:105 .\templates\readymade\detail.html:65
 msgid "video walkthrough"
 msgstr "prezantasion video"
 
-#: .\templates\portfolio\detail.html:119
+#: .\templates\portfolio\detail.html:115
 msgid "Want a website like this?"
 msgstr "Ou anvi enn sit koumsa?"
 
 #: .\templates\portfolio\detail.html:120
-msgid "Tell us about your project and we'll get back to you with a tailored quote."
-msgstr "Dir nou ki ou proze ete ek nou pou avoy ou enn devi lor mezir."
-
-#: .\templates\portfolio\detail.html:127
 msgid "More projects"
 msgstr "Plis proze"
 
-#: .\templates\portfolio\detail.html:130
+#: .\templates\portfolio\detail.html:123
 msgid "Previous project"
 msgstr "Proze avan"
 
-#: .\templates\portfolio\detail.html:136
+#: .\templates\portfolio\detail.html:129
 msgid "Next project"
 msgstr "Proze apre"
 
-#: .\templates\portfolio\detail.html:146
+#: .\templates\portfolio\detail.html:139
 msgid "Related projects"
 msgstr "Proze similer"
 
@@ -532,39 +888,178 @@ msgstr "Video"
 msgid "Load more projects"
 msgstr "Get plis proze"
 
-#: .\templates\portfolio\partials\gallery.html:8
-msgid "Project screenshot"
-msgstr "Kapser ekran proze"
-
-#: .\templates\portfolio\partials\gallery.html:15
-msgid "Screenshot viewer"
-msgstr "Vizyoner kapser"
-
-#: .\templates\portfolio\partials\gallery.html:21
-msgid "Previous"
-msgstr "Avan"
-
-#: .\templates\portfolio\partials\gallery.html:23
-msgid "Next"
-msgstr "Apre"
-
-#: .\templates\portfolio\partials\gallery.html:24
-#: .\templates\portfolio\partials\video_modal.html:9
-msgid "Close"
-msgstr "Ferme"
-
 #: .\templates\portfolio\partials\grid.html:3
 msgid "Projects"
 msgstr "Proze"
 
-#: .\templates\portfolio\partials\grid.html:5
+#: .\templates\portfolio\partials\grid.html:4
 msgid "Filter projects by category"
 msgstr "Filtre proze par kategori"
 
-#: .\templates\portfolio\partials\grid.html:8
-msgid "All"
-msgstr "Tou"
-
-#: .\templates\portfolio\partials\grid.html:22
+#: .\templates\portfolio\partials\grid.html:12
 msgid "No projects to show yet — check back soon."
 msgstr "Pankor ena proze pou montre — repase biento."
+
+#: .\templates\readymade\detail.html:13
+msgid "All ready-made websites"
+msgstr "Tou sit tou-pare"
+
+#: .\templates\readymade\detail.html:24
+msgid "Customise this website"
+msgstr "Personaliz sa sit-la"
+
+#: .\templates\readymade\detail.html:24
+msgid "Notify me when it's ready"
+msgstr "Averti mwa kan li pare"
+
+#: .\templates\readymade\detail.html:26
+msgid "View live demo"
+msgstr "Get demo an liyn"
+
+#: .\templates\readymade\detail.html:41
+msgid "Included features"
+msgstr "Fonksionalite inkli"
+
+#: .\templates\readymade\detail.html:47
+msgid "Pages included"
+msgstr "Paz inkli"
+
+#: .\templates\readymade\detail.html:74
+msgid "Other ready-made websites"
+msgstr "Lot sit tou-pare"
+
+#: .\templates\readymade\detail.html:84
+#, python-format
+msgid "Interested in %(name)s?"
+msgstr "%(name)s interes ou?"
+
+#: .\templates\readymade\detail.html:85
+msgid "Send us a message and we'll show you how it would look with your brand."
+msgstr "Avoy nou enn mesaz ek nou pou montre ou kouma li pou ete avek ou mark."
+
+#: .\templates\readymade\list.html:4 .\templates\readymade\list.html:9
+msgid "Ready-made Websites"
+msgstr "Sit web tou-pare"
+
+#: .\templates\readymade\list.html:5
+msgid "Professional website designs for restaurants, tourism, car rental, real estate and more — customised with your brand and launched fast."
+msgstr "Design sit profesionel pou restoran, tourism, lokasion loto, imobilie ek plis — personalize avek ou mark ek lanse vit."
+
+#: .\templates\readymade\list.html:10
+msgid "Your new website, ready in days."
+msgstr "Ou nouvo sit, pare dan enn pe zour."
+
+#: .\templates\readymade\list.html:11
+msgid "Choose a design made for your industry. We customise it with your logo, colours, content and domain, then launch it for you."
+msgstr "Swazir enn design fer pou ou sekter. Nou adapte li avek ou logo, ou kouler, ou kontni ek ou domenn, apre nou lans li pou ou."
+
+#: .\templates\readymade\list.html:13
+msgid "Pick a design and send us an enquiry."
+msgstr "Swazir enn design ek avoy nou enn demand."
+
+#: .\templates\readymade\list.html:14
+msgid "We customise it with your brand and content."
+msgstr "Nou adapte li avek ou mark ek ou kontni."
+
+#: .\templates\readymade\list.html:15
+msgid "We launch it on your domain and hand it over."
+msgstr "Nou lans li lor ou domenn ek nou remet li ou."
+
+#: .\templates\readymade\list.html:21
+msgid "Don't see your industry?"
+msgstr "Ou pa trouv ou sekter?"
+
+#: .\templates\readymade\list.html:21
+msgid "We also build fully custom websites. Tell us what you need."
+msgstr "Nou osi fer sit konpletman lor mezir. Dir nou ki ou bizin."
+
+#: .\templates\readymade\partials\card.html:16
+msgid "Live demo"
+msgstr "Demo an liyn"
+
+#: .\templates\readymade\partials\card.html:17
+msgid "Details"
+msgstr "Detay"
+
+#: .\templates\readymade\partials\grid.html:3
+msgid "Website templates"
+msgstr "Model sit"
+
+#: .\templates\readymade\partials\grid.html:4
+msgid "Filter by industry"
+msgstr "Filtre par sekter"
+
+#: .\templates\readymade\partials\grid.html:15
+msgid "New ready-made websites are on the way — check back soon."
+msgstr "Nouvo sit tou-pare pe vini — repase biento."
+
+#: .\templates\readymade\partials\price.html:1
+#, python-format
+msgid "From <strong>%(currency)s %(price)s</strong>"
+msgstr "Apartir <strong>%(currency)s %(price)s</strong>"
+
+#: .\templates\readymade\partials\price.html:1
+msgid "Price on request"
+msgstr "Pri lor demand"
+
+#: .\templates\services\detail.html:12
+msgid "All services"
+msgstr "Tou servis"
+
+#: .\templates\services\detail.html:21
+msgid "See examples"
+msgstr "Get legzanp"
+
+#: .\templates\services\detail.html:31
+msgid "Why it matters"
+msgstr "Kifer sa inportan"
+
+#: .\templates\services\detail.html:40
+msgid "What you get"
+msgstr "Seki ou gagne"
+
+#: .\templates\services\detail.html:51
+msgid "Examples"
+msgstr "Legzanp"
+
+#: .\templates\services\detail.html:51
+msgid "Recent work"
+msgstr "Travay resan"
+
+#: .\templates\services\detail.html:65
+msgid "Questions we often get"
+msgstr "Kestion ki nou souvan gagne"
+
+#: .\templates\services\detail.html:84
+msgid "Other services"
+msgstr "Lot servis"
+
+#: .\templates\services\detail.html:85
+#, python-format
+msgid "More in %(group)s"
+msgstr "Plis dan %(group)s"
+
+#: .\templates\services\detail.html:92
+#, python-format
+msgid "Let's talk about your %(service)s project."
+msgstr "Ann koz lor ou proze %(service)s."
+
+#: .\templates\services\list.html:5
+msgid "Website development, e-commerce, landing pages, AI content and AI chatbots for businesses in Mauritius and abroad."
+msgstr "Devlopman web, e-commerce, paz atrisaz, kontni IA ek chatbot IA pou biznes Moris ek lot pei."
+
+#: .\templates\services\list.html:10
+msgid "Everything you need to grow online."
+msgstr "Tou seki ou bizin pou grandi lor internet."
+
+#: .\templates\services\list.html:11
+msgid "We design and build websites that convert, then use AI to keep your marketing working while you focus on your business."
+msgstr "Nou fer sit ki konverti, apre nou servi IA pou ou marketing kontinie travay pandan ou konsantre lor ou biznes."
+
+#: .\templates\services\list.html:27
+msgid "Learn more"
+msgstr "Konn plis"
+
+#: .\templates\services\list.html:34
+msgid "Our services will be listed here soon."
+msgstr "Nou bann servis pou paret isi biento."

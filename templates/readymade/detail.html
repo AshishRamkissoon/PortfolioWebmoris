@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n core_tags %}
+
+{% block title %}{{ template.seo_title|default:template.name }} · {{ site_settings.site_name }}{% endblock %}
+{% block meta_description %}{{ template.seo_description|default:template.short_description }}{% endblock %}
+{% block og_title %}{{ template.seo_title|default:template.name }}{% endblock %}
+{% block og_description %}{{ template.seo_description|default:template.short_description }}{% endblock %}
+{% block og_image %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ template.cover_card.url }}">{% endblock %}
+
+{% block content %}
+<article>
+  <header class="container-site pt-20 sm:pt-28">
+    <a href="{% url 'readymade:list' %}" class="text-sm font-semibold text-ink-400 hover:text-neon-cyan">&larr; {% translate "All ready-made websites" %}</a>
+    <div data-reveal class="mt-8 flex flex-wrap items-center gap-3">
+      <p class="eyebrow">{{ template.industry.name }}</p>
+      <span class="status-badge static {% if template.is_available %}is-available{% endif %}">{{ template.get_status_display }}</span>
+    </div>
+    <h1 data-split class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ template.name }}</h1>
+    <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-xl text-ink-300">{{ template.short_description }}</p>
+
+    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap items-center gap-4">
+      {# The enquiry form opens here in Phase 4; until then it goes to the contact page. #}
+      <a href="{% url 'core:contact' %}" class="btn-primary btn-lg" data-inquire-template="{{ template.slug }}">
+        {% if template.is_available %}{% translate "Customise this website" %}{% else %}{% translate "Notify me when it's ready" %}{% endif %}
+      </a>
+      {% if template.demo_url %}<a href="{{ template.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg">{% translate "View live demo" %} &nearr;</a>{% endif %}
+      <p class="text-lg text-ink-200">{% include "readymade/partials/price.html" %}</p>
+    </div>
+  </header>
+
+  <figure data-reveal class="container-site mt-14">
+    <img src="{{ template.cover_hero.url }}" alt="{{ template.name }}" decoding="async" fetchpriority="high"
+         class="w-full rounded-card border border-ink-800 object-cover">
+  </figure>
+
+  <div class="container-site mt-20 grid gap-12 lg:grid-cols-[3fr_2fr]">
+    {% if template.description %}<div data-reveal class="prose-site">{{ template.description|linebreaks }}</div>{% endif %}
+    <div class="space-y-6">
+      {% with items=template.features|lines %}{% if items %}
+      <section data-reveal class="rounded-card border border-ink-800 bg-ink-900 p-8">
+        <h2 class="meta-label">{% translate "Included features" %}</h2>
+        <ul class="mt-5 space-y-3">{% for item in items %}<li class="flex gap-3"><span class="text-neon-cyan" aria-hidden="true">✓</span><span>{{ item }}</span></li>{% endfor %}</ul>
+      </section>
+      {% endif %}{% endwith %}
+      {% with items=template.pages|lines %}{% if items %}
+      <section data-reveal data-reveal-delay="0.1" class="rounded-card border border-ink-800 bg-ink-900 p-8">
+        <h2 class="meta-label">{% translate "Pages included" %}</h2>
+        <ul class="mt-5 flex flex-wrap gap-2">{% for item in items %}<li class="rounded-full border border-ink-700 px-4 py-1.5 text-sm">{{ item }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}{% endwith %}
+    </div>
+  </div>
+
+  {% with images=template.images.all %}{% if images %}
+  <section class="container-site mt-28">
+    <h2 data-reveal class="font-display text-4xl font-bold">{% translate "Screenshots" %}</h2>
+    <div class="mt-10">{% include "components/gallery.html" with images=images columns="md:grid-cols-2" %}</div>
+  </section>
+  {% endif %}{% endwith %}
+
+  {% if template.video_embed_url %}
+  <section class="container-site mt-28">
+    <h2 data-reveal class="font-display text-4xl font-bold">{% translate "Walkthrough" %}</h2>
+    <div data-reveal class="mt-10 aspect-video overflow-hidden rounded-card border border-ink-800 bg-black">
+      <iframe src="{{ template.video_embed_url }}" title="{{ template.name }} — {% translate 'video walkthrough' %}" loading="lazy"
+              class="size-full" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </section>
+  {% endif %}
+</article>
+
+{% if other_templates %}
+<section class="container-site mt-28">
+  <h2 data-reveal class="font-display text-3xl font-bold">{% translate "Other ready-made websites" %}</h2>
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for template in other_templates %}
+      {% cycle "0" "0.1" "0.2" as delay silent %}
+      {% include "readymade/partials/card.html" %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% blocktranslate asvar cta_heading with name=template.name %}Interested in {{ name }}?{% endblocktranslate %}
+{% translate "Send us a message and we'll show you how it would look with your brand." as cta_text %}
+{% include "components/cta_band.html" with heading=cta_heading text=cta_text %}
+{% endblock %}

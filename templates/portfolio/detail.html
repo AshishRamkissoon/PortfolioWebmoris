@@ -85,12 +85,12 @@
 
     {% if desktop_images %}
     <div x-show="tab === 'desktop'" class="mt-10">
-      {% include "portfolio/partials/gallery.html" with images=desktop_images columns="md:grid-cols-2" %}
+      {% include "components/gallery.html" with images=desktop_images columns="md:grid-cols-2" %}
     </div>
     {% endif %}
     {% if mobile_images %}
     <div x-show="tab === 'mobile'" {% if desktop_images %}x-cloak{% endif %} class="mt-10">
-      {% include "portfolio/partials/gallery.html" with images=mobile_images columns="grid-cols-2 md:grid-cols-4" %}
+      {% include "components/gallery.html" with images=mobile_images columns="grid-cols-2 md:grid-cols-4" %}
     </div>
     {% endif %}
   </section>
@@ -112,15 +112,8 @@
   {% endif %}
 </article>
 
-{# --- CTA --- #}
-<section class="container-site mt-28">
-  <div data-reveal class="relative overflow-hidden rounded-card border border-ink-800 bg-ink-900 px-8 py-16 text-center sm:px-16">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <h2 class="font-display text-4xl font-bold sm:text-5xl">{% translate "Want a website like this?" %}</h2>
-    <p class="mx-auto mt-4 max-w-xl text-lg text-ink-300">{% translate "Tell us about your project and we'll get back to you with a tailored quote." %}</p>
-    <a href="{% url 'core:contact' %}" class="btn-primary btn-lg mt-8 inline-flex">{% translate "Get a Quote" %}</a>
-  </div>
-</section>
+{% translate "Want a website like this?" as cta_heading %}
+{% include "components/cta_band.html" with heading=cta_heading %}
 
 {# --- Previous / next --- #}
 {% if previous_project or next_project %}
@@ -150,7 +143,7 @@
       {% include "portfolio/partials/card.html" %}
     {% endfor %}
   </div>
-  {% include "portfolio/partials/video_modal.html" %}
+  {% include "components/video_modal.html" %}
 </section>
 {% endif %}
 {% endblock %}

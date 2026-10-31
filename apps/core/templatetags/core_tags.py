@@ -30,3 +30,9 @@ def language_links(context):
             }
         )
     return links
+
+
+@register.filter
+def lines(value):
+    """Split a one-item-per-line text field into a list, skipping blank lines."""
+    return [line.strip() for line in str(value or "").splitlines() if line.strip()]

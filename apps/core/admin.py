@@ -1,16 +1,41 @@
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.utils.html import format_html
 from modeltranslation.admin import TabbedTranslationAdmin
 
-from .models import SiteSettings
+from .models import AboutPage, LegalPage, ProcessStep, SiteSettings, TeamMember
 
 admin.site.site_header = "Webmoris admin"
 admin.site.site_title = "Webmoris admin"
 
 
+def image_preview(image_field, height=60):
+    """Small thumbnail for admin lists and forms."""
+    if not image_field:
+        return "—"
+    return format_html(
+        '<img src="{}" style="height:{}px;border-radius:6px" alt="">', image_field.url, height
+    )
+
+
+class SingletonAdminMixin:
+    """Admin for one-row models: no add/delete, and the list goes straight to the edit form."""
+
+    def has_add_permission(self, request):
+        return not self.model.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def changelist_view(self, request, extra_context=None):
+        obj = self.model.load()
+        opts = self.model._meta
+        return redirect(reverse(f"admin:{opts.app_label}_{opts.model_name}_change", args=[obj.pk]))
+
+
 @admin.register(SiteSettings)
-class SiteSettingsAdmin(TabbedTranslationAdmin):
+class SiteSettingsAdmin(SingletonAdminMixin, TabbedTranslationAdmin):
     fieldsets = (
         (None, {"fields": ("site_name", "tagline", "footer_about")}),
         (
@@ -38,13 +63,35 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
         ("SEO defaults", {"fields": ("seo_title", "seo_description")}),
     )
 
-    def has_add_permission(self, request):
-        return not SiteSettings.objects.exists()
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+@admin.register(AboutPage)
+class AboutPageAdmin(SingletonAdminMixin, TabbedTranslationAdmin):
+    fields = ("story_title", "story", "mission", "values", "tools")
 
-    def changelist_view(self, request, extra_context=None):
-        # Skip the one-row list and go straight to the edit form.
-        obj = SiteSettings.load()
-        return redirect(reverse("admin:core_sitesettings_change", args=[obj.pk]))
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(TabbedTranslationAdmin):
+    list_display = ("photo_thumb", "name", "role", "is_active", "order")
+    list_display_links = ("photo_thumb", "name")
+    list_editable = ("is_active", "order")
+    readonly_fields = ("photo_thumb",)
+    fields = ("name", "role", "bio", "photo", "photo_thumb", "linkedin_url", "is_active", "order")
+
+    @admin.display(description="Photo")
+    def photo_thumb(self, obj):
+        if not obj.photo:
+            return "—"
+        style = "height:48px;width:48px;object-fit:cover;border-radius:50%"
+        return format_html('<img src="{}" style="{}" alt="">', obj.photo.url, style)
+
+
+@admin.register(ProcessStep)
+class ProcessStepAdmin(TabbedTranslationAdmin):
+    list_display = ("title", "description", "order")
+    list_editable = ("order",)
+
+
+@admin.register(LegalPage)
+class LegalPageAdmin(TabbedTranslationAdmin):
+    list_display = ("title", "kind", "updated_at")
+    readonly_fields = ("updated_at",)

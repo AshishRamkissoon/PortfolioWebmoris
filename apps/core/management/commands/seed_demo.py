@@ -1,7 +1,10 @@
 from django.core.management.base import BaseCommand
 
+from apps.core.demo import seed_core_content
 from apps.core.models import SiteSettings
 from apps.portfolio.demo import seed_portfolio
+from apps.readymade.demo import seed_readymade
+from apps.services.demo import seed_services
 
 # Placeholder values only — the owner replaces them in admin.
 SITE_SETTINGS_DEMO = {
@@ -52,4 +55,6 @@ class Command(BaseCommand):
             self.style.SUCCESS(f"Site settings: filled {len(filled)} empty field(s).")
         )
 
-        seed_portfolio(stdout=self.stdout)
+        # Portfolio first: services link to demo projects.
+        for seed in (seed_core_content, seed_portfolio, seed_services, seed_readymade):
+            seed(stdout=self.stdout)

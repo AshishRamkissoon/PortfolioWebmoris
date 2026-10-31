@@ -23,9 +23,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
     "imagekit",
     "apps.core",
     "apps.portfolio",
+    "apps.services",
+    "apps.readymade",
 ]
 
 MIDDLEWARE = [

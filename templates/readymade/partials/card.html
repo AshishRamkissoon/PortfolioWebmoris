@@ -1,0 +1,22 @@
+{% load i18n %}{% with url=template.get_absolute_url %}
+<article data-reveal data-reveal-delay="{{ delay|default:'0' }}"
+         class="group relative flex flex-col overflow-hidden rounded-card border border-ink-800 bg-ink-900">
+  <a href="{{ url }}" tabindex="-1" aria-hidden="true" class="relative block aspect-[4/3] overflow-hidden">
+    <img src="{{ template.cover_card.url }}" width="800" height="600" loading="lazy" decoding="async" alt=""
+         class="size-full object-cover transition duration-700 ease-out group-hover:scale-105">
+    <span class="status-badge {% if template.is_available %}is-available{% endif %}">{{ template.get_status_display }}</span>
+  </a>
+  <div class="flex flex-1 flex-col p-6">
+    <p class="text-xs font-semibold uppercase tracking-wider text-neon-cyan">{{ template.industry.name }}</p>
+    <h3 class="mt-2 font-display text-2xl font-bold"><a href="{{ url }}" class="hover:text-neon-cyan">{{ template.name }}</a></h3>
+    <p class="mt-2 flex-1 text-ink-300">{{ template.short_description }}</p>
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+      <p class="text-ink-200">{% include "readymade/partials/price.html" %}</p>
+      <div class="flex gap-2">
+        {% if template.demo_url %}<a href="{{ template.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost">{% translate "Live demo" %}</a>{% endif %}
+        <a href="{{ url }}" class="btn-primary">{% translate "Details" %}</a>
+      </div>
+    </div>
+  </div>
+</article>
+{% endwith %}

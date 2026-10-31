@@ -11,6 +11,8 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path("portfolio/", include("apps.portfolio.urls")),
+    path("services/", include("apps.services.urls")),
+    path("ready-made-websites/", include("apps.readymade.urls")),
     path("", include("apps.core.urls")),
 )
 

@@ -13,7 +13,7 @@
 |---|---|---|---|---|---|
 | 1 | Foundation & Design System | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 2 | Portfolio & Case Studies | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
-| 3 | Services, Ready-made Websites, About & Home | ⬜ Not started | — | — | — |
+| 3 | Services, Ready-made Websites, About & Home | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 4 | Lead Capture | ⬜ Not started | — | — | — |
 | 5 | Pricing & Payments | ⬜ Not started | — | — | — |
 | 6 | Motion, 3D, SEO & Launch Readiness | ⬜ Not started | — | — | — |
@@ -22,12 +22,37 @@
 - [ ] Kreol URL prefix: proceeding with `/kr/` (plan default). Owner to confirm; easy to change later in one setting.
 - [ ] Kreol UI translations are a draft; they need review by a native speaker (Phase 6).
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
+- [ ] Real Privacy Policy and Terms text needed, reviewed by a legal professional. The demo pages start with "DEMO TEXT".
+- [ ] Real team members, About text, services, templates and prices needed to replace the demo content.
 - [ ] Real portfolio projects needed. The 7 demo projects (client names end in "(demo)") should be deleted before launch.
 - [ ] Demo values in Site settings need replacing: WhatsApp number, email, phone and stats.
 - [x] Own git repository created in `portfolio/` (branch `main`, working branch `phase/1-foundation`).
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-10-31 — Phase 3 — Completed — Approved by owner; committed on `phase/3-content-pages` and merged into `main`.
+- 2026-10-31 — Phase 3 — Ready for review — All exit criteria met.
+  - **Built:**
+    - **Services app:** groups, services and FAQs; list and detail pages with benefits, deliverables, related projects, an FAQ accordion and links to other services.
+    - **Ready-made websites app:** industries, templates and screenshots; catalog with an HTMX industry filter, status badges and "From MUR …" prices (formatted for each language). The detail page shows features, included pages, gallery, video and demo link.
+    - **About page:** story, mission, values, team (initials when there's no photo), process and tools.
+    - **Legal pages:** Privacy and Terms, editable in admin.
+    - **Home page:** stats that count up, featured projects in a pinned horizontal scroll (swipe on mobile), service groups, featured templates, process and a CTA band. The pricing slot is reserved for Phase 5.
+    - **Shared components:** section heading with split-text animation, CTA band, stats, process, filter tabs and icons.
+  - **Verified:** 148 tests passing, `ruff` clean, all pages checked live in EN/FR/KR. Admin text is HTML-escaped everywhere (tested).
+  - **Demo content:**
+    - 6 services, 6 templates, about text and 5 process steps.
+    - 3 team members marked "(demo)".
+    - Legal pages that start with "DEMO TEXT".
+    - Demo templates have no demo URL on purpose.
+  - **How to test:**
+    1. Scroll the Home page on desktop (the featured projects should slide sideways) and on mobile (swipe).
+    2. Open Services and a service page, and expand the FAQs.
+    3. On Ready-made Websites, filter by industry and open a template.
+    4. Open About and Privacy.
+    5. Switch to FR or KR.
+    6. In admin, edit About page, Team members, Process steps, Services, Website templates and Legal pages.
+- 2026-10-31 — Phase 3 — Started — branch `phase/3-content-pages`; demo content for services, templates, team and legal pages until real content arrives.
 - 2026-10-31 — Phase 2 — Completed — Approved by owner; committed on `phase/2-portfolio` and merged into `main`.
 - 2026-10-31 — Phase 2 — Ready for review — All exit criteria met.
   - **Built:** the `portfolio` app.

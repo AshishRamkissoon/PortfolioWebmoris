@@ -130,6 +130,40 @@
     @apply space-y-4 text-lg leading-relaxed text-ink-300;
   }
 
+  .service-card {
+    @apply flex h-full flex-col rounded-card border border-ink-800 bg-ink-900 p-8 transition hover:-translate-y-1 hover:border-ink-700;
+  }
+
+  .status-badge {
+    @apply absolute top-4 left-4 rounded-full bg-ink-950/80 px-3 py-1 text-xs font-semibold text-ink-200 backdrop-blur;
+
+    &.static {
+      @apply relative top-auto left-auto;
+    }
+
+    &.is-available {
+      @apply bg-neon-cyan text-ink-950;
+    }
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Featured work: swipeable row by default; pinned horizontal scroll on desktop (JS). */
+  .hscroll-track {
+    @apply flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6;
+    scrollbar-width: thin;
+
+    &.is-pinned {
+      @apply snap-none overflow-visible pb-0;
+    }
+  }
+
+  .hscroll-item {
+    @apply w-[85vw] max-w-md shrink-0 snap-start sm:w-[26rem];
+  }
+
   .hero-glow {
     @apply pointer-events-none absolute inset-0 -z-10;
     background:
@@ -139,6 +173,7 @@
 }
 
 /* Elements start hidden only when motion is allowed (class set in base.html). */
-.motion-ok [data-reveal] {
+.motion-ok [data-reveal],
+.motion-ok [data-split] {
   opacity: 0;
 }

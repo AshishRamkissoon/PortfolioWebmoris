@@ -2,6 +2,8 @@ import pytest
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
+from apps.core.models import LegalPage
+
 pytestmark = pytest.mark.django_db
 
 PAGES = [
@@ -20,8 +22,17 @@ PAGES = [
 @pytest.mark.parametrize("prefix", ["en", "fr", "kr"])
 @pytest.mark.parametrize("page", PAGES)
 def test_every_sitemap_page_renders(client, prefix, page):
+    for kind in LegalPage.Kind.values:
+        LegalPage.objects.create(kind=kind, title=kind, body="Text")
     response = client.get(f"/{prefix}/{page}")
     assert response.status_code == 200
+
+
+@pytest.mark.parametrize("page", PAGES)
+def test_every_sitemap_page_renders_when_empty(client, page):
+    """A fresh install with no content must not crash; legal pages 404 until written."""
+    expected = 404 if page in ("privacy/", "terms/") else 200
+    assert client.get(f"/en/{page}").status_code == expected
 
 
 def test_base_layout_has_header_footer_and_skip_link(client):

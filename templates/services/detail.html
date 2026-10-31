@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load i18n core_tags %}
+
+{% block title %}{{ service.seo_title|default:service.title }} · {{ site_settings.site_name }}{% endblock %}
+{% block meta_description %}{{ service.seo_description|default:service.summary }}{% endblock %}
+{% block og_title %}{{ service.seo_title|default:service.title }}{% endblock %}
+{% block og_description %}{{ service.seo_description|default:service.summary }}{% endblock %}
+
+{% block content %}
+<article>
+  <header class="container-site pt-20 sm:pt-28">
+    <a href="{% url 'services:list' %}" class="text-sm font-semibold text-ink-400 hover:text-neon-cyan">&larr; {% translate "All services" %}</a>
+    <div class="mt-8 flex items-center gap-4">
+      <span data-reveal class="grid size-14 place-items-center rounded-2xl bg-neon-cyan text-ink-950">{% include "components/icon.html" with name=service.icon class="size-7" %}</span>
+      <p data-reveal class="eyebrow">{{ service.group.name }}</p>
+    </div>
+    <h1 data-split class="mt-6 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ service.title }}</h1>
+    <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-xl text-ink-300">{{ service.summary }}</p>
+    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap gap-4">
+      <a href="{% url 'core:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
+      {% if related_projects %}<a href="#work" class="btn-ghost btn-lg">{% translate "See examples" %}</a>{% endif %}
+    </div>
+  </header>
+
+  <div class="container-site mt-20 grid gap-12 lg:grid-cols-[3fr_2fr]">
+    {% if service.body %}<div data-reveal class="prose-site">{{ service.body|linebreaks }}</div>{% endif %}
+
+    <div class="space-y-6">
+      {% with items=service.benefits|lines %}{% if items %}
+      <section data-reveal class="rounded-card border border-ink-800 bg-ink-900 p-8">
+        <h2 class="meta-label">{% translate "Why it matters" %}</h2>
+        <ul class="mt-5 space-y-3">
+          {% for item in items %}<li class="flex gap-3"><span class="text-neon-cyan" aria-hidden="true">✦</span><span>{{ item }}</span></li>{% endfor %}
+        </ul>
+      </section>
+      {% endif %}{% endwith %}
+
+      {% with items=service.deliverables|lines %}{% if items %}
+      <section data-reveal data-reveal-delay="0.1" class="rounded-card border border-ink-800 bg-ink-900 p-8">
+        <h2 class="meta-label">{% translate "What you get" %}</h2>
+        <ul class="mt-5 space-y-3">
+          {% for item in items %}<li class="flex gap-3"><span class="text-neon-cyan" aria-hidden="true">✓</span><span>{{ item }}</span></li>{% endfor %}
+        </ul>
+      </section>
+      {% endif %}{% endwith %}
+    </div>
+  </div>
+
+  {% if related_projects %}
+  <section id="work" class="container-site mt-28 scroll-mt-28" x-data="videoModal" @open-video.window="show($event.detail)">
+    {% translate "Examples" as eyebrow %}{% translate "Recent work" as title %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for project in related_projects %}
+        {% cycle "0" "0.1" "0.2" as delay silent %}
+        {% include "portfolio/partials/card.html" %}
+      {% endfor %}
+    </div>
+    {% include "components/video_modal.html" %}
+  </section>
+  {% endif %}
+
+  {% with faqs=service.faqs.all %}{% if faqs %}
+  <section class="container-site mt-28 max-w-4xl">
+    {% translate "FAQ" as eyebrow %}{% translate "Questions we often get" as title %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+    <div class="mt-10 divide-y divide-ink-800 border-y border-ink-800">
+      {% for faq in faqs %}
+      {# <details> works without JS and is accessible by default. #}
+      <details data-reveal class="faq group py-2">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 font-display text-lg font-bold">
+          {{ faq.question }}
+          <span aria-hidden="true" class="text-2xl text-neon-cyan transition group-open:rotate-45">+</span>
+        </summary>
+        <div class="prose-site pb-6">{{ faq.answer|linebreaks }}</div>
+      </details>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}{% endwith %}
+</article>
+
+{% if other_services %}
+<nav aria-label="{% translate 'Other services' %}" class="container-site mt-28">
+  <h2 class="meta-label">{% blocktranslate with group=service.group.name %}More in {{ group }}{% endblocktranslate %}</h2>
+  <ul class="mt-6 flex flex-wrap gap-3">
+    {% for other in other_services %}<li><a href="{{ other.get_absolute_url }}" class="btn-ghost">{{ other.title }}</a></li>{% endfor %}
+  </ul>
+</nav>
+{% endif %}
+
+{% blocktranslate asvar cta_heading with service=service.title %}Let's talk about your {{ service }} project.{% endblocktranslate %}
+{% include "components/cta_band.html" with heading=cta_heading %}
+{% endblock %}

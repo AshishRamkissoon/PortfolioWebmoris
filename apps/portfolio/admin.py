@@ -1,16 +1,9 @@
 from django.contrib import admin
-from django.utils.html import format_html
 from modeltranslation.admin import TabbedTranslationAdmin, TranslationTabularInline
 
+from apps.core.admin import image_preview as preview
+
 from .models import Project, ProjectCategory, ProjectImage, ProjectMetric
-
-
-def preview(image_field, height=60):
-    if not image_field:
-        return "—"
-    return format_html(
-        '<img src="{}" style="height:{}px;border-radius:6px" alt="">', image_field.url, height
-    )
 
 
 @admin.register(ProjectCategory)
