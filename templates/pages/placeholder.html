@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} · {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<section class="container-site py-32">
+  <p data-reveal class="eyebrow">{{ site_settings.site_name }}</p>
+  <h1 data-reveal data-reveal-delay="0.1" class="mt-4 font-display text-5xl font-bold sm:text-6xl">{{ title }}</h1>
+  <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-xl text-lg text-ink-300">{% translate "This page is being built. Check back soon." %}</p>
+  <a data-reveal data-reveal-delay="0.3" href="{% url 'core:home' %}" class="btn-ghost mt-10 inline-flex">{% translate "Back to home" %}</a>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% if site_settings.announcement_enabled and site_settings.announcement_text %}
+<div class="bg-linear-to-r from-neon-violet to-neon-cyan text-center text-sm font-medium text-ink-950">
+  <div class="container-site py-2">
+    {% if site_settings.announcement_link %}
+      <a href="{{ site_settings.announcement_link }}" class="underline-offset-4 hover:underline">{{ site_settings.announcement_text }} &rarr;</a>
+    {% else %}
+      {{ site_settings.announcement_text }}
+    {% endif %}
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,244 @@
+# Webmoris — Kreol Morisien (mfe) translations.
+# DRAFT: to be reviewed by a native speaker before launch (plan.md Phase 6).
+msgid ""
+msgstr ""
+"Project-Id-Version: Webmoris\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-31 11:32-0700\n"
+"PO-Revision-Date: 2026-10-31 12:00+0400\n"
+"Last-Translator: Webmoris\n"
+"Language-Team: Kreol Morisien\n"
+"Language: mfe\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\apps\core\models.py:9
+msgid "International format, digits only, no + or spaces (e.g. 23057123456)."
+msgstr ""
+
+#: .\apps\core\models.py:33
+msgid "site name"
+msgstr ""
+
+#: .\apps\core\models.py:34
+msgid "tagline"
+msgstr ""
+
+#: .\apps\core\models.py:35
+msgid "footer about text"
+msgstr ""
+
+#: .\apps\core\models.py:37
+msgid "show announcement bar"
+msgstr ""
+
+#: .\apps\core\models.py:38
+msgid "announcement text"
+msgstr ""
+
+#: .\apps\core\models.py:39
+msgid "announcement link"
+msgstr ""
+
+#: .\apps\core\models.py:41
+msgid "projects delivered"
+msgstr ""
+
+#: .\apps\core\models.py:42
+msgid "years of experience"
+msgstr ""
+
+#: .\apps\core\models.py:43
+msgid "happy clients"
+msgstr ""
+
+#: .\apps\core\models.py:44
+msgid "countries served"
+msgstr ""
+
+#: .\apps\core\models.py:47
+msgid "WhatsApp number"
+msgstr ""
+
+#: .\apps\core\models.py:49
+msgid "WhatsApp pre-filled message"
+msgstr ""
+
+#: .\apps\core\models.py:50
+msgid "Calendly URL"
+msgstr ""
+
+#: .\apps\core\models.py:52
+msgid "contact email"
+msgstr ""
+
+#: .\apps\core\models.py:53
+msgid "contact phone"
+msgstr ""
+
+#: .\apps\core\models.py:54
+msgid "address"
+msgstr ""
+
+#: .\apps\core\models.py:62
+msgid "default SEO title"
+msgstr ""
+
+#: .\apps\core\models.py:63
+msgid "default meta description"
+msgstr ""
+
+#: .\apps\core\models.py:66 .\apps\core\models.py:67
+msgid "site settings"
+msgstr ""
+
+#: .\apps\core\models.py:95
+msgid "Projects delivered"
+msgstr "Proze livre"
+
+#: .\apps\core\models.py:96
+msgid "Years of experience"
+msgstr "Lane lexperyans"
+
+#: .\apps\core\models.py:97
+msgid "Happy clients"
+msgstr "Klian satisfe"
+
+#: .\apps\core\models.py:98
+msgid "Countries served"
+msgstr "Pei servi"
+
+#: .\apps\core\urls.py:16 .\templates\partials\nav_links.html:2
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: .\apps\core\urls.py:17
+msgid "Ready-made Websites"
+msgstr "Sit web tou-pare"
+
+#: .\apps\core\urls.py:18 .\templates\partials\nav_links.html:4
+msgid "Services"
+msgstr "Servis"
+
+#: .\apps\core\urls.py:19 .\templates\partials\nav_links.html:5
+msgid "Pricing"
+msgstr "Pri"
+
+#: .\apps\core\urls.py:20 .\templates\partials\nav_links.html:6
+msgid "About"
+msgstr "Lor nou"
+
+#: .\apps\core\urls.py:21 .\templates\partials\nav_links.html:7
+msgid "Contact"
+msgstr "Kontak"
+
+#: .\apps\core\urls.py:22 .\templates\partials\footer.html:37
+msgid "Privacy Policy"
+msgstr "Politik konfidansialite"
+
+#: .\apps\core\urls.py:23 .\templates\partials\footer.html:38
+msgid "Terms & Conditions"
+msgstr "Term ek kondisyon"
+
+#: .\config\settings\base.py:87
+msgid "English"
+msgstr "Angle"
+
+#: .\config\settings\base.py:88
+msgid "French"
+msgstr "Franse"
+
+#: .\config\settings\base.py:89
+msgid "Mauritian Creole"
+msgstr "Kreol Morisien"
+
+#: .\templates\404.html:4
+msgid "Page not found"
+msgstr "Paz pa trouve"
+
+#: .\templates\404.html:9
+msgid "This page doesn't exist."
+msgstr "Sa paz-la pa egziste."
+
+#: .\templates\404.html:10
+msgid "The link may be broken or the page may have moved."
+msgstr "Kapav lien-la kase ouswa paz-la finn sanz plas."
+
+#: .\templates\404.html:12 .\templates\pages\placeholder.html:11
+msgid "Back to home"
+msgstr "Retourn lor paz akey"
+
+#: .\templates\404.html:13 .\templates\pages\home.html:19
+msgid "View Our Work"
+msgstr "Get nou travay"
+
+#: .\templates\base.html:39
+msgid "Skip to content"
+msgstr "Al direk lor kontni"
+
+#: .\templates\pages\home.html:10
+msgid "Web development & AI marketing · Mauritius"
+msgstr "Devlopman web & marketing IA · Moris"
+
+#: .\templates\pages\home.html:12
+msgid "We build websites that"
+msgstr "Nou fer sit web ki"
+
+#: .\templates\pages\home.html:12
+msgid "win clients."
+msgstr "atir klian."
+
+#: .\templates\pages\home.html:18 .\templates\partials\header.html:15
+#: .\templates\partials\header.html:35
+msgid "Get a Quote"
+msgstr "Demann enn devi"
+
+#: .\templates\pages\home.html:24
+msgid "Key figures"
+msgstr "Shif kle"
+
+#: .\templates\pages\placeholder.html:10
+msgid "This page is being built. Check back soon."
+msgstr "Nou pe konstrir sa paz-la. Repase biento."
+
+#: .\templates\partials\footer.html:17
+msgid "Explore"
+msgstr "Explore"
+
+#: .\templates\partials\footer.html:18
+msgid "Footer"
+msgstr "Pie paz"
+
+#: .\templates\partials\footer.html:24
+msgid "Get in touch"
+msgstr "Kontakte nou"
+
+#: .\templates\partials\footer.html:35
+msgid "All rights reserved."
+msgstr "Tou drwa rezerve."
+
+#: .\templates\partials\header.html:9
+msgid "Main"
+msgstr "Prinsipal"
+
+#: .\templates\partials\header.html:21
+msgid "Menu"
+msgstr "Meni"
+
+#: .\templates\partials\header.html:31
+msgid "Mobile"
+msgstr "Mobil"
+
+#: .\templates\partials\language_switcher.html:2
+msgid "Language"
+msgstr "Lang"
+
+#: .\templates\partials\nav_links.html:3
+msgid "Ready-made Sites"
+msgstr "Sit tou-pare"
+
+#: .\templates\partials\whatsapp_button.html:3
+msgid "Chat with us on WhatsApp"
+msgstr "Koz avek nou lor WhatsApp"

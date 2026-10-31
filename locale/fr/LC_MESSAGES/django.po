@@ -1,0 +1,244 @@
+# Webmoris — French translations.
+msgid ""
+msgstr ""
+"Project-Id-Version: Webmoris\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-31 11:32-0700\n"
+"PO-Revision-Date: 2026-10-31 12:00+0400\n"
+"Last-Translator: Webmoris\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
+
+#: .\apps\core\models.py:9
+msgid "International format, digits only, no + or spaces (e.g. 23057123456)."
+msgstr ""
+
+#: .\apps\core\models.py:33
+msgid "site name"
+msgstr ""
+
+#: .\apps\core\models.py:34
+msgid "tagline"
+msgstr ""
+
+#: .\apps\core\models.py:35
+msgid "footer about text"
+msgstr ""
+
+#: .\apps\core\models.py:37
+msgid "show announcement bar"
+msgstr ""
+
+#: .\apps\core\models.py:38
+msgid "announcement text"
+msgstr ""
+
+#: .\apps\core\models.py:39
+msgid "announcement link"
+msgstr ""
+
+#: .\apps\core\models.py:41
+msgid "projects delivered"
+msgstr ""
+
+#: .\apps\core\models.py:42
+msgid "years of experience"
+msgstr ""
+
+#: .\apps\core\models.py:43
+msgid "happy clients"
+msgstr ""
+
+#: .\apps\core\models.py:44
+msgid "countries served"
+msgstr ""
+
+#: .\apps\core\models.py:47
+msgid "WhatsApp number"
+msgstr ""
+
+#: .\apps\core\models.py:49
+msgid "WhatsApp pre-filled message"
+msgstr ""
+
+#: .\apps\core\models.py:50
+msgid "Calendly URL"
+msgstr ""
+
+#: .\apps\core\models.py:52
+msgid "contact email"
+msgstr ""
+
+#: .\apps\core\models.py:53
+msgid "contact phone"
+msgstr ""
+
+#: .\apps\core\models.py:54
+msgid "address"
+msgstr ""
+
+#: .\apps\core\models.py:62
+msgid "default SEO title"
+msgstr ""
+
+#: .\apps\core\models.py:63
+msgid "default meta description"
+msgstr ""
+
+#: .\apps\core\models.py:66 .\apps\core\models.py:67
+msgid "site settings"
+msgstr ""
+
+#: .\apps\core\models.py:95
+msgid "Projects delivered"
+msgstr "Projets livrés"
+
+#: .\apps\core\models.py:96
+msgid "Years of experience"
+msgstr "Années d'expérience"
+
+#: .\apps\core\models.py:97
+msgid "Happy clients"
+msgstr "Clients satisfaits"
+
+#: .\apps\core\models.py:98
+msgid "Countries served"
+msgstr "Pays desservis"
+
+#: .\apps\core\urls.py:16 .\templates\partials\nav_links.html:2
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: .\apps\core\urls.py:17
+msgid "Ready-made Websites"
+msgstr "Sites web clés en main"
+
+#: .\apps\core\urls.py:18 .\templates\partials\nav_links.html:4
+msgid "Services"
+msgstr "Services"
+
+#: .\apps\core\urls.py:19 .\templates\partials\nav_links.html:5
+msgid "Pricing"
+msgstr "Tarifs"
+
+#: .\apps\core\urls.py:20 .\templates\partials\nav_links.html:6
+msgid "About"
+msgstr "À propos"
+
+#: .\apps\core\urls.py:21 .\templates\partials\nav_links.html:7
+msgid "Contact"
+msgstr "Contact"
+
+#: .\apps\core\urls.py:22 .\templates\partials\footer.html:37
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: .\apps\core\urls.py:23 .\templates\partials\footer.html:38
+msgid "Terms & Conditions"
+msgstr "Conditions générales"
+
+#: .\config\settings\base.py:87
+msgid "English"
+msgstr "Anglais"
+
+#: .\config\settings\base.py:88
+msgid "French"
+msgstr "Français"
+
+#: .\config\settings\base.py:89
+msgid "Mauritian Creole"
+msgstr "Créole mauricien"
+
+#: .\templates\404.html:4
+msgid "Page not found"
+msgstr "Page introuvable"
+
+#: .\templates\404.html:9
+msgid "This page doesn't exist."
+msgstr "Cette page n'existe pas."
+
+#: .\templates\404.html:10
+msgid "The link may be broken or the page may have moved."
+msgstr "Le lien est peut-être cassé ou la page a été déplacée."
+
+#: .\templates\404.html:12 .\templates\pages\placeholder.html:11
+msgid "Back to home"
+msgstr "Retour à l'accueil"
+
+#: .\templates\404.html:13 .\templates\pages\home.html:19
+msgid "View Our Work"
+msgstr "Voir nos réalisations"
+
+#: .\templates\base.html:39
+msgid "Skip to content"
+msgstr "Aller au contenu"
+
+#: .\templates\pages\home.html:10
+msgid "Web development & AI marketing · Mauritius"
+msgstr "Développement web & marketing IA · Maurice"
+
+#: .\templates\pages\home.html:12
+msgid "We build websites that"
+msgstr "Nous créons des sites qui"
+
+#: .\templates\pages\home.html:12
+msgid "win clients."
+msgstr "attirent des clients."
+
+#: .\templates\pages\home.html:18 .\templates\partials\header.html:15
+#: .\templates\partials\header.html:35
+msgid "Get a Quote"
+msgstr "Demander un devis"
+
+#: .\templates\pages\home.html:24
+msgid "Key figures"
+msgstr "Chiffres clés"
+
+#: .\templates\pages\placeholder.html:10
+msgid "This page is being built. Check back soon."
+msgstr "Cette page est en construction. Revenez bientôt."
+
+#: .\templates\partials\footer.html:17
+msgid "Explore"
+msgstr "Explorer"
+
+#: .\templates\partials\footer.html:18
+msgid "Footer"
+msgstr "Pied de page"
+
+#: .\templates\partials\footer.html:24
+msgid "Get in touch"
+msgstr "Nous contacter"
+
+#: .\templates\partials\footer.html:35
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: .\templates\partials\header.html:9
+msgid "Main"
+msgstr "Principal"
+
+#: .\templates\partials\header.html:21
+msgid "Menu"
+msgstr "Menu"
+
+#: .\templates\partials\header.html:31
+msgid "Mobile"
+msgstr "Mobile"
+
+#: .\templates\partials\language_switcher.html:2
+msgid "Language"
+msgstr "Langue"
+
+#: .\templates\partials\nav_links.html:3
+msgid "Ready-made Sites"
+msgstr "Sites clés en main"
+
+#: .\templates\partials\whatsapp_button.html:3
+msgid "Chat with us on WhatsApp"
+msgstr "Discutez avec nous sur WhatsApp"

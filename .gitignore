@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Frontend build
+node_modules/
+static/dist/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

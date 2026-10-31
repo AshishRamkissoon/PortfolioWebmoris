@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<section class="hero relative isolate overflow-hidden">
+  {# Placeholder background — replaced by the Three.js visual in Phase 6. #}
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="container-site flex min-h-[85vh] flex-col justify-center py-24">
+    <p data-reveal class="eyebrow">{% translate "Web development & AI marketing · Mauritius" %}</p>
+    <h1 data-reveal data-reveal-delay="0.1" class="mt-6 max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
+      {% translate "We build websites that" %} <span class="text-gradient">{% translate "win clients." %}</span>
+    </h1>
+    {% if site_settings.tagline %}
+    <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-lg text-ink-300 sm:text-xl">{{ site_settings.tagline }}</p>
+    {% endif %}
+    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap gap-4">
+      <a href="{% url 'core:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
+      <a href="{% url 'core:portfolio' %}" class="btn-ghost btn-lg">{% translate "View Our Work" %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="border-y border-ink-800 bg-ink-900/60" aria-label="{% translate 'Key figures' %}">
+  <dl class="container-site grid grid-cols-2 gap-8 py-14 lg:grid-cols-4">
+    {% for value, label in site_settings.stats %}
+    <div data-reveal data-reveal-delay="0.{{ forloop.counter0 }}">
+      <dt class="text-sm uppercase tracking-widest text-ink-400">{{ label }}</dt>
+      <dd class="mt-2 font-display text-5xl font-bold">{{ value }}<span class="text-neon-cyan">+</span></dd>
+    </div>
+    {% endfor %}
+  </dl>
+</section>
+{% endblock %}

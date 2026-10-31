@@ -1,0 +1,8 @@
+{% load i18n %}
+<nav aria-label="{% translate 'Language' %}" class="flex items-center gap-1 text-xs font-semibold">
+  {% for link in lang_links %}
+    <a href="{{ link.url }}" hreflang="{{ link.code }}" lang="{{ link.code }}" title="{{ link.name }}"
+       class="rounded-full px-2.5 py-1 transition {% if link.active %}bg-ink-100 text-ink-950{% else %}text-ink-300 hover:text-ink-100{% endif %}"
+       {% if link.active %}aria-current="true"{% endif %}>{{ link.label }}</a>
+  {% endfor %}
+</nav>
