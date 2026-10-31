@@ -24,3 +24,5 @@ static/dist/
 Thumbs.db
 .vscode/
 .idea/
+
+private_media/

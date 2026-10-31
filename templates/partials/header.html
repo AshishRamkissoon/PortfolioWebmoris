@@ -12,7 +12,7 @@
 
     <div class="hidden items-center gap-4 lg:flex">
       {% include "partials/language_switcher.html" %}
-      <a href="{% url 'core:contact' %}" class="btn-primary">{% translate "Get a Quote" %}</a>
+      <a href="{% url 'leads:contact' %}" class="btn-primary">{% translate "Get a Quote" %}</a>
     </div>
 
     <button type="button" class="lg:hidden rounded-full p-2 text-ink-100 hover:bg-ink-800"
@@ -32,7 +32,7 @@
       {% include "partials/nav_links.html" %}
       <div class="flex items-center justify-between pt-4">
         {% include "partials/language_switcher.html" %}
-        <a href="{% url 'core:contact' %}" class="btn-primary">{% translate "Get a Quote" %}</a>
+        <a href="{% url 'leads:contact' %}" class="btn-primary">{% translate "Get a Quote" %}</a>
       </div>
     </nav>
   </div>

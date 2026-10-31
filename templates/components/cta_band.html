@@ -1,17 +1,18 @@
-{% load i18n %}
-{# Usage: {% include "components/cta_band.html" with heading=... text=... %} (both optional) #}
+{% load i18n core_tags %}
+{# Usage: {% include "components/cta_band.html" with heading=... text=... quote_url=... %} (all optional) #}
 <section class="container-site mt-28">
   <div data-reveal class="relative isolate overflow-hidden rounded-card border border-ink-800 bg-ink-900 px-8 py-16 text-center sm:px-16">
     <div class="hero-glow" aria-hidden="true"></div>
     <h2 class="font-display text-4xl font-bold sm:text-5xl">{{ heading|default:_("Ready to grow your business online?") }}</h2>
     <p class="mx-auto mt-4 max-w-xl text-lg text-ink-300">{{ text|default:_("Tell us about your project and we'll get back to you with a tailored quote.") }}</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a href="{% url 'core:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
+      {% url 'leads:contact' as contact_url %}
+      <a href="{{ quote_url|default:contact_url }}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
       {% if site_settings.calendly_url %}
         <a href="{{ site_settings.calendly_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg">{% translate "Book a call" %}</a>
       {% endif %}
-      {% if site_settings.whatsapp_link %}
-        <a href="{{ site_settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg" data-track="whatsapp_click">WhatsApp</a>
+      {% whatsapp_url whatsapp_message as wa_link %}{% if wa_link %}
+        <a href="{{ wa_link }}" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg" data-track="whatsapp_click">WhatsApp</a>
       {% endif %}
     </div>
   </div>

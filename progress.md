@@ -14,14 +14,15 @@
 | 1 | Foundation & Design System | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 2 | Portfolio & Case Studies | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 3 | Services, Ready-made Websites, About & Home | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
-| 4 | Lead Capture | ⬜ Not started | — | — | — |
-| 5 | Pricing & Payments | ⬜ Not started | — | — | — |
+| 4 | Lead Capture | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
+| 5 | Pricing & Payments | 🟡 In progress | 2026-10-31 | — | — |
 | 6 | Motion, 3D, SEO & Launch Readiness | ⬜ Not started | — | — | — |
 
 ## Open Decisions / Blockers
 - [ ] Kreol URL prefix: proceeding with `/kr/` (plan default). Owner to confirm; easy to change later in one setting.
 - [ ] Kreol UI translations are a draft; they need review by a native speaker (Phase 6).
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
+- [ ] For production: an SMTP account (`EMAIL_URL`), the email address that receives lead notifications, and a Calendly/Cal.com booking link.
 - [ ] Real Privacy Policy and Terms text needed, reviewed by a legal professional. The demo pages start with "DEMO TEXT".
 - [ ] Real team members, About text, services, templates and prices needed to replace the demo content.
 - [ ] Real portfolio projects needed. The 7 demo projects (client names end in "(demo)") should be deleted before launch.
@@ -30,6 +31,36 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-10-31 — Phase 5 — Started — branch `phase/5-pricing-payments`.
+- 2026-10-31 — Phase 4 — Completed — Approved by owner; committed on `phase/4-lead-capture` and merged into `main`.
+- 2026-10-31 — Phase 4 — Ready for review — All exit criteria met.
+  - **Built:** the `leads` app.
+    - **Quote form** (`/contact/`):
+      - pre-filled from `?template=`, `?project=`, `?service=` or `?type=` links
+      - optional attachment
+      - submits through HTMX, with a no-JS fallback
+    - **Template enquiry:** opens in a pop-up on the template page, with a full page as no-JS fallback.
+    - **Emails:** a team notification (Reply-To set to the visitor) and an auto-reply in the visitor's language.
+    - **Calendly/Cal.com:** embedded on the Contact page; only those hosts and https links are accepted.
+    - **WhatsApp:** template and project pages pre-fill a message about that item.
+    - **Admin:** status pipeline, notes, CSV export, and staff-only attachment downloads.
+    - **Links:** every "Get a Quote" link points to the form, pre-filled where it makes sense.
+  - **Security:**
+    - Honeypot field and per-visitor rate limit. Only a salted hash of the IP is used, kept in the cache.
+    - Optional Turnstile check.
+    - Attachments are kept in private storage with an extension allow-list and a 10 MB limit.
+    - The auto-reply never repeats visitor text, so the form can't be used to relay spam.
+    - Header-injection and formula-injection guards.
+    - Only same-site pages are recorded as the source page.
+    - An email failure never loses a saved lead.
+  - **Verified:** 182 tests passing, `ruff` clean, live page checks in EN/FR/KR.
+  - **How to test:**
+    1. Submit `/en/contact/`. The emails print in the server console.
+    2. Submit with a field missing to see the inline errors.
+    3. On a ready-made template, click "Customise this website" and send an enquiry.
+    4. In admin under Leads, change a status and export to CSV.
+    5. Put a real Calendly link and WhatsApp number in Site settings and check the Contact page.
+- 2026-10-31 — Phase 4 — Started — branch `phase/4-lead-capture`.
 - 2026-10-31 — Phase 3 — Completed — Approved by owner; committed on `phase/3-content-pages` and merged into `main`.
 - 2026-10-31 — Phase 3 — Ready for review — All exit criteria met.
   - **Built:**

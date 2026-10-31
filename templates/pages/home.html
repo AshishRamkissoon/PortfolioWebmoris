@@ -16,7 +16,7 @@
     <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-lg text-ink-300 sm:text-xl">{{ site_settings.tagline }}</p>
     {% endif %}
     <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap gap-4">
-      <a href="{% url 'core:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
+      <a href="{% url 'leads:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
       <a href="{% url 'portfolio:list' %}" class="btn-ghost btn-lg">{% translate "View Our Work" %}</a>
     </div>
   </div>

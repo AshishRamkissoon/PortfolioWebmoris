@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import patch_vary_headers
+from django.utils.translation import gettext as _
 
 from .models import TemplateIndustry, WebsiteTemplate
 
@@ -32,6 +33,11 @@ def template_detail(request, slug):
         .exclude(pk=template.pk)
         .order_by("-is_featured", "order")[:3]
     )
+    whatsapp_message = _("Hello, I'm interested in the ready-made website “%(name)s”.") % {
+        "name": template.name
+    }
     return render(
-        request, "readymade/detail.html", {"template": template, "other_templates": others}
+        request,
+        "readymade/detail.html",
+        {"template": template, "other_templates": others, "whatsapp_message": whatsapp_message},
     )

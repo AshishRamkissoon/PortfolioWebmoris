@@ -1,0 +1,21 @@
+{% autoescape off %}New {{ lead_kind }} via the website.
+
+Name:     {{ lead.name }}
+Email:    {{ lead.email }}
+Phone:    {{ lead.phone|default:"—" }}
+{% if lead.company %}Company:  {{ lead.company }}
+{% endif %}{% if lead.business_name %}Business: {{ lead.business_name }}
+{% endif %}{% if lead.template_name %}Template: {{ lead.template_name }}
+{% endif %}{% if lead.project_type %}Project:  {{ lead.get_project_type_display }}
+Budget:   {{ lead.get_budget_display }}
+Timeline: {{ lead.get_timeline_display }}
+{% endif %}Language: {{ lead.get_language_display }}
+Page:     {{ lead.source_page|default:"—" }}
+{% if lead.attachment %}Attachment: yes (download it in admin)
+{% endif %}
+Message:
+{{ lead.message }}
+
+Open in admin: {{ admin_url }}
+Reply to this email to answer {{ lead.name }} directly.
+{% endautoescape %}

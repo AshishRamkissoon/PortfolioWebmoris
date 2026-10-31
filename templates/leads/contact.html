@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n core_tags %}
+
+{% block title %}{% translate "Contact" %} · {{ site_settings.site_name }}{% endblock %}
+{% block meta_description %}{% translate "Tell us about your project, book a discovery call or chat with us on WhatsApp." %}{% endblock %}
+
+{% block content %}
+<section class="container-site pt-24 sm:pt-32">
+  <p data-reveal class="eyebrow">{% translate "Contact" %}</p>
+  <h1 data-split class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{% translate "Let's build something great." %}</h1>
+  <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-lg text-ink-300">{% translate "Tell us about your project and get a tailored quote — usually within one business day." %}</p>
+</section>
+
+<div class="container-site mt-14 grid gap-10 lg:grid-cols-[3fr_2fr]">
+  <div data-reveal>{% include "leads/partials/quote_form.html" %}</div>
+
+  <aside class="space-y-6">
+    <div data-reveal class="rounded-card border border-ink-800 bg-ink-900 p-8">
+      <h2 class="meta-label">{% translate "Prefer to talk?" %}</h2>
+      <ul class="mt-5 space-y-4">
+        {% if site_settings.whatsapp_link %}
+        <li><a href="{{ site_settings.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 font-semibold hover:text-neon-cyan" data-track="whatsapp_click">
+          <span class="grid size-10 place-items-center rounded-xl bg-[#25d366] text-white" aria-hidden="true">{% include "components/icon.html" with name="chat" class="size-5" %}</span>{% translate "Chat on WhatsApp" %}</a></li>
+        {% endif %}
+        {% if site_settings.contact_email %}
+        <li><a href="mailto:{{ site_settings.contact_email }}" class="flex items-center gap-3 font-semibold hover:text-neon-cyan">
+          <span class="grid size-10 place-items-center rounded-xl bg-ink-800 text-neon-cyan" aria-hidden="true">@</span>{{ site_settings.contact_email }}</a></li>
+        {% endif %}
+        {% if site_settings.contact_phone %}
+        <li><a href="tel:{{ site_settings.contact_phone|cut:' ' }}" class="flex items-center gap-3 font-semibold hover:text-neon-cyan">
+          <span class="grid size-10 place-items-center rounded-xl bg-ink-800 text-neon-cyan" aria-hidden="true">☎</span>{{ site_settings.contact_phone }}</a></li>
+        {% endif %}
+        {% if site_settings.address %}<li class="text-ink-300">{{ site_settings.address }}</li>{% endif %}
+      </ul>
+    </div>
+
+    {% with booking_url=site_settings.calendly_url|booking_embed_url %}{% if booking_url %}
+    <div data-reveal data-reveal-delay="0.1" id="book" class="overflow-hidden rounded-card border border-ink-800 bg-ink-900">
+      <h2 class="meta-label px-8 pt-8">{% translate "Book a free discovery call" %}</h2>
+      <iframe src="{{ booking_url }}" title="{% translate 'Book a call' %}" loading="lazy"
+              class="mt-4 h-[640px] w-full bg-ink-900" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <p class="px-8 pb-6 text-sm text-ink-400"><a href="{{ site_settings.calendly_url }}" target="_blank" rel="noopener noreferrer" class="underline hover:text-neon-cyan">{% translate "Open the booking page in a new tab" %}</a></p>
+    </div>
+    {% endif %}{% endwith %}
+  </aside>
+</div>
+{% endblock %}

@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
+from .booking import validate_booking_url
 from .uploads import RandomFilename, image_validators
 
 whatsapp_validator = RegexValidator(
@@ -54,7 +55,9 @@ class SiteSettings(SingletonModel):
     whatsapp_message = models.CharField(
         _("WhatsApp pre-filled message"), max_length=300, blank=True
     )
-    calendly_url = models.URLField(_("Calendly URL"), blank=True)
+    calendly_url = models.URLField(
+        _("booking link (Calendly or Cal.com)"), blank=True, validators=[validate_booking_url]
+    )
 
     contact_email = models.EmailField(_("contact email"), blank=True)
     contact_phone = models.CharField(_("contact phone"), max_length=30, blank=True)
@@ -76,14 +79,17 @@ class SiteSettings(SingletonModel):
     def __str__(self):
         return str(self._meta.verbose_name)
 
-    @property
-    def whatsapp_link(self):
+    def whatsapp_link_for(self, message=None):
+        """Click-to-chat link with ``message`` (or the default message) pre-filled."""
         if not self.whatsapp_number:
             return ""
         link = f"https://wa.me/{self.whatsapp_number}"
-        if self.whatsapp_message:
-            link += f"?text={quote(self.whatsapp_message)}"
-        return link
+        text = message or self.whatsapp_message
+        return f"{link}?text={quote(text)}" if text else link
+
+    @property
+    def whatsapp_link(self):
+        return self.whatsapp_link_for()
 
     @property
     def social_links(self):

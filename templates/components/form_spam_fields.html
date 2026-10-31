@@ -1,0 +1,10 @@
+{% load i18n %}
+{# Honeypot (hidden from people, tempting to bots), source page, and optional Turnstile. #}
+<div class="honeypot" aria-hidden="true">
+  <label for="{{ form.website.id_for_label }}">{{ form.website.label }}</label>{{ form.website }}
+</div>
+<input type="hidden" name="source_page" value="{{ source_page }}">
+{% if turnstile_site_key %}
+  <div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}" data-theme="dark"></div>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{% endif %}

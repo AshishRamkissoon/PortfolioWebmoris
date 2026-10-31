@@ -1,9 +1,12 @@
 """Upload helpers shared by every app: random file names and size/type limits."""
 
+import os
 import uuid
 from pathlib import Path
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.core.files.storage import FileSystemStorage
 from django.core.validators import FileExtensionValidator
 from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
@@ -41,5 +44,32 @@ class MaxFileSizeValidator:
         return isinstance(other, MaxFileSizeValidator) and self.max_mb == other.max_mb
 
 
+DOCUMENT_EXTENSIONS = ["pdf", "doc", "docx", "png", "jpg", "jpeg", "zip"]
+
 image_validators = [FileExtensionValidator(IMAGE_EXTENSIONS), MaxFileSizeValidator(10)]
 video_validators = [FileExtensionValidator(VIDEO_EXTENSIONS), MaxFileSizeValidator(50)]
+document_validators = [FileExtensionValidator(DOCUMENT_EXTENSIONS), MaxFileSizeValidator(10)]
+
+
+class PrivateFileSystemStorage(FileSystemStorage):
+    """Files under settings.PRIVATE_MEDIA_ROOT (read on every use, so tests can override it).
+
+    These files have no public URL; staff download them through permission-checked views.
+    """
+
+    @property
+    def base_location(self):
+        return self._value_or_setting(self._location, settings.PRIVATE_MEDIA_ROOT)
+
+    @property
+    def location(self):
+        return os.path.abspath(self.base_location)
+
+    def url(self, name):
+        raise ValueError("Private files are not publicly addressable.")
+
+
+def private_storage():
+    from django.core.files.storage import storages
+
+    return storages["private"]

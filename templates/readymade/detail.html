@@ -18,11 +18,26 @@
     <h1 data-split class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ template.name }}</h1>
     <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-xl text-ink-300">{{ template.short_description }}</p>
 
-    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap items-center gap-4">
-      {# The enquiry form opens here in Phase 4; until then it goes to the contact page. #}
-      <a href="{% url 'core:contact' %}" class="btn-primary btn-lg" data-inquire-template="{{ template.slug }}">
+    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap items-center gap-4" x-data="{ open: false }">
+      {# Opens the enquiry form in a dialog (loaded by HTMX); without JS it goes to the full enquiry page. #}
+      {% url 'leads:template_inquiry' template.slug as inquiry_url %}
+      <a href="{{ inquiry_url }}" class="btn-primary btn-lg"
+         hx-get="{{ inquiry_url }}" hx-target="#inquiry-dialog-body" hx-swap="innerHTML"
+         @click="open = true; $nextTick(() => $refs.closeInquiry.focus())">
         {% if template.is_available %}{% translate "Customise this website" %}{% else %}{% translate "Notify me when it's ready" %}{% endif %}
       </a>
+      <template x-teleport="body">
+        <div x-show="open" x-cloak x-transition.opacity role="dialog" aria-modal="true" aria-labelledby="inquiry-title"
+             class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-ink-950/90 p-4 backdrop-blur-sm"
+             @click.self="open = false" @keydown.escape.window="open = false">
+          <div class="relative my-8 w-full max-w-2xl rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
+            <button type="button" x-ref="closeInquiry" @click="open = false"
+                    class="absolute top-4 right-4 rounded-full px-3 py-1 text-sm font-semibold text-ink-300 hover:text-neon-cyan">{% translate "Close" %} &times;</button>
+            <h2 id="inquiry-title" class="pr-20 font-display text-3xl font-bold">{% blocktranslate with name=template.name %}Enquire about {{ name }}{% endblocktranslate %}</h2>
+            <div id="inquiry-dialog-body" class="mt-6"><p class="text-ink-400">{% translate "Loading…" %}</p></div>
+          </div>
+        </div>
+      </template>
       {% if template.demo_url %}<a href="{{ template.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg">{% translate "View live demo" %} &nearr;</a>{% endif %}
       <p class="text-lg text-ink-200">{% include "readymade/partials/price.html" %}</p>
     </div>
@@ -83,5 +98,6 @@
 
 {% blocktranslate asvar cta_heading with name=template.name %}Interested in {{ name }}?{% endblocktranslate %}
 {% translate "Send us a message and we'll show you how it would look with your brand." as cta_text %}
-{% include "components/cta_band.html" with heading=cta_heading text=cta_text %}
+{% url 'leads:contact' as contact_url %}
+{% include "components/cta_band.html" with heading=cta_heading text=cta_text quote_url=contact_url|add:"?template="|add:template.slug %}
 {% endblock %}

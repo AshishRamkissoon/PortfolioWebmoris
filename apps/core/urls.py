@@ -16,7 +16,6 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("privacy/", views.legal_page, {"kind": LegalPage.Kind.PRIVACY}, name="privacy"),
     path("terms/", views.legal_page, {"kind": LegalPage.Kind.TERMS}, name="terms"),
-    # Placeholders — replaced by their own apps in Phases 4–5.
+    # Placeholder — replaced by the pricing app in Phase 5.
     placeholder("pricing/", "pricing", _("Pricing")),
-    placeholder("contact/", "contact", _("Contact")),
 ]

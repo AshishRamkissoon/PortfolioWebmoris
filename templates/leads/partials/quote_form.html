@@ -1,0 +1,40 @@
+{% load i18n %}
+{# Replaced in place by HTMX after submit (errors or success). Works as a normal form without JS. #}
+<div id="quote-form" class="rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
+  {% if sent %}
+    {% include "leads/partials/success.html" %}
+  {% else %}
+  <form method="post" action="{% url 'leads:contact' %}" enctype="multipart/form-data" novalidate
+        hx-post="{% url 'leads:contact' %}" hx-target="#quote-form" hx-swap="outerHTML"
+        hx-disabled-elt="find button[type=submit]">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div role="alert" class="form-alert">{% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}</div>
+    {% endif %}
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      {% include "components/form_field.html" with field=form.name %}
+      {% include "components/form_field.html" with field=form.email %}
+      {% include "components/form_field.html" with field=form.phone %}
+      {% include "components/form_field.html" with field=form.company %}
+      {% include "components/form_field.html" with field=form.project_type wrapper_class="sm:col-span-2" %}
+      {% include "components/form_field.html" with field=form.budget %}
+      {% include "components/form_field.html" with field=form.timeline %}
+      {% include "components/form_field.html" with field=form.message wrapper_class="sm:col-span-2" %}
+      {% include "components/form_field.html" with field=form.attachment wrapper_class="sm:col-span-2" %}
+    </div>
+    {% include "components/form_spam_fields.html" %}
+
+    <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+      <p class="max-w-md text-sm text-ink-400">
+        {% url 'core:privacy' as privacy_url %}
+        {% blocktranslate trimmed %}We only use your details to reply to your enquiry. See our <a href="{{ privacy_url }}" class="underline hover:text-neon-cyan">privacy policy</a>.{% endblocktranslate %}
+      </p>
+      <button type="submit" class="btn-primary btn-lg">
+        <span class="htmx-indicator-hide">{% translate "Send my request" %}</span>
+        <span class="htmx-indicator-show" aria-hidden="true">{% translate "Sending…" %}</span>
+      </button>
+    </div>
+  </form>
+  {% endif %}
+</div>

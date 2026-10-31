@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "apps.portfolio",
     "apps.services",
     "apps.readymade",
+    "apps.leads",
 ]
 
 MIDDLEWARE = [
@@ -111,10 +112,29 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+# Client uploads (quote attachments, payment proofs) live outside MEDIA_ROOT and are
+# never served publicly — only staff can download them through admin views.
+PRIVATE_MEDIA_ROOT = env.path("PRIVATE_MEDIA_ROOT", default=BASE_DIR / "private_media")
+
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "private": {"BACKEND": "apps.core.uploads.PrivateFileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
 }
+
+# Used for form rate limiting. Use a shared cache in production (dbcache:// or redis://)
+# so limits apply across all worker processes.
+CACHES = {"default": env.cache_url("CACHE_URL", default="locmemcache://")}
+
+# --- Leads -------------------------------------------------------------------
+# Where new-lead notifications go; falls back to the contact email in Site settings.
+LEADS_NOTIFY_EMAIL = env("LEADS_NOTIFY_EMAIL", default="")
+LEADS_RATE_LIMIT = env.int("LEADS_RATE_LIMIT", default=5)  # submissions per IP per hour
+# Number of reverse proxies in front of Django (Nginx = 1) — used to find the client IP.
+TRUSTED_PROXY_COUNT = env.int("TRUSTED_PROXY_COUNT", default=0)
+# Optional Cloudflare Turnstile spam check; disabled when the keys are empty.
+TURNSTILE_SITE_KEY = env("TURNSTILE_SITE_KEY", default="")
+TURNSTILE_SECRET_KEY = env("TURNSTILE_SECRET_KEY", default="")
 
 # --- Security defaults (tightened further in prod.py) -----------------------
 ADMIN_URL = env("ADMIN_URL", default="manage-webmoris/")

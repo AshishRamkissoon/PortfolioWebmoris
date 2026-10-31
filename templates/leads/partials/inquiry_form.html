@@ -1,0 +1,28 @@
+{% load i18n %}
+<div id="inquiry-form">
+  {% if sent %}
+    {% include "leads/partials/success.html" %}
+  {% else %}
+  {% url 'leads:template_inquiry' template.slug as inquiry_url %}
+  <form method="post" action="{{ inquiry_url }}" novalidate
+        hx-post="{{ inquiry_url }}" hx-target="#inquiry-form" hx-swap="outerHTML"
+        hx-disabled-elt="find button[type=submit]">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div role="alert" class="form-alert">{% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}</div>
+    {% endif %}
+    <div class="grid gap-5 sm:grid-cols-2">
+      {% include "components/form_field.html" with field=form.name %}
+      {% include "components/form_field.html" with field=form.email %}
+      {% include "components/form_field.html" with field=form.phone %}
+      {% include "components/form_field.html" with field=form.business_name %}
+      {% include "components/form_field.html" with field=form.message wrapper_class="sm:col-span-2" %}
+    </div>
+    {% include "components/form_spam_fields.html" %}
+    <button type="submit" class="btn-primary btn-lg mt-6 w-full">
+      <span class="htmx-indicator-hide">{% translate "Send enquiry" %}</span>
+      <span class="htmx-indicator-show" aria-hidden="true">{% translate "Sending…" %}</span>
+    </button>
+  </form>
+  {% endif %}
+</div>

@@ -37,6 +37,15 @@ python manage.py runserver
 - **Uploads:** files are renamed to random names. Images must be JPG, PNG or WebP (max 10 MB) and videos MP4 or WebM (max 50 MB). Resized WebP versions are generated automatically into `media/CACHE/`.
 - **Demo content:** `seed_demo` adds 7 demo projects whose clients are marked "(demo)". Delete them in admin once real projects are in.
 
+## Leads (quote requests and template enquiries)
+- In admin, go to **Leads**. Update the status (New → Contacted → Quoted → Won/Lost) and add internal notes, or select leads and use "Export selected to CSV".
+- **Emails:** each lead sends a notification to `LEADS_NOTIFY_EMAIL` (or the contact email in Site settings) and an auto-reply to the visitor in their language. In development, both emails print in the `runserver` console.
+- **Attachments:** stored in `PRIVATE_MEDIA_ROOT` (default `private_media/`), never served publicly. Staff download them from the lead's admin page. Back this folder up together with the database.
+- **Spam protection:** a hidden honeypot field, rate limiting (`LEADS_RATE_LIMIT` per hour per visitor), and optional Cloudflare Turnstile (`TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY`). In production:
+  - set `CACHE_URL` to a shared cache (e.g. `dbcache://django_cache`, then run `createcachetable`) so limits apply across workers
+  - set `TRUSTED_PROXY_COUNT=1` behind Nginx
+- **Booking:** paste an `https://calendly.com/...` or `https://cal.com/...` link into Site settings. It is embedded on the Contact page.
+
 ## Quality checks
 ```bash
 pytest

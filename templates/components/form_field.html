@@ -1,0 +1,9 @@
+{# One labelled form field with help text and errors. Django adds aria-invalid / aria-describedby. #}
+<div class="form-field {{ wrapper_class }}">
+  <label for="{{ field.id_for_label }}" class="form-label">
+    {{ field.label }}{% if field.field.required %} <span class="text-neon-cyan" aria-hidden="true">*</span>{% endif %}
+  </label>
+  {{ field }}
+  {% if field.help_text %}<p id="{{ field.auto_id }}_helptext" class="form-help">{{ field.help_text }}</p>{% endif %}
+  {% for error in field.errors %}<p class="form-error">{{ error }}</p>{% endfor %}
+</div>

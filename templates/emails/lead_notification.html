@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<body style="margin:0;padding:24px;background:#f4f5f8;font-family:Arial,Helvetica,sans-serif;color:#161a26">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px">
+    <tr><td style="padding:28px 32px">
+      <p style="margin:0;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b5cf6">{{ site_settings.site_name }}</p>
+      <h1 style="margin:8px 0 20px;font-size:22px">New {{ lead_kind }}</h1>
+      <table role="presentation" cellpadding="6" cellspacing="0" style="font-size:14px">
+        <tr><td style="color:#6b7280">Name</td><td><strong>{{ lead.name }}</strong></td></tr>
+        <tr><td style="color:#6b7280">Email</td><td><a href="mailto:{{ lead.email }}">{{ lead.email }}</a></td></tr>
+        <tr><td style="color:#6b7280">Phone</td><td>{{ lead.phone|default:"—" }}</td></tr>
+        {% if lead.company %}<tr><td style="color:#6b7280">Company</td><td>{{ lead.company }}</td></tr>{% endif %}
+        {% if lead.business_name %}<tr><td style="color:#6b7280">Business</td><td>{{ lead.business_name }}</td></tr>{% endif %}
+        {% if lead.template_name %}<tr><td style="color:#6b7280">Template</td><td>{{ lead.template_name }}</td></tr>{% endif %}
+        {% if lead.project_type %}
+        <tr><td style="color:#6b7280">Project</td><td>{{ lead.get_project_type_display }}</td></tr>
+        <tr><td style="color:#6b7280">Budget</td><td>{{ lead.get_budget_display }}</td></tr>
+        <tr><td style="color:#6b7280">Timeline</td><td>{{ lead.get_timeline_display }}</td></tr>
+        {% endif %}
+        <tr><td style="color:#6b7280">Language</td><td>{{ lead.get_language_display }}</td></tr>
+        <tr><td style="color:#6b7280">Page</td><td>{{ lead.source_page|default:"—" }}</td></tr>
+        {% if lead.attachment %}<tr><td style="color:#6b7280">Attachment</td><td>Yes — download it in admin</td></tr>{% endif %}
+      </table>
+      <p style="margin:20px 0 6px;color:#6b7280;font-size:14px">Message</p>
+      <div style="padding:16px;background:#f4f5f8;border-radius:8px;font-size:14px;line-height:1.6">{{ lead.message|linebreaksbr }}</div>
+      <p style="margin:28px 0 0"><a href="{{ admin_url }}" style="display:inline-block;padding:12px 22px;background:#22e3ff;color:#05060a;border-radius:999px;font-weight:bold;text-decoration:none">Open in admin</a></p>
+      <p style="margin:16px 0 0;font-size:12px;color:#6b7280">Reply to this email to answer {{ lead.name }} directly.</p>
+    </td></tr>
+  </table>
+</body>
+</html>

@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import patch_vary_headers
+from django.utils.translation import gettext as _
 
 from .models import Project, ProjectCategory
 
@@ -60,5 +61,7 @@ def project_detail(request, slug):
             "previous_project": neighbours.get(previous_id),
             "next_project": neighbours.get(next_id),
             "related_projects": related,
+            "whatsapp_message": _("Hello, I'd like a website like “%(name)s”.")
+            % {"name": project.title},
         },
     )

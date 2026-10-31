@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% blocktranslate with name=template.name %}Enquire about {{ name }}{% endblocktranslate %} · {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+{# Full-page version of the enquiry form, used when JavaScript is unavailable. #}
+<section class="container-site max-w-3xl py-24 sm:py-32">
+  <a href="{{ template.get_absolute_url }}" class="text-sm font-semibold text-ink-400 hover:text-neon-cyan">&larr; {{ template.name }}</a>
+  <h1 class="mt-6 font-display text-4xl font-bold sm:text-5xl">{% blocktranslate with name=template.name %}Enquire about {{ name }}{% endblocktranslate %}</h1>
+  <p class="mt-4 text-lg text-ink-300">{% translate "Tell us a little about your business and we'll show you how this website would look with your brand." %}</p>
+  <div class="mt-10 rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
+    {% include "leads/partials/inquiry_form.html" %}
+  </div>
+</section>
+{% endblock %}

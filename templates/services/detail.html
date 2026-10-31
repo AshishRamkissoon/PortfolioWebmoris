@@ -17,7 +17,7 @@
     <h1 data-split class="mt-6 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ service.title }}</h1>
     <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-xl text-ink-300">{{ service.summary }}</p>
     <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap gap-4">
-      <a href="{% url 'core:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
+      <a href="{% url 'leads:contact' %}?service={{ service.slug }}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
       {% if related_projects %}<a href="#work" class="btn-ghost btn-lg">{% translate "See examples" %}</a>{% endif %}
     </div>
   </header>
@@ -90,5 +90,6 @@
 {% endif %}
 
 {% blocktranslate asvar cta_heading with service=service.title %}Let's talk about your {{ service }} project.{% endblocktranslate %}
-{% include "components/cta_band.html" with heading=cta_heading %}
+{% url 'leads:contact' as contact_url %}
+{% include "components/cta_band.html" with heading=cta_heading quote_url=contact_url|add:"?service="|add:service.slug %}
 {% endblock %}

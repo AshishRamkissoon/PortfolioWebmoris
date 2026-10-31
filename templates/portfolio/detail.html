@@ -113,7 +113,8 @@
 </article>
 
 {% translate "Want a website like this?" as cta_heading %}
-{% include "components/cta_band.html" with heading=cta_heading %}
+{% url 'leads:contact' as contact_url %}
+{% include "components/cta_band.html" with heading=cta_heading quote_url=contact_url|add:"?project="|add:project.slug %}
 
 {# --- Previous / next --- #}
 {% if previous_project or next_project %}
