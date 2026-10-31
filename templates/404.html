@@ -10,7 +10,7 @@
   <p class="mt-4 max-w-xl text-lg text-ink-300">{% translate "The link may be broken or the page may have moved." %}</p>
   <div class="mt-10 flex flex-wrap gap-4">
     <a href="{% url 'core:home' %}" class="btn-primary">{% translate "Back to home" %}</a>
-    <a href="{% url 'core:portfolio' %}" class="btn-ghost">{% translate "View Our Work" %}</a>
+    <a href="{% url 'portfolio:list' %}" class="btn-ghost">{% translate "View Our Work" %}</a>
   </div>
 </section>
 {% endblock %}

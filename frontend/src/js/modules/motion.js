@@ -27,7 +27,8 @@ export function initReveals(root = document) {
   window.__motionReady = true;
   if (!motionAllowed()) return;
 
-  root.querySelectorAll("[data-reveal]:not([data-revealed])").forEach((el) => {
+  const pending = root.querySelectorAll("[data-reveal]:not([data-revealed])");
+  pending.forEach((el) => {
     el.dataset.revealed = "";
     gsap.fromTo(
       el,
@@ -42,4 +43,6 @@ export function initReveals(root = document) {
       },
     );
   });
+  // New content changes the page height, so recompute trigger positions.
+  if (pending.length) ScrollTrigger.refresh();
 }

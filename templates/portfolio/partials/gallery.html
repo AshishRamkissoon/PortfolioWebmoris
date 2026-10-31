@@ -1,0 +1,28 @@
+{% load i18n %}
+{# Each link works without JS (opens the full image); Alpine turns it into a lightbox. #}
+<div x-data="lightbox" class="grid gap-6 {{ columns }}">
+  {% for image in images %}
+  <a href="{{ image.large.url }}" data-lightbox-item data-caption="{{ image.caption }}"
+     @click.prevent="show({{ forloop.counter0 }})"
+     class="group block overflow-hidden rounded-card border border-ink-800 bg-ink-900">
+    <img src="{{ image.thumbnail.url }}" alt="{{ image.caption|default:_('Project screenshot') }}" loading="lazy" decoding="async"
+         class="w-full transition duration-500 group-hover:scale-[1.02]">
+    {% if image.caption %}<span class="block px-4 py-3 text-sm text-ink-300">{{ image.caption }}</span>{% endif %}
+  </a>
+  {% endfor %}
+
+  <template x-teleport="body">
+    <div x-show="open" x-cloak x-transition.opacity role="dialog" aria-modal="true" aria-label="{% translate 'Screenshot viewer' %}"
+         class="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-ink-950/95 p-4 backdrop-blur-sm"
+         @click.self="close()" @keydown.escape.window="close()" @keydown.arrow-right.window="next()" @keydown.arrow-left.window="prev()">
+      <img :src="current.src" :alt="current.caption" class="max-h-[80vh] max-w-full rounded-lg object-contain">
+      <p class="text-sm text-ink-300" x-text="current.caption"></p>
+      <div class="flex items-center gap-3">
+        <button type="button" class="btn-ghost" @click="prev()" x-show="items.length > 1">&larr; {% translate "Previous" %}</button>
+        <span class="text-sm text-ink-400" x-text="`${index + 1} / ${items.length}`"></span>
+        <button type="button" class="btn-ghost" @click="next()" x-show="items.length > 1">{% translate "Next" %} &rarr;</button>
+        <button type="button" class="btn-primary" x-ref="closeButton" @click="close()">{% translate "Close" %}</button>
+      </div>
+    </div>
+  </template>
+</div>

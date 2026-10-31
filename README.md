@@ -30,6 +30,13 @@ python manage.py runserver
 - Site: http://127.0.0.1:8000/ (redirects to `/en/`, `/fr/` or `/kr/`)
 - Admin: `http://127.0.0.1:8000/<ADMIN_URL>`, which defaults to `/manage-webmoris/`. `/admin/` is intentionally disabled.
 
+## Content
+- **Portfolio:** in admin, go to Portfolio → Projects.
+  - Each project has a cover image, translated text in EN/FR/MFE tabs, result metrics, screenshots marked Desktop or Mobile, and an optional YouTube/Vimeo link or MP4 file.
+  - Only *published* projects appear on the site, and *featured* ones go on the home page.
+- **Uploads:** files are renamed to random names. Images must be JPG, PNG or WebP (max 10 MB) and videos MP4 or WebM (max 50 MB). Resized WebP versions are generated automatically into `media/CACHE/`.
+- **Demo content:** `seed_demo` adds 7 demo projects whose clients are marked "(demo)". Delete them in admin once real projects are in.
+
 ## Quality checks
 ```bash
 pytest
@@ -44,6 +51,7 @@ ruff check . && ruff format --check .
   # edit locale/<lang>/LC_MESSAGES/django.po
   python manage.py compilemessages --ignore=.venv --ignore=node_modules
   ```
+- After running `makemessages`, check for entries marked `#, fuzzy`. These are gettext's guesses from similar strings, they are often wrong, and Django ignores them. Fix them and delete the flag: `msgattrib --only-fuzzy locale/fr/LC_MESSAGES/django.po`.
 - The compiled `.mo` files are committed. Django only enables a language once its `.mo` file exists, so Kreol depends on them.
 - Content stored in the database (for example site settings) is translated in admin, using the EN / FR / MFE tabs.
 

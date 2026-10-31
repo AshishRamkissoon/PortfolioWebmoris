@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 
 from apps.core.models import SiteSettings
+from apps.portfolio.demo import seed_portfolio
 
 # Placeholder values only — the owner replaces them in admin.
 SITE_SETTINGS_DEMO = {
@@ -50,3 +51,5 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS(f"Site settings: filled {len(filled)} empty field(s).")
         )
+
+        seed_portfolio(stdout=self.stdout)

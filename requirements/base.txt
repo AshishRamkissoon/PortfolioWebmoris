@@ -1,5 +1,6 @@
-Django==6.1.2
 django-environ==0.14.0
+django-imagekit==6.1.1
 django-modeltranslation==0.20.6
+Django==6.1.2
 pillow==13.0.0
 whitenoise==6.12.0

@@ -1,5 +1,5 @@
-{% load i18n %}{% with current=request.resolver_match.url_name %}
-<a href="{% url 'core:portfolio' %}" class="nav-link" {% if current == 'portfolio' %}aria-current="page"{% endif %}>{% translate "Portfolio" %}</a>
+{% load i18n %}{% with ns=request.resolver_match.namespace current=request.resolver_match.url_name %}
+<a href="{% url 'portfolio:list' %}" class="nav-link" {% if ns == 'portfolio' %}aria-current="page"{% endif %}>{% translate "Portfolio" %}</a>
 <a href="{% url 'core:readymade' %}" class="nav-link" {% if current == 'readymade' %}aria-current="page"{% endif %}>{% translate "Ready-made Sites" %}</a>
 <a href="{% url 'core:services' %}" class="nav-link" {% if current == 'services' %}aria-current="page"{% endif %}>{% translate "Services" %}</a>
 <a href="{% url 'core:pricing' %}" class="nav-link" {% if current == 'pricing' %}aria-current="page"{% endif %}>{% translate "Pricing" %}</a>

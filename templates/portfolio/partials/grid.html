@@ -1,0 +1,24 @@
+{% load i18n %}
+{# Swapped as a whole by the filter tabs (HX-Target: project-grid). #}
+<section id="project-grid" class="container-site pb-12" aria-label="{% translate 'Projects' %}">
+  {% if categories %}
+  <nav aria-label="{% translate 'Filter projects by category' %}" class="mb-10 flex flex-wrap gap-2">
+    {% url 'portfolio:list' as list_url %}
+    <a href="{{ list_url }}" class="filter-tab" {% if not active_category %}aria-current="true"{% endif %}
+       hx-get="{{ list_url }}" hx-target="#project-grid" hx-swap="outerHTML" hx-push-url="true">{% translate "All" %}</a>
+    {% for category in categories %}
+    <a href="{{ list_url }}?category={{ category.slug }}" class="filter-tab"
+       {% if active_category == category %}aria-current="true"{% endif %}
+       hx-get="{{ list_url }}?category={{ category.slug }}" hx-target="#project-grid" hx-swap="outerHTML" hx-push-url="true">{{ category.name }}</a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+
+  {% if page.object_list %}
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% include "portfolio/partials/cards.html" %}
+  </div>
+  {% else %}
+  <p class="rounded-card border border-ink-800 p-10 text-center text-ink-300">{% translate "No projects to show yet — check back soon." %}</p>
+  {% endif %}
+</section>

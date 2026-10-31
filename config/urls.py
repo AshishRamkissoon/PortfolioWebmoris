@@ -10,6 +10,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
+    path("portfolio/", include("apps.portfolio.urls")),
     path("", include("apps.core.urls")),
 )
 

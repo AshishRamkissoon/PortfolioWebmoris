@@ -12,8 +12,7 @@ def placeholder(route, name, title):
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
-    # Placeholders — replaced by their own apps in Phases 2–5.
-    placeholder("portfolio/", "portfolio", _("Portfolio")),
+    # Placeholders — replaced by their own apps in Phases 3–5.
     placeholder("ready-made-websites/", "readymade", _("Ready-made Websites")),
     placeholder("services/", "services", _("Services")),
     placeholder("pricing/", "pricing", _("Pricing")),

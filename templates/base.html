@@ -17,6 +17,7 @@
   <meta property="og:description" content="{% block og_description %}{{ site_settings.seo_description }}{% endblock %}">
   <meta property="og:url" content="{{ request.build_absolute_uri }}">
   <meta name="twitter:card" content="summary_large_image">
+  {% block og_image %}{% endblock %}
   {% endblock %}
 
   {# Hide [data-reveal] elements only when motion is allowed; un-hide if the JS never loads. #}

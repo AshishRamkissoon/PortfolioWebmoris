@@ -105,6 +105,31 @@
     @apply fixed right-5 bottom-5 z-40 grid size-14 place-items-center rounded-full bg-[#25d366] text-white shadow-lg transition hover:scale-105 hover:shadow-[0_0_30px_-4px_#25d366];
   }
 
+  .filter-tab {
+    @apply rounded-full border border-ink-700 px-4 py-2 text-sm font-semibold text-ink-300 transition hover:border-ink-400 hover:text-ink-100;
+
+    &[aria-current="true"] {
+      @apply border-neon-cyan bg-neon-cyan text-ink-950;
+    }
+  }
+
+  .meta-label {
+    @apply text-xs font-semibold tracking-widest text-ink-400 uppercase;
+  }
+
+  /* Hover overlay on project cards; always visible on touch screens (no hover). */
+  .project-card-overlay {
+    @apply absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-linear-to-t from-ink-950/95 to-transparent p-5 pt-16 transition duration-300;
+
+    @media (hover: hover) {
+      @apply translate-y-4 opacity-0 group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:translate-y-0 group-hover:opacity-100;
+    }
+  }
+
+  .prose-site {
+    @apply space-y-4 text-lg leading-relaxed text-ink-300;
+  }
+
   .hero-glow {
     @apply pointer-events-none absolute inset-0 -z-10;
     background:

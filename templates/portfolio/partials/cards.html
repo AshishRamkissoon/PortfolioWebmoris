@@ -1,0 +1,16 @@
+{% load i18n %}
+{% for project in page.object_list %}
+  {% cycle "0" "0.1" "0.2" as delay silent %}
+  {% include "portfolio/partials/card.html" %}
+{% endfor %}
+
+{% if page.has_next %}
+{# Replaced by the next page of cards plus a new button (HX-Target: load-more). #}
+<div id="load-more" class="col-span-full mt-6 flex justify-center">
+  {% url 'portfolio:list' as list_url %}
+  <a href="{{ list_url }}?page={{ page.next_page_number }}{% if active_category %}&amp;category={{ active_category.slug }}{% endif %}"
+     class="btn-ghost btn-lg"
+     hx-get="{{ list_url }}?page={{ page.next_page_number }}{% if active_category %}&amp;category={{ active_category.slug }}{% endif %}"
+     hx-target="#load-more" hx-swap="outerHTML">{% translate "Load more projects" %}</a>
+</div>
+{% endif %}

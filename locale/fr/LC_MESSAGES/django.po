@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webmoris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 11:32-0700\n"
+"POT-Creation-Date: 2026-10-31 11:55-0700\n"
 "PO-Revision-Date: 2026-10-31 12:00+0400\n"
 "Last-Translator: Webmoris\n"
 "Language-Team: French\n"
@@ -11,8 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
-"1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: .\apps\core\models.py:9
 msgid "International format, digits only, no + or spaces (e.g. 23057123456)."
@@ -62,95 +61,267 @@ msgstr ""
 msgid "WhatsApp number"
 msgstr ""
 
-#: .\apps\core\models.py:49
+#: .\apps\core\models.py:50
 msgid "WhatsApp pre-filled message"
 msgstr ""
 
-#: .\apps\core\models.py:50
+#: .\apps\core\models.py:52
 msgid "Calendly URL"
 msgstr ""
 
-#: .\apps\core\models.py:52
+#: .\apps\core\models.py:54
 msgid "contact email"
 msgstr ""
 
-#: .\apps\core\models.py:53
+#: .\apps\core\models.py:55
 msgid "contact phone"
 msgstr ""
 
-#: .\apps\core\models.py:54
+#: .\apps\core\models.py:56
 msgid "address"
 msgstr ""
 
-#: .\apps\core\models.py:62
+#: .\apps\core\models.py:64
 msgid "default SEO title"
 msgstr ""
 
-#: .\apps\core\models.py:63
+#: .\apps\core\models.py:65
 msgid "default meta description"
 msgstr ""
 
-#: .\apps\core\models.py:66 .\apps\core\models.py:67
+#: .\apps\core\models.py:68 .\apps\core\models.py:69
 msgid "site settings"
 msgstr ""
 
-#: .\apps\core\models.py:95
+#: .\apps\core\models.py:97
 msgid "Projects delivered"
 msgstr "Projets livrés"
 
-#: .\apps\core\models.py:96
+#: .\apps\core\models.py:98
 msgid "Years of experience"
 msgstr "Années d'expérience"
 
-#: .\apps\core\models.py:97
+#: .\apps\core\models.py:99
 msgid "Happy clients"
 msgstr "Clients satisfaits"
 
-#: .\apps\core\models.py:98
+#: .\apps\core\models.py:100
 msgid "Countries served"
 msgstr "Pays desservis"
 
-#: .\apps\core\urls.py:16 .\templates\partials\nav_links.html:2
-msgid "Portfolio"
-msgstr "Portfolio"
+#: .\apps\core\uploads.py:37
+#, python-format
+msgid "File too large: the maximum size is %(max)s MB."
+msgstr ""
 
-#: .\apps\core\urls.py:17
+#: .\apps\core\urls.py:16
 msgid "Ready-made Websites"
 msgstr "Sites web clés en main"
 
-#: .\apps\core\urls.py:18 .\templates\partials\nav_links.html:4
+#: .\apps\core\urls.py:17 .\templates\partials\nav_links.html:4
+#: .\templates\portfolio\detail.html:25
 msgid "Services"
 msgstr "Services"
 
-#: .\apps\core\urls.py:19 .\templates\partials\nav_links.html:5
+#: .\apps\core\urls.py:18 .\templates\partials\nav_links.html:5
 msgid "Pricing"
 msgstr "Tarifs"
 
-#: .\apps\core\urls.py:20 .\templates\partials\nav_links.html:6
+#: .\apps\core\urls.py:19 .\templates\partials\nav_links.html:6
 msgid "About"
 msgstr "À propos"
 
-#: .\apps\core\urls.py:21 .\templates\partials\nav_links.html:7
+#: .\apps\core\urls.py:20 .\templates\partials\nav_links.html:7
 msgid "Contact"
 msgstr "Contact"
 
-#: .\apps\core\urls.py:22 .\templates\partials\footer.html:37
+#: .\apps\core\urls.py:21 .\templates\partials\footer.html:37
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
 
-#: .\apps\core\urls.py:23 .\templates\partials\footer.html:38
+#: .\apps\core\urls.py:22 .\templates\partials\footer.html:38
 msgid "Terms & Conditions"
 msgstr "Conditions générales"
 
-#: .\config\settings\base.py:87
+#: .\apps\core\video.py:41
+msgid "Use a YouTube or Vimeo video link."
+msgstr ""
+
+#: .\apps\portfolio\models.py:12
+msgid "name"
+msgstr ""
+
+#: .\apps\portfolio\models.py:13 .\apps\portfolio\models.py:35
+msgid "slug"
+msgstr ""
+
+#: .\apps\portfolio\models.py:14 .\apps\portfolio\models.py:90
+#: .\apps\portfolio\models.py:134 .\apps\portfolio\models.py:162
+msgid "order"
+msgstr ""
+
+#: .\apps\portfolio\models.py:18
+msgid "category"
+msgstr ""
+
+#: .\apps\portfolio\models.py:19 .\apps\portfolio\models.py:40
+msgid "categories"
+msgstr ""
+
+#: .\apps\portfolio\models.py:34
+msgid "title"
+msgstr ""
+
+#: .\apps\portfolio\models.py:36
+msgid "client"
+msgstr "client"
+
+#: .\apps\portfolio\models.py:37
+msgid "industry"
+msgstr ""
+
+#: .\apps\portfolio\models.py:38
+msgid "year"
+msgstr ""
+
+#: .\apps\portfolio\models.py:42
+msgid "short description"
+msgstr ""
+
+#: .\apps\portfolio\models.py:44
+msgid "services provided"
+msgstr ""
+
+#: .\apps\portfolio\models.py:44
+msgid "Comma-separated."
+msgstr ""
+
+#: .\apps\portfolio\models.py:47
+msgid "tech stack"
+msgstr ""
+
+#: .\apps\portfolio\models.py:50
+msgid "Comma-separated, e.g. Django, Tailwind."
+msgstr ""
+
+#: .\apps\portfolio\models.py:53
+msgid "the challenge"
+msgstr ""
+
+#: .\apps\portfolio\models.py:54
+msgid "the solution"
+msgstr ""
+
+#: .\apps\portfolio\models.py:55
+msgid "the results"
+msgstr ""
+
+#: .\apps\portfolio\models.py:58
+msgid "cover image"
+msgstr ""
+
+#: .\apps\portfolio\models.py:73
+msgid "live site URL"
+msgstr ""
+
+#: .\apps\portfolio\models.py:75
+msgid "video link"
+msgstr ""
+
+#: .\apps\portfolio\models.py:78
+msgid "YouTube or Vimeo link."
+msgstr ""
+
+#: .\apps\portfolio\models.py:81
+msgid "video file"
+msgstr ""
+
+#: .\apps\portfolio\models.py:85
+msgid "MP4 or WebM, max 50 MB. Used when no video link is set."
+msgstr ""
+
+#: .\apps\portfolio\models.py:88
+msgid "published"
+msgstr ""
+
+#: .\apps\portfolio\models.py:89
+msgid "featured on home page"
+msgstr ""
+
+#: .\apps\portfolio\models.py:92
+msgid "SEO title"
+msgstr ""
+
+#: .\apps\portfolio\models.py:93
+msgid "meta description"
+msgstr ""
+
+#: .\apps\portfolio\models.py:102
+msgid "project"
+msgstr ""
+
+#: .\apps\portfolio\models.py:103
+msgid "projects"
+msgstr ""
+
+#: .\apps\portfolio\models.py:132
+msgid "value"
+msgstr ""
+
+#: .\apps\portfolio\models.py:132
+msgid "e.g. \"+120%\" or \"3x\"."
+msgstr ""
+
+#: .\apps\portfolio\models.py:133
+msgid "label"
+msgstr ""
+
+#: .\apps\portfolio\models.py:138
+msgid "result metric"
+msgstr ""
+
+#: .\apps\portfolio\models.py:139
+msgid "result metrics"
+msgstr ""
+
+#: .\apps\portfolio\models.py:147 .\templates\portfolio\detail.html:80
+msgid "Desktop"
+msgstr "Ordinateur"
+
+#: .\apps\portfolio\models.py:148 .\templates\partials\header.html:31
+#: .\templates\portfolio\detail.html:81
+msgid "Mobile"
+msgstr "Mobile"
+
+#: .\apps\portfolio\models.py:152
+msgid "image"
+msgstr ""
+
+#: .\apps\portfolio\models.py:160
+msgid "type"
+msgstr ""
+
+#: .\apps\portfolio\models.py:161
+msgid "caption"
+msgstr ""
+
+#: .\apps\portfolio\models.py:166
+msgid "screenshot"
+msgstr ""
+
+#: .\apps\portfolio\models.py:167
+msgid "screenshots"
+msgstr ""
+
+#: .\config\settings\base.py:89
 msgid "English"
 msgstr "Anglais"
 
-#: .\config\settings\base.py:88
+#: .\config\settings\base.py:90
 msgid "French"
 msgstr "Français"
 
-#: .\config\settings\base.py:89
+#: .\config\settings\base.py:91
 msgid "Mauritian Creole"
 msgstr "Créole mauricien"
 
@@ -174,7 +345,7 @@ msgstr "Retour à l'accueil"
 msgid "View Our Work"
 msgstr "Voir nos réalisations"
 
-#: .\templates\base.html:39
+#: .\templates\base.html:40
 msgid "Skip to content"
 msgstr "Aller au contenu"
 
@@ -191,7 +362,7 @@ msgid "win clients."
 msgstr "attirent des clients."
 
 #: .\templates\pages\home.html:18 .\templates\partials\header.html:15
-#: .\templates\partials\header.html:35
+#: .\templates\partials\header.html:35 .\templates\portfolio\detail.html:121
 msgid "Get a Quote"
 msgstr "Demander un devis"
 
@@ -227,13 +398,14 @@ msgstr "Principal"
 msgid "Menu"
 msgstr "Menu"
 
-#: .\templates\partials\header.html:31
-msgid "Mobile"
-msgstr "Mobile"
-
 #: .\templates\partials\language_switcher.html:2
 msgid "Language"
 msgstr "Langue"
+
+#: .\templates\partials\nav_links.html:2 .\templates\portfolio\list.html:4
+#: .\templates\portfolio\list.html:10
+msgid "Portfolio"
+msgstr "Portfolio"
 
 #: .\templates\partials\nav_links.html:3
 msgid "Ready-made Sites"
@@ -242,3 +414,156 @@ msgstr "Sites clés en main"
 #: .\templates\partials\whatsapp_button.html:3
 msgid "Chat with us on WhatsApp"
 msgstr "Discutez avec nous sur WhatsApp"
+
+#: .\templates\portfolio\detail.html:14
+msgid "All projects"
+msgstr "Tous les projets"
+
+#: .\templates\portfolio\detail.html:22
+msgid "Client"
+msgstr "Client"
+
+#: .\templates\portfolio\detail.html:23
+msgid "Industry"
+msgstr "Secteur"
+
+#: .\templates\portfolio\detail.html:24
+msgid "Year"
+msgstr "Année"
+
+#: .\templates\portfolio\detail.html:30
+msgid "Visit live site"
+msgstr "Voir le site en ligne"
+
+#: .\templates\portfolio\detail.html:32
+msgid "Watch the walkthrough"
+msgstr "Voir la présentation vidéo"
+
+#: .\templates\portfolio\detail.html:43
+msgid "Key results"
+msgstr "Résultats clés"
+
+#: .\templates\portfolio\detail.html:57
+msgid "The Challenge"
+msgstr "Le défi"
+
+#: .\templates\portfolio\detail.html:58
+msgid "The Solution"
+msgstr "La solution"
+
+#: .\templates\portfolio\detail.html:60
+msgid "The Results"
+msgstr "Les résultats"
+
+#: .\templates\portfolio\detail.html:65
+msgid "Built with"
+msgstr "Réalisé avec"
+
+#: .\templates\portfolio\detail.html:77
+msgid "Screenshots"
+msgstr "Captures d'écran"
+
+#: .\templates\portfolio\detail.html:79
+msgid "Screenshot type"
+msgstr "Type de capture"
+
+#: .\templates\portfolio\detail.html:102
+msgid "Walkthrough"
+msgstr "Présentation vidéo"
+
+#: .\templates\portfolio\detail.html:105
+msgid "video walkthrough"
+msgstr "présentation vidéo"
+
+#: .\templates\portfolio\detail.html:119
+msgid "Want a website like this?"
+msgstr "Envie d'un site comme celui-ci ?"
+
+#: .\templates\portfolio\detail.html:120
+msgid "Tell us about your project and we'll get back to you with a tailored quote."
+msgstr "Parlez-nous de votre projet et nous vous enverrons un devis sur mesure."
+
+#: .\templates\portfolio\detail.html:127
+msgid "More projects"
+msgstr "Autres projets"
+
+#: .\templates\portfolio\detail.html:130
+msgid "Previous project"
+msgstr "Projet précédent"
+
+#: .\templates\portfolio\detail.html:136
+msgid "Next project"
+msgstr "Projet suivant"
+
+#: .\templates\portfolio\detail.html:146
+msgid "Related projects"
+msgstr "Projets similaires"
+
+#: .\templates\portfolio\list.html:5
+msgid "Websites, e-commerce stores and AI marketing campaigns we have delivered for our clients."
+msgstr "Sites web, boutiques en ligne et campagnes de marketing IA réalisés pour nos clients."
+
+#: .\templates\portfolio\list.html:12
+msgid "Work that speaks"
+msgstr "Des réalisations qui parlent"
+
+#: .\templates\portfolio\list.html:12
+msgid "for itself."
+msgstr "d'elles-mêmes."
+
+#: .\templates\portfolio\list.html:15
+msgid "A selection of websites, online stores and AI marketing projects we've built for businesses in Mauritius and beyond."
+msgstr "Une sélection de sites web, de boutiques en ligne et de projets de marketing IA réalisés pour des entreprises à Maurice et ailleurs."
+
+#: .\templates\portfolio\partials\card.html:10
+msgid "View Case Study"
+msgstr "Voir l'étude de cas"
+
+#: .\templates\portfolio\partials\card.html:12
+msgid "Live Site"
+msgstr "Site en ligne"
+
+#: .\templates\portfolio\partials\card.html:19
+msgid "Video"
+msgstr "Vidéo"
+
+#: .\templates\portfolio\partials\cards.html:14
+msgid "Load more projects"
+msgstr "Voir plus de projets"
+
+#: .\templates\portfolio\partials\gallery.html:8
+msgid "Project screenshot"
+msgstr "Capture d'écran du projet"
+
+#: .\templates\portfolio\partials\gallery.html:15
+msgid "Screenshot viewer"
+msgstr "Visionneuse de captures"
+
+#: .\templates\portfolio\partials\gallery.html:21
+msgid "Previous"
+msgstr "Précédent"
+
+#: .\templates\portfolio\partials\gallery.html:23
+msgid "Next"
+msgstr "Suivant"
+
+#: .\templates\portfolio\partials\gallery.html:24
+#: .\templates\portfolio\partials\video_modal.html:9
+msgid "Close"
+msgstr "Fermer"
+
+#: .\templates\portfolio\partials\grid.html:3
+msgid "Projects"
+msgstr "Projets"
+
+#: .\templates\portfolio\partials\grid.html:5
+msgid "Filter projects by category"
+msgstr "Filtrer les projets par catégorie"
+
+#: .\templates\portfolio\partials\grid.html:8
+msgid "All"
+msgstr "Tous"
+
+#: .\templates\portfolio\partials\grid.html:22
+msgid "No projects to show yet — check back soon."
+msgstr "Aucun projet pour le moment — revenez bientôt."
