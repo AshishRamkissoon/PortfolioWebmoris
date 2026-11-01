@@ -34,8 +34,8 @@ def test_absolute_url_uses_language_prefix():
     from django.utils import translation
 
     project = ProjectFactory(slug="my-shop")
-    with translation.override("mfe"):
-        assert project.get_absolute_url() == "/kr/portfolio/my-shop/"
+    with translation.override("fr"):
+        assert project.get_absolute_url() == "/fr/portfolio/my-shop/"
 
 
 def test_uploaded_cover_gets_random_name():

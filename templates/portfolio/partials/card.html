@@ -6,9 +6,10 @@
       <img src="{{ project.cover_card.url }}" width="800" height="600" {% if above_fold %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async"
            alt="" class="size-full object-cover transition duration-700 ease-out group-hover:scale-105">
     </a>
+    {% if project.is_in_progress %}<span class="status-badge is-progress">{% translate "In progress" %}</span>{% endif %}
     <div class="project-card-overlay">
       <a href="{{ url }}" class="btn-primary">{% translate "View Case Study" %}</a>
-      {% if project.live_url %}
+      {% if project.show_live_url %}
         <a href="{{ project.live_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost">{% translate "Live Site" %}</a>
       {% endif %}
       {% if project.has_video %}

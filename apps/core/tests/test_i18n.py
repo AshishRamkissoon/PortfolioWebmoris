@@ -1,34 +1,24 @@
 import pytest
+from django.conf import settings
 from django.urls import reverse, translate_url
 from django.utils import translation
-
-from apps.core.i18n import language_from_path, url_prefix_for
 
 pytestmark = pytest.mark.django_db
 
 
-@pytest.mark.parametrize(
-    ("path", "expected"),
-    [("/en/about/", "en"), ("/fr/", "fr"), ("/kr/contact/", "mfe"), ("/mfe/", None), ("/", None)],
-)
-def test_language_from_path(path, expected):
-    assert language_from_path(path) == expected
+def test_site_languages():
+    assert [code for code, _name in settings.LANGUAGES] == ["en", "fr"]
 
 
-def test_kreol_uses_kr_prefix():
-    assert url_prefix_for("mfe") == "kr"
-    assert url_prefix_for("fr") == "fr"
-
-
-@pytest.mark.parametrize(("lang", "prefix"), [("en", "en"), ("fr", "fr"), ("mfe", "kr")])
-def test_reverse_uses_language_prefix(lang, prefix):
+@pytest.mark.parametrize("lang", ["en", "fr"])
+def test_reverse_uses_language_prefix(lang):
     with translation.override(lang):
-        assert reverse("core:about") == f"/{prefix}/about/"
+        assert reverse("core:about") == f"/{lang}/about/"
 
 
-@pytest.mark.parametrize(("lang", "prefix"), [("en", "en"), ("fr", "fr"), ("mfe", "kr")])
-def test_prefixed_home_renders_in_language(client, lang, prefix):
-    response = client.get(f"/{prefix}/")
+@pytest.mark.parametrize("lang", ["en", "fr"])
+def test_prefixed_home_renders_in_language(client, lang):
+    response = client.get(f"/{lang}/")
     assert response.status_code == 200
     assert response["Content-Language"] == lang
     assert f'<html lang="{lang}">' in response.content.decode()
@@ -51,13 +41,9 @@ def test_unprefixed_page_redirects_with_prefix(client):
     assert response["Location"] == "/en/about/"
 
 
-def test_language_code_is_not_a_url_prefix(client):
-    assert client.get("/mfe/").status_code == 404
-
-
-def test_kreol_translations_are_active(client):
-    content = client.get("/kr/").content.decode()
-    assert "Demann enn devi" in content  # "Get a Quote"
+@pytest.mark.parametrize("path", ["/kr/", "/mfe/", "/kr/about/"])
+def test_removed_kreol_urls_are_gone(client, path):
+    assert client.get(path).status_code == 404
 
 
 def test_french_translations_are_active(client):
@@ -67,13 +53,12 @@ def test_french_translations_are_active(client):
 
 def test_translate_url_between_languages():
     with translation.override("en"):
-        assert translate_url("/en/about/", "mfe") == "/kr/about/"
-    with translation.override("mfe"):
-        assert translate_url("/kr/about/", "fr") == "/fr/about/"
+        assert translate_url("/en/about/", "fr") == "/fr/about/"
 
 
 def test_language_switcher_and_hreflang_point_to_same_page(client):
     content = client.get("/fr/services/").content.decode()
-    assert 'href="/kr/services/"' in content
     assert 'href="/en/services/"' in content
-    assert 'hreflang="mfe" href="http://testserver/kr/services/"' in content
+    assert 'hreflang="en" href="http://testserver/en/services/"' in content
+    assert 'hreflang="mfe"' not in content
+    assert ">KR<" not in content

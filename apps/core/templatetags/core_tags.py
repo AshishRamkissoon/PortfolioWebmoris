@@ -5,11 +5,8 @@ from django.urls import translate_url
 from django.utils.translation import get_language
 
 from ..booking import booking_embed_url
-from ..i18n import url_prefix_for
 
 register = template.Library()
-
-LANGUAGE_LABELS = {"en": "EN", "fr": "FR", "mfe": "KR"}
 
 
 @register.simple_tag(takes_context=True)
@@ -25,7 +22,7 @@ def language_links(context):
         links.append(
             {
                 "code": code,
-                "label": LANGUAGE_LABELS.get(code, url_prefix_for(code).upper()),
+                "label": code.upper(),
                 "name": name,
                 "url": url,
                 "absolute_url": request.build_absolute_uri(url),

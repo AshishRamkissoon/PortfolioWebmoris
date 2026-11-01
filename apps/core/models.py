@@ -44,11 +44,6 @@ class SiteSettings(SingletonModel):
     announcement_text = models.CharField(_("announcement text"), max_length=200, blank=True)
     announcement_link = models.URLField(_("announcement link"), blank=True)
 
-    stat_projects = models.PositiveIntegerField(_("projects delivered"), default=0)
-    stat_years = models.PositiveIntegerField(_("years of experience"), default=0)
-    stat_clients = models.PositiveIntegerField(_("happy clients"), default=0)
-    stat_countries = models.PositiveIntegerField(_("countries served"), default=0)
-
     whatsapp_number = models.CharField(
         _("WhatsApp number"), max_length=15, blank=True, validators=[whatsapp_validator]
     )
@@ -122,15 +117,6 @@ class SiteSettings(SingletonModel):
             ("YouTube", self.youtube_url),
         ]
         return [(name, url) for name, url in links if url]
-
-    @property
-    def stats(self):
-        return [
-            (self.stat_projects, _("Projects delivered")),
-            (self.stat_years, _("Years of experience")),
-            (self.stat_clients, _("Happy clients")),
-            (self.stat_countries, _("Countries served")),
-        ]
 
 
 class AboutPage(SingletonModel):

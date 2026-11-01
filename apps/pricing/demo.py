@@ -10,7 +10,7 @@ from .models import Package
 PACKAGES = [
     {
         "slug": "starter-website",
-        "name": ("Starter Website", "Site Starter", "Sit Starter"),
+        "name": ("Starter Website", "Site Starter"),
         "summary": (
             "A clean one-page site to get your business online fast.",
             "Un site d'une page pour être en ligne rapidement.",
@@ -29,7 +29,7 @@ PACKAGES = [
     },
     {
         "slug": "business-website",
-        "name": ("Business Website", "Site Business", "Sit Biznes"),
+        "name": ("Business Website", "Site Business"),
         "summary": (
             "A complete multi-page website that builds trust and wins clients.",
             "Un site complet de plusieurs pages qui inspire confiance.",
@@ -48,7 +48,7 @@ PACKAGES = [
     },
     {
         "slug": "ai-chatbot-setup",
-        "name": ("AI Chatbot Setup", "Chatbot IA", "Chatbot IA"),
+        "name": ("AI Chatbot Setup", "Chatbot IA"),
         "summary": (
             "A website or WhatsApp chatbot trained on your business.",
             "Un chatbot site web ou WhatsApp formé sur votre entreprise.",
@@ -66,7 +66,7 @@ PACKAGES = [
     },
     {
         "slug": "ai-social-media-monthly",
-        "name": ("AI Social Media", "Réseaux sociaux IA", "Rezo sosyal IA"),
+        "name": ("AI Social Media", "Réseaux sociaux IA"),
         "summary": (
             "AI-powered posts, visuals and captions every month.",
             "Publications, visuels et légendes générés par IA chaque mois.",
@@ -103,7 +103,6 @@ def seed_pricing(stdout=None):
             slug=data["slug"],
             name_en=data["name"][0],
             name_fr=data["name"][1],
-            name_mfe=data["name"][2],
             summary_en=data["summary"][0],
             summary_fr=data["summary"][1],
             features_en=data["features"][0],

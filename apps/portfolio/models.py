@@ -29,8 +29,15 @@ class ProjectQuerySet(models.QuerySet):
     def featured(self):
         return self.published().filter(is_featured=True)
 
+    def completed(self):
+        return self.published().filter(status=Project.Status.COMPLETED)
+
 
 class Project(models.Model):
+    class Status(models.TextChoices):
+        COMPLETED = "completed", _("Completed")
+        IN_PROGRESS = "in_progress", _("In progress")
+
     title = models.CharField(_("title"), max_length=120)
     slug = models.SlugField(_("slug"), unique=True)
     client = models.CharField(_("client"), max_length=120)
@@ -85,6 +92,13 @@ class Project(models.Model):
         help_text=_("MP4 or WebM, max 50 MB. Used when no video link is set."),
     )
 
+    status = models.CharField(
+        _("status"),
+        max_length=20,
+        choices=Status.choices,
+        default=Status.COMPLETED,
+        help_text=_("In-progress projects show a badge and hide results and the live-site link."),
+    )
     is_published = models.BooleanField(_("published"), default=False)
     is_featured = models.BooleanField(_("featured on home page"), default=False)
     order = models.PositiveSmallIntegerField(_("order"), default=0)
@@ -123,6 +137,15 @@ class Project(models.Model):
     @property
     def has_video(self):
         return bool(self.video_embed_url or self.video_file)
+
+    @property
+    def is_in_progress(self):
+        return self.status == self.Status.IN_PROGRESS
+
+    @property
+    def show_live_url(self):
+        """No live-site link until the project is finished."""
+        return bool(self.live_url) and not self.is_in_progress
 
 
 class ProjectMetric(models.Model):

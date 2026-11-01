@@ -68,28 +68,6 @@ export function initSplitHeadings(root = document) {
   });
 }
 
-/** Numbers marked [data-count-up="42"] count from 0 when scrolled into view. */
-export function initCountUps(root = document) {
-  if (!motionAllowed()) return;
-
-  root.querySelectorAll("[data-count-up]:not([data-counted])").forEach((el) => {
-    el.dataset.counted = "";
-    const end = parseInt(el.dataset.countUp, 10);
-    if (!end) return;
-    const counter = { value: 0 };
-    el.textContent = "0";
-    gsap.to(counter, {
-      value: end,
-      duration: 1.6,
-      ease: "power2.out",
-      scrollTrigger: { trigger: el, start: "top 90%", once: true },
-      onUpdate: () => {
-        el.textContent = Math.round(counter.value);
-      },
-    });
-  });
-}
-
 /**
  * [data-hscroll] sections pin on large screens while their [data-hscroll-track]
  * slides sideways. Smaller screens keep the native swipeable row.

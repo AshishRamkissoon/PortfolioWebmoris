@@ -16,13 +16,13 @@
 5. **Sells fixed-price service packages** online (PayPal and MCB Juice).
 
 ### 1.1 Goals
-- Build credibility through real projects, live links, screenshots, videos, results and stats.
+- Build credibility through real projects, live links, screenshots, videos and results.
 - Show technical skill through the website itself: dark, bold design with GSAP scroll animations and Three.js 3D effects.
 - Turn visitors into leads (quote requests, bookings, WhatsApp chats, package purchases).
 - Let the owner manage all content through Django admin, with no code changes needed to add projects, templates, services or prices.
 
 ### 1.2 Target audience
-- Small and medium businesses in Mauritius (EN, FR and Kreol speakers) and international clients.
+- Small and medium businesses in Mauritius (English and French speakers) and international clients.
 - Businesses needing a new website, a redesign, or AI-powered marketing.
 
 ---
@@ -40,7 +40,6 @@
 | Template cards: thumbnail, title, one-line description, *Live demo* / *Video* / *Import* buttons | **Project cards**: thumbnail, title, short description, category, *View Case Study* / *Live Site* / *Video* buttons |
 | Template catalog with "Free" / "Coming soon" statuses | **Ready-made Websites catalog**: template cards with live demo, "starting from" price, status (*Available* / *Coming soon*), and an *Inquire* button |
 | GSAP effects: snap scroll, ScrollTrigger reveals, horizontal scroll sliders, hover effects, rotating sliders, glassmorphism menu | Used across the site for a "wow" effect that shows agency skill |
-| Hero social proof ("Join 1,400+ users") | **Animated stats counters** (projects delivered, years of experience, happy clients, etc.) |
 | Announcement top bar (promo) | Optional, admin-toggleable **announcement bar** (e.g. promotion on a package) |
 
 ### 2.2 Elements NOT adopted
@@ -54,7 +53,7 @@
 - Services + pricing pages.
 - About + team + process.
 - Quote request form, WhatsApp button, calendar booking.
-- Multilingual support (EN/FR/Kreol).
+- Bilingual support (EN/FR).
 - Online payment for service packages.
 
 ---
@@ -75,7 +74,7 @@
 /contact/                 Quote request form + calendar booking + WhatsApp
 /privacy/ /terms/         Legal pages
 ```
-All public URLs are prefixed by language: `/en/`, `/fr/`, `/cr/` (Kreol; see §9).
+All public URLs are prefixed by language: `/en/` and `/fr/` (see §9).
 
 ---
 
@@ -83,7 +82,6 @@ All public URLs are prefixed by language: `/en/`, `/fr/`, `/cr/` (Kreol; see §9
 
 ### 4.1 Home page
 - **Hero**: bold headline and sub-headline, primary CTA (*Get a Quote*), secondary CTA (*View Our Work*), and a **Three.js 3D background/visual** with a static fallback on low-end devices.
-- **Animated stats counters**: e.g. projects delivered, years in business, clients served, countries. Values are editable in admin and count up on scroll.
 - **Featured projects**: a curated selection from the portfolio, shown as a GSAP horizontal-scroll slider or grid.
 - **Services teaser**: Web Development and AI Marketing cards linking to the service pages.
 - **Ready-made websites teaser**: 3–6 featured templates.
@@ -98,6 +96,9 @@ All public URLs are prefixed by language: `/en/`, `/fr/`, `/cr/` (Kreol; see §9
 - Hover effects on cards (image zoom/reveal, overlay with buttons).
 - Card buttons: **View Case Study**, **Live Site** (if a URL exists), **Video** (if a video exists, opens a modal).
 - Projects can be marked **featured** (shown on Home) and **ordered** manually.
+- Projects have a **status**: Completed or In progress.
+  - In-progress projects show a badge and hide results, metrics and the live-site link.
+  - Home calls the section "What we're building now" until there are at least 3 completed projects. Added 2026-11-01 because the agency's first projects are still in progress.
 - Pagination or "Load more" once there are many projects.
 
 ### 4.3 Case study detail page
@@ -139,7 +140,6 @@ All public URLs are prefixed by language: `/en/`, `/fr/`, `/cr/` (Kreol; see §9
 - Agency story, mission and values, and a Mauritius base.
 - **Team members**: photo, name, role, short bio, social links (managed in admin).
 - Process/methodology and tools/tech used (logo strip of technologies).
-- Stats counters (reused component).
 
 ### 4.8 Contact & lead capture
 - **Quote request form**: name, email, phone/WhatsApp, company, **project type** (website / e-commerce / AI marketing / ready-made template / other), **budget range**, **timeline**, message, optional file attachment, preferred language.
@@ -150,7 +150,7 @@ All public URLs are prefixed by language: `/en/`, `/fr/`, `/cr/` (Kreol; see §9
 - Contact details: email, phone, address/map (optional), and social links.
 
 ### 4.9 Global elements
-- **Header**: logo, nav (Portfolio, Ready-made Sites, Services, Pricing, About, Contact), language switcher (EN/FR/KR), CTA button. Glassmorphism sticky menu inspired by the reference, and an animated mobile menu.
+- **Header**: logo, nav (Portfolio, Ready-made Sites, Services, Pricing, About, Contact), language switcher (EN/FR), CTA button. Glassmorphism sticky menu inspired by the reference, and an animated mobile menu.
 - **Footer**: short about text, quick links, services, contact info, social links, legal links, copyright.
 - **Announcement bar** (optional, admin-toggleable).
 - Custom 404/500 pages in the site style.
@@ -166,8 +166,8 @@ All content is manageable without code:
 - **Pricing**: Package, PackageFeature, Order (with payment status and manual verification for Juice).
 - **Team**: TeamMember.
 - **Leads**: QuoteRequest / TemplateInquiry with status pipeline, notes, CSV export.
-- **Site settings** (singleton): stats counter values, WhatsApp number, Calendly URL, contact email/phone, social links, announcement bar text/toggle, SEO defaults, Juice number/QR, bank details.
-- All translatable fields are editable per language (EN/FR/KR).
+- **Site settings** (singleton): WhatsApp number, Calendly URL, contact email/phone, social links, announcement bar text/toggle, SEO defaults, Juice number/QR, bank details.
+- All translatable fields are editable per language (EN/FR).
 - Image uploads automatically generate optimized sizes/WebP.
 
 ---
@@ -209,7 +209,7 @@ All content is manageable without code:
 
 ### 7.3 SEO & performance
 - Per-page SEO title/meta description (translatable), Open Graph/Twitter cards, canonical URLs.
-- `hreflang` tags for EN/FR/KR, `sitemap.xml`, `robots.txt`.
+- `hreflang` tags for EN/FR, `sitemap.xml`, `robots.txt`.
 - Schema.org structured data (Organization, LocalBusiness, CreativeWork for projects, Product/Offer for packages).
 - Performance target: Lighthouse ≥ 90 performance on desktop and ≥ 80 on mobile despite the animations. Lazy-load images, video and Three.js, and defer non-critical JS.
 - Analytics: Google Analytics 4 or Plausible (configurable). Conversion events for form submits, WhatsApp clicks, bookings and purchases.
@@ -234,13 +234,12 @@ All content is manageable without code:
 - `TeamMember` (name, role, photo, bio, social links, order)
 - `Lead` / `QuoteRequest` (contact info, project_type, budget, timeline, message, attachment, language, source page, status, notes)
 - `TemplateInquiry` (template FK + contact info, status)
-- `SiteSettings` (singleton: stats, WhatsApp, Calendly, contacts, socials, announcement, payment details, SEO defaults)
+- `SiteSettings` (singleton: WhatsApp, Calendly, contacts, socials, announcement, payment details, SEO defaults)
 
 ---
 
 ## 9. Multilingual Requirements
-- Languages: **English (default)**, **French**, **Mauritian Kreol**.
-- Mauritian Creole has the ISO 639-3 code `mfe`, which Django does not support out of the box. A custom language entry must be added to `LANGUAGES` with a custom locale, falling back to French/English for Django's built-in strings. The URL prefix is configurable, e.g. `/kr/` or `/mfe/`.
+- Languages: **English (default)** and **French**. Mauritian Kreol was removed at the owner's request on 2026-11-01.
 - All UI strings and all content models must be translatable.
 - The language switcher keeps the user on the equivalent page.
 - WhatsApp pre-filled messages and email auto-replies are sent in the visitor's language.
@@ -250,7 +249,7 @@ All content is manageable without code:
 ## 10. Content Status
 - Content is **partially available**: some logos, projects, screenshots and prices exist.
 - Development uses **seed/demo data** (management command or fixtures) for anything missing, and all of it is replaceable via admin.
-- Content to collect from the owner: logo and brand colours (if any), the project list with screenshots/live URLs/videos, team photos and bios, service package names and prices, the WhatsApp number, the Calendly URL, the MCB Juice number/QR, contact details, and translations (FR/Kreol).
+- Content to collect from the owner: logo and brand colours (if any), the project list with screenshots/live URLs/videos, team photos and bios, service package names and prices, the WhatsApp number, the Calendly URL, the MCB Juice number/QR, contact details, and French translations.
 
 ---
 
@@ -263,12 +262,13 @@ All content is manageable without code:
 - Online checkout for ready-made websites (v1 is inquiry only).
 - Downloadable templates / membership area (the reference site's model).
 - Stripe card payments.
+- Stats counters bar (projects delivered, years, clients, countries). Removed at the owner's request on 2026-11-01.
 - Client portal (project progress, invoices).
 
 ---
 
 ## 12. Acceptance Criteria (v1)
-- [ ] All pages in the sitemap are built, responsive and available in EN/FR/Kreol.
+- [ ] All pages in the sitemap are built, responsive and available in EN/FR.
 - [ ] The portfolio grid filters by category without a page reload, with animated transitions.
 - [ ] Case studies show the challenge/solution/results, a screenshot gallery with lightbox, a video and a live link.
 - [ ] Ready-made website catalog with live demo links and a working inquiry form (saved and emailed).

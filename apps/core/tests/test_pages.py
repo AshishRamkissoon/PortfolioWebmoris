@@ -19,7 +19,7 @@ PAGES = [
 ]
 
 
-@pytest.mark.parametrize("prefix", ["en", "fr", "kr"])
+@pytest.mark.parametrize("prefix", ["en", "fr"])
 @pytest.mark.parametrize("page", PAGES)
 def test_every_sitemap_page_renders(client, prefix, page):
     for kind in LegalPage.Kind.values:
@@ -82,3 +82,16 @@ def test_site_settings_admin_opens_edit_form(client):
     assert response.status_code == 302
     assert response["Location"].endswith("/core/sitesettings/1/change/")
     assert client.get(response["Location"]).status_code == 200
+
+
+def test_no_multiline_template_comments():
+    """Django's {# #} comments are single-line only; a multi-line one is printed on the page."""
+    from pathlib import Path
+
+    offenders = [
+        f"{path}:{number}"
+        for path in Path(settings.BASE_DIR, "templates").rglob("*.html")
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1)
+        if "{#" in line and "#}" not in line.split("{#", 1)[1]
+    ]
+    assert not offenders, f"Use {{% comment %}} for multi-line comments: {offenders}"

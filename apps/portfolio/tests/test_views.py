@@ -185,8 +185,7 @@ def test_detail_is_translated(client):
     ProjectFactory(title_en="Dive School", title_fr="École de plongée", slug="dive")
     assert "Dive School" in client.get("/en/portfolio/dive/").content.decode()
     assert "École de plongée" in client.get("/fr/portfolio/dive/").content.decode()
-    # Kreol falls back to French.
-    assert "École de plongée" in client.get("/kr/portfolio/dive/").content.decode()
+    assert client.get("/kr/portfolio/dive/").status_code == 404
 
 
 def test_nav_marks_portfolio_on_detail_pages(client):
@@ -214,3 +213,52 @@ def test_seed_demo_creates_projects_once():
     assert all(p.client.endswith("(demo)") for p in Project.objects.all())
     first = Project.objects.first()
     assert first.images.count() == 4 and first.metrics.exists()
+
+
+# --- In-progress projects -----------------------------------------------------------
+
+IN_PROGRESS = Project.Status.IN_PROGRESS
+
+
+def test_status_helpers():
+    done = ProjectFactory.build(live_url="https://client.example.com")
+    building = ProjectFactory.build(live_url="https://client.example.com", status=IN_PROGRESS)
+    assert done.status == Project.Status.COMPLETED  # default
+    assert done.show_live_url and not done.is_in_progress
+    assert building.is_in_progress and not building.show_live_url
+
+
+def test_in_progress_card_has_badge_and_no_live_link(client):
+    ProjectFactory(status=IN_PROGRESS, live_url="https://client.example.com")
+    content = client.get(LIST).content.decode()
+    assert ">In progress</span>" in content and "status-badge is-progress" in content
+    assert "https://client.example.com" not in content
+
+
+def test_in_progress_case_study_hides_results_and_live_site(client):
+    project = ProjectFactory(
+        status=IN_PROGRESS, results="Doubled sales.", live_url="https://client.example.com"
+    )
+    ProjectMetricFactory(project=project, value="+200%", label="sales")
+    content = client.get(project.get_absolute_url()).content.decode()
+    assert "This project is still in progress" in content
+    for hidden in ["Doubled sales.", "+200%", "https://client.example.com", "Visit live site"]:
+        assert hidden not in content, hidden
+    assert '"creativeWorkStatus": "Incomplete"' in content
+
+
+SHOWCASE = "Projects we're proud of."
+IN_PROGRESS_HEADING = "What we're building now."
+
+
+@pytest.mark.parametrize(
+    ("completed", "shown", "hidden"),
+    [(2, IN_PROGRESS_HEADING, SHOWCASE), (3, SHOWCASE, IN_PROGRESS_HEADING)],
+)
+def test_home_heading_depends_on_completed_projects(client, completed, shown, hidden):
+    ProjectFactory.create_batch(completed, is_featured=True)
+    ProjectFactory(is_featured=True, status=IN_PROGRESS)  # never counts
+    ProjectFactory(is_published=False)  # never counts
+    content = client.get("/en/").content.decode()
+    assert shown in content
+    assert hidden not in content

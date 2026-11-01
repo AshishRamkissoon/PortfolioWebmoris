@@ -10,6 +10,10 @@ from apps.services.views import published_groups
 
 from .models import AboutPage, LegalPage, ProcessStep, TeamMember
 
+# Below this many completed projects, Home presents the work as "in progress"
+# instead of claiming a showcase of finished projects.
+SHOWCASE_MIN_COMPLETED = 3
+
 
 def home(request):
     return render(
@@ -17,6 +21,7 @@ def home(request):
         "pages/home.html",
         {
             "featured_projects": Project.objects.featured().prefetch_related("categories")[:6],
+            "has_showcase": Project.objects.completed().count() >= SHOWCASE_MIN_COMPLETED,
             "service_groups": published_groups(),
             "featured_templates": WebsiteTemplate.objects.featured().select_related("industry")[:3],
             "process_steps": ProcessStep.objects.all(),

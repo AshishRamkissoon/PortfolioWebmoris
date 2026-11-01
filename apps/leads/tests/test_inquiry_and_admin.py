@@ -46,12 +46,12 @@ def test_inquiry_page_and_htmx_partial(client, template):
 
 def test_inquiry_saves_template_snapshot(client, template):
     SiteSettings.objects.update_or_create(pk=1, defaults={"contact_email": "team@webmoris.test"})
-    response = client.post(f"/kr/contact/ready-made/{template.slug}/", inquiry_data())
+    response = client.post(f"/fr/contact/ready-made/{template.slug}/", inquiry_data())
     assert response.status_code == 302
     inquiry = TemplateInquiry.objects.get()
     assert inquiry.template == template
     assert inquiry.template_name == "Bistro"
-    assert inquiry.language == "mfe"
+    assert inquiry.language == "fr"
     assert inquiry.source_page == template.get_absolute_url()
     assert len(mail.outbox) == 2
 

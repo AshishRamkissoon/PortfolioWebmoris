@@ -8,7 +8,6 @@ import { registerMediaComponents } from "./modules/media.js";
 import { registerUiComponents } from "./modules/ui.js";
 import {
   canRenderHero,
-  initCountUps,
   initHorizontalScroll,
   initMagnetic,
   initReveals,
@@ -30,7 +29,6 @@ Alpine.start();
 initSmoothScroll();
 initReveals();
 initSplitHeadings();
-initCountUps();
 initHorizontalScroll();
 initMagnetic();
 initTilt();

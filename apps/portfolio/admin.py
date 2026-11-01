@@ -31,10 +31,19 @@ class ProjectImageInline(TranslationTabularInline):
 
 @admin.register(Project)
 class ProjectAdmin(TabbedTranslationAdmin):
-    list_display = ("cover", "title", "client", "year", "is_published", "is_featured", "order")
+    list_display = (
+        "cover",
+        "title",
+        "client",
+        "year",
+        "status",
+        "is_published",
+        "is_featured",
+        "order",
+    )
     list_display_links = ("cover", "title")
-    list_editable = ("is_published", "is_featured", "order")
-    list_filter = ("is_published", "is_featured", "categories", "year")
+    list_editable = ("status", "is_published", "is_featured", "order")
+    list_filter = ("status", "is_published", "is_featured", "categories", "year")
     search_fields = ("title", "client", "short_description")
     prepopulated_fields = {"slug": ("title_en",)}
     filter_horizontal = ("categories",)
@@ -45,7 +54,7 @@ class ProjectAdmin(TabbedTranslationAdmin):
         ("Card", {"fields": ("short_description", "cover_image", "cover_preview")}),
         ("Case study", {"fields": ("services", "tech_stack", "challenge", "solution", "results")}),
         ("Links & video", {"fields": ("live_url", "video_url", "video_file")}),
-        ("Visibility", {"fields": ("is_published", "is_featured", "order")}),
+        ("Visibility", {"fields": ("status", "is_published", "is_featured", "order")}),
         ("SEO", {"fields": ("seo_title", "seo_description"), "classes": ("collapse",)}),
     )
 

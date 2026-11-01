@@ -1,6 +1,6 @@
 # Webmoris — Agency Website
 
-Django site for Webmoris (web development + AI marketing, Mauritius), available in English, French and Kreol.
+Django site for Webmoris (web development + AI marketing, Mauritius), available in English and French.
 See [requirements.md](requirements.md), [plan.md](plan.md) and [progress.md](progress.md).
 
 ## Requirements
@@ -27,13 +27,15 @@ Use two terminals:
 npm run dev                       # Tailwind + esbuild in watch mode → static/dist/
 python manage.py runserver
 ```
-- Site: http://127.0.0.1:8000/ (redirects to `/en/`, `/fr/` or `/kr/`)
+- Site: http://127.0.0.1:8000/ (redirects to `/en/` or `/fr/`)
 - Admin: `http://127.0.0.1:8000/<ADMIN_URL>`, which defaults to `/manage-webmoris/`. `/admin/` is intentionally disabled.
 
 ## Content
 - **Portfolio:** in admin, go to Portfolio → Projects.
-  - Each project has a cover image, translated text in EN/FR/MFE tabs, result metrics, screenshots marked Desktop or Mobile, and an optional YouTube/Vimeo link or MP4 file.
+  - Each project has a cover image, translated text in EN/FR tabs, result metrics, screenshots marked Desktop or Mobile, and an optional YouTube/Vimeo link or MP4 file.
   - Only *published* projects appear on the site, and *featured* ones go on the home page.
+  - Set **status** to *In progress* for unfinished work. Those projects get an "In progress" badge, and their results, metrics and live-site link stay hidden.
+  - While there are fewer than 3 completed projects, the home section reads "What we're building now". From 3 onwards it switches to "Projects we're proud of" (`SHOWCASE_MIN_COMPLETED` in `apps/core/views.py`).
 - **Uploads:** files are renamed to random names. Images must be JPG, PNG or WebP (max 10 MB) and videos MP4 or WebM (max 50 MB). Resized WebP versions are generated automatically into `media/CACHE/`.
 - **Demo content:** `seed_demo` adds 7 demo projects whose clients are marked "(demo)". Delete them in admin once real projects are in.
 
@@ -76,16 +78,16 @@ ruff check . && ruff format --check .
 ```
 
 ## Translations
-- Languages are `en`, `fr` and `mfe` (Kreol). Kreol is served under `/kr/`, set by `LANGUAGE_URL_PREFIXES` in `config/settings/base.py`.
+- Languages are `en` (default) and `fr`, served under `/en/` and `/fr/`.
 - After changing UI text:
   ```bash
-  python manage.py makemessages -l fr -l mfe --ignore=.venv --ignore=node_modules --ignore=static
+  python manage.py makemessages -l fr --ignore=.venv --ignore=node_modules --ignore=static
   # edit locale/<lang>/LC_MESSAGES/django.po
   python manage.py compilemessages --ignore=.venv --ignore=node_modules
   ```
 - After running `makemessages`, check for entries marked `#, fuzzy`. These are gettext's guesses from similar strings, they are often wrong, and Django ignores them. Fix them and delete the flag: `msgattrib --only-fuzzy locale/fr/LC_MESSAGES/django.po`.
-- The compiled `.mo` files are committed. Django only enables a language once its `.mo` file exists, so Kreol depends on them.
-- Content stored in the database (for example site settings) is translated in admin, using the EN / FR / MFE tabs.
+- The compiled `.mo` files are committed, so servers don't need GNU gettext.
+- Content stored in the database (for example site settings) is translated in admin, using the EN / FR tabs.
 
 ## Production
 See **[docs/DEPLOY.md](docs/DEPLOY.md)**. It covers the environment variables, `scripts/build.sh`, the three hosting options (VPS, PaaS, cPanel), a go-live checklist and backups.

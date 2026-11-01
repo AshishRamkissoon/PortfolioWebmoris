@@ -8,10 +8,10 @@ from apps.core.placeholders import placeholder_image
 from .models import TemplateImage, TemplateIndustry, WebsiteTemplate
 
 INDUSTRIES = [
-    ("restaurant", "Restaurant", "Restaurant", "Restoran"),
-    ("tourism", "Tourism", "Tourisme", "Tourism"),
-    ("car-rental", "Car rental", "Location de voitures", "Lokasion loto"),
-    ("real-estate", "Real estate", "Immobilier", "Imobilie"),
+    ("restaurant", "Restaurant", "Restaurant"),
+    ("tourism", "Tourism", "Tourisme"),
+    ("car-rental", "Car rental", "Location de voitures"),
+    ("real-estate", "Real estate", "Immobilier"),
 ]
 
 TEMPLATES = [
@@ -112,9 +112,9 @@ DESCRIPTION = (
 
 def seed_readymade(stdout=None):
     industries = {}
-    for order, (slug, en, fr, mfe) in enumerate(INDUSTRIES, start=1):
+    for order, (slug, en, fr) in enumerate(INDUSTRIES, start=1):
         industries[slug], _ = TemplateIndustry.objects.get_or_create(
-            slug=slug, defaults={"name_en": en, "name_fr": fr, "name_mfe": mfe, "order": order}
+            slug=slug, defaults={"name_en": en, "name_fr": fr, "order": order}
         )
 
     created = 0

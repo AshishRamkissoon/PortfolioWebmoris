@@ -73,7 +73,9 @@ def schema_project(context, project):
         "creator": {"@id": f"{origin}/#organization"},
         "keywords": ", ".join(project.tech_list),
     }
-    if project.live_url:
+    if project.is_in_progress:
+        data["creativeWorkStatus"] = "Incomplete"
+    elif project.live_url:
         data["sameAs"] = project.live_url
     return _script(context, _with_context(data))
 

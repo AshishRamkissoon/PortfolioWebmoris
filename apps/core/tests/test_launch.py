@@ -69,10 +69,11 @@ def test_sitemap_lists_published_pages_in_every_language(client):
     ProjectFactory(slug="shown")
     ProjectFactory(slug="draft", is_published=False)
     body = client.get("/sitemap.xml").content.decode()
-    for prefix in ("en", "fr", "kr"):
+    for prefix in ("en", "fr"):
         assert f"http://testserver/{prefix}/portfolio/shown/" in body
     assert "/portfolio/draft/" not in body
-    assert 'hreflang="mfe" href="http://testserver/kr/' in body
+    assert 'hreflang="fr" href="http://testserver/fr/' in body
+    assert "/kr/" not in body and 'hreflang="mfe"' not in body
     assert 'hreflang="x-default"' in body
 
 

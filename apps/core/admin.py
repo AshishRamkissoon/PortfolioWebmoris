@@ -42,10 +42,6 @@ class SiteSettingsAdmin(SingletonAdminMixin, TabbedTranslationAdmin):
             "Announcement bar",
             {"fields": ("announcement_enabled", "announcement_text", "announcement_link")},
         ),
-        (
-            "Stats counters",
-            {"fields": ("stat_projects", "stat_years", "stat_clients", "stat_countries")},
-        ),
         ("WhatsApp & booking", {"fields": ("whatsapp_number", "whatsapp_message", "calendly_url")}),
         ("Contact", {"fields": ("contact_email", "contact_phone", "address")}),
         (

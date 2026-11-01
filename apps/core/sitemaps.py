@@ -1,4 +1,4 @@
-"""sitemap.xml with every public page in EN / FR / Kreol, plus hreflang alternates."""
+"""sitemap.xml with every public page in English and French, plus hreflang alternates."""
 
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse

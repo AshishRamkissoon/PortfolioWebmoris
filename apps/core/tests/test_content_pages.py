@@ -46,7 +46,6 @@ def test_about_page(client):
         "Jane Doe",
         "JD",
         "Discover",
-        "data-count-up",
     ]:
         assert text in content, text
     assert "Hidden Person" not in content

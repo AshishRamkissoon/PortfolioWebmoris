@@ -10,12 +10,10 @@ PROCESS = [
     (
         "Discover",
         "Découverte",
-        "Dekouver",
         "We learn about your business, goals and customers.",
         "Nous découvrons votre entreprise, vos objectifs et vos clients.",
     ),
     (
-        "Design",
         "Design",
         "Design",
         "We plan the structure and design how your site will look and feel.",
@@ -24,21 +22,18 @@ PROCESS = [
     (
         "Develop",
         "Développement",
-        "Devlopman",
         "We build a fast, secure site that you can easily manage.",
         "Nous développons un site rapide, sûr et facile à gérer.",
     ),
     (
         "Launch",
         "Lancement",
-        "Lansman",
         "We test everything, connect your domain and go live.",
         "Nous testons tout, connectons votre domaine et mettons le site en ligne.",
     ),
     (
         "Grow",
         "Croissance",
-        "Grandi",
         "We help you get more visitors and leads with SEO and AI marketing.",
         "Nous vous aidons à attirer plus de visiteurs et de prospects grâce au SEO et à l'IA.",
     ),
@@ -87,12 +82,11 @@ def seed_core_content(stdout=None):
     about.save()
 
     if not ProcessStep.objects.exists():
-        for order, (en, fr, mfe, desc_en, desc_fr) in enumerate(PROCESS):
+        for order, (en, fr, desc_en, desc_fr) in enumerate(PROCESS):
             ProcessStep.objects.create(
                 order=order,
                 title_en=en,
                 title_fr=fr,
-                title_mfe=mfe,
                 description_en=desc_en,
                 description_fr=desc_fr,
             )

@@ -7,66 +7,60 @@ from .models import Service, ServiceFAQ, ServiceGroup
 GROUPS = [
     {
         "slug": "web-development",
-        "name": ("Web Development", "Développement web", "Devlopman web"),
+        "name": ("Web Development", "Développement web"),
         "intro": (
             "Fast, modern websites designed to turn visitors into customers.",
             "Des sites rapides et modernes conçus pour transformer les visiteurs en clients.",
-            "Sit rapid ek modern ki transform vizitor an klian.",
         ),
         "services": [
             (
                 "business-websites",
                 "code",
                 "business",
-                ("Business Websites", "Sites vitrines", "Sit biznes"),
+                ("Business Websites", "Sites vitrines"),
                 (
                     "A professional site that builds trust and brings in enquiries.",
                     "Un site professionnel qui inspire confiance et génère des demandes.",
-                    "Enn sit profesionel ki donn konfians ek amenn demand.",
                 ),
             ),
             (
                 "e-commerce",
                 "cart",
                 "ecommerce",
-                ("E-commerce Stores", "Boutiques en ligne", "Labutik an liyn"),
+                ("E-commerce Stores", "Boutiques en ligne"),
                 (
                     "Sell online with secure payments, delivery options and stock management.",
                     "Vendez en ligne avec paiements sécurisés, livraison et gestion de stock.",
-                    "Vann an liyn avek peman sekirize, livrezon ek zestion stok.",
                 ),
             ),
             (
                 "landing-pages",
                 "rocket",
                 "landing",
-                ("Landing Pages", "Pages d'atterrissage", "Paz atrisaz"),
+                ("Landing Pages", "Pages d'atterrissage"),
                 (
                     "High-converting pages for launches, campaigns and ads.",
                     "Des pages performantes pour vos lancements, campagnes et publicités.",
-                    "Paz ki konverti bien pou lansman, kanpagn ek piblisite.",
                 ),
             ),
             (
                 "redesign-maintenance",
                 "refresh",
                 None,
-                ("Redesign & Maintenance", "Refonte & maintenance", "Refer ek mintenans"),
+                ("Redesign & Maintenance", "Refonte & maintenance"),
                 (
                     "Give an old site a new life, then keep it fast, secure and up to date.",
                     "Donnez une seconde vie à votre site et gardez-le rapide, sûr et à jour.",
-                    "Donn ou sit enn nouvo lavi ek gard li rapid, sekirize ek azour.",
                 ),
             ),
         ],
     },
     {
         "slug": "ai-marketing",
-        "name": ("AI Marketing", "Marketing IA", "Marketing IA"),
+        "name": ("AI Marketing", "Marketing IA"),
         "intro": (
             "Put AI to work on your marketing so you can focus on your business.",
             "Laissez l'IA travailler sur votre marketing pendant que vous gérez votre entreprise.",
-            "Les IA travay lor ou marketing pandan ou okip ou biznes.",
         ),
         "services": [
             (
@@ -76,23 +70,20 @@ GROUPS = [
                 (
                     "AI Content & Social Media",
                     "Contenu IA & réseaux sociaux",
-                    "Kontni IA ek rezo sosyal",
                 ),
                 (
                     "AI-generated posts, captions, images and videos, planned and published for you.",
                     "Publications, légendes, images et vidéos générées par IA, planifiées et publiées pour vous.",
-                    "Post, legend, imaz ek video fer par IA, planifie ek pibliye pou ou.",
                 ),
             ),
             (
                 "ai-chatbots",
                 "chat",
                 "ai-marketing",
-                ("AI Chatbots", "Chatbots IA", "Chatbot IA"),
+                ("AI Chatbots", "Chatbots IA"),
                 (
                     "Website and WhatsApp chatbots that answer customers and capture leads 24/7.",
                     "Des chatbots site web et WhatsApp qui répondent aux clients et captent des prospects 24h/24.",
-                    "Chatbot lor sit web ek WhatsApp ki reponn klian ek ramas prospe 24/7.",
                 ),
             ),
         ],
@@ -141,10 +132,8 @@ def seed_services(stdout=None):
             defaults={
                 "name_en": data["name"][0],
                 "name_fr": data["name"][1],
-                "name_mfe": data["name"][2],
                 "intro_en": data["intro"][0],
                 "intro_fr": data["intro"][1],
-                "intro_mfe": data["intro"][2],
                 "order": group_order,
             },
         )
@@ -158,10 +147,8 @@ def seed_services(stdout=None):
                 order=order,
                 title_en=title[0],
                 title_fr=title[1],
-                title_mfe=title[2],
                 summary_en=summary[0],
                 summary_fr=summary[1],
-                summary_mfe=summary[2],
                 body_en=BODY[0],
                 body_fr=BODY[1],
                 benefits_en=BENEFITS[0],

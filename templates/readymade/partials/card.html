@@ -4,7 +4,10 @@
   <a href="{{ url }}" tabindex="-1" aria-hidden="true" class="relative block aspect-[4/3] overflow-hidden">
     <img src="{{ template.cover_card.url }}" width="800" height="600" loading="lazy" decoding="async" alt=""
          class="size-full object-cover transition duration-700 ease-out group-hover:scale-105">
-    <span class="status-badge {% if template.is_available %}is-available{% endif %}">{{ template.get_status_display }}</span>
+    <span class="absolute top-4 left-4 flex flex-wrap gap-2">
+      <span class="status-badge static {% if template.is_available %}is-available{% endif %}">{{ template.get_status_display }}</span>
+      {% if template.demo_url %}<span class="status-badge static is-demo">{% translate "Live demo" %}</span>{% endif %}
+    </span>
   </a>
   <div class="flex flex-1 flex-col p-6">
     <p class="text-xs font-semibold uppercase tracking-wider text-neon-cyan">{{ template.industry.name }}</p>

@@ -120,3 +120,10 @@ def test_template_admin(client, industry):
     base = f"/{settings.ADMIN_URL}readymade/websitetemplate/"
     for url in [base, f"{base}add/", f"{base}{template.pk}/change/"]:
         assert client.get(url).status_code == 200, url
+
+
+def test_live_demo_badge_only_when_demo_exists(client, industry):
+    make_template(industry, name="With demo", demo_url="https://tours.demo.example.com")
+    make_template(industry, name="No demo")
+    content = client.get(LIST).content.decode()
+    assert content.count('class="status-badge static is-demo"') == 1

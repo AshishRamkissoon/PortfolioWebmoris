@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-import django.conf.locale
 import environ
 from django.utils.csp import CSP
 from django.utils.translation import gettext_lazy as _
@@ -40,7 +39,7 @@ MIDDLEWARE = [
     "django.middleware.csp.ContentSecurityPolicyMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "apps.core.middleware.PrefixedLocaleMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -85,26 +84,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # --- Internationalisation ---------------------------------------------------
-# Mauritian Creole (ISO 639-3 "mfe") is unknown to Django, so register it here.
-django.conf.locale.LANG_INFO["mfe"] = {
-    "bidi": False,
-    "code": "mfe",
-    "name": "Mauritian Creole",
-    "name_local": "Kreol Morisien",
-}
-
 LANGUAGE_CODE = "en"
 LANGUAGES = [
     ("en", _("English")),
     ("fr", _("French")),
-    ("mfe", _("Mauritian Creole")),
 ]
-# URL prefix per language when it differs from the language code (see apps.core.i18n).
-LANGUAGE_URL_PREFIXES = {"mfe": "kr"}
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
-MODELTRANSLATION_FALLBACK_LANGUAGES = {"default": ("en",), "mfe": ("fr", "en")}
+MODELTRANSLATION_FALLBACK_LANGUAGES = {"default": ("en",)}
 
 TIME_ZONE = "Indian/Mauritius"
 USE_I18N = True

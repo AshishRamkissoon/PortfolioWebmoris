@@ -1,6 +1,6 @@
 # CLAUDE.md — Webmoris Portfolio
 
-Agency site for **Webmoris** (web development + AI marketing, Mauritius). It has a portfolio with case studies, a catalog of ready-made websites (inquiry only), services, packages paid through PayPal or MCB Juice, and lead capture. It is available in English, French and Kreol.
+Agency site for **Webmoris** (web development + AI marketing, Mauritius). It has a portfolio with case studies, a catalog of ready-made websites (inquiry only), services, packages paid through PayPal or MCB Juice, and lead capture. It is available in English and French.
 
 ## Source of truth
 - [requirements.md](requirements.md): what to build (scope, data model, acceptance criteria in §12). Out-of-scope items are listed in §11; don't build them unless asked.
@@ -19,12 +19,12 @@ Agency site for **Webmoris** (web development + AI marketing, Mauritius). It has
 - Django (5.2 LTS / 6.x), Python 3.12+, PostgreSQL (SQLite in dev), WhiteNoise.
 - Tailwind + esbuild, GSAP/ScrollTrigger, Lenis, Alpine.js, HTMX, Three.js (lazy-loaded chunk only).
 - Apps in `apps/`: `core`, `portfolio`, `readymade`, `services`, `leads`, `pricing`. Settings in `config/settings/{base,dev,prod}.py`.
-- i18n: `django-modeltranslation` for model fields, and `gettext` for every UI string. Languages are `en`, `fr` and `mfe` (Kreol, URL prefix `/kr/`).
+- i18n: `django-modeltranslation` for model fields, and `gettext` for every UI string. Languages are `en` and `fr` (URL prefixes `/en/` and `/fr/`).
 
 ## Commands (once Phase 1 is in place)
 - `python manage.py runserver` · `npm run dev` / `npm run build`
 - `pytest` · `ruff check . && ruff format .`
-- `python manage.py seed_demo` · `makemessages -l fr -l mfe` / `compilemessages`
+- `python manage.py seed_demo` · `makemessages -l fr` / `compilemessages`
 
 ## Conventions
 - All site content must be editable in Django admin; never hardcode it in templates. Global values go in the `SiteSettings` singleton.

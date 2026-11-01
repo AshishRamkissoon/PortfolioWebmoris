@@ -144,6 +144,21 @@
     &.is-available {
       @apply bg-neon-cyan text-ink-950;
     }
+
+    /* Template with a clickable live demo. */
+    &.is-demo {
+      @apply border border-neon-cyan/70 bg-ink-950/85 text-neon-cyan;
+    }
+
+    /* Work in progress: violet chip with a softly pulsing dot. */
+    &.is-progress {
+      @apply inline-flex items-center gap-2 border border-neon-violet/60 bg-ink-950/85 text-ink-100;
+
+      &::before {
+        @apply size-2 animate-pulse rounded-full bg-neon-violet motion-reduce:animate-none;
+        content: "";
+      }
+    }
   }
 
   .faq summary::-webkit-details-marker {

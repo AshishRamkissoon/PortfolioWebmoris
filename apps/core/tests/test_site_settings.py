@@ -82,8 +82,10 @@ def test_translated_fields_follow_language(client):
     obj.save()
     assert "English tagline" in client.get("/en/").content.decode()
     assert "Slogan français" in client.get("/fr/").content.decode()
-    # Kreol falls back to French, then English, when empty.
-    assert "Slogan français" in client.get("/kr/").content.decode()
+    # Empty French text falls back to English.
+    obj.tagline_fr = ""
+    obj.save()
+    assert "English tagline" in client.get("/fr/").content.decode()
 
 
 def test_seed_demo_is_idempotent_and_never_overwrites():
