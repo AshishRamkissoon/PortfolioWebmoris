@@ -127,3 +127,15 @@ def test_live_demo_badge_only_when_demo_exists(client, industry):
     make_template(industry, name="No demo")
     content = client.get(LIST).content.decode()
     assert content.count('class="status-badge static is-demo"') == 1
+
+
+def test_seed_uses_demo_screenshots_when_available():
+    from apps.readymade.demo import SCREENS, seed_readymade
+
+    seed_readymade()
+    explorer = WebsiteTemplate.objects.get(slug="island-explorer")
+    assert explorer.cover_image.name.endswith(".jpg")
+    assert explorer.images.count() == len(SCREENS["island-explorer"])
+    assert explorer.images.first().caption_fr
+    # Templates without a built demo keep their generated placeholders.
+    assert WebsiteTemplate.objects.get(slug="lagon-bistro").cover_image.name.endswith(".png")

@@ -38,6 +38,9 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 7 — Demo listed on Webmoris — The Island Explorer ready-made card now uses real screenshots of the demo.
+  - Screenshots are stored in `apps/readymade/demo_screens/island-explorer/`: a cover plus 4 gallery images (desktop + phone, moods, tour listing, tour page). `seed_demo` uses them; templates without a built demo keep their placeholders.
+  - Locally, the template's Live demo URL is `http://127.0.0.1:5002/`. After deploying, change it in admin to the real subdomain.
 - 2026-11-01 — Phase 7 — Ready for review — The demo is built and tested locally; deploying it needs the owner's domain and hosting.
   - **Built:** `demos/island-explorer/`, a static Eleventy 3 + Tailwind 4 site.
     - **Pages:** Home, Tours (filter), 6 tour pages, About, Contact, Credits and 404.

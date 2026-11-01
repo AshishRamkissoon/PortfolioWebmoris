@@ -1,7 +1,12 @@
 """Demo ready-made website templates for `manage.py seed_demo`. Replace in admin.
 
 Demo templates have no demo URL, so no "Live demo" button points at a site that doesn't exist.
+Templates with a built demo (see `demos/`) use real screenshots from `demo_screens/<slug>/`.
 """
+
+from pathlib import Path
+
+from django.core.files.base import ContentFile
 
 from apps.core.placeholders import placeholder_image
 
@@ -110,6 +115,23 @@ DESCRIPTION = (
 )
 
 
+SCREENS_DIR = Path(__file__).resolve().parent / "demo_screens"
+# Gallery screenshots per template, in display order: (file, English caption, French caption).
+SCREENS = {
+    "island-explorer": [
+        ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
+        ("moods.jpg", "Tours by mood", "Excursions par thème"),
+        ("tours.jpg", "Tour listing with filters", "Liste des excursions avec filtres"),
+        ("tour.jpg", "Tour page", "Page d'une excursion"),
+    ],
+}
+
+
+def screenshot(slug, filename):
+    path = SCREENS_DIR / slug / filename
+    return ContentFile(path.read_bytes(), name=filename)
+
+
 def seed_readymade(stdout=None):
     industries = {}
     for order, (slug, en, fr) in enumerate(INDUSTRIES, start=1):
@@ -140,15 +162,27 @@ def seed_readymade(stdout=None):
             is_published=True,
             is_featured=featured,
             order=order,
-            cover_image=placeholder_image(f"{name} template", colors=colors, name="cover.png"),
+            cover_image=screenshot(slug, "cover.jpg")
+            if slug in SCREENS
+            else placeholder_image(f"{name} template", colors=colors, name="cover.png"),
         )
-        for index, page in enumerate(["Home", "Services"]):
-            TemplateImage.objects.create(
-                template=template,
-                order=index,
-                caption_en=page,
-                image=placeholder_image(f"{name} · {page}", colors=colors),
-            )
+        if slug in SCREENS:
+            for index, (filename, caption_en, caption_fr) in enumerate(SCREENS[slug]):
+                TemplateImage.objects.create(
+                    template=template,
+                    order=index,
+                    caption_en=caption_en,
+                    caption_fr=caption_fr,
+                    image=screenshot(slug, filename),
+                )
+        else:
+            for index, page in enumerate(["Home", "Services"]):
+                TemplateImage.objects.create(
+                    template=template,
+                    order=index,
+                    caption_en=page,
+                    image=placeholder_image(f"{name} · {page}", colors=colors),
+                )
         created += 1
     if stdout:
         stdout.write(f"Ready-made websites: {created} new demo template(s).")
