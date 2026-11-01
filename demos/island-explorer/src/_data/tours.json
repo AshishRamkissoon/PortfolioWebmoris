@@ -62,14 +62,14 @@
       "cerfs-4"
     ],
     "place": "Île aux Cerfs",
-    "lat": -20.2725,
-    "lng": 57.803,
+    "lat": -20.272,
+    "lng": 57.8038,
     "pickup": "08:30",
     "meet": {
       "name": "Trou d'Eau Douce jetty",
       "time": "09:15",
-      "lat": -20.2421,
-      "lng": 57.7876
+      "lat": -20.2439,
+      "lng": 57.7881
     }
   },
   {
@@ -133,8 +133,8 @@
     "meet": {
       "name": "Tamarin public beach",
       "time": "07:00",
-      "lat": -20.3258,
-      "lng": 57.3727
+      "lat": -20.3268,
+      "lng": 57.3768
     }
   },
   {
@@ -199,8 +199,8 @@
       "chamarel-4"
     ],
     "place": "Chamarel",
-    "lat": -20.4406,
-    "lng": 57.3734,
+    "lat": -20.4403,
+    "lng": 57.3735,
     "pickup": "08:30",
     "meet": null
   },
@@ -261,14 +261,14 @@
       "lemorne-4"
     ],
     "place": "Le Morne",
-    "lat": -20.456,
-    "lng": 57.315,
+    "lat": -20.4541,
+    "lng": 57.3213,
     "pickup": "05:00",
     "meet": {
-      "name": "Le Morne trailhead",
+      "name": "Le Morne trailhead car park",
       "time": "05:40",
-      "lat": -20.4497,
-      "lng": 57.3297
+      "lat": -20.46,
+      "lng": 57.3273
     }
   },
   {
@@ -327,14 +327,14 @@
       "portlouis-4"
     ],
     "place": "Port Louis",
-    "lat": -20.1612,
-    "lng": 57.5017,
+    "lat": -20.1606,
+    "lng": 57.5027,
     "pickup": null,
     "meet": {
       "name": "Central Market, main gate",
       "time": "09:00",
-      "lat": -20.1612,
-      "lng": 57.5017
+      "lat": -20.1606,
+      "lng": 57.5027
     }
   },
   {
@@ -399,8 +399,8 @@
       "south-4"
     ],
     "place": "Gris Gris",
-    "lat": -20.524,
-    "lng": 57.531,
+    "lat": -20.5245,
+    "lng": 57.5322,
     "pickup": "08:30",
     "meet": null
   }

@@ -155,3 +155,32 @@ export function initLightbox() {
     }
   });
 }
+
+/** Meeting-point map: the link opens Google Maps in a new tab without JS; with JS it swaps in the live map on click. */
+export function initMapEmbed() {
+  document.querySelectorAll("[data-map-embed]").forEach((button) => {
+    const map = button.closest("figure");
+    const label = button.querySelector("[data-map-label]");
+    const overview = label.textContent;
+    let frame = null;
+    button.setAttribute("role", "button");
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!frame) {
+        frame = document.createElement("iframe");
+        frame.src = button.dataset.mapEmbed;
+        frame.title = button.dataset.mapTitle;
+        frame.loading = "lazy";
+        frame.allowFullscreen = true;
+        frame.className = "absolute inset-0 z-[25] size-full border-0 bg-sand-100";
+        map.append(frame);
+      } else {
+        frame.hidden = !frame.hidden;
+      }
+      const live = !frame.hidden;
+      label.textContent = live ? "Back to overview" : overview;
+      button.setAttribute("aria-pressed", String(live));
+    });
+  });
+}

@@ -1,8 +1,10 @@
 [
-  { "name": "Grand Baie", "lat": -20.013, "lng": 57.58 },
-  { "name": "Port Louis", "lat": -20.161, "lng": 57.501 },
-  { "name": "Centre de Flacq", "lat": -20.19, "lng": 57.718 },
-  { "name": "Flic en Flac", "lat": -20.274, "lng": 57.371 },
-  { "name": "Curepipe", "lat": -20.316, "lng": 57.526 },
-  { "name": "Mahébourg", "lat": -20.408, "lng": 57.7 }
+  { "name": "Grand Baie", "lat": -20.013, "lng": 57.5846 },
+  { "name": "Port Louis", "lat": -20.1625, "lng": 57.5028 },
+  { "name": "Centre de Flacq", "lat": -20.1949, "lng": 57.723 },
+  { "name": "Flic en Flac", "lat": -20.2741, "lng": 57.3711 },
+  { "name": "Curepipe", "lat": -20.3151, "lng": 57.5211 },
+  { "name": "Mahébourg", "lat": -20.4111, "lng": 57.7061 },
+  { "name": "Black River Gorges National Park", "lat": -20.405, "lng": 57.418, "kind": "park" },
+  { "name": "Airport", "lat": -20.4302, "lng": 57.6836, "kind": "airport" }
 ]

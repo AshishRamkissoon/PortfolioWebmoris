@@ -38,6 +38,11 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 7 — Real map of Mauritius + click-to-load Google Map — The owner asked for a more professional first map at the right locations.
+  - **Base map:** generated from OpenStreetMap data (`npm run build:map`): the real coastline and islets, lagoon reefs, reservoirs, national parks, the airport, and the motorway and main roads. "© OpenStreetMap" is credited on the map and the Credits page.
+  - **Locations:** every tour and meeting point was checked against OpenStreetMap. Corrections: the Île aux Cerfs boats leave from the Trou d'Eau Douce ferry jetty; Tamarin Beach was moved to the actual beach; the Le Morne hike now meets at the trailhead car park.
+  - **Google Maps:** the "Interactive map" button swaps in the live Google Map at the exact spot, and "Back to overview" returns. Nothing loads from Google before the click. Without JS, the button opens Google Maps in a new tab. Needs `frame-src https://www.google.com` in the CSP (added to the nginx example).
+  - Demo QA passes 9/9, the demo kit 3/3, no console errors.
 - 2026-11-01 — Phase 7 — Meeting point map redesigned — On tour pages, the map is now a professional map card instead of the plain island outline.
   - **Map:** a light chart-style map with the lagoon, reef and depth contours, the national park, the motorway and town labels, a compass and a 10 km scale bar.
   - **Markers:** placed from real coordinates. The meeting point has a coral pin and label; the other tours are small dots that link to their pages. Town labels hide when they would collide with the pin.

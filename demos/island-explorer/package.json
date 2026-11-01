@@ -8,6 +8,7 @@
     "build:js": "esbuild src/assets/js/main.js --bundle --format=esm --splitting --minify --outdir=_site/assets/js",
     "build:fonts": "esbuild src/assets/css/fonts.css --bundle --minify --loader:.woff2=file --loader:.woff=file --asset-names=fonts/[name] --outdir=_site/assets",
     "build:html": "eleventy",
+    "build:map": "node scripts/build-map.mjs",
     "build": "npm run build:html && npm run build:fonts && npm run build:css && npm run build:js",
     "serve": "eleventy --serve --port=5002"
   },

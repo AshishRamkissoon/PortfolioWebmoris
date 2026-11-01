@@ -10,7 +10,8 @@ npm install
 npm run build          # first build encodes all photos (slow once, then cached)
 npm run serve          # http://localhost:5002 (Eleventy dev server)
 ```
-- **Tours:** `src/_data/tours.json`. Add a tour there, and its page, card and map pin are generated automatically. Each tour has real coordinates (`lat`/`lng`), an optional `meet` point (`name`, `time`, `lat`, `lng`) and a `pickup` time (or `null`). Town labels on the map live in `src/_data/mapPlaces.json`.
+- **Tours:** `src/_data/tours.json`. Add a tour there, and its page, card and map pin are generated automatically. Each tour has real coordinates (`lat`/`lng`), an optional `meet` point (`name`, `time`, `lat`, `lng`) and a `pickup` time (or `null`). Labels on the map (towns, park, airport) live in `src/_data/mapPlaces.json`.
+- **Map:** the base map `src/static/img/map/mauritius.svg` is generated from OpenStreetMap data by `npm run build:map` (add `-- --fetch` to download fresh data). It also writes `src/_data/mapFrame.json`, the projection used to place pins. The "Interactive map" button loads Google Maps only when clicked; deploying needs `frame-src https://www.google.com` in the CSP (already in `deploy/nginx.conf.example`).
 - **Photos:** `src/images/photos/`, with credits in `src/_data/photos.json`. The build turns them into responsive AVIF, WebP and JPEG files.
 - **Site text:** `src/_data/site.json` holds the brand, FAQs, promises and booking steps.
 

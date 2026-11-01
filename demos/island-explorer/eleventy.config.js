@@ -1,5 +1,6 @@
 import Image from "@11ty/eleventy-img";
 
+import mapFrame from "./src/_data/mapFrame.json" with { type: "json" };
 import photos from "./src/_data/photos.json" with { type: "json" };
 
 const WIDTHS = [480, 960, 1440, 2000];
@@ -45,25 +46,26 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("featured", (tours) => tours.filter((t) => t.featured));
   eleventyConfig.addFilter("others", (tours, slug) => tours.filter((t) => t.slug !== slug));
   eleventyConfig.addFilter("limit", (items, count) => items.slice(0, count));
-  // Projects { lat, lng } onto the island map's 400×440 viewBox (linear fit to the coastline path).
-  // `left`/`top` are percentages for HTML markers laid over the SVG.
-  eleventyConfig.addFilter("mapPos", ({ lat, lng }) => {
-    const x = 157 + 666 * (lng - 57.501);
-    const y = 160 + 675 * (-20.161 - lat);
-    return { x, y, left: (x / 4).toFixed(2), top: (y / 4.4).toFixed(2) };
+  // Projects { lat, lng } onto the OpenStreetMap base map (same projection as scripts/build-map.mjs).
+  // Returns percentages of the map's width and height, for HTML markers laid over the image.
+  const mapPos = ({ lat, lng }) => ({
+    left: (((lng - mapFrame.west) * mapFrame.kx) / mapFrame.width) * 100,
+    top: (((mapFrame.north - lat) * mapFrame.ky) / mapFrame.height) * 100,
   });
-  // Town labels that don't collide with the main pin or its name label (sizes are rough, in map units).
-  eleventyConfig.addFilter("mapTowns", (places, pin, pinLabel) => {
-    const project = eleventyConfig.getFilter("mapPos");
-    const chip = pinLabel.length * 7 + 24;
-    const chipLeft = pin.x < 110 ? pin.x - 15 : pin.x > 290 ? pin.x + 15 - chip : pin.x - chip / 2;
+  eleventyConfig.addFilter("mapPos", mapPos);
+  // Place labels that don't collide with the main pin and its name label.
+  // Sizes are rough estimates in % of the map (1% ≈ 4 px wide, 4.8 px tall at ~420 px).
+  eleventyConfig.addFilter("mapLabels", (places, pin, pinLabel) => {
+    const chip = (pinLabel.length * 7 + 24) / 4;
+    const chipLeft = pin.left < 27 ? pin.left - 4 : pin.left > 73 ? pin.left + 4 - chip : pin.left - chip / 2;
+    const pinBox = [Math.min(chipLeft, pin.left - 5), Math.max(chipLeft + chip, pin.left + 5), pin.top - 16, pin.top + 2.5];
     return places
-      .map((place) => ({ ...place, pos: project(place) }))
-      .filter(({ name, pos }) => {
-        const width = name.length * 6 + 10;
-        const [from, to] = pos.x > 260 ? [pos.x - width, pos.x] : [pos.x, pos.x + width];
-        const overlapsX = from < Math.max(chipLeft + chip, pin.x + 20) && to > Math.min(chipLeft, pin.x - 20);
-        return !(overlapsX && pos.y > pin.y - 95 && pos.y < pin.y + 15);
+      .map((place) => ({ ...place, pos: mapPos(place), flip: mapPos(place).left > 65 }))
+      .filter(({ name, kind, pos, flip }) => {
+        const width = kind === "park" ? 22 : (name.length * 6 + 14) / 4;
+        const half = kind === "park" ? 3 : 1.8;
+        const [from, to] = kind === "park" ? [pos.left - width / 2, pos.left + width / 2] : flip ? [pos.left - width, pos.left] : [pos.left, pos.left + width];
+        return !(from < pinBox[1] && to > pinBox[0] && pos.top - half < pinBox[3] && pos.top + half > pinBox[2]);
       });
   });
 
