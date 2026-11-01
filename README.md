@@ -87,21 +87,14 @@ ruff check . && ruff format --check .
 - The compiled `.mo` files are committed. Django only enables a language once its `.mo` file exists, so Kreol depends on them.
 - Content stored in the database (for example site settings) is translated in admin, using the EN / FR / MFE tabs.
 
-## Production (host-agnostic)
-- Settings: `DJANGO_SETTINGS_MODULE=config.settings.prod`. This is the default for `wsgi.py` and `asgi.py`.
-- Required environment variables:
-  - `SECRET_KEY`
-  - `ALLOWED_HOSTS`
-  - `DATABASE_URL` (PostgreSQL)
-  - `EMAIL_URL`
-  - `ADMIN_URL`
-  - `CSRF_TRUSTED_ORIGINS`
-- Build:
-  ```bash
-  pip install -r requirements/prod.txt
-  npm ci && npm run build
-  python manage.py collectstatic --noinput
-  python manage.py migrate
-  python manage.py check --deploy
-  ```
-- Serve with `gunicorn config.wsgi`. WhiteNoise serves static files. Full deploy guides (VPS, PaaS, cPanel) arrive in Phase 6.
+## Production
+See **[docs/DEPLOY.md](docs/DEPLOY.md)**. It covers the environment variables, `scripts/build.sh`, the three hosting options (VPS, PaaS, cPanel), a go-live checklist and backups.
+
+## Security notes
+- **Content-Security-Policy:**
+  - Django's built-in CSP middleware sets it on every response.
+  - Inline scripts need `nonce="{{ csp_nonce }}"`.
+  - Alpine uses its CSP-safe build, so `x-*` expressions must stay simple (call component methods; no arrow functions or template literals in templates).
+  - Iframes are created in JS, not bound with Alpine.
+- **New third parties** (embeds, scripts) must be added to `SECURE_CSP` in `config/settings/base.py`, or the browser will block them.
+- **`robots.txt`** deliberately never mentions the admin URL.

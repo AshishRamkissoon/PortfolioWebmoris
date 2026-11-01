@@ -2,7 +2,7 @@
 {% if process_steps %}
 <section class="container-site mt-28">
   {% translate "How we work" as eyebrow %}{% translate "From first call to launch — and beyond." as title %}
-  {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+  {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
   <ol class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(12rem,1fr))]">
     {% for step in process_steps %}
     <li data-reveal data-reveal-delay="0.{{ forloop.counter0 }}" class="relative rounded-card border border-ink-800 bg-ink-900 p-7">

@@ -20,8 +20,8 @@
   --color-neon-violet: #8b5cf6;
   --color-neon-pink: #f472b6;
 
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1.25rem;
   --shadow-glow: 0 0 40px -8px rgb(34 227 255 / 0.45);
@@ -218,6 +218,23 @@
   /* Honeypot: off-screen for people (and screen readers via aria-hidden), visible to bots. */
   .honeypot {
     @apply absolute -left-[9999px] h-px w-px overflow-hidden;
+  }
+
+  .hero-3d {
+    @apply pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-[1500ms];
+    /* Fade top/bottom, and soften the left where the headline sits. */
+    mask-image:
+      linear-gradient(to bottom, transparent, black 25%, black 70%, transparent),
+      linear-gradient(to right, rgb(0 0 0 / 0.35), black 60%);
+    mask-composite: intersect;
+
+    &.is-ready {
+      @apply opacity-100;
+    }
+
+    & canvas {
+      @apply size-full;
+    }
   }
 
   .hero-glow {

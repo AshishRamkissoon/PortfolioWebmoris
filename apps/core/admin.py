@@ -60,7 +60,7 @@ class SiteSettingsAdmin(SingletonAdminMixin, TabbedTranslationAdmin):
                 )
             },
         ),
-        ("SEO defaults", {"fields": ("seo_title", "seo_description")}),
+        ("SEO defaults", {"fields": ("seo_title", "seo_description", "og_image")}),
         (
             "Payments (MCB Juice & bank transfer)",
             {"fields": ("juice_number", "juice_account_name", "juice_qr", "bank_details")},

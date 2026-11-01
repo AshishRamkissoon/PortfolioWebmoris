@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const motionAllowed = () =>
+export const motionAllowed = () =>
   !prefersReducedMotion() && document.documentElement.classList.contains("motion-ok");
 
 export function initSmoothScroll() {
@@ -125,5 +125,58 @@ export function initHorizontalScroll() {
         track.classList.remove("is-pinned");
       });
     };
+  });
+}
+
+/** Whether this device should get the WebGL hero (otherwise the CSS glow stays). */
+export function canRenderHero() {
+  if (!motionAllowed() || window.innerWidth < 768) return false;
+  if (navigator.connection?.saveData) return false;
+  if ((navigator.hardwareConcurrency || 8) < 4 || (navigator.deviceMemory || 8) < 4) return false;
+  try {
+    return Boolean(document.createElement("canvas").getContext("webgl2"));
+  } catch {
+    return false;
+  }
+}
+
+const canHover = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+/** [data-magnetic] buttons lean toward the pointer (mouse devices only). */
+export function initMagnetic(root = document) {
+  if (!motionAllowed() || !canHover()) return;
+  root.querySelectorAll("[data-magnetic]:not([data-magnetized])").forEach((el) => {
+    el.dataset.magnetized = "";
+    const x = gsap.quickTo(el, "x", { duration: 0.4, ease: "power3.out" });
+    const y = gsap.quickTo(el, "y", { duration: 0.4, ease: "power3.out" });
+    el.addEventListener("pointermove", (event) => {
+      const box = el.getBoundingClientRect();
+      x((event.clientX - box.left - box.width / 2) * 0.25);
+      y((event.clientY - box.top - box.height / 2) * 0.35);
+    });
+    el.addEventListener("pointerleave", () => {
+      x(0);
+      y(0);
+    });
+  });
+}
+
+/** Project cards tilt slightly in 3D under the pointer (mouse devices only). */
+export function initTilt(root = document) {
+  if (!motionAllowed() || !canHover()) return;
+  root.querySelectorAll(".project-card:not([data-tilted])").forEach((card) => {
+    card.dataset.tilted = "";
+    gsap.set(card, { transformPerspective: 900 });
+    const rotateX = gsap.quickTo(card, "rotationX", { duration: 0.5, ease: "power3.out" });
+    const rotateY = gsap.quickTo(card, "rotationY", { duration: 0.5, ease: "power3.out" });
+    card.addEventListener("pointermove", (event) => {
+      const box = card.getBoundingClientRect();
+      rotateY(((event.clientX - box.left) / box.width - 0.5) * 6);
+      rotateX(((event.clientY - box.top) / box.height - 0.5) * -6);
+    });
+    card.addEventListener("pointerleave", () => {
+      rotateX(0);
+      rotateY(0);
+    });
   });
 }

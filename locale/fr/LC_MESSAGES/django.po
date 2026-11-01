@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webmoris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 20:28-0700\n"
+"POT-Creation-Date: 2026-10-31 20:58-0700\n"
 "PO-Revision-Date: 2026-10-31 12:00+0400\n"
 "Last-Translator: Webmoris\n"
 "Language-Team: French\n"
@@ -98,165 +98,173 @@ msgid "default meta description"
 msgstr ""
 
 #: .\apps\core\models.py:75
+msgid "default share image"
+msgstr ""
+
+#: .\apps\core\models.py:79
+msgid "Shown when pages are shared on social media. 1200×630 px works best."
+msgstr ""
+
+#: .\apps\core\models.py:82
 msgid "MCB Juice number"
 msgstr ""
 
-#: .\apps\core\models.py:76
+#: .\apps\core\models.py:83
 msgid "Juice account name"
 msgstr ""
 
-#: .\apps\core\models.py:78
+#: .\apps\core\models.py:85
 msgid "Juice QR code"
 msgstr ""
 
-#: .\apps\core\models.py:84
+#: .\apps\core\models.py:91
 msgid "bank transfer details"
 msgstr ""
 
-#: .\apps\core\models.py:86
+#: .\apps\core\models.py:93
 msgid "Bank, account name, account number, IBAN/SWIFT — shown at checkout."
 msgstr ""
 
-#: .\apps\core\models.py:90 .\apps\core\models.py:91
+#: .\apps\core\models.py:97 .\apps\core\models.py:98
 msgid "site settings"
 msgstr ""
 
-#: .\apps\core\models.py:122
+#: .\apps\core\models.py:129
 msgid "Projects delivered"
 msgstr "Projets livrés"
 
-#: .\apps\core\models.py:123
+#: .\apps\core\models.py:130
 msgid "Years of experience"
 msgstr "Années d'expérience"
 
-#: .\apps\core\models.py:124
+#: .\apps\core\models.py:131
 msgid "Happy clients"
 msgstr "Clients satisfaits"
 
-#: .\apps\core\models.py:125
+#: .\apps\core\models.py:132
 msgid "Countries served"
 msgstr "Pays desservis"
 
-#: .\apps\core\models.py:132
+#: .\apps\core\models.py:139
 msgid "story heading"
 msgstr ""
 
-#: .\apps\core\models.py:133
+#: .\apps\core\models.py:140
 msgid "our story"
 msgstr ""
 
-#: .\apps\core\models.py:134
+#: .\apps\core\models.py:141
 msgid "mission"
 msgstr ""
 
-#: .\apps\core\models.py:136
+#: .\apps\core\models.py:143
 msgid "values"
 msgstr ""
 
-#: .\apps\core\models.py:136
+#: .\apps\core\models.py:143
 msgid "One per line, as “Title: description”."
 msgstr ""
 
-#: .\apps\core\models.py:139
+#: .\apps\core\models.py:146
 msgid "tools & technologies"
 msgstr ""
 
-#: .\apps\core\models.py:139 .\apps\portfolio\models.py:44
+#: .\apps\core\models.py:146 .\apps\portfolio\models.py:44
 msgid "Comma-separated."
 msgstr ""
 
-#: .\apps\core\models.py:143 .\apps\core\models.py:144
+#: .\apps\core\models.py:150 .\apps\core\models.py:151
 msgid "about page"
 msgstr ""
 
-#: .\apps\core\models.py:165 .\apps\leads\models.py:20
+#: .\apps\core\models.py:172 .\apps\leads\models.py:20
 #: .\apps\portfolio\models.py:12 .\apps\pricing\models.py:33
 #: .\apps\pricing\models.py:148 .\apps\readymade\models.py:21
 #: .\apps\readymade\models.py:47 .\apps\services\models.py:11
 msgid "name"
 msgstr "nom"
 
-#: .\apps\core\models.py:166
+#: .\apps\core\models.py:173
 msgid "role"
 msgstr ""
 
-#: .\apps\core\models.py:167
+#: .\apps\core\models.py:174
 msgid "short bio"
 msgstr ""
 
-#: .\apps\core\models.py:169
+#: .\apps\core\models.py:176
 msgid "photo"
 msgstr ""
 
-#: .\apps\core\models.py:175
+#: .\apps\core\models.py:182
 msgid "show on site"
 msgstr ""
 
-#: .\apps\core\models.py:176 .\apps\core\models.py:196
+#: .\apps\core\models.py:183 .\apps\core\models.py:203
 #: .\apps\portfolio\models.py:14 .\apps\portfolio\models.py:90
 #: .\apps\portfolio\models.py:134 .\apps\portfolio\models.py:162
-#: .\apps\pricing\models.py:76 .\apps\pricing\models.py:184
+#: .\apps\pricing\models.py:76 .\apps\pricing\models.py:182
 #: .\apps\readymade\models.py:23 .\apps\readymade\models.py:101
 #: .\apps\readymade\models.py:139 .\apps\services\models.py:14
 #: .\apps\services\models.py:55 .\apps\services\models.py:77
 msgid "order"
 msgstr ""
 
-#: .\apps\core\models.py:180
+#: .\apps\core\models.py:187
 msgid "team member"
 msgstr ""
 
-#: .\apps\core\models.py:181
+#: .\apps\core\models.py:188
 msgid "team members"
 msgstr ""
 
-#: .\apps\core\models.py:194 .\apps\core\models.py:213
+#: .\apps\core\models.py:201 .\apps\core\models.py:220
 #: .\apps\portfolio\models.py:34 .\apps\services\models.py:44
 msgid "title"
 msgstr ""
 
-#: .\apps\core\models.py:195 .\apps\readymade\models.py:56
+#: .\apps\core\models.py:202 .\apps\readymade\models.py:56
 #: .\apps\services\models.py:48
 msgid "description"
 msgstr ""
 
-#: .\apps\core\models.py:200
+#: .\apps\core\models.py:207
 msgid "process step"
 msgstr ""
 
-#: .\apps\core\models.py:201
+#: .\apps\core\models.py:208
 msgid "process steps"
 msgstr ""
 
-#: .\apps\core\models.py:209 .\templates\partials\footer.html:37
+#: .\apps\core\models.py:216 .\templates\partials\footer.html:37
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
 
-#: .\apps\core\models.py:210 .\templates\partials\footer.html:38
+#: .\apps\core\models.py:217 .\templates\partials\footer.html:38
 msgid "Terms & Conditions"
 msgstr "Conditions générales"
 
-#: .\apps\core\models.py:212
+#: .\apps\core\models.py:219
 msgid "page"
 msgstr ""
 
-#: .\apps\core\models.py:214
+#: .\apps\core\models.py:221
 msgid "content"
 msgstr ""
 
-#: .\apps\core\models.py:214
+#: .\apps\core\models.py:221
 msgid "Plain text. Blank lines start paragraphs."
 msgstr ""
 
-#: .\apps\core\models.py:215
+#: .\apps\core\models.py:222
 msgid "last updated"
 msgstr ""
 
-#: .\apps\core\models.py:219
+#: .\apps\core\models.py:226
 msgid "legal page"
 msgstr ""
 
-#: .\apps\core\models.py:220
+#: .\apps\core\models.py:227
 msgid "legal pages"
 msgstr ""
 
@@ -323,7 +331,7 @@ msgstr ""
 msgid "status"
 msgstr ""
 
-#: .\apps\leads\models.py:32 .\apps\pricing\models.py:176
+#: .\apps\leads\models.py:32 .\apps\pricing\models.py:174
 msgid "internal notes"
 msgstr ""
 
@@ -598,12 +606,12 @@ msgstr ""
 msgid "result metrics"
 msgstr ""
 
-#: .\apps\portfolio\models.py:147 .\templates\portfolio\detail.html:80
+#: .\apps\portfolio\models.py:147 .\templates\portfolio\detail.html:82
 msgid "Desktop"
 msgstr "Ordinateur"
 
 #: .\apps\portfolio\models.py:148 .\templates\partials\header.html:31
-#: .\templates\portfolio\detail.html:81
+#: .\templates\portfolio\detail.html:83
 msgid "Mobile"
 msgstr "Mobile"
 
@@ -646,11 +654,11 @@ msgstr "Paiement confirmé — commande %(ref)s"
 msgid "Anything we should know? (optional)"
 msgstr "Quelque chose à nous signaler ? (facultatif)"
 
-#: .\apps\pricing\forms.py:44
+#: .\apps\pricing\forms.py:46
 msgid "Transaction reference (from your Juice or bank receipt)"
 msgstr "Référence de transaction (sur votre reçu Juice ou bancaire)"
 
-#: .\apps\pricing\forms.py:56
+#: .\apps\pricing\forms.py:58
 msgid "Add your transaction reference or upload a screenshot of the payment."
 msgstr "Ajoutez la référence de transaction ou une capture d'écran du paiement."
 
@@ -780,67 +788,67 @@ msgstr ""
 msgid "amount"
 msgstr ""
 
-#: .\apps\pricing\models.py:167
+#: .\apps\pricing\models.py:166
 msgid "transaction reference"
 msgstr ""
 
-#: .\apps\pricing\models.py:170
+#: .\apps\pricing\models.py:168
 msgid "proof of payment"
 msgstr ""
 
-#: .\apps\pricing\models.py:178
+#: .\apps\pricing\models.py:176
 msgid "created"
 msgstr ""
 
-#: .\apps\pricing\models.py:179
+#: .\apps\pricing\models.py:177
 msgid "updated"
 msgstr ""
 
-#: .\apps\pricing\models.py:180
+#: .\apps\pricing\models.py:178
 msgid "paid at"
 msgstr ""
 
-#: .\apps\pricing\models.py:185
+#: .\apps\pricing\models.py:183
 msgid "orders"
 msgstr ""
 
-#: .\apps\pricing\models.py:232
+#: .\apps\pricing\models.py:229
 msgid "PayPal webhook event"
 msgstr ""
 
-#: .\apps\pricing\models.py:233
+#: .\apps\pricing\models.py:230
 msgid "PayPal webhook events"
 msgstr ""
 
-#: .\apps\pricing\views.py:52
+#: .\apps\pricing\views.py:53
 msgid "Too many orders from your connection. Please try again later."
 msgstr "Trop de commandes depuis votre connexion. Veuillez réessayer plus tard."
 
-#: .\apps\pricing\views.py:135
+#: .\apps\pricing\views.py:137
 msgid "This order can't be paid this way."
 msgstr "Cette commande ne peut pas être payée ainsi."
 
-#: .\apps\pricing\views.py:139
+#: .\apps\pricing\views.py:141
 msgid "PayPal is unavailable. Please try again."
 msgstr "PayPal est indisponible. Veuillez réessayer."
 
-#: .\apps\pricing\views.py:150
+#: .\apps\pricing\views.py:152
 msgid "Payment not started."
 msgstr "Paiement non commencé."
 
-#: .\apps\pricing\views.py:155
+#: .\apps\pricing\views.py:157
 msgid "We couldn't confirm your payment. Please try again."
 msgstr "Nous n'avons pas pu confirmer votre paiement. Veuillez réessayer."
 
-#: .\apps\pricing\views.py:162
+#: .\apps\pricing\views.py:166
 msgid "Your payment wasn't completed. Please try again or choose another method."
 msgstr "Votre paiement n'a pas abouti. Réessayez ou choisissez un autre moyen."
 
-#: .\apps\pricing\views.py:184
+#: .\apps\pricing\views.py:190
 msgid "We couldn't confirm your subscription. Please try again."
 msgstr "Nous n'avons pas pu confirmer votre abonnement. Veuillez réessayer."
 
-#: .\apps\pricing\views.py:187
+#: .\apps\pricing\views.py:193
 msgid "Your subscription wasn't activated."
 msgstr "Votre abonnement n'a pas été activé."
 
@@ -969,7 +977,7 @@ msgstr ""
 msgid "answer"
 msgstr ""
 
-#: .\apps\services\models.py:81 .\templates\services\detail.html:65
+#: .\apps\services\models.py:81 .\templates\services\detail.html:67
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -977,15 +985,15 @@ msgstr "FAQ"
 msgid "FAQs"
 msgstr ""
 
-#: .\config\settings\base.py:94
+#: .\config\settings\base.py:98
 msgid "English"
 msgstr "Anglais"
 
-#: .\config\settings\base.py:95
+#: .\config\settings\base.py:99
 msgid "French"
 msgstr "Français"
 
-#: .\config\settings\base.py:96
+#: .\config\settings\base.py:100
 msgid "Mauritian Creole"
 msgstr "Créole mauricien"
 
@@ -1001,15 +1009,15 @@ msgstr "Cette page n'existe pas."
 msgid "The link may be broken or the page may have moved."
 msgstr "Le lien est peut-être cassé ou la page a été déplacée."
 
-#: .\templates\404.html:12 .\templates\pricing\order.html:22
+#: .\templates\404.html:12 .\templates\pricing\order.html:23
 msgid "Back to home"
 msgstr "Retour à l'accueil"
 
-#: .\templates\404.html:13 .\templates\pages\home.html:20
+#: .\templates\404.html:13 .\templates\pages\home.html:21
 msgid "View Our Work"
 msgstr "Voir nos réalisations"
 
-#: .\templates\base.html:40
+#: .\templates\base.html:45
 msgid "Skip to content"
 msgstr "Aller au contenu"
 
@@ -1021,9 +1029,9 @@ msgstr "Prêt à développer votre entreprise en ligne ?"
 msgid "Tell us about your project and we'll get back to you with a tailored quote."
 msgstr "Parlez-nous de votre projet et nous vous enverrons un devis sur mesure."
 
-#: .\templates\components\cta_band.html:10 .\templates\pages\home.html:19
+#: .\templates\components\cta_band.html:10 .\templates\pages\home.html:20
 #: .\templates\partials\header.html:15 .\templates\partials\header.html:35
-#: .\templates\services\detail.html:20
+#: .\templates\services\detail.html:22
 msgid "Get a Quote"
 msgstr "Demander un devis"
 
@@ -1053,7 +1061,7 @@ msgstr "Suivant"
 
 #: .\templates\components\gallery.html:24
 #: .\templates\components\video_modal.html:9
-#: .\templates\readymade\detail.html:35
+#: .\templates\readymade\detail.html:37
 msgid "Close"
 msgstr "Fermer"
 
@@ -1238,21 +1246,21 @@ msgstr "Nous utilisons vos coordonnées uniquement pour répondre à votre deman
 msgid "Send my request"
 msgstr "Envoyer ma demande"
 
-#: .\templates\leads\partials\success.html:4
+#: .\templates\leads\partials\success.html:5
 msgid "Thank you — message received!"
 msgstr "Merci — message bien reçu !"
 
-#: .\templates\leads\partials\success.html:5
+#: .\templates\leads\partials\success.html:6
 msgid "We'll get back to you within one business day. A confirmation has been sent to your email."
 msgstr "Nous vous répondrons sous un jour ouvré. Une confirmation vous a été envoyée par e-mail."
 
-#: .\templates\leads\partials\success.html:7
+#: .\templates\leads\partials\success.html:8
 msgid "Need it faster? Chat on WhatsApp"
 msgstr "Plus pressé ? Écrivez-nous sur WhatsApp"
 
 #: .\templates\leads\template_inquiry.html:4
 #: .\templates\leads\template_inquiry.html:10
-#: .\templates\readymade\detail.html:36
+#: .\templates\readymade\detail.html:38
 #, python-format
 msgid "Enquire about %(name)s"
 msgstr "Demande pour %(name)s"
@@ -1297,70 +1305,86 @@ msgstr "Les personnes derrière votre projet."
 msgid "Tools & technologies we use"
 msgstr "Outils & technologies utilisés"
 
-#: .\templates\pages\home.html:11
+#: .\templates\pages\home.html:12
 msgid "Web development & AI marketing · Mauritius"
 msgstr "Développement web & marketing IA · Maurice"
 
-#: .\templates\pages\home.html:13
+#: .\templates\pages\home.html:14
 msgid "We build websites that"
 msgstr "Nous créons des sites qui"
 
-#: .\templates\pages\home.html:13
+#: .\templates\pages\home.html:14
 msgid "win clients."
 msgstr "attirent des clients."
 
-#: .\templates\pages\home.html:31
+#: .\templates\pages\home.html:32
 msgid "Selected work"
 msgstr "Réalisations choisies"
 
-#: .\templates\pages\home.html:31
+#: .\templates\pages\home.html:32
 msgid "Projects we're proud of."
 msgstr "Des projets dont nous sommes fiers."
 
-#: .\templates\pages\home.html:33
+#: .\templates\pages\home.html:34
 msgid "View all projects"
 msgstr "Voir tous les projets"
 
-#: .\templates\pages\home.html:47
+#: .\templates\pages\home.html:48
 msgid "What we do"
 msgstr "Ce que nous faisons"
 
-#: .\templates\pages\home.html:47
+#: .\templates\pages\home.html:48
 msgid "Websites and AI marketing, under one roof."
 msgstr "Sites web et marketing IA, sous un même toit."
 
-#: .\templates\pages\home.html:78
+#: .\templates\pages\home.html:79
 msgid "Ready-made websites"
 msgstr "Sites clés en main"
 
-#: .\templates\pages\home.html:78
+#: .\templates\pages\home.html:79
 msgid "Launch fast with a ready-made site."
 msgstr "Lancez-vous vite avec un site clés en main."
 
-#: .\templates\pages\home.html:78
+#: .\templates\pages\home.html:79
 msgid "Pick a design for your industry and we'll customise it with your brand, content and domain."
 msgstr "Choisissez un design pour votre secteur et nous l'adaptons à votre marque, vos contenus et votre domaine."
 
-#: .\templates\pages\home.html:80
+#: .\templates\pages\home.html:81
 msgid "Browse all"
 msgstr "Tout voir"
 
-#: .\templates\pages\home.html:96 .\templates\partials\nav_links.html:5
-#: .\templates\pricing\list.html:4 .\templates\pricing\list.html:9
+#: .\templates\pages\home.html:97 .\templates\partials\nav_links.html:5
+#: .\templates\pricing\list.html:4 .\templates\pricing\list.html:11
 msgid "Pricing"
 msgstr "Tarifs"
 
-#: .\templates\pages\home.html:96
+#: .\templates\pages\home.html:97
 msgid "Clear prices. Pay online."
 msgstr "Des prix clairs. Paiement en ligne."
 
-#: .\templates\pages\home.html:98 .\templates\pricing\checkout.html:9
+#: .\templates\pages\home.html:99 .\templates\pricing\checkout.html:9
 msgid "All packages"
 msgstr "Toutes les formules"
 
 #: .\templates\pages\legal.html:9
 msgid "Last updated"
 msgstr "Dernière mise à jour"
+
+#: .\templates\partials\consent_banner.html:2
+msgid "Cookie consent"
+msgstr "Consentement aux cookies"
+
+#: .\templates\partials\consent_banner.html:6
+msgid "We use analytics cookies to understand how visitors use our site. They're only set if you accept. <a href=\"%(privacy_url)s\" class=\"underline hover:text-neon-cyan\">Learn more</a>."
+msgstr "Nous utilisons des cookies de mesure d'audience pour comprendre l'usage du site. Ils ne sont déposés que si vous acceptez. <a href=\"%(privacy_url)s\" class=\"underline hover:text-neon-cyan\">En savoir plus</a>."
+
+#: .\templates\partials\consent_banner.html:9
+msgid "Accept"
+msgstr "Accepter"
+
+#: .\templates\partials\consent_banner.html:10
+msgid "Decline"
+msgstr "Refuser"
 
 #: .\templates\partials\footer.html:17
 msgid "Explore"
@@ -1399,7 +1423,7 @@ msgstr "Portfolio"
 msgid "Ready-made Sites"
 msgstr "Sites clés en main"
 
-#: .\templates\partials\nav_links.html:4 .\templates\portfolio\detail.html:25
+#: .\templates\partials\nav_links.html:4 .\templates\portfolio\detail.html:27
 #: .\templates\services\list.html:4 .\templates\services\list.html:9
 msgid "Services"
 msgstr "Services"
@@ -1408,83 +1432,83 @@ msgstr "Services"
 msgid "Chat with us on WhatsApp"
 msgstr "Discutez avec nous sur WhatsApp"
 
-#: .\templates\portfolio\detail.html:14
+#: .\templates\portfolio\detail.html:16
 msgid "All projects"
 msgstr "Tous les projets"
 
-#: .\templates\portfolio\detail.html:22
+#: .\templates\portfolio\detail.html:24
 msgid "Client"
 msgstr "Client"
 
-#: .\templates\portfolio\detail.html:23
+#: .\templates\portfolio\detail.html:25
 msgid "Industry"
 msgstr "Secteur"
 
-#: .\templates\portfolio\detail.html:24
+#: .\templates\portfolio\detail.html:26
 msgid "Year"
 msgstr "Année"
 
-#: .\templates\portfolio\detail.html:30
+#: .\templates\portfolio\detail.html:32
 msgid "Visit live site"
 msgstr "Voir le site en ligne"
 
-#: .\templates\portfolio\detail.html:32
+#: .\templates\portfolio\detail.html:34
 msgid "Watch the walkthrough"
 msgstr "Voir la présentation vidéo"
 
-#: .\templates\portfolio\detail.html:43
+#: .\templates\portfolio\detail.html:45
 msgid "Key results"
 msgstr "Résultats clés"
 
-#: .\templates\portfolio\detail.html:57
+#: .\templates\portfolio\detail.html:59
 msgid "The Challenge"
 msgstr "Le défi"
 
-#: .\templates\portfolio\detail.html:58
+#: .\templates\portfolio\detail.html:60
 msgid "The Solution"
 msgstr "La solution"
 
-#: .\templates\portfolio\detail.html:60
+#: .\templates\portfolio\detail.html:62
 msgid "The Results"
 msgstr "Les résultats"
 
-#: .\templates\portfolio\detail.html:65
+#: .\templates\portfolio\detail.html:67
 msgid "Built with"
 msgstr "Réalisé avec"
 
-#: .\templates\portfolio\detail.html:77 .\templates\readymade\detail.html:71
+#: .\templates\portfolio\detail.html:79 .\templates\readymade\detail.html:73
 msgid "Screenshots"
 msgstr "Captures d'écran"
 
-#: .\templates\portfolio\detail.html:79
+#: .\templates\portfolio\detail.html:81
 msgid "Screenshot type"
 msgstr "Type de capture"
 
-#: .\templates\portfolio\detail.html:102 .\templates\readymade\detail.html:78
+#: .\templates\portfolio\detail.html:104 .\templates\readymade\detail.html:80
 msgid "Walkthrough"
 msgstr "Présentation vidéo"
 
-#: .\templates\portfolio\detail.html:105 .\templates\readymade\detail.html:80
+#: .\templates\portfolio\detail.html:107 .\templates\readymade\detail.html:82
 msgid "video walkthrough"
 msgstr "présentation vidéo"
 
-#: .\templates\portfolio\detail.html:115
+#: .\templates\portfolio\detail.html:117
 msgid "Want a website like this?"
 msgstr "Envie d'un site comme celui-ci ?"
 
-#: .\templates\portfolio\detail.html:121
+#: .\templates\portfolio\detail.html:123
 msgid "More projects"
 msgstr "Autres projets"
 
-#: .\templates\portfolio\detail.html:124
+#: .\templates\portfolio\detail.html:126
 msgid "Previous project"
 msgstr "Projet précédent"
 
-#: .\templates\portfolio\detail.html:130
+#: .\templates\portfolio\detail.html:132
 msgid "Next project"
 msgstr "Projet suivant"
 
-#: .\templates\portfolio\detail.html:140
+#: .\templates\portfolio\detail.html:142
 msgid "Related projects"
 msgstr "Projets similaires"
 
@@ -1540,7 +1564,7 @@ msgstr "Paiement"
 msgid "Online payment isn't available for this package yet. Please contact us and we'll send you a quote."
 msgstr "Le paiement en ligne n'est pas encore disponible pour cette formule. Contactez-nous et nous vous enverrons un devis."
 
-#: .\templates\pricing\checkout.html:16 .\templates\pricing\order.html:29
+#: .\templates\pricing\checkout.html:16 .\templates\pricing\order.html:30
 msgid "Contact us"
 msgstr "Nous contacter"
 
@@ -1561,6 +1585,7 @@ msgid "Continue to payment"
 msgstr "Continuer vers le paiement"
 
 #: .\templates\pricing\checkout.html:52
+#, python-format
 msgid "By continuing you agree to our <a href=\"%(terms_url)s\" class=\"underline hover:text-neon-cyan\">terms</a> and <a href=\"%(privacy_url)s\" class=\"underline hover:text-neon-cyan\">privacy policy</a>."
 msgstr "En continuant, vous acceptez nos <a href=\"%(terms_url)s\" class=\"underline hover:text-neon-cyan\">conditions</a> et notre <a href=\"%(privacy_url)s\" class=\"underline hover:text-neon-cyan\">politique de confidentialité</a>."
 
@@ -1588,31 +1613,31 @@ msgstr "ou %(price)s avec PayPal"
 msgid "Clear, fixed prices for websites and AI marketing. Pay online with PayPal or MCB Juice."
 msgstr "Des prix fixes et clairs pour les sites web et le marketing IA. Payez en ligne avec PayPal ou MCB Juice."
 
-#: .\templates\pricing\list.html:10
+#: .\templates\pricing\list.html:12
 msgid "Simple packages, clear prices."
 msgstr "Des formules simples, des prix clairs."
 
-#: .\templates\pricing\list.html:11
+#: .\templates\pricing\list.html:13
 msgid "Pick a package and pay online with PayPal, MCB Juice or bank transfer — or ask us for a custom quote."
 msgstr "Choisissez une formule et payez en ligne par PayPal, MCB Juice ou virement — ou demandez un devis sur mesure."
 
-#: .\templates\pricing\list.html:16
+#: .\templates\pricing\list.html:18
 msgid "Websites — one-off"
 msgstr "Sites web — paiement unique"
 
-#: .\templates\pricing\list.html:25
+#: .\templates\pricing\list.html:27
 msgid "AI marketing — monthly"
 msgstr "Marketing IA — mensuel"
 
-#: .\templates\pricing\list.html:33
+#: .\templates\pricing\list.html:35
 msgid "Our packages will be listed here soon. In the meantime, ask us for a quote."
 msgstr "Nos formules seront bientôt présentées ici. En attendant, demandez-nous un devis."
 
-#: .\templates\pricing\list.html:37
+#: .\templates\pricing\list.html:39
 msgid "Prices in MUR. PayPal is charged in the currency shown. Need something different?"
 msgstr "Prix en MUR. PayPal est débité dans la devise indiquée. Besoin d'autre chose ?"
 
-#: .\templates\pricing\list.html:37
+#: .\templates\pricing\list.html:39
 msgid "Ask for a custom quote"
 msgstr "Demandez un devis sur mesure"
 
@@ -1640,68 +1665,68 @@ msgstr "Cette commande a été remboursée"
 msgid "Complete your payment"
 msgstr "Finalisez votre paiement"
 
-#: .\templates\pricing\order.html:21
+#: .\templates\pricing\order.html:22
 msgid "We've emailed you a confirmation. Our team will contact you within one business day to get started."
 msgstr "Nous vous avons envoyé une confirmation par e-mail. Notre équipe vous contactera sous un jour ouvré pour démarrer."
 
-#: .\templates\pricing\order.html:25
+#: .\templates\pricing\order.html:26
 msgid "Thanks! We received your payment details and will confirm by email within one business day."
 msgstr "Merci ! Nous avons reçu les détails de votre paiement et confirmerons par e-mail sous un jour ouvré."
 
-#: .\templates\pricing\order.html:28
+#: .\templates\pricing\order.html:29
 msgid "Questions about this order? Contact us and quote your order reference."
 msgstr "Une question sur cette commande ? Contactez-nous en indiquant sa référence."
 
-#: .\templates\pricing\order.html:32
+#: .\templates\pricing\order.html:33
 msgid "Your last payment attempt didn't go through. Please try again."
 msgstr "Votre dernière tentative de paiement n'a pas abouti. Veuillez réessayer."
 
-#: .\templates\pricing\order.html:33
+#: .\templates\pricing\order.html:34
 #, python-format
 msgid "Pay <strong>%(amount)s</strong> securely with PayPal or a card."
 msgstr "Payez <strong>%(amount)s</strong> en toute sécurité avec PayPal ou une carte."
 
-#: .\templates\pricing\order.html:46
+#: .\templates\pricing\order.html:47
 msgid "PayPal needs JavaScript. Please enable it or contact us."
 msgstr "PayPal nécessite JavaScript. Activez-le ou contactez-nous."
 
-#: .\templates\pricing\order.html:53
+#: .\templates\pricing\order.html:54
 msgid "Already paid? Tell us."
 msgstr "Déjà payé ? Dites-le-nous."
 
-#: .\templates\pricing\order.html:59
+#: .\templates\pricing\order.html:60
 msgid "I've paid — send for verification"
 msgstr "J'ai payé — envoyer pour vérification"
 
-#: .\templates\pricing\order.html:63
+#: .\templates\pricing\order.html:64
 msgid "Online payment is temporarily unavailable. Please contact us to complete your order."
 msgstr "Le paiement en ligne est momentanément indisponible. Contactez-nous pour finaliser votre commande."
 
-#: .\templates\pricing\order.html:68
+#: .\templates\pricing\order.html:69
 msgid "Summary"
 msgstr "Récapitulatif"
 
-#: .\templates\pricing\order.html:70
+#: .\templates\pricing\order.html:71
 msgid "Package"
 msgstr "Formule"
 
-#: .\templates\pricing\order.html:71
+#: .\templates\pricing\order.html:72
 msgid "Billing"
 msgstr "Facturation"
 
-#: .\templates\pricing\order.html:72
+#: .\templates\pricing\order.html:73
 msgid "Payment"
 msgstr "Paiement"
 
-#: .\templates\pricing\order.html:73
+#: .\templates\pricing\order.html:74
 msgid "Status"
 msgstr "Statut"
 
-#: .\templates\pricing\order.html:74
+#: .\templates\pricing\order.html:75
 msgid "Total"
 msgstr "Total"
 
-#: .\templates\pricing\order.html:76
+#: .\templates\pricing\order.html:77
 msgid "Keep this page's link: you can come back to it any time to check your order."
 msgstr "Gardez le lien de cette page : vous pourrez y revenir pour suivre votre commande."
 
@@ -1735,44 +1760,44 @@ msgstr "Acheter"
 msgid "Request a quote"
 msgstr "Demander un devis"
 
-#: .\templates\readymade\detail.html:13
+#: .\templates\readymade\detail.html:15
 msgid "All ready-made websites"
 msgstr "Tous les sites clés en main"
 
-#: .\templates\readymade\detail.html:27
+#: .\templates\readymade\detail.html:29
 msgid "Customise this website"
 msgstr "Personnaliser ce site"
 
-#: .\templates\readymade\detail.html:27
+#: .\templates\readymade\detail.html:29
 msgid "Notify me when it's ready"
 msgstr "Me prévenir quand il est prêt"
 
-#: .\templates\readymade\detail.html:37
+#: .\templates\readymade\detail.html:39
 msgid "Loading…"
 msgstr "Chargement…"
 
-#: .\templates\readymade\detail.html:41
+#: .\templates\readymade\detail.html:43
 msgid "View live demo"
 msgstr "Voir la démo en ligne"
 
-#: .\templates\readymade\detail.html:56
+#: .\templates\readymade\detail.html:58
 msgid "Included features"
 msgstr "Fonctionnalités incluses"
 
-#: .\templates\readymade\detail.html:62
+#: .\templates\readymade\detail.html:64
 msgid "Pages included"
 msgstr "Pages incluses"
 
-#: .\templates\readymade\detail.html:89
+#: .\templates\readymade\detail.html:91
 msgid "Other ready-made websites"
 msgstr "Autres sites clés en main"
 
-#: .\templates\readymade\detail.html:99
+#: .\templates\readymade\detail.html:101
 #, python-format
 msgid "Interested in %(name)s?"
 msgstr "%(name)s vous intéresse ?"
 
-#: .\templates\readymade\detail.html:100
+#: .\templates\readymade\detail.html:102
 msgid "Send us a message and we'll show you how it would look with your brand."
 msgstr "Envoyez-nous un message et nous vous montrerons le rendu avec votre marque."
 
@@ -1841,44 +1866,44 @@ msgstr "À partir de <strong>%(currency)s %(price)s</strong>"
 msgid "Price on request"
 msgstr "Prix sur demande"
 
-#: .\templates\services\detail.html:12
+#: .\templates\services\detail.html:14
 msgid "All services"
 msgstr "Tous les services"
 
-#: .\templates\services\detail.html:21
+#: .\templates\services\detail.html:23
 msgid "See examples"
 msgstr "Voir des exemples"
 
-#: .\templates\services\detail.html:31
+#: .\templates\services\detail.html:33
 msgid "Why it matters"
 msgstr "Pourquoi c'est important"
 
-#: .\templates\services\detail.html:40
+#: .\templates\services\detail.html:42
 msgid "What you get"
 msgstr "Ce que vous obtenez"
 
-#: .\templates\services\detail.html:51
+#: .\templates\services\detail.html:53
 msgid "Examples"
 msgstr "Exemples"
 
-#: .\templates\services\detail.html:51
+#: .\templates\services\detail.html:53
 msgid "Recent work"
 msgstr "Réalisations récentes"
 
-#: .\templates\services\detail.html:65
+#: .\templates\services\detail.html:67
 msgid "Questions we often get"
 msgstr "Questions fréquentes"
 
-#: .\templates\services\detail.html:84
+#: .\templates\services\detail.html:86
 msgid "Other services"
 msgstr "Autres services"
 
-#: .\templates\services\detail.html:85
+#: .\templates\services\detail.html:87
 #, python-format
 msgid "More in %(group)s"
 msgstr "Plus dans %(group)s"
 
-#: .\templates\services\detail.html:92
+#: .\templates\services\detail.html:94
 #, python-format
 msgid "Let's talk about your %(service)s project."
 msgstr "Parlons de votre projet %(service)s."

@@ -2,20 +2,13 @@
 {# Opened by any element dispatching "open-video" with { src, kind: "embed"|"file", title }. #}
 <div x-show="open" x-cloak x-transition.opacity
      class="fixed inset-0 z-50 grid place-items-center bg-ink-950/90 p-4 backdrop-blur-sm"
-     role="dialog" aria-modal="true" :aria-label="title" @click.self="close()" @keydown.escape.window="close()">
+     role="dialog" aria-modal="true" :aria-label="title" @click.self="close()" @keydown.escape.window="close()" @keydown.tab="trap($event)">
   <div class="relative w-full max-w-5xl">
     <button type="button" x-ref="closeButton" @click="close()"
             class="absolute -top-12 right-0 rounded-full px-3 py-1 text-sm font-semibold text-ink-100 hover:text-neon-cyan">
       {% translate "Close" %} &times;
     </button>
-    <div class="aspect-video overflow-hidden rounded-card bg-black">
-      <template x-if="open && kind === 'embed'">
-        <iframe :src="embedSrc" :title="title" class="size-full"
-                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      </template>
-      <template x-if="open && kind === 'file'">
-        <video :src="src" controls autoplay playsinline class="size-full"></video>
-      </template>
-    </div>
+    {# The player (iframe / video) is created by the videoModal component from an allow-list. #}
+    <div class="aspect-video overflow-hidden rounded-card bg-black" x-ref="player"></div>
   </div>
 </div>

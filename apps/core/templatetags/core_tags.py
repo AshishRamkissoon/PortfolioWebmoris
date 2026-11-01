@@ -18,6 +18,7 @@ def language_links(context):
     request = context["request"]
     current = get_language()
     path = request.get_full_path()
+    origin = f"{request.scheme}://{request.get_host()}"
     links = []
     for code, name in settings.LANGUAGES:
         url = translate_url(path, code)
@@ -28,6 +29,7 @@ def language_links(context):
                 "name": name,
                 "url": url,
                 "absolute_url": request.build_absolute_uri(url),
+                "canonical_url": origin + translate_url(request.path, code),
                 "active": code == current,
             }
         )

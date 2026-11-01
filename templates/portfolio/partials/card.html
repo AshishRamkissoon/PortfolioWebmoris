@@ -1,9 +1,9 @@
 {% load i18n %}{% with url=project.get_absolute_url %}
-<article data-reveal data-reveal-delay="{{ delay|default:'0' }}"
+<article {% if not above_fold %}data-reveal data-reveal-delay="{{ delay|default:'0' }}"{% endif %}
          class="project-card group relative overflow-hidden rounded-card border border-ink-800 bg-ink-900">
   <div class="relative aspect-[4/3] overflow-hidden">
     <a href="{{ url }}" tabindex="-1" aria-hidden="true">
-      <img src="{{ project.cover_card.url }}" width="800" height="600" loading="lazy" decoding="async"
+      <img src="{{ project.cover_card.url }}" width="800" height="600" {% if above_fold %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async"
            alt="" class="size-full object-cover transition duration-700 ease-out group-hover:scale-105">
     </a>
     <div class="project-card-overlay">
@@ -16,7 +16,7 @@
            data-src="{% if project.video_embed_url %}{{ project.video_embed_url }}{% else %}{{ project.video_file.url }}{% endif %}"
            data-kind="{% if project.video_embed_url %}embed{% else %}file{% endif %}"
            data-title="{{ project.title }}"
-           @click.prevent="$dispatch('open-video', { ...$el.dataset })">{% translate "Video" %}</a>
+           @click.prevent="openFrom($el)">{% translate "Video" %}</a>
       {% endif %}
     </div>
   </div>

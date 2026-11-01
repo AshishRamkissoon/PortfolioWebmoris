@@ -1,0 +1,23 @@
+# /etc/systemd/system/webmoris.service — Gunicorn behind Nginx on a VPS.
+# Enable with: sudo systemctl daemon-reload && sudo systemctl enable --now webmoris
+[Unit]
+Description=Webmoris (Gunicorn)
+After=network.target postgresql.service
+
+[Service]
+User=webmoris
+Group=www-data
+WorkingDirectory=/srv/webmoris/app
+EnvironmentFile=/srv/webmoris/app/.env
+Environment=DJANGO_SETTINGS_MODULE=config.settings.prod
+Environment=GUNICORN_BIND=unix:/run/webmoris/gunicorn.sock
+RuntimeDirectory=webmoris
+ExecStart=/srv/webmoris/venv/bin/gunicorn config.wsgi --config gunicorn.conf.py
+Restart=on-failure
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

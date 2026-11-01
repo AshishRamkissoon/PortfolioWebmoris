@@ -140,7 +140,7 @@ def seed_readymade(stdout=None):
             is_published=True,
             is_featured=featured,
             order=order,
-            cover_image=placeholder_image(f"{name} — template", colors=colors, name="cover.png"),
+            cover_image=placeholder_image(f"{name} template", colors=colors, name="cover.png"),
         )
         for index, page in enumerate(["Home", "Services"]):
             TemplateImage.objects.create(

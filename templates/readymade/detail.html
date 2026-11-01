@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-{% load i18n core_tags %}
+{% load i18n core_tags seo_tags %}
 
 {% block title %}{{ template.seo_title|default:template.name }} · {{ site_settings.site_name }}{% endblock %}
 {% block meta_description %}{{ template.seo_description|default:template.short_description }}{% endblock %}
 {% block og_title %}{{ template.seo_title|default:template.name }}{% endblock %}
 {% block og_description %}{{ template.seo_description|default:template.short_description }}{% endblock %}
 {% block og_image %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ template.cover_card.url }}">{% endblock %}
+
+{% block structured_data %}{{ block.super }}{% schema_template template %}{% endblock %}
 
 {% block content %}
 <article>
@@ -15,23 +17,23 @@
       <p class="eyebrow">{{ template.industry.name }}</p>
       <span class="status-badge static {% if template.is_available %}is-available{% endif %}">{{ template.get_status_display }}</span>
     </div>
-    <h1 data-split class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ template.name }}</h1>
-    <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-xl text-ink-300">{{ template.short_description }}</p>
+    <h1 class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ template.name }}</h1>
+    <p class="mt-6 max-w-2xl text-xl text-ink-300">{{ template.short_description }}</p>
 
-    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap items-center gap-4" x-data="{ open: false }">
+    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap items-center gap-4" x-data="modal">
       {# Opens the enquiry form in a dialog (loaded by HTMX); without JS it goes to the full enquiry page. #}
       {% url 'leads:template_inquiry' template.slug as inquiry_url %}
       <a href="{{ inquiry_url }}" class="btn-primary btn-lg"
          hx-get="{{ inquiry_url }}" hx-target="#inquiry-dialog-body" hx-swap="innerHTML"
-         @click="open = true; $nextTick(() => $refs.closeInquiry.focus())">
+         @click="openDialog()">
         {% if template.is_available %}{% translate "Customise this website" %}{% else %}{% translate "Notify me when it's ready" %}{% endif %}
       </a>
       <template x-teleport="body">
         <div x-show="open" x-cloak x-transition.opacity role="dialog" aria-modal="true" aria-labelledby="inquiry-title"
              class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-ink-950/90 p-4 backdrop-blur-sm"
-             @click.self="open = false" @keydown.escape.window="open = false">
+             @click.self="close()" @keydown.escape.window="close()" @keydown.tab="trap($event)">
           <div class="relative my-8 w-full max-w-2xl rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
-            <button type="button" x-ref="closeInquiry" @click="open = false"
+            <button type="button" x-ref="closeButton" @click="close()"
                     class="absolute top-4 right-4 rounded-full px-3 py-1 text-sm font-semibold text-ink-300 hover:text-neon-cyan">{% translate "Close" %} &times;</button>
             <h2 id="inquiry-title" class="pr-20 font-display text-3xl font-bold">{% blocktranslate with name=template.name %}Enquire about {{ name }}{% endblocktranslate %}</h2>
             <div id="inquiry-dialog-body" class="mt-6"><p class="text-ink-400">{% translate "Loading…" %}</p></div>
@@ -43,7 +45,7 @@
     </div>
   </header>
 
-  <figure data-reveal class="container-site mt-14">
+  <figure class="container-site mt-14">
     <img src="{{ template.cover_hero.url }}" alt="{{ template.name }}" decoding="async" fetchpriority="high"
          class="w-full rounded-card border border-ink-800 object-cover">
   </figure>

@@ -16,12 +16,18 @@
 | 3 | Services, Ready-made Websites, About & Home | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 4 | Lead Capture | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 5 | Pricing & Payments | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
-| 6 | Motion, 3D, SEO & Launch Readiness | 🟡 In progress | 2026-10-31 | — | — |
+| 6 | Motion, 3D, SEO & Launch Readiness | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-11-01 |
 
 ## Open Decisions / Blockers
 - [ ] Kreol URL prefix: proceeding with `/kr/` (plan default). Owner to confirm; easy to change later in one setting.
 - [ ] Kreol UI translations are a draft; they need review by a native speaker (Phase 6).
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
+- [ ] **Before launch (owner):**
+  - Have a native speaker review the Kreol (all phases).
+  - Test on real devices: Safari on iPhone and Mac, Firefox, Android Chrome.
+  - Run Lighthouse on the deployed site (production compression on).
+  - Choose hosting and follow `docs/DEPLOY.md`.
+  - Choose the analytics provider.
 - [ ] PayPal: a REST app (sandbox first), then live credentials, a webhook and a billing plan for each monthly package. Also real package prices and the PayPal USD/EUR prices.
 - [ ] Real MCB Juice number/QR and bank details. The demo values say "DEMO".
 - [ ] For production: an SMTP account (`EMAIL_URL`), the email address that receives lead notifications, and a Calendly/Cal.com booking link.
@@ -33,6 +39,45 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 6 — Completed — Approved by owner; committed on `phase/6-launch-readiness` and merged into `main`. **All 6 phases of plan.md are complete.** Next: the owner's launch items under Open Decisions, then the post-v1 features in plan.md.
+- 2026-10-31 — Phase 6 — Ready for review — All code exit criteria met. The remaining items need the owner (see Open Decisions).
+  - **Built:**
+    - **Three.js hero:** a particle wave in a separate lazy chunk, only on capable devices (WebGL2, at least 768 px wide, motion allowed, no data-saver, enough CPU and memory). It pauses off-screen and when the tab is hidden, with the CSS glow as fallback.
+    - **Motion:** magnetic call-to-action buttons and 3D tilt on project cards (mouse devices only).
+    - **Accessibility:** focus trapped inside pop-ups.
+    - **Performance:** headlines and hero images are no longer hidden while JavaScript loads; the first project cards load eagerly.
+    - **SEO:**
+      - canonical URLs and `hreflang` (with `x-default`) that ignore query strings
+      - a default share image setting
+      - `sitemap.xml` with 84 URLs in 3 languages
+      - `robots.txt` that never reveals the admin URL
+      - JSON-LD: Organization, CreativeWork, Service, Product/Offer
+    - **Analytics:** Plausible (cookieless) or GA4 (only after cookie consent), plus conversion events for leads, purchases, WhatsApp clicks and Calendly bookings.
+    - **Security:**
+      - Django's built-in CSP: per-request nonces, no `unsafe-eval` or `unsafe-inline` for scripts, `frame-ancestors 'none'`.
+      - CSP-safe Alpine build, with all template expressions moved into components.
+      - `htmx.config.allowEval = false`.
+      - Video players built only from allow-listed origins.
+      - Self-hosted fonts, so no Google Fonts requests.
+    - **Deployment:** `Procfile`, `gunicorn.conf.py`, `passenger_wsgi.py`, `scripts/build.sh`, `deploy/` (Nginx and systemd examples) and `docs/DEPLOY.md` (env vars, 3 hosting options, go-live checklist, backups).
+  - **Verified:**
+    - 234 tests passing and `ruff` clean.
+    - `check --deploy --fail-level WARNING` clean.
+    - **Headless Chrome:** 16 interactive UI checks pass with no console errors or CSP violations (menu, HTMX filter, video pop-up, lightbox with focus trap, enquiry dialog, quote form, checkout).
+    - **Lighthouse:** Accessibility 100 and SEO 100 on every page tested; Best Practices 81.
+      - The 81 comes only from a harmless deprecation notice inside the vendor Alpine CSP build.
+      - Lighthouse 12/13 can't record performance traces with the installed Chrome (`NO_NAVSTART`), so I measured Core Web Vitals directly instead.
+    - **Core Web Vitals:** mobile (4× CPU, Slow 4G, no compression) LCP 1.5–1.8 s and CLS ≤ 0.04; desktop LCP ≈ 0.9–1.1 s. Production compression cuts the JS from 276 KB to about 95 KB.
+    - **Visual QA:** screenshots of desktop and mobile pages in EN/FR/KR. Fixed along the way:
+      - section intro text leaking into later sections (regression-tested)
+      - a missing-glyph box in placeholder images
+      - an orphan template card on Home
+  - **How to test:**
+    1. Open the Home page on a desktop browser to see the 3D wave, and move the mouse over it.
+    2. Hover the "Get a Quote" buttons and the project cards.
+    3. Visit `/sitemap.xml` and `/robots.txt`.
+    4. Check the `Content-Security-Policy` response header in DevTools → Network.
+    5. Read `docs/DEPLOY.md`.
 - 2026-10-31 — Phase 6 — Started — branch `phase/6-launch-readiness`.
 - 2026-10-31 — Phase 5 — Completed — Approved by owner; committed on `phase/5-pricing-payments` and merged into `main`.
 - 2026-10-31 — Phase 5 — Ready for review — Exit criteria met except the live PayPal sandbox run, which needs the owner's PayPal credentials.

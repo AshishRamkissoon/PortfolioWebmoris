@@ -1,0 +1,13 @@
+{% load i18n %}{% if analytics.provider == "ga4" and analytics.ga4_id %}
+<div x-data="consent" x-show="visible" x-cloak role="region" aria-label="{% translate 'Cookie consent' %}"
+     class="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-xl rounded-card border border-ink-700 bg-ink-900/95 p-5 shadow-2xl backdrop-blur sm:right-auto sm:left-4">
+  <p class="text-sm text-ink-200">
+    {% url 'core:privacy' as privacy_url %}
+    {% blocktranslate trimmed %}We use analytics cookies to understand how visitors use our site. They're only set if you accept. <a href="{{ privacy_url }}" class="underline hover:text-neon-cyan">Learn more</a>.{% endblocktranslate %}
+  </p>
+  <div class="mt-4 flex gap-3">
+    <button type="button" class="btn-primary" @click="accept()">{% translate "Accept" %}</button>
+    <button type="button" class="btn-ghost" @click="decline()">{% translate "Decline" %}</button>
+  </div>
+</div>
+{% endif %}

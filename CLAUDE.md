@@ -52,6 +52,10 @@ Agency site for **Webmoris** (web development + AI marketing, Mauritius). It has
 - **Output**:
   - Rely on Django's auto-escaping. No `|safe` or `mark_safe` on user or admin input unless it has been sanitized.
   - Add `rel="noopener noreferrer"` to external links.
+- **CSP** (Django built-in, strict):
+  - Inline `<script>` tags need `nonce="{{ csp_nonce }}"`.
+  - Alpine is the CSP build, so `x-*` attributes only call component methods or read simple properties.
+  - New third-party hosts must be added to `SECURE_CSP`. Never add `'unsafe-eval'` or `'unsafe-inline'` to `script-src`.
 - **Database**: use the ORM only. Raw SQL is allowed only with parameterized queries.
 - **Production**:
   - `DEBUG=False`, a strict `ALLOWED_HOSTS`, HTTPS redirect, HSTS, secure/HttpOnly cookies.

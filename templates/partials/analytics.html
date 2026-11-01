@@ -1,0 +1,8 @@
+{% if analytics.provider == "plausible" and analytics.plausible_domain %}
+  {# Plausible is cookieless: no consent banner needed. #}
+  <script defer data-domain="{{ analytics.plausible_domain }}" src="{{ analytics.plausible_script }}" nonce="{{ csp_nonce }}"></script>
+  <script nonce="{{ csp_nonce }}">window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };</script>
+{% elif analytics.provider == "ga4" and analytics.ga4_id %}
+  {# Google Analytics only loads after the visitor accepts cookies (see consent banner). #}
+  <meta name="ga4-id" content="{{ analytics.ga4_id }}">
+{% endif %}

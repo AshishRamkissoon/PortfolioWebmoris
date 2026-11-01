@@ -1,7 +1,12 @@
 {% load i18n %}
 {% for project in page.object_list %}
   {% cycle "0" "0.1" "0.2" as delay silent %}
-  {% include "portfolio/partials/card.html" %}
+  {# The first cards are above the fold: show them at once and load their images eagerly. #}
+  {% if page.number == 1 and forloop.counter <= 2 %}
+    {% include "portfolio/partials/card.html" with above_fold=True %}
+  {% else %}
+    {% include "portfolio/partials/card.html" %}
+  {% endif %}
 {% endfor %}
 
 {% if page.has_next %}

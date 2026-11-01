@@ -4,20 +4,21 @@
 {% block content %}
 {# --- Hero --- #}
 <section class="hero relative isolate overflow-hidden">
-  {# Placeholder background — replaced by the Three.js visual in Phase 6. #}
+  {# CSS glow is the fallback; capable devices get the Three.js particle wave on top. #}
   <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-3d" data-hero-3d aria-hidden="true"></div>
 
   <div class="container-site flex min-h-[85vh] flex-col justify-center py-24">
     <p data-reveal class="eyebrow">{% translate "Web development & AI marketing · Mauritius" %}</p>
-    <h1 data-reveal data-reveal-delay="0.1" class="mt-6 max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
+    <h1 class="mt-6 max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
       {% translate "We build websites that" %} <span class="text-gradient">{% translate "win clients." %}</span>
     </h1>
     {% if site_settings.tagline %}
-    <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-lg text-ink-300 sm:text-xl">{{ site_settings.tagline }}</p>
+    <p class="mt-6 max-w-2xl text-lg text-ink-300 sm:text-xl">{{ site_settings.tagline }}</p>
     {% endif %}
     <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap gap-4">
-      <a href="{% url 'leads:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
-      <a href="{% url 'portfolio:list' %}" class="btn-ghost btn-lg">{% translate "View Our Work" %}</a>
+      <a href="{% url 'leads:contact' %}" class="btn-primary btn-lg" data-magnetic>{% translate "Get a Quote" %}</a>
+      <a href="{% url 'portfolio:list' %}" class="btn-ghost btn-lg" data-magnetic>{% translate "View Our Work" %}</a>
     </div>
   </div>
 </section>
@@ -29,7 +30,7 @@
 <section class="mt-28 overflow-hidden" data-hscroll x-data="videoModal" @open-video.window="show($event.detail)">
   <div class="container-site flex flex-wrap items-end justify-between gap-6">
     {% translate "Selected work" as eyebrow %}{% translate "Projects we're proud of." as title %}
-    {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
     <a href="{% url 'portfolio:list' %}" class="btn-ghost">{% translate "View all projects" %} &rarr;</a>
   </div>
   <div data-hscroll-track class="hscroll-track container-site mt-12">
@@ -45,7 +46,7 @@
 {% if service_groups %}
 <section class="container-site mt-28">
   {% translate "What we do" as eyebrow %}{% translate "Websites and AI marketing, under one roof." as title %}
-  {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+  {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
   <div class="mt-14 grid gap-6 lg:grid-cols-2">
     {% for group in service_groups %}
     <div data-reveal data-reveal-delay="0.{{ forloop.counter0 }}" class="rounded-card border border-ink-800 bg-ink-900 p-8">
@@ -76,7 +77,7 @@
 <section class="container-site mt-28">
   <div class="flex flex-wrap items-end justify-between gap-6">
     {% translate "Ready-made websites" as eyebrow %}{% translate "Launch fast with a ready-made site." as title %}{% translate "Pick a design for your industry and we'll customise it with your brand, content and domain." as intro %}
-    {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
     <a href="{% url 'readymade:list' %}" class="btn-ghost">{% translate "Browse all" %} &rarr;</a>
   </div>
   <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -94,7 +95,7 @@
 <section class="container-site mt-28">
   <div class="flex flex-wrap items-end justify-between gap-6">
     {% translate "Pricing" as eyebrow %}{% translate "Clear prices. Pay online." as title %}
-    {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
     <a href="{% url 'pricing:list' %}" class="btn-ghost">{% translate "All packages" %} &rarr;</a>
   </div>
   <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

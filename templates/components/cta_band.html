@@ -7,7 +7,7 @@
     <p class="mx-auto mt-4 max-w-xl text-lg text-ink-300">{{ text|default:_("Tell us about your project and we'll get back to you with a tailored quote.") }}</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
       {% url 'leads:contact' as contact_url %}
-      <a href="{{ quote_url|default:contact_url }}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
+      <a href="{{ quote_url|default:contact_url }}" class="btn-primary btn-lg" data-magnetic>{% translate "Get a Quote" %}</a>
       {% if site_settings.calendly_url %}
         <a href="{{ site_settings.calendly_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg">{% translate "Book a call" %}</a>
       {% endif %}

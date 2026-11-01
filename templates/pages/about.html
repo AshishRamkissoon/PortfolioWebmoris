@@ -7,7 +7,7 @@
 {% block content %}
 <section class="container-site pt-24 sm:pt-32">
   <p data-reveal class="eyebrow">{% translate "About us" %}</p>
-  <h1 data-split class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">
+  <h1 class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">
     {{ about.story_title|default:_("A Mauritian agency building for the web — and for AI.") }}
   </h1>
 </section>
@@ -29,7 +29,7 @@
 {% if about.values_list %}
 <section class="container-site mt-28">
   {% translate "What we stand for" as eyebrow %}{% translate "Our values" as title %}
-  {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+  {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
   <dl class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     {% for title, description in about.values_list %}
     <div data-reveal data-reveal-delay="{% cycle '0' '0.1' '0.2' %}" class="rounded-card border border-ink-800 bg-ink-900 p-7">
@@ -44,7 +44,7 @@
 {% if team %}
 <section class="container-site mt-28">
   {% translate "The team" as eyebrow %}{% translate "The people behind your project." as title %}
-  {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+  {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
   <ul class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
     {% for member in team %}
     <li data-reveal data-reveal-delay="{% cycle '0' '0.1' '0.2' %}">

@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% load i18n core_tags %}
+{% load i18n core_tags seo_tags %}
 
 {% block title %}{{ service.seo_title|default:service.title }} · {{ site_settings.site_name }}{% endblock %}
 {% block meta_description %}{{ service.seo_description|default:service.summary }}{% endblock %}
 {% block og_title %}{{ service.seo_title|default:service.title }}{% endblock %}
 {% block og_description %}{{ service.seo_description|default:service.summary }}{% endblock %}
+
+{% block structured_data %}{{ block.super }}{% schema_service service %}{% endblock %}
 
 {% block content %}
 <article>
@@ -14,8 +16,8 @@
       <span data-reveal class="grid size-14 place-items-center rounded-2xl bg-neon-cyan text-ink-950">{% include "components/icon.html" with name=service.icon class="size-7" %}</span>
       <p data-reveal class="eyebrow">{{ service.group.name }}</p>
     </div>
-    <h1 data-split class="mt-6 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ service.title }}</h1>
-    <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-xl text-ink-300">{{ service.summary }}</p>
+    <h1 class="mt-6 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ service.title }}</h1>
+    <p class="mt-6 max-w-2xl text-xl text-ink-300">{{ service.summary }}</p>
     <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap gap-4">
       <a href="{% url 'leads:contact' %}?service={{ service.slug }}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
       {% if related_projects %}<a href="#work" class="btn-ghost btn-lg">{% translate "See examples" %}</a>{% endif %}
@@ -49,7 +51,7 @@
   {% if related_projects %}
   <section id="work" class="container-site mt-28 scroll-mt-28" x-data="videoModal" @open-video.window="show($event.detail)">
     {% translate "Examples" as eyebrow %}{% translate "Recent work" as title %}
-    {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {% for project in related_projects %}
         {% cycle "0" "0.1" "0.2" as delay silent %}
@@ -63,7 +65,7 @@
   {% with faqs=service.faqs.all %}{% if faqs %}
   <section class="container-site mt-28 max-w-4xl">
     {% translate "FAQ" as eyebrow %}{% translate "Questions we often get" as title %}
-    {% include "components/section_heading.html" with eyebrow=eyebrow title=title %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
     <div class="mt-10 divide-y divide-ink-800 border-y border-ink-800">
       {% for faq in faqs %}
       {# <details> works without JS and is accessible by default. #}

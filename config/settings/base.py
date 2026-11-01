@@ -4,6 +4,7 @@ from pathlib import Path
 
 import django.conf.locale
 import environ
+from django.utils.csp import CSP
 from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django.contrib.sitemaps",
     "imagekit",
     "apps.core",
     "apps.portfolio",
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django.middleware.csp.ContentSecurityPolicyMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "apps.core.middleware.PrefixedLocaleMiddleware",
@@ -55,6 +58,7 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
+                "django.template.context_processors.csp",
                 "django.template.context_processors.i18n",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -145,6 +149,52 @@ PAYPAL_MODE = env("PAYPAL_MODE", default="sandbox")  # "sandbox" or "live"
 PAYPAL_WEBHOOK_ID = env("PAYPAL_WEBHOOK_ID", default="")
 # Where new-order notifications go; falls back to LEADS_NOTIFY_EMAIL, then Site settings.
 ORDERS_NOTIFY_EMAIL = env("ORDERS_NOTIFY_EMAIL", default="")
+
+# --- Analytics -----------------------------------------------------------------
+# "" (off), "plausible" (cookieless, no consent banner) or "ga4" (loads only after consent).
+ANALYTICS_PROVIDER = env("ANALYTICS_PROVIDER", default="")
+PLAUSIBLE_DOMAIN = env("PLAUSIBLE_DOMAIN", default="")
+PLAUSIBLE_SCRIPT_URL = env("PLAUSIBLE_SCRIPT_URL", default="https://plausible.io/js/script.js")
+GA4_MEASUREMENT_ID = env("GA4_MEASUREMENT_ID", default="")
+
+# --- Content Security Policy (Django's built-in CSP middleware) ----------------
+# Only our own files plus the third parties the site really uses. Inline scripts need the
+# per-request nonce ({{ csp_nonce }}). Styles allow 'unsafe-inline' because PayPal's SDK and
+# the Django admin set inline styles; scripts never do.
+_ANALYTICS_HOSTS = {
+    "plausible": ["https://plausible.io"],
+    "ga4": ["https://www.googletagmanager.com", "https://*.google-analytics.com"],
+}.get(ANALYTICS_PROVIDER, [])
+_PAYPAL = ["https://*.paypal.com"]
+
+SECURE_CSP = {
+    "default-src": [CSP.SELF],
+    "script-src": [
+        CSP.SELF,
+        CSP.NONCE,
+        *_PAYPAL,
+        "https://challenges.cloudflare.com",
+        *_ANALYTICS_HOSTS,
+    ],
+    "style-src": [CSP.SELF, CSP.UNSAFE_INLINE],
+    "img-src": [CSP.SELF, "data:", *_PAYPAL, "https://*.paypalobjects.com", *_ANALYTICS_HOSTS],
+    "font-src": [CSP.SELF],
+    "connect-src": [CSP.SELF, *_PAYPAL, *_ANALYTICS_HOSTS],
+    "media-src": [CSP.SELF],
+    "frame-src": [
+        "https://www.youtube-nocookie.com",
+        "https://player.vimeo.com",
+        "https://calendly.com",
+        "https://*.calendly.com",
+        "https://cal.com",
+        *_PAYPAL,
+        "https://challenges.cloudflare.com",
+    ],
+    "object-src": [CSP.NONE],
+    "base-uri": [CSP.SELF],
+    "form-action": [CSP.SELF],
+    "frame-ancestors": [CSP.NONE],
+}
 
 # --- Security defaults (tightened further in prod.py) -----------------------
 ADMIN_URL = env("ADMIN_URL", default="manage-webmoris/")

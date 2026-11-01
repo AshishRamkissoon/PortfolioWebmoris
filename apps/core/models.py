@@ -71,6 +71,13 @@ class SiteSettings(SingletonModel):
 
     seo_title = models.CharField(_("default SEO title"), max_length=70, blank=True)
     seo_description = models.CharField(_("default meta description"), max_length=160, blank=True)
+    og_image = models.ImageField(
+        _("default share image"),
+        upload_to=RandomFilename("seo"),
+        validators=image_validators,
+        blank=True,
+        help_text=_("Shown when pages are shared on social media. 1200×630 px works best."),
+    )
 
     juice_number = models.CharField(_("MCB Juice number"), max_length=30, blank=True)
     juice_account_name = models.CharField(_("Juice account name"), max_length=100, blank=True)

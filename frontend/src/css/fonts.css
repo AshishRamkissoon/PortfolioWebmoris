@@ -1,0 +1,4 @@
+/* Self-hosted variable fonts (no Google Fonts request). Browsers only download the
+   subsets they need thanks to unicode-range. */
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/space-grotesk/index.css";

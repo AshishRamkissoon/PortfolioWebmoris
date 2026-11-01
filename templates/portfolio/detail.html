@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n seo_tags %}
 
 {% block title %}{{ project.seo_title|default:project.title }} · {{ site_settings.site_name }}{% endblock %}
 {% block meta_description %}{{ project.seo_description|default:project.short_description }}{% endblock %}
 {% block og_title %}{{ project.seo_title|default:project.title }}{% endblock %}
 {% block og_description %}{{ project.seo_description|default:project.short_description }}{% endblock %}
 {% block og_image %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ project.cover_card.url }}">{% endblock %}
+
+{% block structured_data %}{{ block.super }}{% schema_project project %}{% endblock %}
 
 {% block content %}
 <article>
@@ -15,8 +17,8 @@
     <ul data-reveal class="mt-8 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-widest text-neon-cyan">
       {% for category in project.categories.all %}<li>{{ category.name }}</li>{% endfor %}
     </ul>
-    <h1 data-reveal data-reveal-delay="0.1" class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ project.title }}</h1>
-    <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-xl text-ink-300">{{ project.short_description }}</p>
+    <h1 class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{{ project.title }}</h1>
+    <p class="mt-6 max-w-2xl text-xl text-ink-300">{{ project.short_description }}</p>
 
     <dl data-reveal data-reveal-delay="0.3" class="mt-12 grid grid-cols-2 gap-6 border-y border-ink-800 py-8 md:grid-cols-4">
       <div><dt class="meta-label">{% translate "Client" %}</dt><dd class="mt-1 font-semibold">{{ project.client }}</dd></div>
@@ -33,7 +35,7 @@
     </div>
   </header>
 
-  <figure data-reveal class="container-site mt-14">
+  <figure class="container-site mt-14">
     <img src="{{ project.cover_hero.url }}" alt="{{ project.title }}" decoding="async" fetchpriority="high"
          class="w-full rounded-card border border-ink-800 object-cover">
   </figure>
@@ -72,24 +74,24 @@
 
   {# --- Screenshots --- #}
   {% if desktop_images or mobile_images %}
-  <section class="container-site mt-28" x-data="{ tab: '{% if desktop_images %}desktop{% else %}mobile{% endif %}' }">
+  <section class="container-site mt-28" x-data="tabs" data-initial-tab="{% if desktop_images %}desktop{% else %}mobile{% endif %}">
     <div class="flex flex-wrap items-end justify-between gap-6">
       <h2 data-reveal class="font-display text-4xl font-bold">{% translate "Screenshots" %}</h2>
       {% if desktop_images and mobile_images %}
       <div role="tablist" aria-label="{% translate 'Screenshot type' %}" class="flex gap-2">
-        <button type="button" role="tab" class="filter-tab" :aria-selected="(tab === 'desktop').toString()" :aria-current="tab === 'desktop'" @click="tab = 'desktop'">{% translate "Desktop" %}</button>
-        <button type="button" role="tab" class="filter-tab" :aria-selected="(tab === 'mobile').toString()" :aria-current="tab === 'mobile'" @click="tab = 'mobile'">{% translate "Mobile" %}</button>
+        <button type="button" role="tab" class="filter-tab" :aria-selected="isDesktop" :aria-current="isDesktop" @click="select('desktop')">{% translate "Desktop" %}</button>
+        <button type="button" role="tab" class="filter-tab" :aria-selected="isMobile" :aria-current="isMobile" @click="select('mobile')">{% translate "Mobile" %}</button>
       </div>
       {% endif %}
     </div>
 
     {% if desktop_images %}
-    <div x-show="tab === 'desktop'" class="mt-10">
+    <div x-show="isDesktop" class="mt-10">
       {% include "components/gallery.html" with images=desktop_images columns="md:grid-cols-2" %}
     </div>
     {% endif %}
     {% if mobile_images %}
-    <div x-show="tab === 'mobile'" {% if desktop_images %}x-cloak{% endif %} class="mt-10">
+    <div x-show="isMobile" {% if desktop_images %}x-cloak{% endif %} class="mt-10">
       {% include "components/gallery.html" with images=mobile_images columns="grid-cols-2 md:grid-cols-4" %}
     </div>
     {% endif %}

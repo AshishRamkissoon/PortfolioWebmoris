@@ -18,6 +18,7 @@
   <div class="mt-10 grid gap-8 lg:grid-cols-[3fr_2fr]">
     <div class="rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
       {% if order.is_paid %}
+        {% if request.GET.just_paid %}<span hidden data-track-event="purchase" data-track-value="{{ order.amount|stringformat:'s' }}" data-track-currency="{{ order.currency }}"></span>{% endif %}
         <p class="text-lg text-ink-300">{% translate "We've emailed you a confirmation. Our team will contact you within one business day to get started." %}</p>
         <a href="{% url 'core:home' %}" class="btn-ghost mt-8 inline-flex">{% translate "Back to home" %}</a>
 

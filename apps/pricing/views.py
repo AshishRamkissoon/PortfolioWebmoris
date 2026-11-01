@@ -32,6 +32,7 @@ def package_list(request):
         request,
         "pricing/list.html",
         {
+            "packages": packages,
             "one_off": [p for p in packages if not p.is_monthly],
             "monthly": [p for p in packages if p.is_monthly],
         },
@@ -125,7 +126,8 @@ def _paid_response(request, order, won):
     if won:
         emails.send_payment_confirmed(request, order)
         emails.notify_team(request, order, "paid")
-    return JsonResponse({"status": "paid", "redirect": order.get_absolute_url()})
+    # ?just_paid=1 lets the page record the purchase conversion once.
+    return JsonResponse({"status": "paid", "redirect": f"{order.get_absolute_url()}?just_paid=1"})
 
 
 @require_POST

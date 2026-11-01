@@ -1,4 +1,4 @@
-{# Usage: {% include "components/section_heading.html" with eyebrow=... title=... intro=... center=True %} #}
+{# Usage: {% include "components/section_heading.html" with eyebrow=... title=... intro=... center=True only %} #}
 <div class="{% if center %}mx-auto text-center{% endif %} max-w-3xl">
   {% if eyebrow %}<p data-reveal class="eyebrow">{{ eyebrow }}</p>{% endif %}
   <h2 data-split class="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">{{ title }}</h2>
