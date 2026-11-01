@@ -1,0 +1,201 @@
+---
+layout: layouts/base.njk
+heroHeader: true
+section: home
+---
+{# ---------- Hero: Ken Burns photo + WebGL water ripple (desktop) + drifting waves ---------- #}
+<section class="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ocean-950 text-white" data-hero>
+  <div class="absolute inset-0 -z-10 motion-safe:animate-kenburns" data-hero-photo>
+    {% picture "hero", "Le Morne Brabant mountain rising above a turquoise lagoon in Mauritius", "100vw", { eager: true, widths: [960, 1440, 2000] } %}
+  </div>
+  <div class="absolute inset-0 -z-10" data-ripple aria-hidden="true"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-b from-ocean-950/55 via-ocean-950/10 to-ocean-950/70" aria-hidden="true"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-r from-ocean-950/60 via-ocean-950/20 to-transparent" aria-hidden="true"></div>
+
+  <div class="container-x relative pt-40 pb-36 sm:pb-44">
+    <p class="eyebrow-photo hero-rise [animation-delay:100ms]">Mauritius · small-group tours</p>
+    <h1 class="hero-rise mt-5 max-w-4xl text-5xl leading-[0.95] font-semibold sm:text-7xl lg:text-8xl [animation-delay:250ms]">
+      Discover the island <em class="font-normal text-lagoon-400">beyond the beach.</em>
+    </h1>
+    <p class="hero-rise mt-6 max-w-xl text-lg text-white/85 sm:text-xl [animation-delay:450ms]">
+      Lagoons, mountains, waterfalls and street food — explored with local guides, in groups of 12 or fewer.
+    </p>
+    <div class="hero-rise mt-9 flex flex-wrap gap-3 [animation-delay:600ms]">
+      <a href="/tours/" class="btn btn-coral px-8 py-4 text-base" data-magnetic>Explore tours</a>
+      <a href="#how" class="btn btn-light px-8 py-4 text-base" data-magnetic>How it works</a>
+    </div>
+
+    {# "Find a tour" bar: plain links (no form), so it works with the demo kit. #}
+    <nav aria-label="Find a tour" class="hero-rise mt-12 flex max-w-2xl flex-wrap items-center gap-2 rounded-3xl border border-white/20 bg-white/10 p-2 backdrop-blur-xl [animation-delay:750ms]">
+      <span class="px-3 text-sm font-semibold text-white/80">Find a tour:</span>
+      {% for category in site.categories %}
+        <a href="/tours/?category={{ category.slug }}" class="rounded-full bg-white/15 px-4 py-2 text-sm font-semibold transition hover:bg-white hover:text-ocean-900">{{ category.name }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+
+  {% set waveClass = "top-auto bottom-0 rotate-180" %}{% include "partials/waves.njk" %}
+  <a href="#intro" class="absolute bottom-24 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs font-semibold tracking-[0.3em] text-white/70 uppercase md:flex">
+    Scroll
+    <span class="h-10 w-px origin-top bg-white/60 motion-safe:animate-pulse"></span>
+  </a>
+</section>
+
+{# ---------- Destinations marquee ---------- #}
+<section aria-label="Destinations" class="overflow-hidden border-y border-sand-200 py-6">
+  <div class="flex w-max motion-safe:animate-marquee hover:[animation-play-state:paused]">
+    {% for round in [1, 2] %}
+      <ul class="flex shrink-0 items-center" {% if round == 2 %}aria-hidden="true"{% endif %}>
+        {% for place in site.destinations %}
+          <li class="flex items-center gap-8 px-4 font-display text-3xl text-ocean-900 italic sm:text-5xl">{{ place }}<span class="text-xl text-coral-500 not-italic">✦</span></li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</section>
+
+{# ---------- Intro: text + layered parallax photos ---------- #}
+<section id="intro" class="container-x mt-28 grid items-center gap-16 lg:grid-cols-2">
+  <div>
+    <p class="eyebrow" data-reveal>Our island, your adventure</p>
+    <h2 class="mt-4 text-4xl leading-tight font-semibold sm:text-6xl" data-split>Mauritius, the way locals see it.</h2>
+    <p class="mt-6 max-w-lg text-lg text-ink-500" data-reveal>
+      We grew up between the mountains and the lagoon. Our tours take you to the places we love — at the right time of day,
+      away from the crowds, with stories you won't find in a guidebook.
+    </p>
+    <div class="mt-9 flex flex-wrap gap-3" data-reveal>
+      <a href="/about/" class="btn btn-outline">Meet the team</a>
+      <a href="/tours/" class="btn btn-coral" data-magnetic>See all tours</a>
+    </div>
+  </div>
+  <div class="relative h-[480px] sm:h-[560px]">
+    <div class="absolute top-0 right-0 h-[78%] w-[72%] overflow-hidden rounded-card shadow-2xl" data-reveal-img data-parallax="-0.12">
+      {% picture "lemorne-1", "Aerial view of the Le Morne peninsula and its lagoon", "(min-width: 1024px) 36vw, 72vw" %}
+    </div>
+    <div class="absolute bottom-0 left-0 h-[52%] w-[56%] overflow-hidden rounded-card border-8 border-sand-50 shadow-2xl" data-reveal-img data-parallax="0.18">
+      {% picture "chamarel-2", "The Seven Coloured Earth dunes at Chamarel", "(min-width: 1024px) 28vw, 56vw" %}
+    </div>
+    <div class="absolute top-[58%] right-[6%] rounded-2xl bg-white px-5 py-4 shadow-xl" data-reveal data-parallax="0.3">
+      <p class="font-display text-3xl font-semibold text-coral-500">6</p>
+      <p class="text-sm font-semibold text-ink-700">signature tours</p>
+    </div>
+  </div>
+</section>
+
+{# ---------- Featured tours: pinned horizontal scroll on desktop, swipe on mobile ---------- #}
+<section class="mt-32 overflow-hidden bg-ocean-900 py-24 text-white" data-hscroll>
+  <div class="container-x flex flex-wrap items-end justify-between gap-6">
+    <div>
+      <p class="eyebrow text-lagoon-400!" data-reveal>Most loved</p>
+      <h2 class="mt-4 text-4xl font-semibold sm:text-6xl" data-split>Featured tours</h2>
+    </div>
+    <a href="/tours/" class="btn btn-light" data-reveal>All tours →</a>
+  </div>
+  <div class="container-x mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 text-ocean-900 [scrollbar-width:none]" data-hscroll-track>
+    {% asyncEach tour in tours | featured %}
+      <div class="w-[85vw] max-w-[440px] shrink-0 snap-start sm:w-[420px]">{% include "partials/tour-card.njk" %}</div>
+    {% endeach %}
+    <a href="/tours/" class="group grid w-[60vw] max-w-[300px] shrink-0 snap-start place-items-center rounded-card border border-white/20 text-center text-white transition hover:bg-white/5 sm:w-[300px]">
+      <span><span class="block font-display text-3xl">See all<br>{{ tours | length }} tours</span><span class="mt-4 inline-block text-2xl transition group-hover:translate-x-2">→</span></span>
+    </a>
+  </div>
+</section>
+
+{# ---------- Categories ---------- #}
+<section class="container-x mt-32">
+  <p class="eyebrow" data-reveal>Choose your mood</p>
+  <h2 class="mt-4 max-w-2xl text-4xl font-semibold sm:text-6xl" data-split>Sea, nature or culture?</h2>
+  <div class="mt-14 grid gap-6 md:grid-cols-3">
+    {% set categoryPhotos = { sea: "cerfs-1", land: "chamarel-1", culture: "portlouis-1" } %}
+    {% asyncEach category in site.categories %}
+      <a href="/tours/?category={{ category.slug }}" class="group relative block h-[420px] overflow-hidden rounded-card text-white" data-reveal>
+        <div class="zoom-img absolute inset-0">{% picture categoryPhotos[category.slug], "", "(min-width: 768px) 33vw, 100vw", { widths: [480, 960] } %}</div>
+        <div class="absolute inset-0 bg-linear-to-t from-ocean-950/90 via-ocean-950/35 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-7">
+          <p class="text-sm font-semibold text-lagoon-400">{{ tours | byCategory(category.slug) | length }} tours</p>
+          <h3 class="mt-1 text-3xl font-semibold">{{ category.name }}</h3>
+          <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold opacity-0 transition duration-500 group-hover:translate-x-1 group-hover:opacity-100">Explore <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    {% endeach %}
+  </div>
+</section>
+
+{# ---------- Promises ---------- #}
+<section class="relative mt-32 overflow-hidden bg-sand-100 py-28">
+  <div class="container-x grid items-center gap-16 lg:grid-cols-[1fr_1.2fr]">
+    <div class="relative h-[440px] overflow-hidden rounded-card" data-reveal-img>
+      <div class="absolute -inset-y-16 inset-x-0" data-parallax="-0.15">
+        {% picture "beach-aerial", "A white sand beach and turquoise lagoon seen from above", "(min-width: 1024px) 45vw, 100vw" %}
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow" data-reveal>Why travel with us</p>
+      <h2 class="mt-4 text-4xl font-semibold sm:text-5xl" data-split>Small groups. Big memories.</h2>
+      <ul class="mt-10 grid gap-8 sm:grid-cols-2">
+        {% for promise in site.promises %}
+          <li data-reveal>
+            <span class="grid size-12 place-items-center rounded-2xl bg-white text-coral-500 shadow-md">{% include "partials/icon.njk" %}</span>
+            <h3 class="mt-4 font-body text-lg font-semibold">{{ promise.title }}</h3>
+            <p class="mt-1 text-ink-500">{{ promise.text }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ---------- How booking works (the connecting line draws itself on scroll) ---------- #}
+<section id="how" class="container-x mt-32">
+  <p class="eyebrow" data-reveal>Easy booking</p>
+  <h2 class="mt-4 text-4xl font-semibold sm:text-6xl" data-split>How it works</h2>
+  <ol class="relative mt-16 grid gap-12 md:grid-cols-3">
+    <span class="absolute top-7 right-[16%] left-[16%] hidden h-0.5 origin-left bg-coral-500 md:block" data-draw-x aria-hidden="true"></span>
+    {% for step in site.steps %}
+      <li class="relative text-center" data-reveal>
+        <span class="relative z-10 mx-auto grid size-14 place-items-center rounded-full bg-ocean-900 font-display text-2xl text-white ring-8 ring-sand-50">{{ loop.index }}</span>
+        <h3 class="mt-6 text-2xl font-semibold">{{ step.title }}</h3>
+        <p class="mx-auto mt-2 max-w-xs text-ink-500">{{ step.text }}</p>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+
+{# ---------- Reviews: honest feature preview (no invented reviews) ---------- #}
+<section class="container-x mt-32">
+  <div class="rounded-card border-2 border-dashed border-ocean-900/15 p-10 text-center sm:p-14" data-reveal>
+    <span class="chip bg-lagoon-100!">Feature preview</span>
+    <h2 class="mt-5 text-3xl font-semibold sm:text-4xl">Your Google reviews, shown here</h2>
+    <p class="mx-auto mt-3 max-w-xl text-ink-500">On your live website, this section displays your real guest reviews and star rating — automatically kept up to date.</p>
+    <div class="mt-10 grid gap-5 text-left md:grid-cols-3" aria-hidden="true">
+      {% for i in [1, 2, 3] %}
+        <div class="rounded-2xl bg-white p-6 shadow-sm">
+          <div class="flex gap-1 text-sand-200">★★★★★</div>
+          <div class="mt-4 space-y-2"><div class="h-2.5 w-full rounded bg-sand-100"></div><div class="h-2.5 w-11/12 rounded bg-sand-100"></div><div class="h-2.5 w-2/3 rounded bg-sand-100"></div></div>
+          <div class="mt-6 flex items-center gap-3"><div class="size-9 rounded-full bg-sand-100"></div><div class="h-2.5 w-24 rounded bg-sand-100"></div></div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---------- FAQ ---------- #}
+<section class="container-x mt-32 grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+  <div>
+    <p class="eyebrow" data-reveal>Good to know</p>
+    <h2 class="mt-4 text-4xl font-semibold sm:text-5xl" data-split>Questions before you go</h2>
+  </div>
+  <div class="divide-y divide-sand-200 border-y border-sand-200">
+    {% for faq in site.faqs %}
+      <details class="group py-2" data-reveal>
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+          {{ faq.q }}
+          <span class="grid size-8 shrink-0 place-items-center rounded-full bg-sand-100 transition duration-300 group-open:rotate-45 group-open:bg-coral-500 group-open:text-white" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-5 text-ink-500">{{ faq.a }}</p>
+      </details>
+    {% endfor %}
+  </div>
+</section>
+
+{% include "partials/cta.njk" %}

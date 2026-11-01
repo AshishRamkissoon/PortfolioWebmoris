@@ -1,0 +1,29 @@
+<footer class="relative mt-32 overflow-hidden bg-ocean-950 text-sand-100">
+  {% include "partials/waves.njk" %}
+  <div class="container-x grid gap-12 py-20 md:grid-cols-[2fr_1fr_1fr]">
+    <div>
+      <div class="text-white">{% include "partials/logo.njk" %}</div>
+      <p class="mt-5 max-w-sm text-sand-200/70">{{ site.tagline }}. Lagoons, mountains, waterfalls and street food — with hotel pick-up included.</p>
+    </div>
+    <div>
+      <h2 class="font-body text-xs font-semibold tracking-[0.25em] text-lagoon-400 uppercase">Tours</h2>
+      <ul class="mt-5 space-y-2.5 text-sand-200/80">
+        {% for tour in tours %}<li><a href="/tours/{{ tour.slug }}/" class="hover:text-white">{{ tour.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2 class="font-body text-xs font-semibold tracking-[0.25em] text-lagoon-400 uppercase">Contact</h2>
+      <ul class="mt-5 space-y-2.5 text-sand-200/80">
+        <li>{{ site.phone }}</li>
+        <li>{{ site.email }}</li>
+        <li>{{ site.address }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-3 py-6 text-sm text-sand-200/60 sm:flex-row sm:items-center sm:justify-between">
+      <p>Island Explorer is a fictional business. <a href="/credits/" class="underline hover:text-white">Photo credits</a></p>
+      <p>Demo website by <a href="{{ site.agencyUrl }}" class="font-semibold text-lagoon-400 hover:text-white" rel="noopener">Webmoris</a></p>
+    </div>
+  </div>
+</footer>

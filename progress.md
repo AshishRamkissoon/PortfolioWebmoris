@@ -17,17 +17,16 @@
 | 4 | Lead Capture | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 5 | Pricing & Payments | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 6 | Motion, 3D, SEO & Launch Readiness | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-11-01 |
+| 7 | First Live Demo: Island Explorer (Tourism) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 
 ## Open Decisions / Blockers
-- [ ] Kreol URL prefix: proceeding with `/kr/` (plan default). Owner to confirm; easy to change later in one setting.
-- [ ] Kreol UI translations are a draft; they need review by a native speaker (Phase 6).
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
 - [ ] **Before launch (owner):**
-  - Have a native speaker review the Kreol (all phases).
   - Test on real devices: Safari on iPhone and Mac, Firefox, Android Chrome.
   - Run Lighthouse on the deployed site (production compression on).
   - Choose hosting and follow `docs/DEPLOY.md`.
   - Choose the analytics provider.
+- [ ] Confirm the Webmoris domain and deploy the Island Explorer demo to a subdomain (see Phase 7).
 - [ ] PayPal: a REST app (sandbox first), then live credentials, a webhook and a billing plan for each monthly package. Also real package prices and the PayPal USD/EUR prices.
 - [ ] Real MCB Juice number/QR and bank details. The demo values say "DEMO".
 - [ ] For production: an SMTP account (`EMAIL_URL`), the email address that receives lead notifications, and a Calendly/Cal.com booking link.
@@ -39,6 +38,53 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 7 — Ready for review — The demo is built and tested locally; deploying it needs the owner's domain and hosting.
+  - **Built:** `demos/island-explorer/`, a static Eleventy 3 + Tailwind 4 site.
+    - **Pages:** Home, Tours (filter), 6 tour pages, About, Contact, Credits and 404.
+    - **Data-driven:** add a tour in `tours.json` and its card, page and map pin are generated.
+  - **Visual effects:**
+    - a WebGL "living lagoon" hero with mouse ripples (skipped on no-GPU renderers, switches itself off below ~30 fps)
+    - a Ken Burns zoom and drifting waves
+    - cross-page morph view transitions
+    - split-text headlines, photo wipe reveals and parallax
+    - a pinned sideways featured-tours slider and self-drawing timelines
+    - a scrolling destinations ticker, magnetic buttons, a Flip-animated filter, a lightbox and a pulsing map pin
+    - all of it respecting reduced motion
+  - **Photos:** 27 freely licensed photos of the real places from Wikimedia Commons (CC0, CC BY, CC BY-SA), credited on `/credits/`. No identifiable people, no fake reviews (reviews are a labelled feature preview).
+  - **Demo kit improvements:**
+    - The kit now loads as the first element in `<body>`, so the bar is in place before first paint (no layout shift).
+    - It exposes `--demo-bar-h` for fixed headers.
+  - **Verified:**
+    - 9/9 UI checks in headless Chrome with no console errors: bar, ripple guard, mobile, filter and deep link, lightbox, booking form blocked, robots.
+    - Demo kit 8/8.
+    - Core Web Vitals, uncompressed: mobile (4× CPU, Slow 4G) LCP 1.6–2.4 s, CLS ≤ 0.01; desktop LCP ≤ 1.5 s, CLS 0.
+  - **Fixed along the way:**
+    - Nunjucks async loops rendering cards outside the grid
+    - layout shift from the demo bar and from the late headline font
+    - unreadable labels on photos
+    - an orphan gallery photo
+    - an unrealistic island map, now drawn from coastline coordinates
+    - the slider pinning under the header
+  - **Still to do (owner):** confirm the real Webmoris domain (the demo links to `https://webmoris.mu`, set in `src/_data/site.json`), deploy to a subdomain using `demos/island-explorer/deploy/nginx.conf.example`, then paste the URL into the template's Live demo URL in admin.
+  - **How to test:** `cd demos/island-explorer && npm install && npm run build`, then serve `_site/` (e.g. `python -m http.server 5002`) and open it in Chrome.
+- 2026-11-01 — Phase 7 planned — Island Explorer tourism demo: a static Eleventy + Tailwind site on a subdomain with free licensed stock photos (see plan.md).
+  - Demo support built ahead of it:
+    - a "Live demo" badge on template cards that have a demo URL
+    - the reusable `demo_kit/`: a "Demo by Webmoris" bar linking to the template's enquiry form, all forms blocked with a friendly notice, a noindex meta tag, a strict-CSP-safe script, and a publishing checklist in its README
+  - The kit was tested in headless Chrome under a strict CSP (8/8 checks).
+- 2026-11-01 — Post-launch change — In-progress projects, so the portfolio stays honest while the first 2 client projects are under way.
+  - **Status field:** projects are Completed or In progress, editable from the admin list (migration `portfolio 0003`).
+  - **Pages:** in-progress projects get a violet badge, and their case studies hide results, metrics and the live-site link, with a short note instead. Structured data marks them `Incomplete`.
+  - **Home heading:** "Work in progress / What we're building now" until 3 projects are completed, then "Selected work / Projects we're proud of".
+  - **Verified:** 225 tests passing, plus screenshots of the two-in-progress scenario.
+- 2026-11-01 — Post-launch change — Kreol removed at the owner's request; the site is now English and French only.
+  - **Routing:** switched back to Django's built-in language routing, deleting the custom `/kr/` prefix code (`apps/core/i18n.py`, `apps/core/middleware.py`).
+  - **Database:** migrations drop every `*_mfe` translation column; existing Kreol leads and orders are moved to French.
+  - **Files and docs:** `locale/mfe/` and the Kreol demo text are deleted; tests, README, CLAUDE.md and requirements.md are updated.
+  - **Old URLs:** `/kr/` addresses now return 404.
+- 2026-11-01 — Post-launch change — Owner requests:
+  - **Stats removed:** the stats counters bar is gone from Home and About, along with its Site settings fields (migrations 0006–0007), the count-up animation code and the demo values. requirements.md is updated to match.
+  - **Comment fix:** a multi-line `{# #}` comment that was showing on pages is removed, with a test that catches this in future.
 - 2026-11-01 — Phase 6 — Completed — Approved by owner; committed on `phase/6-launch-readiness` and merged into `main`. **All 6 phases of plan.md are complete.** Next: the owner's launch items under Open Decisions, then the post-v1 features in plan.md.
 - 2026-10-31 — Phase 6 — Ready for review — All code exit criteria met. The remaining items need the owner (see Open Decisions).
   - **Built:**

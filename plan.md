@@ -314,6 +314,66 @@
 
 ---
 
+## Phase 7 — First Live Demo: "Island Explorer" (Tourism)
+
+**Goal:** a polished, clickable demo of the "Island Explorer" ready-made website. Visitors can try it before enquiring, which proves Webmoris's quality while the portfolio is still small.
+
+**Decisions** (owner, 2026-11-01):
+- **Industry:** tourism and excursions.
+- **What it is:** a demo only, not the product handed to clients. It's a lightweight static site.
+- **Hosting:** a subdomain of the Webmoris domain.
+- **Photos:** free licensed stock (Unsplash / Pexels).
+
+### Tech
+- **[Eleventy (11ty)](https://www.11ty.dev/) + Tailwind CSS**, generating plain HTML. Tours live in one `tours.json` file, and every page is built from it, so adding a tour means adding one entry.
+- **JavaScript:** small vanilla JS only (mobile menu, gallery, tour filter), with no framework.
+- **Demo kit:** `demo_kit/demo-kit.js` on every page. It adds the "Demo by Webmoris" bar, blocks all forms, and adds `noindex`.
+- **Location in the repo:** `demos/island-explorer/`. The build output (`_site/`) is deployed as static files.
+- **Language:** English first. French can follow once the demo brings in enquiries.
+
+### Fictional brand and content
+- **Brand:** "Island Explorer" (Mauritius tours). The name, team, phone (`+230 5000 0000`) and email (`hello@example.com`) are all invented.
+- **6 tours** across 3 categories:
+  - **Sea:** catamaran to Île aux Cerfs, dolphin swim at Tamarin Bay.
+  - **Land:** Chamarel and Black River Gorges, Le Morne hike.
+  - **Culture:** Port Louis market and street food, south coast and tea route.
+- **Each tour:** duration, price per person (MUR), group size, what's included, itinerary, meeting point, and 4–6 photos.
+- **Banned:** no fake reviews, ratings, guest counts or "best in Mauritius" claims. The reviews area is a clearly labelled *feature preview* ("Your Google reviews appear here").
+
+### Pages
+1. **Home:**
+   - hero with a search-style "Find a tour" bar
+   - featured tours
+   - why book with us: safety, small groups, hotel pick-up
+   - how booking works in 3 steps
+   - FAQ, a reviews feature preview, and a call to action
+2. **Tours:** a grid filtered by category and duration, with a price "from".
+3. **Tour detail:** gallery, key facts, itinerary timeline, what's included and excluded, and a meeting point (static map image, no third-party embed). Ends with a **booking request form**: date, guests, hotel, name, email. The demo kit blocks it.
+4. **About:** fictional story, guides (illustrations or no faces), and safety commitments.
+5. **Contact:** a form (blocked) and a WhatsApp button that opens the *Webmoris* enquiry link, not a fake number.
+
+### Steps
+1. **Setup:** Eleventy, Tailwind and the demo kit; base layout, header and footer; deploy script.
+2. **Content:** write the tour copy, pick the photos, record each photo's source and licence in `CREDITS.md`, and optimise them (WebP, responsive sizes).
+3. **Pages:** build all 5 pages mobile-first, with accessible forms and the gallery.
+4. **QA:**
+   - Lighthouse (mobile ≥ 90), real phone check, no console errors
+   - every form blocked, `noindex` and `X-Robots-Tag` in place
+   - go through the demo-kit checklist
+5. **Deploy and link:**
+   - Nginx server block for the subdomain (e.g. `tours.demo.<domain>`) with the `X-Robots-Tag` header.
+   - Paste the URL into the template's **Live demo URL** in Webmoris admin, which turns on the "Live demo" badge and button.
+   - Update the template's features and pages list to match the demo.
+
+### Exit criteria
+- The demo is live on the subdomain, with all 5 pages on mobile and desktop.
+- No form can send data; the demo bar links to the Island Explorer enquiry form on Webmoris.
+- Search engines are blocked by both the header and `robots.txt`.
+- `CREDITS.md` covers every image, and the content has no real people, businesses or fake social proof.
+- On Webmoris, the Island Explorer template shows the "Live demo" badge and opens the demo in a new tab.
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.

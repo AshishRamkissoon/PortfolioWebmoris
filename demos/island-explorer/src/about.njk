@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+title: About us
+section: about
+heroHeader: true
+---
+{% set heroPhoto = "lemorne-2" %}{% set heroEyebrow = "About Island Explorer" %}{% set heroTitle = "Born between the mountains and the lagoon" %}
+{% set heroText = "A small team of local guides who love showing visitors the real Mauritius." %}
+{% include "partials/page-hero.njk" %}
+
+<section class="container-x mt-24 grid items-center gap-16 lg:grid-cols-2">
+  <div>
+    <p class="eyebrow" data-reveal>Our story</p>
+    <h2 class="mt-4 text-4xl font-semibold sm:text-5xl" data-split>Tours we'd take our own family on.</h2>
+    <div class="mt-6 space-y-4 text-lg text-ink-500" data-reveal>
+      <p>Island Explorer started with a simple idea: show visitors the island we grew up on, the way we enjoy it ourselves — early in the morning, in small groups, with time to stop and talk.</p>
+      <p>Today our guides speak English, French and Kreol, and every tour is designed around one question: would we take our own family on it?</p>
+      <p class="text-sm italic">Island Explorer is a fictional company created for this demo website.</p>
+    </div>
+  </div>
+  <div class="relative h-[460px] overflow-hidden rounded-card" data-reveal-img>
+    <div class="absolute -inset-y-16 inset-x-0" data-parallax="-0.15">{% picture "beach", "A quiet white sand beach with turquoise water", "(min-width: 1024px) 50vw, 100vw" %}</div>
+  </div>
+</section>
+
+<section class="mt-28 bg-ocean-900 py-24 text-white">
+  <div class="container-x">
+    <p class="eyebrow text-lagoon-400!" data-reveal>What we promise</p>
+    <h2 class="mt-4 max-w-2xl text-4xl font-semibold sm:text-5xl" data-split>Responsible tourism, done properly.</h2>
+    <ul class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {% for promise in site.promises %}
+        <li class="rounded-card border border-white/10 bg-white/5 p-7 transition duration-500 hover:-translate-y-1 hover:bg-white/10" data-reveal>
+          <span class="grid size-12 place-items-center rounded-2xl bg-coral-500 text-white">{% include "partials/icon.njk" %}</span>
+          <h3 class="mt-5 font-body text-lg font-semibold">{{ promise.title }}</h3>
+          <p class="mt-1 text-white/70">{{ promise.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% include "partials/cta.njk" %}

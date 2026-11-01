@@ -1,0 +1,20 @@
+{# Expects `tour`; optional `eager`. The photo shares a view-transition name with the tour page hero. #}
+<article class="group card relative flex h-full flex-col" data-tour-card data-category="{{ tour.category }}">
+  <a href="/tours/{{ tour.slug }}/" class="zoom-img relative block aspect-[4/3]" tabindex="-1" aria-hidden="true">
+    {% picture tour.photos[0], "", "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw", { transition: "tour-" + tour.slug, widths: [480, 960, 1440], eager: eager } %}
+    <span class="absolute top-4 left-4 flex gap-2">
+      <span class="chip">{{ tour.duration }}</span>
+      <span class="chip">{{ tour.category | categoryName(site.categories) }}</span>
+    </span>
+  </a>
+  <div class="flex flex-1 flex-col p-6">
+    <h3 class="text-2xl font-semibold leading-tight">
+      <a href="/tours/{{ tour.slug }}/" class="after:absolute after:inset-0 hover:text-ocean-600">{{ tour.title }}</a>
+    </h3>
+    <p class="mt-2 flex-1 text-ink-500">{{ tour.summary }}</p>
+    <div class="mt-5 flex items-end justify-between border-t border-sand-200 pt-4">
+      <p class="text-sm text-ink-500">from <span class="block font-display text-2xl font-semibold text-ocean-900">{{ tour.price | money }}</span></p>
+      <span class="grid size-11 place-items-center rounded-full bg-sand-100 text-ocean-900 transition duration-500 group-hover:-rotate-45 group-hover:bg-coral-500 group-hover:text-white" aria-hidden="true">→</span>
+    </div>
+  </div>
+</article>

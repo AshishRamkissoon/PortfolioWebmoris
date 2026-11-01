@@ -1,0 +1,112 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: tours
+  size: 1
+  alias: tour
+permalink: "/tours/{{ tour.slug }}/"
+section: tours
+heroHeader: true
+eleventyComputed:
+  title: "{{ tour.title }}"
+  description: "{{ tour.summary }}"
+---
+{# ---------- Hero: same photo as the card, so the browser morphs between them ---------- #}
+<section class="relative isolate flex min-h-[78svh] items-end overflow-hidden bg-ocean-950 text-white">
+  <div class="absolute inset-0 -z-10">
+    {% picture tour.photos[0], tour.title, "100vw", { eager: true, transition: "tour-" + tour.slug, widths: [960, 1440, 2000] } %}
+  </div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-ocean-950/85 via-ocean-950/20 to-ocean-950/40"></div>
+  <div class="container-x pt-40 pb-28">
+    <a href="/tours/" class="text-sm font-semibold text-white/80 hover:text-white">← All tours</a>
+    <p class="eyebrow-photo hero-rise mt-6">{{ tour.category | categoryName(site.categories) }} · {{ tour.place }}</p>
+    <h1 class="hero-rise mt-4 max-w-4xl text-5xl leading-[0.95] font-semibold sm:text-7xl [animation-delay:150ms]">{{ tour.title }}</h1>
+    <ul class="hero-rise mt-8 flex flex-wrap gap-2 [animation-delay:300ms]">
+      <li class="chip">⏱ {{ tour.duration }}</li>
+      <li class="chip">👥 Max {{ tour.groupSize }} guests</li>
+      <li class="chip">🥾 {{ tour.level }}</li>
+      <li class="chip">{% if tour.minAge %}Age {{ tour.minAge }}+{% else %}All ages{% endif %}</li>
+    </ul>
+  </div>
+  {% set waveClass = "top-auto bottom-0 rotate-180" %}{% include "partials/waves.njk" %}
+</section>
+
+<div class="container-x mt-16 grid gap-14 lg:grid-cols-[1fr_380px]">
+  <article>
+    <p class="text-xl leading-relaxed text-ink-700 sm:text-2xl" data-reveal>{{ tour.intro }}</p>
+
+    {# Itinerary: the timeline line draws itself as you scroll. #}
+    <section class="mt-16" aria-labelledby="itinerary">
+      <h2 id="itinerary" class="text-3xl font-semibold sm:text-4xl" data-split>Your day</h2>
+      <ol class="relative mt-10 space-y-9 pl-10">
+        <span class="absolute top-2 bottom-2 left-[11px] w-0.5 bg-sand-200" aria-hidden="true"></span>
+        <span class="absolute top-2 bottom-2 left-[11px] w-0.5 origin-top bg-coral-500" data-draw-y aria-hidden="true"></span>
+        {% for step in tour.itinerary %}
+          <li class="relative" data-reveal>
+            <span class="absolute top-1 -left-10 size-6 rounded-full border-4 border-sand-50 bg-coral-500 shadow" aria-hidden="true"></span>
+            <p class="text-sm font-semibold text-coral-600">{{ step.time }}</p>
+            <h3 class="mt-1 font-body text-lg font-semibold">{{ step.title }}</h3>
+            <p class="text-ink-500">{{ step.text }}</p>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <section class="mt-16 grid gap-6 sm:grid-cols-2" aria-label="What's included">
+      <div class="rounded-card bg-lagoon-100/60 p-7" data-reveal>
+        <h2 class="font-body text-lg font-semibold">Included</h2>
+        <ul class="mt-4 space-y-2.5">{% for item in tour.included %}<li class="flex gap-3"><span class="text-lagoon-500" aria-hidden="true">✓</span>{{ item }}</li>{% endfor %}</ul>
+      </div>
+      <div class="rounded-card bg-sand-100 p-7" data-reveal>
+        <h2 class="font-body text-lg font-semibold">Not included</h2>
+        <ul class="mt-4 space-y-2.5 text-ink-500">{% for item in tour.excluded %}<li class="flex gap-3"><span aria-hidden="true">–</span>{{ item }}</li>{% endfor %}</ul>
+      </div>
+    </section>
+
+    {# Gallery: links open the full photo without JS; JS turns them into a lightbox. #}
+    <section class="mt-16" aria-labelledby="gallery">
+      <h2 id="gallery" class="text-3xl font-semibold sm:text-4xl" data-split>Gallery</h2>
+      {# One wide photo, then a full row below it: 3 across for 4 photos, 2 across for 3. #}
+      <div class="mt-8 grid gap-4 {% if tour.photos.length == 4 %}grid-cols-3{% else %}grid-cols-2{% endif %}" data-gallery>
+        {% asyncEach key in tour.photos %}
+          <a href="/img/full/{{ key }}.jpg" class="zoom-img group block rounded-2xl {% if loop.first %}col-span-full aspect-[16/9]{% else %}aspect-[4/3]{% endif %}" data-reveal-img data-lightbox-item data-caption="{{ photos[key].title }}">
+            {% picture key, photos[key].title, "(min-width: 1024px) 50vw, 100vw", { widths: [480, 960, 1440] } %}
+          </a>
+        {% endeach %}
+      </div>
+    </section>
+
+    <section class="mt-16" aria-labelledby="meet">
+      <h2 id="meet" class="text-3xl font-semibold sm:text-4xl" data-split>Meeting point</h2>
+      <div class="mt-8" data-reveal>{% include "partials/island-map.njk" %}</div>
+    </section>
+  </article>
+
+  {# ---------- Sticky booking card (the demo kit blocks the form) ---------- #}
+  <aside class="lg:sticky lg:top-28 lg:self-start">
+    <div class="card p-7" data-reveal>
+      <p class="text-sm text-ink-500">from <span class="block font-display text-4xl font-semibold text-ocean-900">{{ tour.price | money }}</span> per person</p>
+      <form class="mt-6 space-y-4" action="/contact/" method="post">
+        <div><label class="label" for="date">Date</label><input class="field" id="date" name="date" type="date" required></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="label" for="adults">Adults</label><select class="field" id="adults" name="adults">{% for n in range(1, tour.groupSize + 1) %}<option {% if n == 2 %}selected{% endif %}>{{ n }}</option>{% endfor %}</select></div>
+          <div><label class="label" for="children">Children</label><select class="field" id="children" name="children">{% for n in range(0, 7) %}<option>{{ n }}</option>{% endfor %}</select></div>
+        </div>
+        <div><label class="label" for="hotel">Hotel (for pick-up)</label><input class="field" id="hotel" name="hotel" placeholder="e.g. your hotel in Grand Baie"></div>
+        <div><label class="label" for="email">Email</label><input class="field" id="email" name="email" type="email" required autocomplete="email"></div>
+        <button type="submit" class="btn btn-coral w-full py-4 text-base" data-magnetic>Request booking</button>
+        <p class="text-center text-xs text-ink-500">No payment now · Free cancellation up to 24h before</p>
+      </form>
+    </div>
+  </aside>
+</div>
+
+{# ---------- More tours ---------- #}
+<section class="container-x mt-28">
+  <h2 class="text-3xl font-semibold sm:text-4xl" data-split>You might also like</h2>
+  <div class="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+    {% asyncEach tour in tours | others(tour.slug) | limit(3) %}
+      {% include "partials/tour-card.njk" %}
+    {% endeach %}
+  </div>
+</section>

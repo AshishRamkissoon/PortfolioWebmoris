@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: All tours
+section: tours
+heroHeader: true
+---
+{% set heroPhoto = "lagoon-aerial" %}{% set heroEyebrow = "Tours & excursions" %}{% set heroTitle = "Find your Mauritius moment" %}
+{% set heroText = "Six small-group tours, from catamaran days to sunrise hikes. Hotel pick-up included." %}
+{% include "partials/page-hero.njk" %}
+
+<section class="container-x mt-16">
+  {# Filters work without JS (links), and animate with GSAP Flip when JS is on. #}
+  <nav aria-label="Filter tours" class="flex flex-wrap gap-2" data-filters>
+    <a href="/tours/" class="filter-btn" data-filter="all" aria-pressed="true">All tours</a>
+    {% for category in site.categories %}
+      <a href="/tours/?category={{ category.slug }}" class="filter-btn" data-filter="{{ category.slug }}" aria-pressed="false">{{ category.name }}</a>
+    {% endfor %}
+  </nav>
+  <p class="mt-4 text-sm text-ink-500" aria-live="polite" data-filter-count>{{ tours | length }} tours</p>
+
+  <div class="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3" data-tour-grid>
+    {% asyncEach tour in tours %}
+      {% set eager = loop.index <= 2 %}
+      {% include "partials/tour-card.njk" %}
+    {% endeach %}
+  </div>
+</section>
+
+{% include "partials/cta.njk" %}

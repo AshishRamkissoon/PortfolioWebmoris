@@ -1,0 +1,9 @@
+{# Two layers of gently drifting waves (pure CSS). `fill` defaults to the sand page colour. #}
+<div class="pointer-events-none absolute inset-x-0 top-0 h-16 overflow-hidden {{ waveClass }}" aria-hidden="true">
+  <svg class="absolute bottom-0 h-full w-[200%] motion-safe:animate-wave" viewBox="0 0 2880 100" preserveAspectRatio="none">
+    <path d="M0 0h2880v40c-120 30-240 30-360 0S2280 10 2160 40s-240 30-360 0-240-30-360 0-240 30-360 0-240-30-360 0-240 30-360 0S240 10 120 40 0 40 0 40z" class="fill-sand-50" opacity=".5"/>
+  </svg>
+  <svg class="absolute bottom-0 h-full w-[200%] motion-safe:animate-wave [animation-direction:alternate-reverse] [animation-duration:13s]" viewBox="0 0 2880 100" preserveAspectRatio="none">
+    <path d="M0 0h2880v28c-160 36-320 36-480 0s-320-36-480 0-320 36-480 0-320-36-480 0-320 36-480 0S160-8 0 28z" class="fill-sand-50"/>
+  </svg>
+</div>

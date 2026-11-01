@@ -1,0 +1,381 @@
+[
+  {
+    "slug": "ile-aux-cerfs-catamaran",
+    "title": "Île aux Cerfs Catamaran Day",
+    "category": "sea",
+    "summary": "Sail the east coast lagoon, snorkel over coral gardens and relax on Île aux Cerfs.",
+    "duration": "Full day (8h)",
+    "hours": 8,
+    "price": 3200,
+    "groupSize": 12,
+    "minAge": 4,
+    "level": "Easy",
+    "featured": true,
+    "intro": "A relaxed day on the turquoise east coast lagoon. We sail past mangroves and fishing villages, stop to snorkel over coral gardens, then spend the afternoon on the soft white sands of Île aux Cerfs.",
+    "itinerary": [
+      {
+        "time": "08:30",
+        "title": "Hotel pick-up",
+        "text": "Air-conditioned transfer to Trou d'Eau Douce."
+      },
+      {
+        "time": "09:30",
+        "title": "Set sail",
+        "text": "Board the catamaran with coffee and fresh fruit."
+      },
+      {
+        "time": "10:30",
+        "title": "Snorkelling stop",
+        "text": "Swim over the coral gardens with your guide."
+      },
+      {
+        "time": "12:30",
+        "title": "Barbecue lunch",
+        "text": "Grilled fish, chicken and salads served on board."
+      },
+      {
+        "time": "14:00",
+        "title": "Free time on Île aux Cerfs",
+        "text": "Swim, sunbathe or try optional water sports."
+      },
+      {
+        "time": "16:30",
+        "title": "Return",
+        "text": "Sail back and transfer to your hotel."
+      }
+    ],
+    "included": [
+      "Hotel transfers",
+      "Catamaran cruise",
+      "Snorkelling gear",
+      "Barbecue lunch and drinks",
+      "Life jackets"
+    ],
+    "excluded": [
+      "Water sports on the island",
+      "Tips"
+    ],
+    "meetingPoint": "Hotel pick-up, or Trou d'Eau Douce jetty at 09:15",
+    "photos": [
+      "cerfs-1",
+      "cerfs-2",
+      "cerfs-3",
+      "cerfs-4"
+    ],
+    "mapX": 356,
+    "mapY": 237,
+    "place": "Île aux Cerfs"
+  },
+  {
+    "slug": "tamarin-dolphin-watching",
+    "title": "Tamarin Bay Dolphin Watching",
+    "category": "sea",
+    "summary": "An early-morning boat trip to watch wild dolphins respectfully in Tamarin Bay.",
+    "duration": "Half day (4h)",
+    "hours": 4,
+    "price": 2600,
+    "groupSize": 10,
+    "minAge": 6,
+    "level": "Easy",
+    "featured": true,
+    "intro": "Wild spinner and bottlenose dolphins often rest in Tamarin Bay in the early morning. We watch them from the boat at a respectful distance, following local marine guidelines, then snorkel at a quiet reef nearby.",
+    "itinerary": [
+      {
+        "time": "06:30",
+        "title": "Hotel pick-up",
+        "text": "Early start, when the bay is calmest."
+      },
+      {
+        "time": "07:15",
+        "title": "Dolphin watching",
+        "text": "Observe the dolphins from the boat — no chasing, no crowding."
+      },
+      {
+        "time": "08:45",
+        "title": "Reef snorkelling",
+        "text": "Swim at a sheltered reef with your guide."
+      },
+      {
+        "time": "10:00",
+        "title": "Breakfast on board",
+        "text": "Fresh fruit, pastries and coffee."
+      },
+      {
+        "time": "10:30",
+        "title": "Return",
+        "text": "Back to the jetty and your hotel."
+      }
+    ],
+    "included": [
+      "Hotel transfers",
+      "Boat trip with skipper and guide",
+      "Snorkelling gear",
+      "Breakfast on board"
+    ],
+    "excluded": [
+      "Tips"
+    ],
+    "meetingPoint": "Hotel pick-up, or Tamarin public beach at 07:00",
+    "photos": [
+      "tamarin-1",
+      "tamarin-2",
+      "lagoon-aerial"
+    ],
+    "mapX": 71,
+    "mapY": 272,
+    "place": "Tamarin Bay"
+  },
+  {
+    "slug": "chamarel-black-river-gorges",
+    "title": "Chamarel & Black River Gorges",
+    "category": "land",
+    "summary": "Waterfalls, the Seven Coloured Earth and the island's greatest viewpoints in one day.",
+    "duration": "Full day (8h)",
+    "hours": 8,
+    "price": 3400,
+    "groupSize": 12,
+    "minAge": 0,
+    "level": "Easy",
+    "featured": true,
+    "intro": "Discover the green heart of the island. Stand above Chamarel waterfall, walk among the striped dunes of the Seven Coloured Earth, and stop at viewpoints over Black River Gorges National Park.",
+    "itinerary": [
+      {
+        "time": "08:30",
+        "title": "Hotel pick-up",
+        "text": "Drive up to the cool south-west plateau."
+      },
+      {
+        "time": "10:00",
+        "title": "Black River Gorges viewpoint",
+        "text": "Views over the national park and its endemic forest."
+      },
+      {
+        "time": "11:00",
+        "title": "Chamarel waterfall",
+        "text": "The island's highest single-drop waterfall."
+      },
+      {
+        "time": "12:00",
+        "title": "Seven Coloured Earth",
+        "text": "Walk around the famous multicoloured dunes."
+      },
+      {
+        "time": "13:00",
+        "title": "Lunch with a view",
+        "text": "Mauritian Creole lunch at a local table d'hôte."
+      },
+      {
+        "time": "16:30",
+        "title": "Return",
+        "text": "Back to your hotel."
+      }
+    ],
+    "included": [
+      "Hotel transfers",
+      "English or French-speaking guide",
+      "Entrance fees",
+      "Creole lunch"
+    ],
+    "excluded": [
+      "Drinks with lunch",
+      "Tips"
+    ],
+    "meetingPoint": "Hotel pick-up",
+    "photos": [
+      "chamarel-1",
+      "chamarel-2",
+      "chamarel-3",
+      "chamarel-4"
+    ],
+    "mapX": 86,
+    "mapY": 345,
+    "place": "Chamarel"
+  },
+  {
+    "slug": "le-morne-sunrise-hike",
+    "title": "Le Morne Sunrise Hike",
+    "category": "land",
+    "summary": "Climb the UNESCO-listed mountain at dawn for unforgettable lagoon views.",
+    "duration": "Half day (5h)",
+    "hours": 5,
+    "price": 1900,
+    "groupSize": 8,
+    "minAge": 12,
+    "level": "Challenging",
+    "featured": false,
+    "intro": "Le Morne Brabant is a UNESCO World Heritage Site and a powerful symbol of freedom in Mauritian history. With a local guide, climb its forested trail at dawn and watch the sun light up the lagoon below.",
+    "itinerary": [
+      {
+        "time": "05:00",
+        "title": "Early pick-up",
+        "text": "Drive to the base of the mountain in the dark."
+      },
+      {
+        "time": "05:45",
+        "title": "Start the climb",
+        "text": "Forest trail, then a steeper rocky section with your guide."
+      },
+      {
+        "time": "07:00",
+        "title": "Sunrise at the viewpoint",
+        "text": "Views over the lagoon and the 'underwater waterfall'."
+      },
+      {
+        "time": "08:30",
+        "title": "Descent",
+        "text": "Back down at a comfortable pace."
+      },
+      {
+        "time": "10:00",
+        "title": "Return",
+        "text": "Breakfast stop, then back to your hotel."
+      }
+    ],
+    "included": [
+      "Hotel transfers",
+      "Certified mountain guide",
+      "Water and snacks",
+      "Breakfast"
+    ],
+    "excluded": [
+      "Hiking shoes",
+      "Tips"
+    ],
+    "meetingPoint": "Hotel pick-up, or Le Morne trailhead at 05:40",
+    "photos": [
+      "lemorne-1",
+      "lemorne-2",
+      "lemorne-3",
+      "lemorne-4"
+    ],
+    "mapX": 38,
+    "mapY": 365,
+    "place": "Le Morne"
+  },
+  {
+    "slug": "port-louis-food-walk",
+    "title": "Port Louis Market & Street Food",
+    "category": "culture",
+    "summary": "Taste dholl puri, gateaux piments and more on a walk through the capital.",
+    "duration": "Half day (4h)",
+    "hours": 4,
+    "price": 1600,
+    "groupSize": 10,
+    "minAge": 0,
+    "level": "Easy",
+    "featured": false,
+    "intro": "Port Louis is where the island's cultures meet on a plate. Walk through the Central Market, Chinatown and the old streets with a local foodie, tasting the snacks Mauritians love.",
+    "itinerary": [
+      {
+        "time": "09:00",
+        "title": "Meet in Port Louis",
+        "text": "Or hotel pick-up from the north and west."
+      },
+      {
+        "time": "09:30",
+        "title": "Central Market",
+        "text": "Spices, tropical fruit and the famous alouda."
+      },
+      {
+        "time": "10:30",
+        "title": "Street-food tastings",
+        "text": "Dholl puri, gateaux piments, samoussas and more."
+      },
+      {
+        "time": "11:30",
+        "title": "Chinatown and old Port Louis",
+        "text": "Stories of the island's history and people."
+      },
+      {
+        "time": "12:30",
+        "title": "Caudan Waterfront",
+        "text": "Finish by the harbour with a fresh juice."
+      }
+    ],
+    "included": [
+      "Local food guide",
+      "Around 8 tastings",
+      "Bottled water"
+    ],
+    "excluded": [
+      "Hotel transfers (available on request)",
+      "Tips"
+    ],
+    "meetingPoint": "Port Louis Central Market, main gate",
+    "photos": [
+      "portlouis-1",
+      "portlouis-2",
+      "portlouis-3",
+      "portlouis-4"
+    ],
+    "mapX": 157,
+    "mapY": 160,
+    "place": "Port Louis"
+  },
+  {
+    "slug": "south-coast-tea-route",
+    "title": "Wild South Coast & Tea Route",
+    "category": "culture",
+    "summary": "Dramatic cliffs at Gris Gris, a tea factory visit and a tasting with a view.",
+    "duration": "Full day (8h)",
+    "hours": 8,
+    "price": 3600,
+    "groupSize": 12,
+    "minAge": 0,
+    "level": "Easy",
+    "featured": false,
+    "intro": "The south is the wildest side of Mauritius, with no reef to tame the ocean. See the waves crash at Gris Gris, visit a historic tea estate, and taste its teas on a terrace overlooking the coast.",
+    "itinerary": [
+      {
+        "time": "08:30",
+        "title": "Hotel pick-up",
+        "text": "Drive through sugar cane fields to the south."
+      },
+      {
+        "time": "10:00",
+        "title": "Tea factory visit",
+        "text": "See how tea is grown and processed."
+      },
+      {
+        "time": "11:30",
+        "title": "Tea tasting",
+        "text": "Flavoured teas on a terrace with sea views."
+      },
+      {
+        "time": "13:00",
+        "title": "Seaside lunch",
+        "text": "Fresh seafood in Souillac."
+      },
+      {
+        "time": "14:30",
+        "title": "Gris Gris cliffs",
+        "text": "Walk the cliffs where the waves break on the rocks."
+      },
+      {
+        "time": "16:30",
+        "title": "Return",
+        "text": "Back to your hotel."
+      }
+    ],
+    "included": [
+      "Hotel transfers",
+      "Guide",
+      "Tea estate entrance and tasting",
+      "Seafood lunch"
+    ],
+    "excluded": [
+      "Drinks with lunch",
+      "Tips"
+    ],
+    "meetingPoint": "Hotel pick-up",
+    "photos": [
+      "south-1",
+      "south-2",
+      "south-3",
+      "south-4"
+    ],
+    "mapX": 175,
+    "mapY": 405,
+    "place": "Gris Gris"
+  }
+]

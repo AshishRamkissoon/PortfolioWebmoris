@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+title: Photo credits
+section: credits
+---
+<section class="container-x max-w-4xl pt-36">
+  <p class="eyebrow">Credits</p>
+  <h1 class="mt-4 text-5xl font-semibold">Photo credits</h1>
+  <p class="mt-5 text-lg text-ink-500">
+    Island Explorer is a fictional business created by Webmoris as a demo. All photos come from
+    <a href="https://commons.wikimedia.org/" class="underline hover:text-ocean-600" rel="noopener">Wikimedia Commons</a>
+    and are used under the licences below. They have been resized and cropped for this website.
+  </p>
+  <ul class="mt-12 divide-y divide-sand-200 border-y border-sand-200">
+    {% asyncEach key, photo in photos %}
+      <li class="flex flex-col gap-4 py-5 sm:flex-row sm:items-center">
+        <div class="h-20 w-32 shrink-0 overflow-hidden rounded-xl">{% picture key, "", "128px", { widths: [480] } %}</div>
+        <div class="text-sm">
+          <p class="font-semibold text-ocean-900">“{{ photo.title }}”</p>
+          <p class="text-ink-500">by {{ photo.author }} ·
+            {% if photo.licenseUrl %}<a href="{{ photo.licenseUrl }}" class="underline hover:text-ocean-600" rel="noopener">{{ photo.license }}</a>{% else %}{{ photo.license }}{% endif %}
+            · <a href="{{ photo.source }}" class="underline hover:text-ocean-600" rel="noopener">source</a>
+          </p>
+        </div>
+      </li>
+    {% endeach %}
+  </ul>
+</section>

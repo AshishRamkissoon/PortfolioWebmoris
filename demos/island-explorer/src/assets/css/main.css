@@ -1,0 +1,198 @@
+@import "tailwindcss" source(none);
+@import "lenis/dist/lenis.css";
+
+@source "../../../src";
+
+/* Island Explorer — sunny tropical palette (light theme). */
+@theme {
+  --color-sand-50: #fdfaf4;
+  --color-sand-100: #f8f1e5;
+  --color-sand-200: #efe3cf;
+  --color-ocean-950: #061c2a;
+  --color-ocean-900: #0a2a3d;
+  --color-ocean-800: #0f3a52;
+  --color-ocean-600: #1d6584;
+  --color-lagoon-500: #14b8a6;
+  --color-lagoon-400: #2dd4bf;
+  --color-lagoon-100: #ccfbf1;
+  --color-coral-500: #ff6b4a;
+  --color-coral-600: #ec5232;
+  --color-ink-700: #33465a;
+  --color-ink-500: #5b6b7d;
+
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.5rem;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-kenburns: kenburns 24s ease-out both;
+  --animate-rise: rise 1.1s var(--ease-out-expo) both;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-wave: wave 9s ease-in-out infinite alternate;
+  --animate-ping-slow: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes kenburns {
+    from { transform: scale(1.12) translate3d(0, 0, 0); }
+    to { transform: scale(1) translate3d(0, -1.5%, 0); }
+  }
+  @keyframes rise {
+    /* 0.01, not 0: fully transparent text isn't counted as painted, which delays LCP. */
+    from { opacity: 0.01; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes wave {
+    to { transform: translateX(-12%); }
+  }
+}
+
+/* Cross-page "morph" between a tour card photo and the tour page header (Chrome, Edge). */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+}
+
+@layer base {
+  html {
+    @apply bg-sand-50 text-ocean-900 antialiased;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply font-body;
+  }
+
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+    font-variation-settings: "SOFT" 50, "WONK" 1;
+  }
+
+  ::selection {
+    @apply bg-lagoon-400 text-ocean-950;
+  }
+
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-offset-4 outline-coral-500;
+  }
+
+  picture img {
+    @apply size-full object-cover;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.25em] text-coral-600 uppercase;
+  }
+
+  /* Eyebrow that sits on a photo: frosted pill so it stays readable on bright skies. */
+  .eyebrow-photo {
+    @apply inline-flex rounded-full bg-ocean-950/45 px-3.5 py-1.5 text-xs font-semibold tracking-[0.25em] text-lagoon-400 uppercase backdrop-blur-md;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 will-change-transform;
+  }
+
+  .btn-coral {
+    @apply bg-coral-500 text-white shadow-lg shadow-coral-500/30 hover:bg-coral-600;
+  }
+
+  .btn-light {
+    @apply bg-white/90 text-ocean-900 backdrop-blur hover:bg-white;
+  }
+
+  .btn-outline {
+    @apply border border-ocean-900/20 text-ocean-900 hover:border-ocean-900 hover:bg-ocean-900 hover:text-white;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold text-ocean-900 backdrop-blur;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-card bg-white shadow-[0_20px_60px_-25px_rgb(10_42_61/0.35)];
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-sand-200 bg-sand-50 px-4 py-3 text-ocean-900 transition outline-none focus:border-lagoon-500 focus:ring-4 focus:ring-lagoon-100;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-semibold text-ink-700;
+  }
+
+  /* Image wrapper that zooms its photo on hover. */
+  .zoom-img {
+    @apply overflow-hidden;
+
+    & img {
+      @apply transition-transform duration-[1.2s] ease-out-expo;
+    }
+  }
+  .group:hover .zoom-img img,
+  .zoom-img:hover img {
+    @apply scale-[1.06];
+  }
+
+  .site-header {
+    @apply fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,color] duration-500;
+
+    &.is-solid {
+      @apply bg-sand-50/90 text-ocean-900 shadow-[0_1px_0_rgb(10_42_61/0.08)] backdrop-blur-xl;
+    }
+  }
+
+  .nav-link {
+    @apply relative text-sm font-semibold opacity-80 transition hover:opacity-100;
+
+    &::after {
+      @apply absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-coral-500 transition-transform duration-300;
+      content: "";
+    }
+    &:hover::after,
+    &[aria-current="page"]::after {
+      @apply scale-x-100;
+    }
+  }
+
+  .filter-btn {
+    @apply rounded-full border border-ocean-900/15 px-5 py-2 text-sm font-semibold text-ink-700 transition hover:border-ocean-900/40;
+
+    &[aria-pressed="true"] {
+      @apply border-ocean-900 bg-ocean-900 text-white;
+    }
+  }
+}
+
+/* --- Motion helpers (hidden only when JS runs and motion is allowed) --- */
+.motion-ok [data-reveal] {
+  opacity: 0;
+}
+.motion-ok [data-reveal-img] {
+  clip-path: inset(100% 0 0 0);
+}
+.motion-ok [data-split] {
+  opacity: 0;
+}
+
+/* Hero headline: CSS-only entrance so it never waits for JavaScript. */
+.hero-rise {
+  @apply motion-safe:animate-rise;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}

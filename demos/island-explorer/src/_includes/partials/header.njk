@@ -1,0 +1,26 @@
+{# Transparent over the home hero, solid everywhere else (and once you scroll). #}
+<header class="site-header {% if not heroHeader %}is-solid{% else %}text-white{% endif %}" data-header {% if heroHeader %}data-hero-header{% endif %}
+        style="top: var(--demo-bar-h, 0px)">
+  <div class="container-x flex h-18 items-center justify-between gap-6">
+    {% include "partials/logo.njk" %}
+    <nav aria-label="Main" class="hidden items-center gap-8 md:flex">
+      <a href="/tours/" class="nav-link" {% if section == "tours" %}aria-current="page"{% endif %}>Tours</a>
+      <a href="/about/" class="nav-link" {% if section == "about" %}aria-current="page"{% endif %}>About</a>
+      <a href="/contact/" class="nav-link" {% if section == "contact" %}aria-current="page"{% endif %}>Contact</a>
+      <a href="/tours/" class="btn btn-coral" data-magnetic>Book a tour</a>
+    </nav>
+    <button type="button" class="rounded-full p-2 md:hidden" data-menu-button aria-expanded="false" aria-controls="mobile-menu">
+      <span class="sr-only">Menu</span>
+      <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    </button>
+  </div>
+  <nav id="mobile-menu" aria-label="Mobile" hidden
+       class="border-t border-ocean-900/10 bg-sand-50 text-ocean-900 md:hidden">
+    <div class="container-x flex flex-col gap-1 py-4 text-lg font-semibold">
+      <a href="/tours/" class="rounded-xl px-3 py-3 hover:bg-sand-100">Tours</a>
+      <a href="/about/" class="rounded-xl px-3 py-3 hover:bg-sand-100">About</a>
+      <a href="/contact/" class="rounded-xl px-3 py-3 hover:bg-sand-100">Contact</a>
+      <a href="/tours/" class="btn btn-coral mt-3">Book a tour</a>
+    </div>
+  </nav>
+</header>
