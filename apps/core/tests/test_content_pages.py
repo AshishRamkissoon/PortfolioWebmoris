@@ -76,7 +76,7 @@ def test_home_uses_featured_content(client):
     ProjectFactory(title="Regular project")
     response = client.get("/en/")
     assert list(response.context["featured_projects"]) == [featured]
-    assert response.context["show_pricing"] is False
+    assert list(response.context["packages"]) == []
 
 
 def test_home_with_demo_content(client):

@@ -2,7 +2,7 @@
 <a href="{% url 'portfolio:list' %}" class="nav-link" {% if ns == 'portfolio' %}aria-current="page"{% endif %}>{% translate "Portfolio" %}</a>
 <a href="{% url 'readymade:list' %}" class="nav-link" {% if ns == 'readymade' %}aria-current="page"{% endif %}>{% translate "Ready-made Sites" %}</a>
 <a href="{% url 'services:list' %}" class="nav-link" {% if ns == 'services' %}aria-current="page"{% endif %}>{% translate "Services" %}</a>
-<a href="{% url 'core:pricing' %}" class="nav-link" {% if current == 'pricing' %}aria-current="page"{% endif %}>{% translate "Pricing" %}</a>
+<a href="{% url 'pricing:list' %}" class="nav-link" {% if ns == 'pricing' %}aria-current="page"{% endif %}>{% translate "Pricing" %}</a>
 <a href="{% url 'core:about' %}" class="nav-link" {% if current == 'about' %}aria-current="page"{% endif %}>{% translate "About" %}</a>
 <a href="{% url 'leads:contact' %}" class="nav-link" {% if ns == 'leads' %}aria-current="page"{% endif %}>{% translate "Contact" %}</a>
 {% endwith %}

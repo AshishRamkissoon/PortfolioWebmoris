@@ -1,0 +1,17 @@
+{% load core_tags %}{% autoescape off %}{% if event == "new" %}New order — awaiting {{ order.get_payment_method_display }} payment.{% elif event == "proof" %}The customer says they've paid. Please verify the payment, then use "Mark Juice / bank payment as verified" in admin.{% else %}Order paid via {{ order.get_payment_method_display }}.{% endif %}
+
+Reference: {{ order.reference }}
+Package:   {{ order.package_name }} ({{ order.get_billing_display }})
+Amount:    {{ order.amount|money:order.currency }}
+Status:    {{ order.get_status_display }}
+Customer:  {{ order.name }} <{{ order.email }}>
+Phone:     {{ order.phone|default:"—" }}
+{% if order.company %}Company:   {{ order.company }}
+{% endif %}{% if order.transaction_ref %}Transaction ref: {{ order.transaction_ref }}
+{% endif %}{% if order.proof_of_payment %}Proof uploaded: yes (view it in admin)
+{% endif %}{% if order.notes_from_customer %}
+Notes:
+{{ order.notes_from_customer }}
+{% endif %}
+Open in admin: {{ admin_url }}
+{% endautoescape %}

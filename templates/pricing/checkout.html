@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load i18n core_tags %}
+
+{% block title %}{% translate "Checkout" %} — {{ package.name }} · {{ site_settings.site_name }}{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+<section class="container-site max-w-5xl py-20 sm:py-28">
+  <a href="{% url 'pricing:list' %}" class="text-sm font-semibold text-ink-400 hover:text-neon-cyan">&larr; {% translate "All packages" %}</a>
+  <h1 class="mt-6 font-display text-4xl font-bold sm:text-5xl">{% translate "Checkout" %}</h1>
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-[3fr_2fr]">
+    <div class="rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
+      {% if not methods %}
+        <p class="text-ink-300">{% translate "Online payment isn't available for this package yet. Please contact us and we'll send you a quote." %}</p>
+        <a href="{% url 'leads:contact' %}" class="btn-primary mt-6 inline-flex">{% translate "Contact us" %}</a>
+      {% else %}
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}<div role="alert" class="form-alert">{% for e in form.non_field_errors %}<p>{{ e }}</p>{% endfor %}</div>{% endif %}
+        <div class="grid gap-6 sm:grid-cols-2">
+          {% include "components/form_field.html" with field=form.name %}
+          {% include "components/form_field.html" with field=form.email %}
+          {% include "components/form_field.html" with field=form.phone %}
+          {% include "components/form_field.html" with field=form.company %}
+          {% include "components/form_field.html" with field=form.notes_from_customer wrapper_class="sm:col-span-2" %}
+        </div>
+
+        <fieldset class="mt-8">
+          <legend class="form-label">{% translate "Payment method" %} <span class="text-neon-cyan" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-3">
+            {% for radio in form.payment_method %}
+            <label class="payment-option">
+              {{ radio.tag }}
+              <span class="payment-option-box">
+                <span class="font-semibold">{{ radio.choice_label }}</span>
+                <span class="text-sm text-ink-300">
+                  {% if radio.data.value == "paypal" %}{{ package.paypal_price|money:package.paypal_currency }} · {% translate "card or PayPal account, confirmed instantly" %}
+                  {% else %}{{ package.price|money:package.currency }} · {% translate "pay, then upload your receipt — we confirm within one business day" %}{% endif %}
+                </span>
+              </span>
+            </label>
+            {% endfor %}
+          </div>
+          {% for error in form.payment_method.errors %}<p class="form-error">{{ error }}</p>{% endfor %}
+        </fieldset>
+
+        {% include "components/form_spam_fields.html" with source_page="" %}
+        <button type="submit" class="btn-primary btn-lg mt-8 w-full">{% translate "Continue to payment" %}</button>
+        <p class="mt-4 text-center text-sm text-ink-400">
+          {% url 'core:terms' as terms_url %}{% url 'core:privacy' as privacy_url %}
+          {% blocktranslate trimmed %}By continuing you agree to our <a href="{{ terms_url }}" class="underline hover:text-neon-cyan">terms</a> and <a href="{{ privacy_url }}" class="underline hover:text-neon-cyan">privacy policy</a>.{% endblocktranslate %}
+        </p>
+      </form>
+      {% endif %}
+    </div>
+
+    <aside class="h-fit rounded-card border border-ink-800 bg-ink-900 p-8">
+      <h2 class="meta-label">{% translate "Your package" %}</h2>
+      <p class="mt-4 font-display text-2xl font-bold">{{ package.name }}</p>
+      <p class="mt-2 text-ink-300">{{ package.summary }}</p>
+      <p class="mt-6 font-display text-3xl font-bold">{{ package.price|money:package.currency }}<span class="text-base font-normal text-ink-400"> {% if package.is_monthly %}{% translate "/ month" %}{% else %}{% translate "one-off" %}{% endif %}</span></p>
+      {% if paypal_available %}<p class="mt-1 text-sm text-ink-400">{% blocktranslate with price=package.paypal_price|money:package.paypal_currency %}or {{ price }} with PayPal{% endblocktranslate %}</p>{% endif %}
+      {% with items=package.features|lines %}{% if items %}
+      <ul class="mt-6 space-y-2 text-sm">{% for item in items %}<li class="flex gap-2"><span class="text-neon-cyan" aria-hidden="true">✓</span>{{ item }}</li>{% endfor %}</ul>
+      {% endif %}{% endwith %}
+    </aside>
+  </div>
+</section>
+{% endblock %}

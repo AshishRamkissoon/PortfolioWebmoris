@@ -73,3 +73,14 @@ def private_storage():
     from django.core.files.storage import storages
 
     return storages["private"]
+
+
+INLINE_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
+
+
+def private_file_response(field_file):
+    """Serve a private upload to staff: images inline (previews), anything else as a download."""
+    from django.http import FileResponse
+
+    inline = Path(field_file.name).suffix.lower() in INLINE_IMAGE_EXTENSIONS
+    return FileResponse(field_file.open("rb"), as_attachment=not inline)

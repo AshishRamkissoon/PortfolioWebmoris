@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Pricing" %} · {{ site_settings.site_name }}{% endblock %}
+{% block meta_description %}{% translate "Clear, fixed prices for websites and AI marketing. Pay online with PayPal or MCB Juice." %}{% endblock %}
+
+{% block content %}
+<section class="container-site pt-24 sm:pt-32">
+  <p data-reveal class="eyebrow">{% translate "Pricing" %}</p>
+  <h1 data-split class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{% translate "Simple packages, clear prices." %}</h1>
+  <p data-reveal data-reveal-delay="0.2" class="mt-6 max-w-2xl text-lg text-ink-300">{% translate "Pick a package and pay online with PayPal, MCB Juice or bank transfer — or ask us for a custom quote." %}</p>
+</section>
+
+{% if one_off %}
+<section class="container-site mt-20" aria-labelledby="one-off-heading">
+  <h2 id="one-off-heading" class="meta-label">{% translate "Websites — one-off" %}</h2>
+  <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {% for package in one_off %}{% cycle "0" "0.1" "0.2" as delay silent %}{% include "pricing/partials/package_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if monthly %}
+<section class="container-site mt-20" aria-labelledby="monthly-heading">
+  <h2 id="monthly-heading" class="meta-label">{% translate "AI marketing — monthly" %}</h2>
+  <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {% for package in monthly %}{% cycle "0" "0.1" "0.2" as delay silent %}{% include "pricing/partials/package_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if not one_off and not monthly %}
+<p class="container-site mt-16 text-ink-300">{% translate "Our packages will be listed here soon. In the meantime, ask us for a quote." %}</p>
+{% endif %}
+
+<section class="container-site mt-16">
+  <p data-reveal class="text-center text-sm text-ink-400">{% translate "Prices in MUR. PayPal is charged in the currency shown. Need something different?" %} <a href="{% url 'leads:contact' %}" class="underline hover:text-neon-cyan">{% translate "Ask for a custom quote" %}</a>.</p>
+</section>
+
+{% include "components/cta_band.html" %}
+{% endblock %}

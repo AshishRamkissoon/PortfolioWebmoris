@@ -1,0 +1,19 @@
+{% load i18n core_tags %}{% autoescape off %}{% translate "Hello," %}
+
+{% blocktranslate with ref=order.reference package=order.package_name %}Thank you for your order {{ ref }} ({{ package }}).{% endblocktranslate %}
+
+{% if order.payment_method == "juice" %}{% blocktranslate with amount=order.amount|money:order.currency %}Please send {{ amount }} with MCB Juice to:{% endblocktranslate %}
+{{ site_settings.juice_number }}{% if site_settings.juice_account_name %} ({{ site_settings.juice_account_name }}){% endif %}
+{% else %}{% blocktranslate with amount=order.amount|money:order.currency %}Please transfer {{ amount }} to:{% endblocktranslate %}
+{{ site_settings.bank_details }}
+{% endif %}
+{% blocktranslate with ref=order.reference %}Use {{ ref }} as the payment reference.{% endblocktranslate %}
+
+{% translate "Once you've paid, upload your receipt or transaction reference here:" %}
+{{ order_url }}
+
+{% translate "If you didn't place this order, you can safely ignore this email." %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site=site_settings.site_name %}The {{ site }} team{% endblocktranslate %}
+{% endautoescape %}

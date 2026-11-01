@@ -164,6 +164,27 @@
     @apply w-[85vw] max-w-md shrink-0 snap-start sm:w-[26rem];
   }
 
+  /* --- Pricing --- */
+  .package-card {
+    @apply relative flex h-full flex-col rounded-card border border-ink-800 bg-ink-900 p-8;
+
+    &.is-popular {
+      @apply border-neon-cyan shadow-glow;
+    }
+  }
+
+  .package-badge {
+    @apply absolute -top-3 left-8 rounded-full bg-neon-cyan px-3 py-1 text-xs font-bold tracking-wider text-ink-950 uppercase;
+  }
+
+  .payment-option {
+    @apply block cursor-pointer;
+  }
+
+  .payment-option-box {
+    @apply flex flex-col gap-1 rounded-xl border border-ink-700 p-4 transition peer-checked:border-neon-cyan peer-checked:bg-neon-cyan/10 peer-focus-visible:outline-2 peer-focus-visible:outline-neon-cyan hover:border-ink-400;
+  }
+
   /* --- Forms --- */
   .form-label {
     @apply mb-2 block text-sm font-semibold text-ink-200;

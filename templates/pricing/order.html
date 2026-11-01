@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n core_tags %}
+
+{% block title %}{% translate "Order" %} {{ order.reference }} · {{ site_settings.site_name }}{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+<section class="container-site max-w-4xl py-20 sm:py-28">
+  <p class="eyebrow">{% translate "Order" %} {{ order.reference }}</p>
+  <h1 class="mt-4 font-display text-4xl font-bold sm:text-5xl">
+    {% if order.is_paid %}{% translate "Payment confirmed — thank you!" %}
+    {% elif order.status == "pending_verification" %}{% translate "We're checking your payment" %}
+    {% elif order.status == "cancelled" %}{% translate "This order was cancelled" %}
+    {% elif order.status == "refunded" %}{% translate "This order was refunded" %}
+    {% else %}{% translate "Complete your payment" %}{% endif %}
+  </h1>
+
+  <div class="mt-10 grid gap-8 lg:grid-cols-[3fr_2fr]">
+    <div class="rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
+      {% if order.is_paid %}
+        <p class="text-lg text-ink-300">{% translate "We've emailed you a confirmation. Our team will contact you within one business day to get started." %}</p>
+        <a href="{% url 'core:home' %}" class="btn-ghost mt-8 inline-flex">{% translate "Back to home" %}</a>
+
+      {% elif order.status == "pending_verification" %}
+        <p class="text-lg text-ink-300">{% translate "Thanks! We received your payment details and will confirm by email within one business day." %}</p>
+
+      {% elif order.status == "cancelled" or order.status == "refunded" %}
+        <p class="text-ink-300">{% translate "Questions about this order? Contact us and quote your order reference." %}</p>
+        <a href="{% url 'leads:contact' %}" class="btn-ghost mt-6 inline-flex">{% translate "Contact us" %}</a>
+
+      {% elif show_paypal %}
+        {% if order.status == "failed" %}<div role="alert" class="form-alert">{% translate "Your last payment attempt didn't go through. Please try again." %}</div>{% endif %}
+        <p class="text-ink-300">{% blocktranslate trimmed with amount=order.amount|money:order.currency %}Pay <strong>{{ amount }}</strong> securely with PayPal or a card.{% endblocktranslate %}</p>
+        <div class="mt-8" data-paypal
+             data-client-id="{{ paypal_client_id }}"
+             data-currency="{{ order.currency }}"
+             data-mode="{% if order.package.is_monthly %}subscription{% else %}capture{% endif %}"
+             data-plan-id="{{ order.package.paypal_plan_id }}"
+             data-reference="{{ order.reference }}"
+             data-create-url="{% url 'pricing:paypal_create' order.access_token %}"
+             data-capture-url="{% url 'pricing:paypal_capture' order.access_token %}"
+             data-subscription-url="{% url 'pricing:paypal_subscription' order.access_token %}"
+             data-csrf="{{ csrf_token }}">
+          <div data-paypal-buttons class="min-h-[150px] rounded-xl bg-white p-4"></div>
+          <p data-paypal-error role="alert" class="form-error hidden"></p>
+          <noscript><p class="form-error">{% translate "PayPal needs JavaScript. Please enable it or contact us." %}</p></noscript>
+        </div>
+
+      {% elif order.is_manual %}
+        <div class="text-ink-200">{% include "pricing/partials/manual_instructions.html" with show_qr=True %}</div>
+        <form method="post" enctype="multipart/form-data" class="mt-10 border-t border-ink-800 pt-8" novalidate>
+          {% csrf_token %}
+          <h2 class="font-display text-xl font-bold">{% translate "Already paid? Tell us." %}</h2>
+          {% if proof_form.non_field_errors %}<div role="alert" class="form-alert mt-4">{% for e in proof_form.non_field_errors %}<p>{{ e }}</p>{% endfor %}</div>{% endif %}
+          <div class="mt-4 grid gap-5">
+            {% include "components/form_field.html" with field=proof_form.transaction_ref %}
+            {% include "components/form_field.html" with field=proof_form.proof_of_payment %}
+          </div>
+          <button type="submit" class="btn-primary btn-lg mt-6">{% translate "I've paid — send for verification" %}</button>
+        </form>
+
+      {% else %}
+        <p class="text-ink-300">{% translate "Online payment is temporarily unavailable. Please contact us to complete your order." %}</p>
+      {% endif %}
+    </div>
+
+    <aside class="h-fit rounded-card border border-ink-800 bg-ink-900 p-8">
+      <h2 class="meta-label">{% translate "Summary" %}</h2>
+      <dl class="mt-4 space-y-3 text-sm">
+        <div class="flex justify-between gap-4"><dt class="text-ink-400">{% translate "Package" %}</dt><dd class="text-right font-semibold">{{ order.package_name }}</dd></div>
+        <div class="flex justify-between gap-4"><dt class="text-ink-400">{% translate "Billing" %}</dt><dd>{{ order.get_billing_display }}</dd></div>
+        <div class="flex justify-between gap-4"><dt class="text-ink-400">{% translate "Payment" %}</dt><dd>{{ order.get_payment_method_display }}</dd></div>
+        <div class="flex justify-between gap-4"><dt class="text-ink-400">{% translate "Status" %}</dt><dd>{{ order.get_status_display }}</dd></div>
+        <div class="flex justify-between gap-4 border-t border-ink-800 pt-3 text-base"><dt>{% translate "Total" %}</dt><dd class="font-display font-bold">{{ order.amount|money:order.currency }}</dd></div>
+      </dl>
+      <p class="mt-6 text-xs text-ink-400">{% translate "Keep this page's link: you can come back to it any time to check your order." %}</p>
+    </aside>
+  </div>
+</section>
+{% endblock %}

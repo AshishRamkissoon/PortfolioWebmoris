@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from apps.core.demo import seed_core_content
 from apps.core.models import SiteSettings
 from apps.portfolio.demo import seed_portfolio
+from apps.pricing.demo import seed_pricing
 from apps.readymade.demo import seed_readymade
 from apps.services.demo import seed_services
 
@@ -56,5 +57,11 @@ class Command(BaseCommand):
         )
 
         # Portfolio first: services link to demo projects.
-        for seed in (seed_core_content, seed_portfolio, seed_services, seed_readymade):
+        for seed in (
+            seed_core_content,
+            seed_portfolio,
+            seed_services,
+            seed_readymade,
+            seed_pricing,
+        ):
             seed(stdout=self.stdout)

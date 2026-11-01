@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import TemplateView
 
 from apps.portfolio.models import Project
+from apps.pricing.models import Package
 from apps.readymade.models import WebsiteTemplate
 from apps.services.views import published_groups
 
@@ -17,7 +17,7 @@ def home(request):
             "service_groups": published_groups(),
             "featured_templates": WebsiteTemplate.objects.featured().select_related("industry")[:6],
             "process_steps": ProcessStep.objects.all(),
-            "show_pricing": False,  # enabled in Phase 5 with service packages
+            "packages": Package.objects.published().order_by("-is_popular", "order")[:3],
         },
     )
 
@@ -37,13 +37,3 @@ def about(request):
 def legal_page(request, kind):
     page = get_object_or_404(LegalPage, kind=kind)
     return render(request, "pages/legal.html", {"page": page})
-
-
-class PlaceholderView(TemplateView):
-    """Stand-in for pages that later phases build out."""
-
-    template_name = "pages/placeholder.html"
-    title = ""
-
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(title=self.title, **kwargs)

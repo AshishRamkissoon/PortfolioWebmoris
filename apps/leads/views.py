@@ -2,10 +2,12 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import FileResponse, Http404
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 
+from apps.core.spam import over_rate_limit, turnstile_enabled, turnstile_passed
+from apps.core.uploads import private_file_response
 from apps.portfolio.models import Project
 from apps.readymade.models import WebsiteTemplate
 from apps.services.models import Service
@@ -13,7 +15,6 @@ from apps.services.models import Service
 from .emails import send_lead_emails
 from .forms import QuoteRequestForm, TemplateInquiryForm
 from .models import QuoteRequest
-from .spam import over_rate_limit, turnstile_enabled, turnstile_passed
 
 
 def _safe_path(request, value):
@@ -148,4 +149,4 @@ def quote_attachment(request, pk):
     lead = get_object_or_404(QuoteRequest, pk=pk)
     if not lead.attachment:
         raise Http404
-    return FileResponse(lead.attachment.open("rb"), as_attachment=True)
+    return private_file_response(lead.attachment)

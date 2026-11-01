@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "apps.services",
     "apps.readymade",
     "apps.leads",
+    "apps.pricing",
 ]
 
 MIDDLEWARE = [
@@ -135,6 +136,15 @@ TRUSTED_PROXY_COUNT = env.int("TRUSTED_PROXY_COUNT", default=0)
 # Optional Cloudflare Turnstile spam check; disabled when the keys are empty.
 TURNSTILE_SITE_KEY = env("TURNSTILE_SITE_KEY", default="")
 TURNSTILE_SECRET_KEY = env("TURNSTILE_SECRET_KEY", default="")
+
+# --- Payments ----------------------------------------------------------------
+# PayPal REST app credentials (developer.paypal.com). PayPal checkout is hidden while empty.
+PAYPAL_CLIENT_ID = env("PAYPAL_CLIENT_ID", default="")
+PAYPAL_CLIENT_SECRET = env("PAYPAL_CLIENT_SECRET", default="")
+PAYPAL_MODE = env("PAYPAL_MODE", default="sandbox")  # "sandbox" or "live"
+PAYPAL_WEBHOOK_ID = env("PAYPAL_WEBHOOK_ID", default="")
+# Where new-order notifications go; falls back to LEADS_NOTIFY_EMAIL, then Site settings.
+ORDERS_NOTIFY_EMAIL = env("ORDERS_NOTIFY_EMAIL", default="")
 
 # --- Security defaults (tightened further in prod.py) -----------------------
 ADMIN_URL = env("ADMIN_URL", default="manage-webmoris/")

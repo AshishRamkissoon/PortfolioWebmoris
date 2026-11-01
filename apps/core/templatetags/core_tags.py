@@ -1,5 +1,6 @@
 from django import template
 from django.conf import settings
+from django.template.defaultfilters import floatformat
 from django.urls import translate_url
 from django.utils.translation import get_language
 
@@ -49,3 +50,11 @@ def whatsapp_url(context, message=None):
     """WhatsApp link; pages can pass a more specific pre-filled message."""
     site_settings = context.get("site_settings")
     return site_settings.whatsapp_link_for(message) if site_settings else ""
+
+
+@register.filter
+def money(amount, currency=""):
+    """ "MUR 25,000" / "USD 549.50", grouped for the active language."""
+    if amount is None or amount == "":
+        return ""
+    return f"{currency} {floatformat(amount, '-2g')}".strip()

@@ -46,6 +46,29 @@ python manage.py runserver
   - set `TRUSTED_PROXY_COUNT=1` behind Nginx
 - **Booking:** paste an `https://calendly.com/...` or `https://cal.com/...` link into Site settings. It is embedded on the Contact page.
 
+## Pricing & payments
+- **Packages:** in admin, go to Pricing & orders → Packages.
+  - Each package has a **price** in MUR, shown on the site and used for Juice and bank transfers.
+  - It also has an optional **PayPal price** in USD or EUR, because PayPal can't charge MUR. Leave it empty to hide PayPal for that package.
+  - Untick "can be bought online" to show "Request a quote" instead.
+- **MCB Juice and bank:** fill the Juice number, QR code and bank details in Site settings.
+  - The customer pays, then uploads a receipt or enters a reference, and the order shows "Payment being verified".
+  - Check the payment, then select the order and run **"Mark Juice / bank payment as verified"**. This marks it paid and emails the customer.
+- **PayPal setup:**
+  1. At developer.paypal.com, create a REST app (Sandbox first) and set `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET` and `PAYPAL_MODE=sandbox`.
+  2. Add a webhook pointing to `https://<your-domain>/payments/paypal/webhook/` for these events:
+     - `PAYMENT.CAPTURE.COMPLETED`, `.DENIED` and `.REFUNDED`
+     - `BILLING.SUBSCRIPTION.ACTIVATED`, `.CANCELLED` and `.EXPIRED`
+
+     Put its ID in `PAYPAL_WEBHOOK_ID`. Webhooks are rejected unless PayPal confirms their signature.
+  3. **Monthly packages:** create a Product and a Billing Plan in PayPal, then paste the plan ID (`P-…`) into the package.
+  4. Test with PayPal sandbox buyer accounts, then switch to `PAYPAL_MODE=live` with live credentials.
+- **Security:**
+  - Prices always come from the server. The browser only asks the server to create or capture a payment.
+  - Every PayPal result is checked: reference, amount, currency, plan.
+  - An order is marked paid exactly once, even if the browser and the webhook arrive together.
+  - Order pages use an unguessable link, and payment proofs are stored privately.
+
 ## Quality checks
 ```bash
 pytest

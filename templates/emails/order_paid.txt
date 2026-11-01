@@ -1,0 +1,11 @@
+{% load i18n core_tags %}{% autoescape off %}{% translate "Hello," %}
+
+{% blocktranslate with ref=order.reference amount=order.amount|money:order.currency %}We've received your payment of {{ amount }} for order {{ ref }}. Thank you!{% endblocktranslate %}
+
+{% translate "Our team will contact you within one business day to get started." %}
+
+{% translate "Your order:" %} {{ order_url }}
+
+{% translate "Best regards," %}
+{% blocktranslate with site=site_settings.site_name %}The {{ site }} team{% endblocktranslate %}
+{% endautoescape %}

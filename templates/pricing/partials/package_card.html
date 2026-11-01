@@ -1,0 +1,26 @@
+{% load i18n core_tags %}
+<article data-reveal data-reveal-delay="{{ delay|default:'0' }}"
+         class="package-card {% if package.is_popular %}is-popular{% endif %}">
+  {% if package.is_popular %}<p class="package-badge">{% translate "Most popular" %}</p>{% endif %}
+  <h3 class="font-display text-2xl font-bold">{{ package.name }}</h3>
+  <p class="mt-2 text-ink-300">{{ package.summary }}</p>
+  <p class="mt-6">
+    <span class="font-display text-4xl font-bold">{{ package.price|money:package.currency }}</span>
+    <span class="text-ink-400">{% if package.is_monthly %}{% translate "/ month" %}{% else %}{% translate "one-off" %}{% endif %}</span>
+  </p>
+  {% if package.paypal_available %}
+    <p class="mt-1 text-sm text-ink-400">{% blocktranslate with price=package.paypal_price|money:package.paypal_currency %}or {{ price }} with PayPal{% endblocktranslate %}</p>
+  {% endif %}
+  {% with items=package.features|lines %}{% if items %}
+  <ul class="mt-6 flex-1 space-y-3">
+    {% for item in items %}<li class="flex gap-3"><span class="text-neon-cyan" aria-hidden="true">✓</span><span>{{ item }}</span></li>{% endfor %}
+  </ul>
+  {% endif %}{% endwith %}
+  <div class="mt-8">
+    {% if package.is_purchasable %}
+      <a href="{{ package.get_checkout_url }}" class="{% if package.is_popular %}btn-primary{% else %}btn-ghost{% endif %} btn-lg w-full">{% if package.is_monthly %}{% translate "Subscribe" %}{% else %}{% translate "Buy now" %}{% endif %}</a>
+    {% else %}
+      <a href="{% url 'leads:contact' %}?type={% if package.is_monthly %}ai_marketing{% else %}website{% endif %}" class="btn-ghost btn-lg w-full">{% translate "Request a quote" %}</a>
+    {% endif %}
+  </div>
+</article>

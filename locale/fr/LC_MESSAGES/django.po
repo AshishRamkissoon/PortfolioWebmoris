@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webmoris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 12:37-0700\n"
+"POT-Creation-Date: 2026-10-31 20:28-0700\n"
 "PO-Revision-Date: 2026-10-31 12:00+0400\n"
 "Last-Translator: Webmoris\n"
 "Language-Team: French\n"
@@ -16,6 +16,10 @@ msgstr ""
 #: .\apps\core\booking.py:37
 msgid "Use an https:// Calendly or Cal.com booking link."
 msgstr ""
+
+#: .\apps\core\forms.py:15
+msgid "Leave this field empty"
+msgstr "Laissez ce champ vide"
 
 #: .\apps\core\models.py:15
 msgid "International format, digits only, no + or spaces (e.g. 23057123456)."
@@ -93,144 +97,166 @@ msgstr ""
 msgid "default meta description"
 msgstr ""
 
-#: .\apps\core\models.py:76 .\apps\core\models.py:77
+#: .\apps\core\models.py:75
+msgid "MCB Juice number"
+msgstr ""
+
+#: .\apps\core\models.py:76
+msgid "Juice account name"
+msgstr ""
+
+#: .\apps\core\models.py:78
+msgid "Juice QR code"
+msgstr ""
+
+#: .\apps\core\models.py:84
+msgid "bank transfer details"
+msgstr ""
+
+#: .\apps\core\models.py:86
+msgid "Bank, account name, account number, IBAN/SWIFT — shown at checkout."
+msgstr ""
+
+#: .\apps\core\models.py:90 .\apps\core\models.py:91
 msgid "site settings"
 msgstr ""
 
-#: .\apps\core\models.py:108
+#: .\apps\core\models.py:122
 msgid "Projects delivered"
 msgstr "Projets livrés"
 
-#: .\apps\core\models.py:109
+#: .\apps\core\models.py:123
 msgid "Years of experience"
 msgstr "Années d'expérience"
 
-#: .\apps\core\models.py:110
+#: .\apps\core\models.py:124
 msgid "Happy clients"
 msgstr "Clients satisfaits"
 
-#: .\apps\core\models.py:111
+#: .\apps\core\models.py:125
 msgid "Countries served"
 msgstr "Pays desservis"
 
-#: .\apps\core\models.py:118
+#: .\apps\core\models.py:132
 msgid "story heading"
 msgstr ""
 
-#: .\apps\core\models.py:119
+#: .\apps\core\models.py:133
 msgid "our story"
 msgstr ""
 
-#: .\apps\core\models.py:120
+#: .\apps\core\models.py:134
 msgid "mission"
 msgstr ""
 
-#: .\apps\core\models.py:122
+#: .\apps\core\models.py:136
 msgid "values"
 msgstr ""
 
-#: .\apps\core\models.py:122
+#: .\apps\core\models.py:136
 msgid "One per line, as “Title: description”."
 msgstr ""
 
-#: .\apps\core\models.py:125
+#: .\apps\core\models.py:139
 msgid "tools & technologies"
 msgstr ""
 
-#: .\apps\core\models.py:125 .\apps\portfolio\models.py:44
+#: .\apps\core\models.py:139 .\apps\portfolio\models.py:44
 msgid "Comma-separated."
 msgstr ""
 
-#: .\apps\core\models.py:129 .\apps\core\models.py:130
+#: .\apps\core\models.py:143 .\apps\core\models.py:144
 msgid "about page"
 msgstr ""
 
-#: .\apps\core\models.py:151 .\apps\leads\models.py:20
-#: .\apps\portfolio\models.py:12 .\apps\readymade\models.py:21
+#: .\apps\core\models.py:165 .\apps\leads\models.py:20
+#: .\apps\portfolio\models.py:12 .\apps\pricing\models.py:33
+#: .\apps\pricing\models.py:148 .\apps\readymade\models.py:21
 #: .\apps\readymade\models.py:47 .\apps\services\models.py:11
 msgid "name"
 msgstr "nom"
 
-#: .\apps\core\models.py:152
+#: .\apps\core\models.py:166
 msgid "role"
 msgstr ""
 
-#: .\apps\core\models.py:153
+#: .\apps\core\models.py:167
 msgid "short bio"
 msgstr ""
 
-#: .\apps\core\models.py:155
+#: .\apps\core\models.py:169
 msgid "photo"
 msgstr ""
 
-#: .\apps\core\models.py:161
+#: .\apps\core\models.py:175
 msgid "show on site"
 msgstr ""
 
-#: .\apps\core\models.py:162 .\apps\core\models.py:182
+#: .\apps\core\models.py:176 .\apps\core\models.py:196
 #: .\apps\portfolio\models.py:14 .\apps\portfolio\models.py:90
 #: .\apps\portfolio\models.py:134 .\apps\portfolio\models.py:162
+#: .\apps\pricing\models.py:76 .\apps\pricing\models.py:184
 #: .\apps\readymade\models.py:23 .\apps\readymade\models.py:101
 #: .\apps\readymade\models.py:139 .\apps\services\models.py:14
 #: .\apps\services\models.py:55 .\apps\services\models.py:77
 msgid "order"
 msgstr ""
 
-#: .\apps\core\models.py:166
+#: .\apps\core\models.py:180
 msgid "team member"
 msgstr ""
 
-#: .\apps\core\models.py:167
+#: .\apps\core\models.py:181
 msgid "team members"
 msgstr ""
 
-#: .\apps\core\models.py:180 .\apps\core\models.py:199
+#: .\apps\core\models.py:194 .\apps\core\models.py:213
 #: .\apps\portfolio\models.py:34 .\apps\services\models.py:44
 msgid "title"
 msgstr ""
 
-#: .\apps\core\models.py:181 .\apps\readymade\models.py:56
+#: .\apps\core\models.py:195 .\apps\readymade\models.py:56
 #: .\apps\services\models.py:48
 msgid "description"
 msgstr ""
 
-#: .\apps\core\models.py:186
+#: .\apps\core\models.py:200
 msgid "process step"
 msgstr ""
 
-#: .\apps\core\models.py:187
+#: .\apps\core\models.py:201
 msgid "process steps"
 msgstr ""
 
-#: .\apps\core\models.py:195 .\templates\partials\footer.html:37
+#: .\apps\core\models.py:209 .\templates\partials\footer.html:37
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
 
-#: .\apps\core\models.py:196 .\templates\partials\footer.html:38
+#: .\apps\core\models.py:210 .\templates\partials\footer.html:38
 msgid "Terms & Conditions"
 msgstr "Conditions générales"
 
-#: .\apps\core\models.py:198
+#: .\apps\core\models.py:212
 msgid "page"
 msgstr ""
 
-#: .\apps\core\models.py:200
+#: .\apps\core\models.py:214
 msgid "content"
 msgstr ""
 
-#: .\apps\core\models.py:200
+#: .\apps\core\models.py:214
 msgid "Plain text. Blank lines start paragraphs."
 msgstr ""
 
-#: .\apps\core\models.py:201
+#: .\apps\core\models.py:215
 msgid "last updated"
 msgstr ""
 
-#: .\apps\core\models.py:205
+#: .\apps\core\models.py:219
 msgid "legal page"
 msgstr ""
 
-#: .\apps\core\models.py:206
+#: .\apps\core\models.py:220
 msgid "legal pages"
 msgstr ""
 
@@ -239,24 +265,16 @@ msgstr ""
 msgid "File too large: the maximum size is %(max)s MB."
 msgstr ""
 
-#: .\apps\core\urls.py:20 .\templates\partials\nav_links.html:5
-msgid "Pricing"
-msgstr "Tarifs"
-
 #: .\apps\core\video.py:41
 msgid "Use a YouTube or Vimeo video link."
 msgstr ""
 
-#: .\apps\leads\emails.py:60
+#: .\apps\leads\emails.py:47
 #, python-format
 msgid "We received your message — %(site)s"
 msgstr "Nous avons bien reçu votre message — %(site)s"
 
-#: .\apps\leads\forms.py:17
-msgid "Leave this field empty"
-msgstr "Laissez ce champ vide"
-
-#: .\apps\leads\forms.py:61
+#: .\apps\leads\forms.py:33
 msgid "Choose…"
 msgstr "Choisir…"
 
@@ -280,11 +298,11 @@ msgstr ""
 msgid "Lost"
 msgstr ""
 
-#: .\apps\leads\models.py:21
+#: .\apps\leads\models.py:21 .\apps\pricing\models.py:149
 msgid "email"
 msgstr "e-mail"
 
-#: .\apps\leads\models.py:22
+#: .\apps\leads\models.py:22 .\apps\pricing\models.py:150
 msgid "phone / WhatsApp"
 msgstr "téléphone / WhatsApp"
 
@@ -292,7 +310,7 @@ msgstr "téléphone / WhatsApp"
 msgid "message"
 msgstr "message"
 
-#: .\apps\leads\models.py:25
+#: .\apps\leads\models.py:25 .\apps\pricing\models.py:154
 msgid "language"
 msgstr ""
 
@@ -300,11 +318,12 @@ msgstr ""
 msgid "sent from page"
 msgstr ""
 
-#: .\apps\leads\models.py:30 .\apps\readymade\models.py:97
+#: .\apps\leads\models.py:30 .\apps\pricing\models.py:161
+#: .\apps\readymade\models.py:97
 msgid "status"
 msgstr ""
 
-#: .\apps\leads\models.py:32
+#: .\apps\leads\models.py:32 .\apps\pricing\models.py:176
 msgid "internal notes"
 msgstr ""
 
@@ -372,7 +391,7 @@ msgstr "Dans 1 à 3 mois"
 msgid "Flexible"
 msgstr "Flexible"
 
-#: .\apps\leads\models.py:65
+#: .\apps\leads\models.py:65 .\apps\pricing\models.py:151
 msgid "company"
 msgstr "entreprise"
 
@@ -424,36 +443,38 @@ msgstr ""
 msgid "template enquiries"
 msgstr ""
 
-#: .\apps\leads\views.py:35
+#: .\apps\leads\views.py:40
 #, python-format
 msgid "I'm interested in the ready-made website “%(name)s”."
 msgstr "Le site clés en main « %(name)s » m'intéresse."
 
-#: .\apps\leads\views.py:42
+#: .\apps\leads\views.py:44
 #, python-format
 msgid "I'd like a project like “%(name)s”."
 msgstr "J'aimerais un projet comme « %(name)s »."
 
 #: .\apps\leads\views.py:51
+#, python-format
 msgid "I'm interested in: %(name)s."
 msgstr "Je suis intéressé(e) par : %(name)s."
 
-#: .\apps\leads\views.py:63
+#: .\apps\leads\views.py:64
 msgid "You've sent several messages already. Please try again later."
 msgstr "Vous avez déjà envoyé plusieurs messages. Veuillez réessayer plus tard."
 
-#: .\apps\leads\views.py:66
+#: .\apps\leads\views.py:67
 msgid "Please complete the spam check and try again."
 msgstr "Veuillez compléter la vérification anti-spam et réessayer."
 
-#: .\apps\leads\views.py:125
+#: .\apps\leads\views.py:128
 #, python-format
 msgid "I'm interested in the “%(name)s” website for my business."
 msgstr "Le site « %(name)s » m'intéresse pour mon entreprise."
 
 #: .\apps\portfolio\models.py:13 .\apps\portfolio\models.py:35
-#: .\apps\readymade\models.py:22 .\apps\readymade\models.py:48
-#: .\apps\services\models.py:12 .\apps\services\models.py:45
+#: .\apps\pricing\models.py:34 .\apps\readymade\models.py:22
+#: .\apps\readymade\models.py:48 .\apps\services\models.py:12
+#: .\apps\services\models.py:45
 msgid "slug"
 msgstr ""
 
@@ -530,8 +551,8 @@ msgstr ""
 msgid "MP4 or WebM, max 50 MB. Used when no video link is set."
 msgstr ""
 
-#: .\apps\portfolio\models.py:88 .\apps\readymade\models.py:99
-#: .\apps\services\models.py:54
+#: .\apps\portfolio\models.py:88 .\apps\pricing\models.py:75
+#: .\apps\readymade\models.py:99 .\apps\services\models.py:54
 msgid "published"
 msgstr ""
 
@@ -611,9 +632,217 @@ msgstr ""
 msgid "Hello, I'd like a website like “%(name)s”."
 msgstr "Bonjour, j'aimerais un site comme « %(name)s »."
 
-#: .\apps\readymade\models.py:11 .\apps\services\models.py:7
+#: .\apps\pricing\emails.py:66
+#, python-format
+msgid "Your order %(ref)s — payment instructions"
+msgstr "Votre commande %(ref)s — instructions de paiement"
+
+#: .\apps\pricing\emails.py:73
+#, python-format
+msgid "Payment confirmed — order %(ref)s"
+msgstr "Paiement confirmé — commande %(ref)s"
+
+#: .\apps\pricing\forms.py:29
+msgid "Anything we should know? (optional)"
+msgstr "Quelque chose à nous signaler ? (facultatif)"
+
+#: .\apps\pricing\forms.py:44
+msgid "Transaction reference (from your Juice or bank receipt)"
+msgstr "Référence de transaction (sur votre reçu Juice ou bancaire)"
+
+#: .\apps\pricing\forms.py:56
+msgid "Add your transaction reference or upload a screenshot of the payment."
+msgstr "Ajoutez la référence de transaction ou une capture d'écran du paiement."
+
+#: .\apps\pricing\models.py:30
+msgid "One-off"
+msgstr "Paiement unique"
+
+#: .\apps\pricing\models.py:31
+msgid "Monthly"
+msgstr "Mensuel"
+
+#: .\apps\pricing\models.py:35 .\apps\services\models.py:47
+msgid "summary"
+msgstr ""
+
+#: .\apps\pricing\models.py:36
+msgid "features"
+msgstr ""
+
+#: .\apps\pricing\models.py:36 .\apps\readymade\models.py:11
+#: .\apps\services\models.py:7
 msgid "One per line."
 msgstr ""
+
+#: .\apps\pricing\models.py:38 .\apps\pricing\models.py:146
+msgid "billing"
+msgstr ""
+
+#: .\apps\pricing\models.py:42
+msgid "price"
+msgstr ""
+
+#: .\apps\pricing\models.py:45 .\apps\pricing\models.py:159
+#: .\apps\readymade\models.py:70
+msgid "currency"
+msgstr ""
+
+#: .\apps\pricing\models.py:48
+msgid "PayPal price"
+msgstr ""
+
+#: .\apps\pricing\models.py:54
+msgid "PayPal can't charge in MUR. Leave empty to hide PayPal for this package."
+msgstr ""
+
+#: .\apps\pricing\models.py:57
+msgid "PayPal currency"
+msgstr ""
+
+#: .\apps\pricing\models.py:63
+msgid "PayPal plan ID"
+msgstr ""
+
+#: .\apps\pricing\models.py:66
+msgid "Monthly packages only: the billing plan ID (P-…) created in PayPal."
+msgstr ""
+
+#: .\apps\pricing\models.py:70
+msgid "can be bought online"
+msgstr ""
+
+#: .\apps\pricing\models.py:72
+msgid "Untick to show “Request a quote” instead of “Buy”."
+msgstr ""
+
+#: .\apps\pricing\models.py:74
+msgid "highlight as popular"
+msgstr ""
+
+#: .\apps\pricing\models.py:82 .\apps\pricing\models.py:143
+msgid "package"
+msgstr ""
+
+#: .\apps\pricing\models.py:83
+msgid "packages"
+msgstr ""
+
+#: .\apps\pricing\models.py:91
+msgid "Monthly packages need a PayPal plan ID to use PayPal."
+msgstr ""
+
+#: .\apps\pricing\models.py:127
+msgid "Bank transfer"
+msgstr "Virement bancaire"
+
+#: .\apps\pricing\models.py:130
+msgid "Awaiting payment"
+msgstr "En attente de paiement"
+
+#: .\apps\pricing\models.py:131
+msgid "Payment being verified"
+msgstr "Paiement en cours de vérification"
+
+#: .\apps\pricing\models.py:132
+msgid "Paid"
+msgstr "Payé"
+
+#: .\apps\pricing\models.py:133
+msgid "Failed"
+msgstr "Échoué"
+
+#: .\apps\pricing\models.py:134
+msgid "Cancelled"
+msgstr "Annulé"
+
+#: .\apps\pricing\models.py:135
+msgid "Refunded"
+msgstr "Remboursé"
+
+#: .\apps\pricing\models.py:138
+msgid "reference"
+msgstr ""
+
+#: .\apps\pricing\models.py:145
+msgid "package name"
+msgstr ""
+
+#: .\apps\pricing\models.py:152
+msgid "notes"
+msgstr ""
+
+#: .\apps\pricing\models.py:157
+msgid "payment method"
+msgstr ""
+
+#: .\apps\pricing\models.py:158
+msgid "amount"
+msgstr ""
+
+#: .\apps\pricing\models.py:167
+msgid "transaction reference"
+msgstr ""
+
+#: .\apps\pricing\models.py:170
+msgid "proof of payment"
+msgstr ""
+
+#: .\apps\pricing\models.py:178
+msgid "created"
+msgstr ""
+
+#: .\apps\pricing\models.py:179
+msgid "updated"
+msgstr ""
+
+#: .\apps\pricing\models.py:180
+msgid "paid at"
+msgstr ""
+
+#: .\apps\pricing\models.py:185
+msgid "orders"
+msgstr ""
+
+#: .\apps\pricing\models.py:232
+msgid "PayPal webhook event"
+msgstr ""
+
+#: .\apps\pricing\models.py:233
+msgid "PayPal webhook events"
+msgstr ""
+
+#: .\apps\pricing\views.py:52
+msgid "Too many orders from your connection. Please try again later."
+msgstr "Trop de commandes depuis votre connexion. Veuillez réessayer plus tard."
+
+#: .\apps\pricing\views.py:135
+msgid "This order can't be paid this way."
+msgstr "Cette commande ne peut pas être payée ainsi."
+
+#: .\apps\pricing\views.py:139
+msgid "PayPal is unavailable. Please try again."
+msgstr "PayPal est indisponible. Veuillez réessayer."
+
+#: .\apps\pricing\views.py:150
+msgid "Payment not started."
+msgstr "Paiement non commencé."
+
+#: .\apps\pricing\views.py:155
+msgid "We couldn't confirm your payment. Please try again."
+msgstr "Nous n'avons pas pu confirmer votre paiement. Veuillez réessayer."
+
+#: .\apps\pricing\views.py:162
+msgid "Your payment wasn't completed. Please try again or choose another method."
+msgstr "Votre paiement n'a pas abouti. Réessayez ou choisissez un autre moyen."
+
+#: .\apps\pricing\views.py:184
+msgid "We couldn't confirm your subscription. Please try again."
+msgstr "Nous n'avons pas pu confirmer votre abonnement. Veuillez réessayer."
+
+#: .\apps\pricing\views.py:187
+msgid "Your subscription wasn't activated."
+msgstr "Votre abonnement n'a pas été activé."
 
 #: .\apps\readymade\models.py:28
 msgid "industries"
@@ -641,10 +870,6 @@ msgstr ""
 
 #: .\apps\readymade\models.py:67
 msgid "Leave empty to show “Price on request”."
-msgstr ""
-
-#: .\apps\readymade\models.py:70
-msgid "currency"
 msgstr ""
 
 #: .\apps\readymade\models.py:88
@@ -716,10 +941,6 @@ msgstr ""
 msgid "icon"
 msgstr ""
 
-#: .\apps\services\models.py:47
-msgid "summary"
-msgstr ""
-
 #: .\apps\services\models.py:49
 msgid "benefits"
 msgstr ""
@@ -756,15 +977,15 @@ msgstr "FAQ"
 msgid "FAQs"
 msgstr ""
 
-#: .\config\settings\base.py:93
+#: .\config\settings\base.py:94
 msgid "English"
 msgstr "Anglais"
 
-#: .\config\settings\base.py:94
+#: .\config\settings\base.py:95
 msgid "French"
 msgstr "Français"
 
-#: .\config\settings\base.py:95
+#: .\config\settings\base.py:96
 msgid "Mauritian Creole"
 msgstr "Créole mauricien"
 
@@ -780,7 +1001,7 @@ msgstr "Cette page n'existe pas."
 msgid "The link may be broken or the page may have moved."
 msgstr "Le lien est peut-être cassé ou la page a été déplacée."
 
-#: .\templates\404.html:12 .\templates\pages\placeholder.html:11
+#: .\templates\404.html:12 .\templates\pricing\order.html:22
 msgid "Back to home"
 msgstr "Retour à l'accueil"
 
@@ -850,6 +1071,9 @@ msgstr "Chiffres clés"
 
 #: .\templates\emails\lead_auto_reply.html:8
 #: .\templates\emails\lead_auto_reply.txt:1
+#: .\templates\emails\order_paid.html:10 .\templates\emails\order_paid.txt:1
+#: .\templates\emails\order_received.html:9
+#: .\templates\emails\order_received.txt:1
 msgid "Hello,"
 msgstr "Bonjour,"
 
@@ -870,17 +1094,102 @@ msgstr "Si vous ne nous avez pas contactés, vous pouvez ignorer cet e-mail."
 
 #: .\templates\emails\lead_auto_reply.html:14
 #: .\templates\emails\lead_auto_reply.txt:9
+#: .\templates\emails\order_paid.html:13 .\templates\emails\order_paid.txt:9
+#: .\templates\emails\order_received.html:23
+#: .\templates\emails\order_received.txt:17
 msgid "Best regards,"
 msgstr "Cordialement,"
 
 #: .\templates\emails\lead_auto_reply.html:14
 #: .\templates\emails\lead_auto_reply.txt:10
+#: .\templates\emails\order_paid.html:13 .\templates\emails\order_paid.txt:10
+#: .\templates\emails\order_received.html:23
+#: .\templates\emails\order_received.txt:18
+#, python-format
 msgid "The %(site)s team"
 msgstr "L'équipe %(site)s"
 
 #: .\templates\emails\lead_auto_reply.txt:5
 msgid "Need a faster answer? Chat with us on WhatsApp:"
 msgstr "Besoin d'une réponse plus rapide ? Écrivez-nous sur WhatsApp :"
+
+#: .\templates\emails\order_paid.html:9
+msgid "Payment confirmed"
+msgstr "Paiement confirmé"
+
+#: .\templates\emails\order_paid.html:10 .\templates\emails\order_paid.txt:3
+#, python-format
+msgid "We've received your payment of %(amount)s for order %(ref)s. Thank you!"
+msgstr "Nous avons bien reçu votre paiement de %(amount)s pour la commande %(ref)s. Merci !"
+
+#: .\templates\emails\order_paid.html:11 .\templates\emails\order_paid.txt:5
+msgid "Our team will contact you within one business day to get started."
+msgstr "Notre équipe vous contactera sous un jour ouvré pour démarrer."
+
+#: .\templates\emails\order_paid.html:12
+#: .\templates\emails\order_received.html:21
+msgid "Open my order"
+msgstr "Voir ma commande"
+
+#: .\templates\emails\order_paid.txt:7
+msgid "Your order:"
+msgstr "Votre commande :"
+
+#: .\templates\emails\order_received.html:8
+#, python-format
+msgid "Order %(ref)s"
+msgstr "Commande %(ref)s"
+
+#: .\templates\emails\order_received.html:9
+#, python-format
+msgid "Thank you for ordering %(package)s."
+msgstr "Merci d'avoir commandé %(package)s."
+
+#: .\templates\emails\order_received.html:12
+#, python-format
+msgid "Please send <strong>%(amount)s</strong> with MCB Juice to:"
+msgstr "Veuillez envoyer <strong>%(amount)s</strong> par MCB Juice au :"
+
+#: .\templates\emails\order_received.html:15
+#, python-format
+msgid "Please transfer <strong>%(amount)s</strong> to:"
+msgstr "Veuillez virer <strong>%(amount)s</strong> sur :"
+
+#: .\templates\emails\order_received.html:18
+#: .\templates\pricing\partials\manual_instructions.html:12
+#, python-format
+msgid "Use <strong>%(ref)s</strong> as the payment reference."
+msgstr "Indiquez <strong>%(ref)s</strong> comme référence de paiement."
+
+#: .\templates\emails\order_received.html:20
+#: .\templates\emails\order_received.txt:12
+msgid "Once you've paid, upload your receipt or transaction reference here:"
+msgstr "Une fois payé, envoyez votre reçu ou votre référence de transaction ici :"
+
+#: .\templates\emails\order_received.html:22
+#: .\templates\emails\order_received.txt:15
+msgid "If you didn't place this order, you can safely ignore this email."
+msgstr "Si vous n'avez pas passé cette commande, vous pouvez ignorer cet e-mail."
+
+#: .\templates\emails\order_received.txt:3
+#, python-format
+msgid "Thank you for your order %(ref)s (%(package)s)."
+msgstr "Merci pour votre commande %(ref)s (%(package)s)."
+
+#: .\templates\emails\order_received.txt:5
+#, python-format
+msgid "Please send %(amount)s with MCB Juice to:"
+msgstr "Veuillez envoyer %(amount)s par MCB Juice au :"
+
+#: .\templates\emails\order_received.txt:7
+#, python-format
+msgid "Please transfer %(amount)s to:"
+msgstr "Veuillez virer %(amount)s sur :"
+
+#: .\templates\emails\order_received.txt:10
+#, python-format
+msgid "Use %(ref)s as the payment reference."
+msgstr "Indiquez %(ref)s comme référence de paiement."
 
 #: .\templates\leads\contact.html:4 .\templates\leads\contact.html:9
 #: .\templates\partials\nav_links.html:7
@@ -1036,13 +1345,22 @@ msgstr "Choisissez un design pour votre secteur et nous l'adaptons à votre marq
 msgid "Browse all"
 msgstr "Tout voir"
 
+#: .\templates\pages\home.html:96 .\templates\partials\nav_links.html:5
+#: .\templates\pricing\list.html:4 .\templates\pricing\list.html:9
+msgid "Pricing"
+msgstr "Tarifs"
+
+#: .\templates\pages\home.html:96
+msgid "Clear prices. Pay online."
+msgstr "Des prix clairs. Paiement en ligne."
+
+#: .\templates\pages\home.html:98 .\templates\pricing\checkout.html:9
+msgid "All packages"
+msgstr "Toutes les formules"
+
 #: .\templates\pages\legal.html:9
 msgid "Last updated"
 msgstr "Dernière mise à jour"
-
-#: .\templates\pages\placeholder.html:10
-msgid "This page is being built. Check back soon."
-msgstr "Cette page est en construction. Revenez bientôt."
 
 #: .\templates\partials\footer.html:17
 msgid "Explore"
@@ -1213,6 +1531,209 @@ msgstr "Filtrer les projets par catégorie"
 #: .\templates\portfolio\partials\grid.html:12
 msgid "No projects to show yet — check back soon."
 msgstr "Aucun projet pour le moment — revenez bientôt."
+
+#: .\templates\pricing\checkout.html:4 .\templates\pricing\checkout.html:10
+msgid "Checkout"
+msgstr "Paiement"
+
+#: .\templates\pricing\checkout.html:15
+msgid "Online payment isn't available for this package yet. Please contact us and we'll send you a quote."
+msgstr "Le paiement en ligne n'est pas encore disponible pour cette formule. Contactez-nous et nous vous enverrons un devis."
+
+#: .\templates\pricing\checkout.html:16 .\templates\pricing\order.html:29
+msgid "Contact us"
+msgstr "Nous contacter"
+
+#: .\templates\pricing\checkout.html:30
+msgid "Payment method"
+msgstr "Moyen de paiement"
+
+#: .\templates\pricing\checkout.html:38
+msgid "card or PayPal account, confirmed instantly"
+msgstr "carte ou compte PayPal, confirmé immédiatement"
+
+#: .\templates\pricing\checkout.html:39
+msgid "pay, then upload your receipt — we confirm within one business day"
+msgstr "payez, puis envoyez votre reçu — confirmation sous un jour ouvré"
+
+#: .\templates\pricing\checkout.html:49
+msgid "Continue to payment"
+msgstr "Continuer vers le paiement"
+
+#: .\templates\pricing\checkout.html:52
+msgid "By continuing you agree to our <a href=\"%(terms_url)s\" class=\"underline hover:text-neon-cyan\">terms</a> and <a href=\"%(privacy_url)s\" class=\"underline hover:text-neon-cyan\">privacy policy</a>."
+msgstr "En continuant, vous acceptez nos <a href=\"%(terms_url)s\" class=\"underline hover:text-neon-cyan\">conditions</a> et notre <a href=\"%(privacy_url)s\" class=\"underline hover:text-neon-cyan\">politique de confidentialité</a>."
+
+#: .\templates\pricing\checkout.html:59
+msgid "Your package"
+msgstr "Votre formule"
+
+#: .\templates\pricing\checkout.html:62
+#: .\templates\pricing\partials\package_card.html:9
+msgid "/ month"
+msgstr "/ mois"
+
+#: .\templates\pricing\checkout.html:62
+#: .\templates\pricing\partials\package_card.html:9
+msgid "one-off"
+msgstr "paiement unique"
+
+#: .\templates\pricing\checkout.html:63
+#: .\templates\pricing\partials\package_card.html:12
+#, python-format
+msgid "or %(price)s with PayPal"
+msgstr "ou %(price)s avec PayPal"
+
+#: .\templates\pricing\list.html:5
+msgid "Clear, fixed prices for websites and AI marketing. Pay online with PayPal or MCB Juice."
+msgstr "Des prix fixes et clairs pour les sites web et le marketing IA. Payez en ligne avec PayPal ou MCB Juice."
+
+#: .\templates\pricing\list.html:10
+msgid "Simple packages, clear prices."
+msgstr "Des formules simples, des prix clairs."
+
+#: .\templates\pricing\list.html:11
+msgid "Pick a package and pay online with PayPal, MCB Juice or bank transfer — or ask us for a custom quote."
+msgstr "Choisissez une formule et payez en ligne par PayPal, MCB Juice ou virement — ou demandez un devis sur mesure."
+
+#: .\templates\pricing\list.html:16
+msgid "Websites — one-off"
+msgstr "Sites web — paiement unique"
+
+#: .\templates\pricing\list.html:25
+msgid "AI marketing — monthly"
+msgstr "Marketing IA — mensuel"
+
+#: .\templates\pricing\list.html:33
+msgid "Our packages will be listed here soon. In the meantime, ask us for a quote."
+msgstr "Nos formules seront bientôt présentées ici. En attendant, demandez-nous un devis."
+
+#: .\templates\pricing\list.html:37
+msgid "Prices in MUR. PayPal is charged in the currency shown. Need something different?"
+msgstr "Prix en MUR. PayPal est débité dans la devise indiquée. Besoin d'autre chose ?"
+
+#: .\templates\pricing\list.html:37
+msgid "Ask for a custom quote"
+msgstr "Demandez un devis sur mesure"
+
+#: .\templates\pricing\order.html:4 .\templates\pricing\order.html:9
+msgid "Order"
+msgstr "Commande"
+
+#: .\templates\pricing\order.html:11
+msgid "Payment confirmed — thank you!"
+msgstr "Paiement confirmé — merci !"
+
+#: .\templates\pricing\order.html:12
+msgid "We're checking your payment"
+msgstr "Nous vérifions votre paiement"
+
+#: .\templates\pricing\order.html:13
+msgid "This order was cancelled"
+msgstr "Cette commande a été annulée"
+
+#: .\templates\pricing\order.html:14
+msgid "This order was refunded"
+msgstr "Cette commande a été remboursée"
+
+#: .\templates\pricing\order.html:15
+msgid "Complete your payment"
+msgstr "Finalisez votre paiement"
+
+#: .\templates\pricing\order.html:21
+msgid "We've emailed you a confirmation. Our team will contact you within one business day to get started."
+msgstr "Nous vous avons envoyé une confirmation par e-mail. Notre équipe vous contactera sous un jour ouvré pour démarrer."
+
+#: .\templates\pricing\order.html:25
+msgid "Thanks! We received your payment details and will confirm by email within one business day."
+msgstr "Merci ! Nous avons reçu les détails de votre paiement et confirmerons par e-mail sous un jour ouvré."
+
+#: .\templates\pricing\order.html:28
+msgid "Questions about this order? Contact us and quote your order reference."
+msgstr "Une question sur cette commande ? Contactez-nous en indiquant sa référence."
+
+#: .\templates\pricing\order.html:32
+msgid "Your last payment attempt didn't go through. Please try again."
+msgstr "Votre dernière tentative de paiement n'a pas abouti. Veuillez réessayer."
+
+#: .\templates\pricing\order.html:33
+#, python-format
+msgid "Pay <strong>%(amount)s</strong> securely with PayPal or a card."
+msgstr "Payez <strong>%(amount)s</strong> en toute sécurité avec PayPal ou une carte."
+
+#: .\templates\pricing\order.html:46
+msgid "PayPal needs JavaScript. Please enable it or contact us."
+msgstr "PayPal nécessite JavaScript. Activez-le ou contactez-nous."
+
+#: .\templates\pricing\order.html:53
+msgid "Already paid? Tell us."
+msgstr "Déjà payé ? Dites-le-nous."
+
+#: .\templates\pricing\order.html:59
+msgid "I've paid — send for verification"
+msgstr "J'ai payé — envoyer pour vérification"
+
+#: .\templates\pricing\order.html:63
+msgid "Online payment is temporarily unavailable. Please contact us to complete your order."
+msgstr "Le paiement en ligne est momentanément indisponible. Contactez-nous pour finaliser votre commande."
+
+#: .\templates\pricing\order.html:68
+msgid "Summary"
+msgstr "Récapitulatif"
+
+#: .\templates\pricing\order.html:70
+msgid "Package"
+msgstr "Formule"
+
+#: .\templates\pricing\order.html:71
+msgid "Billing"
+msgstr "Facturation"
+
+#: .\templates\pricing\order.html:72
+msgid "Payment"
+msgstr "Paiement"
+
+#: .\templates\pricing\order.html:73
+msgid "Status"
+msgstr "Statut"
+
+#: .\templates\pricing\order.html:74
+msgid "Total"
+msgstr "Total"
+
+#: .\templates\pricing\order.html:76
+msgid "Keep this page's link: you can come back to it any time to check your order."
+msgstr "Gardez le lien de cette page : vous pourrez y revenir pour suivre votre commande."
+
+#: .\templates\pricing\partials\manual_instructions.html:4
+#, python-format
+msgid "Send <strong>%(amount)s</strong> with MCB Juice to:"
+msgstr "Envoyez <strong>%(amount)s</strong> par MCB Juice au :"
+
+#: .\templates\pricing\partials\manual_instructions.html:7
+msgid "MCB Juice QR code"
+msgstr "QR code MCB Juice"
+
+#: .\templates\pricing\partials\manual_instructions.html:9
+#, python-format
+msgid "Transfer <strong>%(amount)s</strong> to:"
+msgstr "Virez <strong>%(amount)s</strong> sur :"
+
+#: .\templates\pricing\partials\package_card.html:4
+msgid "Most popular"
+msgstr "Le plus populaire"
+
+#: .\templates\pricing\partials\package_card.html:21
+msgid "Subscribe"
+msgstr "S'abonner"
+
+#: .\templates\pricing\partials\package_card.html:21
+msgid "Buy now"
+msgstr "Acheter"
+
+#: .\templates\pricing\partials\package_card.html:23
+msgid "Request a quote"
+msgstr "Demander un devis"
 
 #: .\templates\readymade\detail.html:13
 msgid "All ready-made websites"

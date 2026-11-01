@@ -6,8 +6,8 @@ from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from apps.core.models import SiteSettings
+from apps.core.spam import client_ip
 from apps.leads.models import LeadStatus, QuoteRequest
-from apps.leads.spam import client_ip
 from apps.portfolio.tests.factories import ProjectFactory
 from apps.services.models import Service, ServiceGroup
 
@@ -127,7 +127,7 @@ def test_only_auto_reply_when_no_team_address(client, site_settings):
 
 
 def test_email_failure_never_loses_the_lead(client):
-    with mock.patch("apps.leads.emails._send", side_effect=OSError("SMTP down")):
+    with mock.patch("apps.leads.emails.send_templated_email", side_effect=OSError("SMTP down")):
         response = client.post(URL, valid_data())
     assert response.status_code == 302
     assert QuoteRequest.objects.count() == 1

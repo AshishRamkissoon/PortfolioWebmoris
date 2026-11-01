@@ -1,27 +1,14 @@
 import logging
 
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import gettext as _
 
+from apps.core.emails import send_templated_email
 from apps.core.models import SiteSettings
 
 logger = logging.getLogger(__name__)
-
-
-def _send(subject, template, context, to, reply_to=None):
-    message = EmailMultiAlternatives(
-        subject=" ".join(str(subject).split()),  # never allow newlines in headers
-        body=render_to_string(f"emails/{template}.txt", context),
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        to=to,
-        reply_to=reply_to or [],
-    )
-    message.attach_alternative(render_to_string(f"emails/{template}.html", context), "text/html")
-    message.send()
 
 
 def send_lead_emails(request, lead):
@@ -48,7 +35,7 @@ def send_lead_emails(request, lead):
     try:
         if notify_to:
             with translation.override(settings.LANGUAGE_CODE):
-                _send(
+                send_templated_email(
                     f"New {opts.verbose_name}: {lead.name}",
                     "lead_notification",
                     context,
@@ -56,7 +43,7 @@ def send_lead_emails(request, lead):
                     reply_to=[lead.email],
                 )
         with translation.override(lead.language):
-            _send(
+            send_templated_email(
                 _("We received your message — %(site)s") % {"site": site_settings.site_name},
                 "lead_auto_reply",
                 context,

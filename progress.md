@@ -15,13 +15,15 @@
 | 2 | Portfolio & Case Studies | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 3 | Services, Ready-made Websites, About & Home | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 4 | Lead Capture | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
-| 5 | Pricing & Payments | 🟡 In progress | 2026-10-31 | — | — |
-| 6 | Motion, 3D, SEO & Launch Readiness | ⬜ Not started | — | — | — |
+| 5 | Pricing & Payments | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
+| 6 | Motion, 3D, SEO & Launch Readiness | 🟡 In progress | 2026-10-31 | — | — |
 
 ## Open Decisions / Blockers
 - [ ] Kreol URL prefix: proceeding with `/kr/` (plan default). Owner to confirm; easy to change later in one setting.
 - [ ] Kreol UI translations are a draft; they need review by a native speaker (Phase 6).
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
+- [ ] PayPal: a REST app (sandbox first), then live credentials, a webhook and a billing plan for each monthly package. Also real package prices and the PayPal USD/EUR prices.
+- [ ] Real MCB Juice number/QR and bank details. The demo values say "DEMO".
 - [ ] For production: an SMTP account (`EMAIL_URL`), the email address that receives lead notifications, and a Calendly/Cal.com booking link.
 - [ ] Real Privacy Policy and Terms text needed, reviewed by a legal professional. The demo pages start with "DEMO TEXT".
 - [ ] Real team members, About text, services, templates and prices needed to replace the demo content.
@@ -31,6 +33,37 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-10-31 — Phase 6 — Started — branch `phase/6-launch-readiness`.
+- 2026-10-31 — Phase 5 — Completed — Approved by owner; committed on `phase/5-pricing-payments` and merged into `main`.
+- 2026-10-31 — Phase 5 — Ready for review — Exit criteria met except the live PayPal sandbox run, which needs the owner's PayPal credentials.
+  - **Built:** the `pricing` app.
+    - **Packages:** MUR price plus an optional USD/EUR PayPal price (PayPal doesn't accept MUR), one-off or monthly, "popular" highlight, and "Request a quote" when a package can't be bought online.
+    - **Pages:** `/pricing/` and a Home pricing teaser.
+    - **Checkout:** shows only the payment methods that are actually available.
+    - **Order page:** reached through an unguessable link, never cached.
+    - **PayPal one-off:** server creates and captures the payment, then verifies the reference, amount and currency.
+    - **PayPal monthly:** the server checks the subscription with PayPal (status, plan and order reference).
+    - **Webhook** at `/payments/paypal/webhook/`: signature verified, each event applied once (de-duplicated), handles capture completed/denied/refunded and subscription activated/cancelled/expired.
+    - **MCB Juice and bank:** instructions with the order reference, proof upload (stored privately), then "Payment being verified".
+    - **Admin:** "Mark Juice / bank payment as verified" (sends the confirmation), cancel/refund actions, proof preview, webhook log.
+    - **Emails:** payment instructions, payment confirmed, and team notifications (new order, proof uploaded, paid).
+  - **Security:**
+    - Prices are set on the server and tampered fields are ignored (tested).
+    - The PayPal order ID comes from our database, never the browser.
+    - Atomic "mark paid once" stops duplicate confirmations when the browser and webhook race.
+    - Webhooks are verified with PayPal, with no CSRF token needed.
+    - Staff cannot mark PayPal orders paid by hand.
+  - **Changes from plan:**
+    - `PackageFeature` became a one-per-line `features` field, as with services.
+    - Packages have a separate PayPal price because PayPal can't charge MUR.
+  - **Verified:**
+    - 217 tests passing (all PayPal API calls mocked), `ruff` clean.
+    - A live Juice checkout on the dev server worked end to end.
+    - **Not verified:** a real PayPal sandbox payment. It needs PayPal credentials (see README → Pricing & payments).
+  - **How to test:**
+    1. Open `/en/pricing/` and click "Buy now" on Business Website.
+    2. Pay with MCB Juice, upload a screenshot on the order page, then in admin open Pricing & orders → Orders, select the order and run "Mark Juice / bank payment as verified". The confirmation email prints in the server console.
+    3. For PayPal: add sandbox credentials to `.env` and restart the server; a PayPal button appears for packages that have a PayPal price.
 - 2026-10-31 — Phase 5 — Started — branch `phase/5-pricing-payments`.
 - 2026-10-31 — Phase 4 — Completed — Approved by owner; committed on `phase/4-lead-capture` and merged into `main`.
 - 2026-10-31 — Phase 4 — Ready for review — All exit criteria met.

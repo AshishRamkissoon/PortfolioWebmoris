@@ -1,0 +1,27 @@
+{% load core_tags %}<!DOCTYPE html>
+<html lang="en">
+<body style="margin:0;padding:24px;background:#f4f5f8;font-family:Arial,Helvetica,sans-serif;color:#161a26">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px">
+    <tr><td style="padding:28px 32px">
+      <p style="margin:0;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b5cf6">{{ site_settings.site_name }}</p>
+      <h1 style="margin:8px 0 8px;font-size:22px">
+        {% if event == "new" %}New order {{ order.reference }}{% elif event == "proof" %}Please verify payment for {{ order.reference }}{% else %}Order {{ order.reference }} paid{% endif %}
+      </h1>
+      {% if event == "proof" %}<p style="margin:0 0 16px;font-size:14px;color:#6b7280">Check the transfer, then select the order in admin and run “Mark Juice / bank payment as verified”.</p>{% endif %}
+      <table role="presentation" cellpadding="6" cellspacing="0" style="font-size:14px">
+        <tr><td style="color:#6b7280">Package</td><td><strong>{{ order.package_name }}</strong> ({{ order.get_billing_display }})</td></tr>
+        <tr><td style="color:#6b7280">Amount</td><td>{{ order.amount|money:order.currency }}</td></tr>
+        <tr><td style="color:#6b7280">Method</td><td>{{ order.get_payment_method_display }}</td></tr>
+        <tr><td style="color:#6b7280">Status</td><td>{{ order.get_status_display }}</td></tr>
+        <tr><td style="color:#6b7280">Customer</td><td>{{ order.name }} — <a href="mailto:{{ order.email }}">{{ order.email }}</a></td></tr>
+        <tr><td style="color:#6b7280">Phone</td><td>{{ order.phone|default:"—" }}</td></tr>
+        {% if order.company %}<tr><td style="color:#6b7280">Company</td><td>{{ order.company }}</td></tr>{% endif %}
+        {% if order.transaction_ref %}<tr><td style="color:#6b7280">Transaction ref</td><td>{{ order.transaction_ref }}</td></tr>{% endif %}
+        {% if order.proof_of_payment %}<tr><td style="color:#6b7280">Proof</td><td>Uploaded — view it in admin</td></tr>{% endif %}
+      </table>
+      {% if order.notes_from_customer %}<div style="margin-top:16px;padding:14px;background:#f4f5f8;border-radius:8px;font-size:14px">{{ order.notes_from_customer|linebreaksbr }}</div>{% endif %}
+      <p style="margin:24px 0 0"><a href="{{ admin_url }}" style="display:inline-block;padding:12px 22px;background:#22e3ff;color:#05060a;border-radius:999px;font-weight:bold;text-decoration:none">Open in admin</a></p>
+    </td></tr>
+  </table>
+</body>
+</html>

@@ -72,6 +72,20 @@ class SiteSettings(SingletonModel):
     seo_title = models.CharField(_("default SEO title"), max_length=70, blank=True)
     seo_description = models.CharField(_("default meta description"), max_length=160, blank=True)
 
+    juice_number = models.CharField(_("MCB Juice number"), max_length=30, blank=True)
+    juice_account_name = models.CharField(_("Juice account name"), max_length=100, blank=True)
+    juice_qr = models.ImageField(
+        _("Juice QR code"),
+        upload_to=RandomFilename("payments"),
+        validators=image_validators,
+        blank=True,
+    )
+    bank_details = models.TextField(
+        _("bank transfer details"),
+        blank=True,
+        help_text=_("Bank, account name, account number, IBAN/SWIFT — shown at checkout."),
+    )
+
     class Meta:
         verbose_name = _("site settings")
         verbose_name_plural = _("site settings")

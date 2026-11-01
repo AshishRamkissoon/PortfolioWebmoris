@@ -1,6 +1,6 @@
 """Spam protection for public forms: rate limiting and optional Cloudflare Turnstile.
 
-The honeypot field lives on the forms (see forms.SpamProtectedForm).
+The honeypot field lives on the forms (see apps.core.forms.SpamProtectedForm).
 """
 
 import json
@@ -34,8 +34,8 @@ def over_rate_limit(request, scope):
 
     Only a salted hash of the IP is used as the cache key; the IP itself is never stored.
     """
-    digest = salted_hmac("leads.rate-limit", client_ip(request), algorithm="sha256").hexdigest()
-    key = f"leads:rate:{scope}:{digest}"
+    digest = salted_hmac("forms.rate-limit", client_ip(request), algorithm="sha256").hexdigest()
+    key = f"forms:rate:{scope}:{digest}"
     cache.add(key, 0, RATE_LIMIT_WINDOW)
     try:
         count = cache.incr(key)

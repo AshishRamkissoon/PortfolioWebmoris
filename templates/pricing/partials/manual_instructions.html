@@ -1,0 +1,12 @@
+{% load i18n core_tags %}
+{# Payment instructions for MCB Juice / bank transfer orders (page and email). #}
+{% if order.payment_method == "juice" %}
+  <p>{% blocktranslate trimmed with amount=order.amount|money:order.currency %}Send <strong>{{ amount }}</strong> with MCB Juice to:{% endblocktranslate %}</p>
+  <p class="mt-3 font-display text-2xl font-bold">{{ site_settings.juice_number }}</p>
+  {% if site_settings.juice_account_name %}<p class="text-ink-300">{{ site_settings.juice_account_name }}</p>{% endif %}
+  {% if site_settings.juice_qr and show_qr %}<img src="{{ site_settings.juice_qr.url }}" alt="{% translate 'MCB Juice QR code' %}" class="mt-4 w-48 rounded-xl bg-white p-2">{% endif %}
+{% else %}
+  <p>{% blocktranslate trimmed with amount=order.amount|money:order.currency %}Transfer <strong>{{ amount }}</strong> to:{% endblocktranslate %}</p>
+  <p class="mt-3 whitespace-pre-line rounded-xl bg-ink-950 p-4 font-mono text-sm">{{ site_settings.bank_details }}</p>
+{% endif %}
+<p class="mt-4">{% blocktranslate trimmed with ref=order.reference %}Use <strong>{{ ref }}</strong> as the payment reference.{% endblocktranslate %}</p>
