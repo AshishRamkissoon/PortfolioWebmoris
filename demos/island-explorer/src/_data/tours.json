@@ -55,16 +55,22 @@
       "Water sports on the island",
       "Tips"
     ],
-    "meetingPoint": "Hotel pick-up, or Trou d'Eau Douce jetty at 09:15",
     "photos": [
       "cerfs-1",
       "cerfs-2",
       "cerfs-3",
       "cerfs-4"
     ],
-    "mapX": 356,
-    "mapY": 237,
-    "place": "Île aux Cerfs"
+    "place": "Île aux Cerfs",
+    "lat": -20.2725,
+    "lng": 57.803,
+    "pickup": "08:30",
+    "meet": {
+      "name": "Trou d'Eau Douce jetty",
+      "time": "09:15",
+      "lat": -20.2421,
+      "lng": 57.7876
+    }
   },
   {
     "slug": "tamarin-dolphin-watching",
@@ -115,15 +121,21 @@
     "excluded": [
       "Tips"
     ],
-    "meetingPoint": "Hotel pick-up, or Tamarin public beach at 07:00",
     "photos": [
       "tamarin-1",
       "tamarin-2",
       "lagoon-aerial"
     ],
-    "mapX": 71,
-    "mapY": 272,
-    "place": "Tamarin Bay"
+    "place": "Tamarin Bay",
+    "lat": -20.3255,
+    "lng": 57.37,
+    "pickup": "06:30",
+    "meet": {
+      "name": "Tamarin public beach",
+      "time": "07:00",
+      "lat": -20.3258,
+      "lng": 57.3727
+    }
   },
   {
     "slug": "chamarel-black-river-gorges",
@@ -180,16 +192,17 @@
       "Drinks with lunch",
       "Tips"
     ],
-    "meetingPoint": "Hotel pick-up",
     "photos": [
       "chamarel-1",
       "chamarel-2",
       "chamarel-3",
       "chamarel-4"
     ],
-    "mapX": 86,
-    "mapY": 345,
-    "place": "Chamarel"
+    "place": "Chamarel",
+    "lat": -20.4406,
+    "lng": 57.3734,
+    "pickup": "08:30",
+    "meet": null
   },
   {
     "slug": "le-morne-sunrise-hike",
@@ -241,16 +254,22 @@
       "Hiking shoes",
       "Tips"
     ],
-    "meetingPoint": "Hotel pick-up, or Le Morne trailhead at 05:40",
     "photos": [
       "lemorne-1",
       "lemorne-2",
       "lemorne-3",
       "lemorne-4"
     ],
-    "mapX": 38,
-    "mapY": 365,
-    "place": "Le Morne"
+    "place": "Le Morne",
+    "lat": -20.456,
+    "lng": 57.315,
+    "pickup": "05:00",
+    "meet": {
+      "name": "Le Morne trailhead",
+      "time": "05:40",
+      "lat": -20.4497,
+      "lng": 57.3297
+    }
   },
   {
     "slug": "port-louis-food-walk",
@@ -301,16 +320,22 @@
       "Hotel transfers (available on request)",
       "Tips"
     ],
-    "meetingPoint": "Port Louis Central Market, main gate",
     "photos": [
       "portlouis-1",
       "portlouis-2",
       "portlouis-3",
       "portlouis-4"
     ],
-    "mapX": 157,
-    "mapY": 160,
-    "place": "Port Louis"
+    "place": "Port Louis",
+    "lat": -20.1612,
+    "lng": 57.5017,
+    "pickup": null,
+    "meet": {
+      "name": "Central Market, main gate",
+      "time": "09:00",
+      "lat": -20.1612,
+      "lng": 57.5017
+    }
   },
   {
     "slug": "south-coast-tea-route",
@@ -367,15 +392,16 @@
       "Drinks with lunch",
       "Tips"
     ],
-    "meetingPoint": "Hotel pick-up",
     "photos": [
       "south-1",
       "south-2",
       "south-3",
       "south-4"
     ],
-    "mapX": 175,
-    "mapY": 405,
-    "place": "Gris Gris"
+    "place": "Gris Gris",
+    "lat": -20.524,
+    "lng": 57.531,
+    "pickup": "08:30",
+    "meet": null
   }
 ]

@@ -1,18 +1,108 @@
-{# Illustrative (not to scale) map of Mauritius with a pulsing pin. Expects `tour`. #}
-<figure class="overflow-hidden rounded-card bg-ocean-900 p-6 text-white">
-  <svg viewBox="0 0 400 440" class="mx-auto h-72 w-auto" role="img" aria-label="Illustrative map of Mauritius showing {{ tour.place }}">
-    <defs>
-      <radialGradient id="lagoon" cx="50%" cy="50%" r="60%"><stop offset="60%" stop-color="#2dd4bf" stop-opacity=".35"/><stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/></radialGradient>
-    </defs>
-    <path d="M229.6 35.1C238.3 34.5 253.6 40.4 263.7 47.0C273.8 53.7 281.2 62.8 290.0 75.0C298.7 87.3 309.1 105.3 316.2 120.5C323.4 135.7 328.3 153.2 332.7 166.0C337.0 178.8 339.8 187.6 342.5 197.5C345.3 207.4 350.2 215.6 349.1 225.5C348.0 235.4 341.4 245.9 335.9 257.0C330.5 268.1 321.2 280.9 316.2 292.0C311.3 303.1 307.2 313.9 306.4 323.5C305.6 333.1 313.6 342.4 311.6 349.4C309.7 356.4 303.1 360.5 294.6 365.5C286.0 370.5 272.7 374.3 260.4 379.5C248.2 384.8 235.2 391.5 221.0 397.0C206.8 402.5 189.3 411.0 175.0 412.4C160.8 413.8 147.7 408.0 135.6 405.4C123.6 402.8 113.2 399.6 102.8 397.0C92.4 394.4 83.1 392.6 73.3 390.0C63.4 387.4 50.6 385.7 43.7 381.6C36.8 377.5 31.9 370.9 31.9 365.5C31.9 360.1 38.4 355.8 43.7 349.4C49.0 343.0 59.9 338.3 63.4 327.0C66.9 315.7 64.2 295.5 64.7 281.5C65.3 267.5 64.2 255.8 66.7 243.0C69.2 230.2 71.6 216.2 79.8 204.5C88.0 192.8 104.4 181.2 115.9 173.0C127.4 164.8 140.9 163.7 148.8 155.5C156.7 147.3 159.1 134.5 163.2 124.0C167.4 113.5 168.5 101.8 173.7 92.5C179.0 83.2 188.5 75.0 194.8 68.0C201.0 61.0 205.4 56.0 211.2 50.5C217.0 45.0 220.8 35.7 229.6 35.1Z"
-          fill="url(#lagoon)" transform="translate(200 240) scale(1.12) translate(-200 -240)"/>
-    <path d="M229.6 35.1C238.3 34.5 253.6 40.4 263.7 47.0C273.8 53.7 281.2 62.8 290.0 75.0C298.7 87.3 309.1 105.3 316.2 120.5C323.4 135.7 328.3 153.2 332.7 166.0C337.0 178.8 339.8 187.6 342.5 197.5C345.3 207.4 350.2 215.6 349.1 225.5C348.0 235.4 341.4 245.9 335.9 257.0C330.5 268.1 321.2 280.9 316.2 292.0C311.3 303.1 307.2 313.9 306.4 323.5C305.6 333.1 313.6 342.4 311.6 349.4C309.7 356.4 303.1 360.5 294.6 365.5C286.0 370.5 272.7 374.3 260.4 379.5C248.2 384.8 235.2 391.5 221.0 397.0C206.8 402.5 189.3 411.0 175.0 412.4C160.8 413.8 147.7 408.0 135.6 405.4C123.6 402.8 113.2 399.6 102.8 397.0C92.4 394.4 83.1 392.6 73.3 390.0C63.4 387.4 50.6 385.7 43.7 381.6C36.8 377.5 31.9 370.9 31.9 365.5C31.9 360.1 38.4 355.8 43.7 349.4C49.0 343.0 59.9 338.3 63.4 327.0C66.9 315.7 64.2 295.5 64.7 281.5C65.3 267.5 64.2 255.8 66.7 243.0C69.2 230.2 71.6 216.2 79.8 204.5C88.0 192.8 104.4 181.2 115.9 173.0C127.4 164.8 140.9 163.7 148.8 155.5C156.7 147.3 159.1 134.5 163.2 124.0C167.4 113.5 168.5 101.8 173.7 92.5C179.0 83.2 188.5 75.0 194.8 68.0C201.0 61.0 205.4 56.0 211.2 50.5C217.0 45.0 220.8 35.7 229.6 35.1Z"
-          fill="#f8f1e5" stroke="#efe3cf" stroke-width="2"/>
-    <ellipse cx="364" cy="237" rx="6" ry="3.5" fill="#f8f1e5"/>
-    <g fill="#ff6b4a">
-      <circle cx="{{ tour.mapX }}" cy="{{ tour.mapY }}" r="16" opacity=".35" class="origin-center motion-safe:animate-ping-slow [transform-box:fill-box]"/>
-      <circle cx="{{ tour.mapX }}" cy="{{ tour.mapY }}" r="7" stroke="#fff" stroke-width="3"/>
-    </g>
-  </svg>
-  <figcaption class="mt-4 text-center text-sm text-white/80"><strong class="text-white">{{ tour.place }}</strong> · {{ tour.meetingPoint }}<span class="block text-xs text-white/50">Illustrative map, not to scale</span></figcaption>
-</figure>
+{# Meeting point: a simplified map of Mauritius (markers placed from real coordinates) and the meeting details. Expects `tour`. #}
+{% set spot = tour.meet or tour %}
+{% set spotName = tour.meet.name if tour.meet else tour.place %}
+{% set pin = spot | mapPos %}
+{% set coords = spot.lat ~ "," ~ spot.lng %}
+{% macro row(icon, title) %}
+  <div class="flex gap-4">
+    <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-lagoon-100 text-ocean-900" aria-hidden="true">
+      <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        {% if icon == "clock" %}<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+        {% elif icon == "bus" %}<path d="M5 17h14V7a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3zM5 12h14M8 20v-3M16 20v-3"/>
+        {% else %}<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>{% endif %}
+      </svg>
+    </span>
+    <div><dt class="font-semibold text-ocean-900">{{ title }}</dt><dd class="mt-0.5 text-ink-500">{{ caller() }}</dd></div>
+  </div>
+{% endmacro %}
+
+<div class="card grid md:grid-cols-[1.1fr_1fr]">
+  <figure class="relative flex items-center bg-[#cfe8ee]">
+    <div class="relative mx-auto aspect-[400/440] w-full max-w-md">
+      <svg viewBox="0 0 400 440" class="absolute inset-0 size-full" aria-hidden="true">
+        <defs>
+          <path id="mu-coast" d="M229.6 35.1C238.3 34.5 253.6 40.4 263.7 47.0C273.8 53.7 281.2 62.8 290.0 75.0C298.7 87.3 309.1 105.3 316.2 120.5C323.4 135.7 328.3 153.2 332.7 166.0C337.0 178.8 339.8 187.6 342.5 197.5C345.3 207.4 350.2 215.6 349.1 225.5C348.0 235.4 341.4 245.9 335.9 257.0C330.5 268.1 321.2 280.9 316.2 292.0C311.3 303.1 307.2 313.9 306.4 323.5C305.6 333.1 313.6 342.4 311.6 349.4C309.7 356.4 303.1 360.5 294.6 365.5C286.0 370.5 272.7 374.3 260.4 379.5C248.2 384.8 235.2 391.5 221.0 397.0C206.8 402.5 189.3 411.0 175.0 412.4C160.8 413.8 147.7 408.0 135.6 405.4C123.6 402.8 113.2 399.6 102.8 397.0C92.4 394.4 83.1 392.6 73.3 390.0C63.4 387.4 50.6 385.7 43.7 381.6C36.8 377.5 31.9 370.9 31.9 365.5C31.9 360.1 38.4 355.8 43.7 349.4C49.0 343.0 59.9 338.3 63.4 327.0C66.9 315.7 64.2 295.5 64.7 281.5C65.3 267.5 64.2 255.8 66.7 243.0C69.2 230.2 71.6 216.2 79.8 204.5C88.0 192.8 104.4 181.2 115.9 173.0C127.4 164.8 140.9 163.7 148.8 155.5C156.7 147.3 159.1 134.5 163.2 124.0C167.4 113.5 168.5 101.8 173.7 92.5C179.0 83.2 188.5 75.0 194.8 68.0C201.0 61.0 205.4 56.0 211.2 50.5C217.0 45.0 220.8 35.7 229.6 35.1Z"/>
+          <clipPath id="mu-clip"><use href="#mu-coast"/></clipPath>
+          <radialGradient id="mu-sea" cx="50%" cy="50%" r="65%"><stop offset="0" stop-color="#e2f3f5"/><stop offset="1" stop-color="#cfe8ee"/></radialGradient>
+          <filter id="mu-lift" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#0a2a3d" flood-opacity=".16"/></filter>
+        </defs>
+        <rect width="400" height="440" fill="url(#mu-sea)"/>
+        {# Depth contours, lagoon and the reef that rings the island #}
+        <use href="#mu-coast" transform="translate(190 230) scale(1.42) translate(-190 -230)" fill="none" stroke="#fff" stroke-opacity=".35" vector-effect="non-scaling-stroke"/>
+        <use href="#mu-coast" transform="translate(190 230) scale(1.24) translate(-190 -230)" fill="none" stroke="#fff" stroke-opacity=".5" vector-effect="non-scaling-stroke"/>
+        <use href="#mu-coast" transform="translate(190 230) scale(1.09) translate(-190 -230)" fill="#e6f6f2"/>
+        <use href="#mu-coast" transform="translate(190 230) scale(1.11) translate(-190 -230)" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="1 4" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        {# Land, central plateau and the national park #}
+        <use href="#mu-coast" fill="#fbf7ef" filter="url(#mu-lift)"/>
+        <g clip-path="url(#mu-clip)">
+          <ellipse cx="185" cy="275" rx="85" ry="60" fill="#f4eddf"/>
+          <ellipse cx="120" cy="322" rx="56" ry="34" transform="rotate(-28 120 322)" fill="#dcebd2"/>
+        </g>
+        <use href="#mu-coast" fill="none" stroke="#e2d6c0" stroke-width="1.5"/>
+        <ellipse cx="361" cy="236" rx="6" ry="3.5" fill="#fbf7ef" stroke="#e2d6c0"/>
+        {# Motorway: Grand Baie – Port Louis – Curepipe – Mahébourg #}
+        <path d="M210 60C190 100 160 130 157 160C155 200 170 230 174 265C200 300 250 320 290 327" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M210 60C190 100 160 130 157 160C155 200 170 230 174 265C200 300 250 320 290 327" fill="none" stroke="#f2c08a" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+
+      {% if pin.x > 175 or pin.y < 280 %}
+        <span class="absolute -translate-x-1/2 -translate-y-1/2 text-center text-[10px] leading-tight font-medium text-[#5d7f4c] italic" style="left: 33%; top: 72.5%" aria-hidden="true">Black River Gorges<br>National Park</span>
+      {% endif %}
+
+      {% for place in mapPlaces | mapTowns(pin, spotName) %}
+        <span class="absolute flex -translate-y-1/2 items-center gap-1.5 text-[11px] font-medium whitespace-nowrap text-ink-500 {% if place.pos.x > 260 %}-translate-x-full flex-row-reverse ml-[3px]{% else %}-ml-[3px]{% endif %}" style="left: {{ place.pos.left }}%; top: {{ place.pos.top }}%" aria-hidden="true">
+          <span class="size-1.5 rounded-full bg-ink-500"></span>{{ place.name }}
+        </span>
+      {% endfor %}
+
+      {% for other in tours | others(tour.slug) %}
+        {% set p = (other.meet or other) | mapPos %}
+        <a href="/tours/{{ other.slug }}/" class="group/pin absolute -translate-1/2 rounded-full p-1.5" style="left: {{ p.left }}%; top: {{ p.top }}%">
+          <span class="block size-3 rounded-full border-2 border-white bg-ocean-600 shadow transition group-hover/pin:scale-125"></span>
+          <span class="pointer-events-none absolute bottom-full left-1/2 z-10 -translate-x-1/2 rounded-full bg-ocean-900 px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap text-white opacity-0 transition group-hover/pin:opacity-100 group-focus-visible/pin:opacity-100">{{ other.title }}</span>
+        </a>
+      {% endfor %}
+
+      <div class="pointer-events-none absolute z-20" style="left: {{ pin.left }}%; top: {{ pin.top }}%">
+        <span class="absolute top-0 left-0 hidden size-9 -translate-1/2 rounded-full bg-coral-500/35 motion-safe:block motion-safe:animate-ping-slow"></span>
+        <span class="absolute top-0 left-0 h-1.5 w-5 -translate-1/2 rounded-full bg-ocean-950/25 blur-[2px]"></span>
+        <svg class="absolute bottom-0 left-0 h-10 w-8 -translate-x-1/2 drop-shadow-md" viewBox="0 0 32 40" aria-hidden="true">
+          <path d="M16 39s13-13.4 13-23.5a13 13 0 0 0-26 0C3 25.6 16 39 16 39z" fill="#ff6b4a" stroke="#fff" stroke-width="2"/>
+          <circle cx="16" cy="15.5" r="5" fill="#fff"/>
+        </svg>
+        <span class="absolute bottom-12 rounded-full bg-ocean-900 px-3 py-1.5 text-xs font-semibold whitespace-nowrap text-white shadow-lg {% if pin.x < 110 %}-left-4{% elif pin.x > 290 %}right-[-1rem]{% else %}left-0 -translate-x-1/2{% endif %}">{{ spotName }}</span>
+      </div>
+
+      <div class="absolute top-4 right-4 flex size-11 flex-col items-center justify-center rounded-full bg-white/85 text-ocean-900 shadow-sm backdrop-blur" aria-hidden="true">
+        <span class="text-[9px] leading-none font-bold">N</span>
+        <svg class="mt-0.5 h-4 w-3" viewBox="0 0 12 16"><path d="M6 0l5 8H1z" fill="#ff6b4a"/><path d="M6 16L1 8h10z" fill="currentColor" opacity=".3"/></svg>
+      </div>
+      <div class="absolute bottom-4 left-0 w-full" aria-hidden="true">
+        <span class="ml-4 block h-1.5 border-x-2 border-b-2 border-ink-500" style="width: 15.2%"></span>
+        <span class="mt-1 ml-4 block text-[10px] font-semibold text-ink-500">10 km</span>
+      </div>
+      <span class="absolute right-4 bottom-4 text-[10px] text-ink-500/80">Simplified map</span>
+    </div>
+    <figcaption class="sr-only">Map of Mauritius showing {{ spotName }}{% if tour.meet %}, the meeting point for this tour{% endif %}.</figcaption>
+  </figure>
+
+  <div class="flex flex-col p-7 sm:p-9">
+    <p class="eyebrow">{% if tour.meet %}Where we meet{% else %}Door-to-door{% endif %}</p>
+    <h3 class="mt-3 text-2xl leading-tight font-semibold sm:text-3xl">{{ tour.meet.name if tour.meet else "We pick you up at your hotel" }}</h3>
+    <dl class="mt-7 space-y-5 text-sm">
+      {% if tour.meet %}
+        {% call row("clock", "Meeting time") %}{{ tour.meet.time }}, please arrive 10 minutes early.{% endcall %}
+      {% endif %}
+      {% if tour.pickup %}
+        {% call row("bus", "Hotel pick-up included") %}From about {{ tour.pickup }}. We confirm the exact time by WhatsApp the evening before.{% endcall %}
+      {% else %}
+        {% call row("bus", "Getting there") %}Hotel pick-up isn't included on this tour. Taxis and buses stop a short walk away.{% endcall %}
+      {% endif %}
+      {% call row("pin", "Tour area") %}{{ tour.place }}, Mauritius{% endcall %}
+    </dl>
+    <div class="mt-auto grid grid-cols-2 gap-3 pt-8">
+      <a href="https://www.google.com/maps/search/?api=1&amp;query={{ coords }}" target="_blank" rel="noopener noreferrer" class="btn btn-coral px-4 {% if not tour.meet %}col-span-2{% endif %}">{% if tour.meet %}Google Maps{% else %}View area on Google Maps{% endif %} ↗</a>
+      {% if tour.meet %}<a href="https://www.google.com/maps/dir/?api=1&amp;destination={{ coords }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline px-4">Directions ↗</a>{% endif %}
+    </div>
+  </div>
+</div>

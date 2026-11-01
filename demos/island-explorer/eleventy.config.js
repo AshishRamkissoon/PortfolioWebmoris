@@ -45,6 +45,27 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("featured", (tours) => tours.filter((t) => t.featured));
   eleventyConfig.addFilter("others", (tours, slug) => tours.filter((t) => t.slug !== slug));
   eleventyConfig.addFilter("limit", (items, count) => items.slice(0, count));
+  // Projects { lat, lng } onto the island map's 400×440 viewBox (linear fit to the coastline path).
+  // `left`/`top` are percentages for HTML markers laid over the SVG.
+  eleventyConfig.addFilter("mapPos", ({ lat, lng }) => {
+    const x = 157 + 666 * (lng - 57.501);
+    const y = 160 + 675 * (-20.161 - lat);
+    return { x, y, left: (x / 4).toFixed(2), top: (y / 4.4).toFixed(2) };
+  });
+  // Town labels that don't collide with the main pin or its name label (sizes are rough, in map units).
+  eleventyConfig.addFilter("mapTowns", (places, pin, pinLabel) => {
+    const project = eleventyConfig.getFilter("mapPos");
+    const chip = pinLabel.length * 7 + 24;
+    const chipLeft = pin.x < 110 ? pin.x - 15 : pin.x > 290 ? pin.x + 15 - chip : pin.x - chip / 2;
+    return places
+      .map((place) => ({ ...place, pos: project(place) }))
+      .filter(({ name, pos }) => {
+        const width = name.length * 6 + 10;
+        const [from, to] = pos.x > 260 ? [pos.x - width, pos.x] : [pos.x, pos.x + width];
+        const overlapsX = from < Math.max(chipLeft + chip, pin.x + 20) && to > Math.min(chipLeft, pin.x - 20);
+        return !(overlapsX && pos.y > pin.y - 95 && pos.y < pin.y + 15);
+      });
+  });
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },

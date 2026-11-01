@@ -38,6 +38,11 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 7 — Meeting point map redesigned — On tour pages, the map is now a professional map card instead of the plain island outline.
+  - **Map:** a light chart-style map with the lagoon, reef and depth contours, the national park, the motorway and town labels, a compass and a 10 km scale bar.
+  - **Markers:** placed from real coordinates. The meeting point has a coral pin and label; the other tours are small dots that link to their pages. Town labels hide when they would collide with the pin.
+  - **Details panel:** meeting time, hotel pick-up (or how to get there), the tour area, and "Google Maps" / "Directions" links that open in a new tab.
+  - **Data:** `tours.json` now has `lat`/`lng`, `meet` and `pickup` instead of `mapX`/`mapY`/`meetingPoint`. Demo QA passes 9/9, the demo kit 3/3, no console errors.
 - 2026-11-01 — Phase 7 — Demo listed on Webmoris — The Island Explorer ready-made card now uses real screenshots of the demo.
   - Screenshots are stored in `apps/readymade/demo_screens/island-explorer/`: a cover plus 4 gallery images (desktop + phone, moods, tour listing, tour page). `seed_demo` uses them; templates without a built demo keep their placeholders.
   - Locally, the template's Live demo URL is `http://127.0.0.1:5002/`. After deploying, change it in admin to the real subdomain.

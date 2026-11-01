@@ -10,7 +10,7 @@ npm install
 npm run build          # first build encodes all photos (slow once, then cached)
 npm run serve          # http://localhost:5002 (Eleventy dev server)
 ```
-- **Tours:** `src/_data/tours.json`. Add a tour there, and its page, card and map pin are generated automatically.
+- **Tours:** `src/_data/tours.json`. Add a tour there, and its page, card and map pin are generated automatically. Each tour has real coordinates (`lat`/`lng`), an optional `meet` point (`name`, `time`, `lat`, `lng`) and a `pickup` time (or `null`). Town labels on the map live in `src/_data/mapPlaces.json`.
 - **Photos:** `src/images/photos/`, with credits in `src/_data/photos.json`. The build turns them into responsive AVIF, WebP and JPEG files.
 - **Site text:** `src/_data/site.json` holds the brand, FAQs, promises and booking steps.
 
