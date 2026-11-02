@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+title: Properties for sale
+section: properties
+description: Villas, apartments, penthouses and land for sale in Mauritius. Example listings with prices, photos and locations.
+preload: { key: "villa-1", sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw", widths: [480, 960] }
+---
+{% from "partials/icon.njk" import icon %}
+<section class="relative overflow-hidden bg-linear-to-br from-emerald-950 via-emerald-900 to-emerald-700 text-white">
+  <div class="absolute -top-24 -right-24 size-96 rounded-full bg-gold-400/25 blur-3xl" aria-hidden="true"></div>
+  <div class="absolute -bottom-32 left-1/3 size-80 rounded-full bg-coral-500/25 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative py-12 sm:py-16">
+    <p class="hero-rise eyebrow text-gold-400">Properties</p>
+    <h1 class="hero-rise mt-3 text-5xl [animation-delay:80ms] sm:text-6xl">Homes for sale <span class="text-gold-light">in Mauritius</span></h1>
+    <p class="hero-rise mt-4 max-w-2xl text-lg text-white/80 [animation-delay:160ms]">Every home visited and checked by our team. Prices in US dollars; example listings.</p>
+  </div>
+</section>
+
+<form action="/properties/" method="get" class="sticky z-30 border-b border-line bg-white/95 backdrop-blur" style="top: calc(var(--demo-bar-h, 0px) + 4.5rem)" aria-label="Filter properties" data-property-filter data-demo-navigation>
+  <div class="container-x flex flex-col gap-3 py-3 lg:flex-row lg:items-center">
+    <div class="flex gap-2 overflow-x-auto [scrollbar-width:none]">
+      <a href="/properties/" class="filter-btn" data-type-chip="" aria-pressed="true">All</a>
+      {% for type in site.types %}<a href="/properties/?type={{ type.slug }}" class="filter-btn" data-type-chip="{{ type.slug }}" aria-pressed="false">{{ type.name }}</a>{% endfor %}
+    </div>
+    <div class="grid grid-cols-3 gap-2 lg:ml-auto lg:w-[34rem]">
+      <select class="field py-2 text-sm" name="area" aria-label="Area"><option value="">Any area</option>{% for area in areas %}<option value="{{ area.slug }}">{{ area.name }}</option>{% endfor %}</select>
+      <select class="field py-2 text-sm" name="budget" aria-label="Budget">{% for b in site.budgets %}<option value="{{ b.value }}" {% if b.value == 0 %}selected{% endif %}>{{ b.label }}</option>{% endfor %}</select>
+      <select class="field py-2 text-sm" name="beds" aria-label="Bedrooms"><option value="0">Any bedrooms</option>{% for n in [2, 3, 4, 5] %}<option value="{{ n }}">{{ n }}+ bedrooms</option>{% endfor %}</select>
+    </div>
+    <button type="submit" class="btn btn-dark py-2" data-filter-submit>Filter</button>
+  </div>
+</form>
+
+<section class="container-x py-10">
+  <p class="text-sm text-ink-500"><span class="font-bold text-ink-900" data-property-count>{{ properties | length }}</span> properties</p>
+  <div class="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-property-grid>
+    {% asyncEach home in properties %}
+      {% set eager = loop.first %}
+      {% include "partials/property-card.njk" %}
+    {% endeach %}
+  </div>
+  <div class="card mt-6 p-10 text-center" data-property-empty hidden>
+    <p class="font-display text-3xl">No homes match yet</p>
+    <p class="mt-2 text-ink-500">Try a wider budget or another area, or tell us what you need and we'll look for you.</p>
+    <a href="/contact/" class="btn btn-primary mt-6">Get a free shortlist</a>
+  </div>
+</section>

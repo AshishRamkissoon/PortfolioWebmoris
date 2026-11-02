@@ -20,6 +20,8 @@
 | 7 | First Live Demo: Island Explorer (Tourism) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 | 8 | Second Live Demo: Lagon Bistro (Restaurant / Beach Bar) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 | 9 | Third Live Demo: Drive Moris (Car Rental) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
+| 10 | Fourth Live Demo: Villa Select (Real Estate) | 🔵 Awaiting approval | 2026-11-02 | 2026-11-02 | — |
+| 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ⬜ Not started | — | — | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -40,6 +42,12 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-02 — Phase 10 — Ready for review — Villa Select real estate demo built and tested locally (http://127.0.0.1:5005).
+  - **Built:** `demos/villa-select/`: Home, Properties (filters), 9 property pages, Contact, Credits, 404. Fictional agency, 9 example listings across 5 real areas of Mauritius (prices in USD), 39 Wikimedia Commons photos, all credited.
+  - **Look and motion:** deep emerald, champagne gold and coral, DM Serif Display + Manrope; hero camera dolly, pinned dolly reveal, word-by-word headings, price pins on the real Mauritius map, counting stats, places marquee, scroll zoom, magnetic buttons.
+  - **Conversion:** hero search (area, type, budget), "Book a viewing" everywhere, sticky viewing request on property pages, monthly payment estimate, free 48-hour shortlist offer, mobile action bar.
+  - **Checks:** 22/22 demo QA checks, no console errors. Mobile (throttled, uncompressed) LCP 1.7–2.7 s, CLS ≤ 0.02. Webmoris tests pass, ruff clean; the Villa Select card has real screenshots (local Live demo URL http://127.0.0.1:5005/).
+- 2026-11-02 — Phase 10 — Started — The owner asked for more demo sites and chose Villa Select (real estate) then Eco Lodge (villa / guesthouse). Built on branch `phase/10-real-estate-demo` (from Phase 9, still awaiting approval).
 - 2026-11-01 — Phase 9 — Ready for review (colour + VFX) — Richer colour and cinematic motion added to the Bright island design.
   - **Colour:** deeper lagoon blues, turquoise and a coral-to-sun gradient on buttons and accent words; dark lagoon bands for How it works, stats and page headers.
   - **Effects:** full-bleed hero with camera dolly in/out and mouse parallax (Belle Mare lagoon aerial), pinned dolly reveal of the lagoon photo, word-by-word headings, counting stats, destinations marquee, scroll zoom on trip photos, drawn step line, magnetic buttons, card lift on hover.

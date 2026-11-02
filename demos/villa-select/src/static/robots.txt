@@ -1,0 +1,3 @@
+# Demo website by Webmoris — not for search engines.
+User-agent: *
+Disallow: /

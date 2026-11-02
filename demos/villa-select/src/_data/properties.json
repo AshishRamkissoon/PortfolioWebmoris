@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "lagoon-villa-grand-baie", "title": "Lagoon-front villa", "type": "villa", "area": "north", "place": "Grand Baie",
+    "lat": -20.0045, "lng": 57.5745, "price": 1450000, "beds": 4, "baths": 4, "size": 320, "land": 1200,
+    "international": true, "tag": "Featured", "featured": true,
+    "summary": "Four en-suite bedrooms, a 15 m pool and a private path to the lagoon.",
+    "description": "A single-storey villa set in a tropical garden, with wide terraces that open the living room onto the pool and the lagoon beyond. The four bedrooms each have their own bathroom; the main suite looks straight out to sea. Grand Baie's restaurants and marina are five minutes away.",
+    "features": ["Private pool", "Direct lagoon access", "Air conditioning", "Solar water heating", "Staff quarters", "Fully furnished"],
+    "photos": ["villa-1", "living-1", "bedroom-1", "kitchen-1", "bath-1"]
+  },
+  {
+    "slug": "sea-view-penthouse-pereybere", "title": "Sea-view penthouse", "type": "penthouse", "area": "north", "place": "Pereybère",
+    "lat": -19.9985, "lng": 57.594, "price": 890000, "beds": 3, "baths": 3, "size": 210, "land": 0,
+    "international": true, "tag": "New build", "featured": true,
+    "summary": "A rooftop terrace with a plunge pool, 200 m from Pereybère beach.",
+    "description": "The top floor of a small new residence: an open-plan living space, three bedrooms and a 90 m² rooftop with a plunge pool and views over the northern islands. Secure parking, lift and a shared garden.",
+    "features": ["Rooftop plunge pool", "Lift", "Secure parking", "Walk to the beach", "Shared garden", "Ready in 2027"],
+    "photos": ["apartment-1", "living-2", "bedroom-2", "bath-2"]
+  },
+  {
+    "slug": "garden-villa-tamarin", "title": "Garden villa with mountain view", "type": "villa", "area": "west", "place": "Tamarin",
+    "lat": -20.3305, "lng": 57.3805, "price": 720000, "beds": 3, "baths": 3, "size": 240, "land": 900,
+    "international": true, "tag": "Featured", "featured": true,
+    "summary": "Three bedrooms, a pool and the Tamarin mountain in the windows.",
+    "description": "A modern villa in a gated estate close to Tamarin Bay. The living area wraps around the pool, and the garden looks towards the Tamarin mountain. Schools, shops and the surf spot are all within ten minutes.",
+    "features": ["Private pool", "Gated estate", "Mountain view", "Double garage", "Air conditioning", "Garden irrigation"],
+    "photos": ["villa-2", "living-3", "bedroom-3", "kitchen-2"]
+  },
+  {
+    "slug": "beach-apartment-flic-en-flac", "title": "Beach apartment", "type": "apartment", "area": "west", "place": "Flic en Flac",
+    "lat": -20.2855, "lng": 57.3745, "price": 395000, "beds": 2, "baths": 2, "size": 120, "land": 0,
+    "international": true, "tag": null, "featured": false,
+    "summary": "Two bedrooms on the beach road, with a shared pool and sunsets.",
+    "description": "A bright ground-floor apartment in a well-kept residence on the Flic en Flac beach road. Two bedrooms, a terrace onto the shared pool, and the beach across the road. A popular holiday-rental location.",
+    "features": ["Shared pool", "Across from the beach", "Terrace", "Parking", "Furnished", "Rental potential"],
+    "photos": ["apartment-2", "living-4", "bedroom-4"]
+  },
+  {
+    "slug": "golf-villa-bel-ombre", "title": "Golf and ocean villa", "type": "villa", "area": "south", "place": "Bel Ombre",
+    "lat": -20.4985, "lng": 57.4195, "price": 1950000, "beds": 5, "baths": 5, "size": 410, "land": 1600,
+    "international": true, "tag": "Featured", "featured": true,
+    "summary": "Five suites on the fairway, a short walk from the beach.",
+    "description": "A large family villa in a golf estate on the south coast: five suites, a cinema room and a 20 m pool facing the fairway. Residents have access to the beach club, spa and golf course.",
+    "features": ["20 m pool", "Golf course access", "Beach club", "Cinema room", "Staff quarters", "Generator"],
+    "photos": ["villa-3", "living-5", "bedroom-5", "bath-3", "kitchen-3"]
+  },
+  {
+    "slug": "family-home-moka", "title": "Family home in the hills", "type": "house", "area": "centre", "place": "Moka",
+    "lat": -20.2265, "lng": 57.5005, "price": 480000, "beds": 4, "baths": 3, "size": 260, "land": 1000,
+    "international": false, "tag": null, "featured": false,
+    "summary": "Four bedrooms in a quiet street, close to schools and Port Louis.",
+    "description": "A well-built family house on a large plot in Moka, where the air is cooler than on the coast. Four bedrooms, a covered terrace and a mature garden. Ebène and Port Louis are fifteen minutes away.",
+    "features": ["Large garden", "Covered terrace", "Near schools", "Double garage", "Office"],
+    "photos": ["house-1", "living-6", "kitchen-4"]
+  },
+  {
+    "slug": "marina-apartment-black-river", "title": "Marina apartment", "type": "apartment", "area": "west", "place": "Black River",
+    "lat": -20.3605, "lng": 57.3735, "price": 560000, "beds": 3, "baths": 2, "size": 150, "land": 0,
+    "international": true, "tag": null, "featured": false,
+    "summary": "Three bedrooms with a balcony over the river and the boats.",
+    "description": "A spacious apartment in a marina residence where the Black River meets the sea. A long balcony looks over the moorings, with the mountains of the national park behind.",
+    "features": ["Marina view", "Mooring available", "Shared pool", "Gym", "Concierge"],
+    "photos": ["apartment-3", "living-7", "bedroom-6"]
+  },
+  {
+    "slug": "beachfront-villa-belle-mare", "title": "Beachfront villa", "type": "villa", "area": "east", "place": "Belle Mare",
+    "lat": -20.188, "lng": 57.7665, "price": 1650000, "beds": 4, "baths": 4, "size": 350, "land": 1400,
+    "international": true, "tag": null, "featured": true,
+    "summary": "Steps from one of the island's longest white beaches.",
+    "description": "A contemporary villa directly on Belle Mare beach. The living spaces open on three sides, and the pool sits between the garden and the sand. A quiet, private stretch of the east coast.",
+    "features": ["On the beach", "Private pool", "Outdoor kitchen", "Air conditioning", "Fully furnished"],
+    "photos": ["villa-4", "living-8", "bedroom-7", "bath-4"]
+  },
+  {
+    "slug": "plot-cap-malheureux", "title": "Residential plot near the sea", "type": "land", "area": "north", "place": "Cap Malheureux",
+    "lat": -19.991, "lng": 57.6135, "price": 260000, "beds": 0, "baths": 0, "size": 0, "land": 1500,
+    "international": false, "tag": null, "featured": false,
+    "summary": "1,500 m² of flat land, 300 m from the lagoon.",
+    "description": "A flat, serviced plot in a small residential area of Cap Malheureux, a few minutes' walk from the lagoon and the red-roofed church. Water and electricity at the boundary.",
+    "features": ["Serviced plot", "Flat land", "Walk to the lagoon", "Quiet street"],
+    "photos": ["land-1"]
+  }
+]

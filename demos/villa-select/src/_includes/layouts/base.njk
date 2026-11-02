@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ site.name }} — demo</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0b3a30">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script src="/boot.js"></script>
+  {# Preload the fonts so headings don't reflow when they arrive (layout shift). #}
+  <link rel="preload" href="/assets/fonts/dm-serif-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  {% if preload %}{% preloadImage preload.key, preload.sizes, preload.widths %}{% endif %}
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body class="{{ bodyClass }} has-cta-bar">
+  {# First in <body> and synchronous: the demo bar exists before first paint (no layout shift). #}
+  <script src="/demo-kit.js"
+          data-template="{{ site.templateSlug }}" data-agency="{{ site.agencyUrl }}" data-lang="{{ site.lang }}"></script>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-16 focus:left-4 focus:z-50 focus:rounded-full focus:bg-coral-500 focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+  {% include "partials/header.njk" %}
+  <main id="main" {% if not heroHeader %}class="pt-[4.5rem]"{% endif %}>
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  {# Phones: the main action is always one tap away. #}
+  <div class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-12px_rgb(20_33_29/0.25)] backdrop-blur md:hidden" data-cta-bar>
+    <div class="flex items-center justify-between gap-3">
+      <p class="text-sm leading-tight"><span class="block text-ink-500">Free shortlist</span><span class="font-extrabold">in 48 hours</span></p>
+      <a href="{{ ctaHref or '/contact/' }}" class="btn btn-primary px-6">{{ ctaLabel or "Book a viewing" }}</a>
+    </div>
+  </div>
+</body>
+</html>

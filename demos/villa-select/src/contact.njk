@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+title: Book a viewing
+section: contact
+description: Tell Villa Select what you're looking for and get a free shortlist of homes in Mauritius within 48 hours.
+ctaHref: "#enquiry"
+ctaLabel: "Send my request"
+---
+{% from "partials/icon.njk" import icon %}
+<section class="relative overflow-hidden bg-linear-to-br from-emerald-950 via-emerald-900 to-emerald-700 text-white">
+  <div class="absolute -top-24 -right-24 size-96 rounded-full bg-gold-400/25 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative py-12 sm:py-16">
+    <p class="hero-rise eyebrow text-gold-400">Contact</p>
+    <h1 class="hero-rise mt-3 text-5xl [animation-delay:80ms] sm:text-6xl">Get your free <span class="text-gold-light">shortlist</span></h1>
+    <p class="hero-rise mt-4 max-w-2xl text-lg text-white/80 [animation-delay:160ms]">Tell us what you're looking for. Within 48 hours we send homes that match, with prices and every cost explained.</p>
+  </div>
+</section>
+
+<section class="container-x grid gap-10 py-12 lg:grid-cols-[1.5fr_1fr] lg:items-start">
+  <form id="enquiry" class="card scroll-mt-28 space-y-5 p-6 sm:p-8" action="/contact/" method="post">
+    <h2 class="text-3xl">What are you looking for?</h2>
+    <div class="grid gap-4 sm:grid-cols-3">
+      <label><span class="field-label">Type</span><select class="field" name="type"><option value="">Any type</option>{% for type in site.types %}<option value="{{ type.slug }}">{{ type.name }}</option>{% endfor %}</select></label>
+      <label><span class="field-label">Area</span><select class="field" name="area"><option value="">Anywhere</option>{% for area in areas %}<option value="{{ area.slug }}">{{ area.name }}</option>{% endfor %}</select></label>
+      <label><span class="field-label">Budget</span><select class="field" name="budget">{% for b in site.budgets %}<option value="{{ b.value }}" {% if b.value == 0 %}selected{% endif %}>{{ b.label }}</option>{% endfor %}</select></label>
+    </div>
+    <fieldset>
+      <legend class="field-label">I'm buying as</legend>
+      <div class="grid gap-2 sm:grid-cols-3">
+        {% for opt in ["A main home", "A holiday home", "An investment"] %}
+          <label class="flex cursor-pointer items-center justify-center rounded-xl border border-line p-3 text-sm font-semibold has-[:checked]:border-emerald-700 has-[:checked]:bg-emerald-50"><input type="radio" name="purpose" value="{{ opt }}" class="sr-only" {% if loop.first %}checked{% endif %}>{{ opt }}</label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <label><span class="field-label">Full name</span><input class="field" name="name" required autocomplete="name"></label>
+      <label><span class="field-label">Email</span><input class="field" name="email" type="email" required autocomplete="email"></label>
+      <label><span class="field-label">Phone / WhatsApp</span><input class="field" name="phone" type="tel" autocomplete="tel"></label>
+      <label><span class="field-label">Country you live in</span><input class="field" name="country" autocomplete="country-name"></label>
+    </div>
+    <label class="block"><span class="field-label">Anything else? (optional)</span><textarea class="field" name="message" rows="4" placeholder="Number of bedrooms, sea view, near schools, when you'd like to visit…"></textarea></label>
+    <button type="submit" class="btn btn-primary w-full py-3.5 text-base sm:w-auto sm:px-10" data-magnetic>Send my request</button>
+    <p class="text-xs text-ink-500">Free and without obligation. We never share your details.</p>
+  </form>
+
+  <aside class="space-y-5">
+    <div class="card p-6">
+      <h2 class="font-body text-lg font-bold tracking-normal">Prefer to talk?</h2>
+      <ul class="mt-4 space-y-3 text-ink-700">
+        <li class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700">{{ icon("phone", "size-5") }}</span>{{ site.phone }}</li>
+        <li class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700">{{ icon("chat", "size-5") }}</span>{{ site.email }}</li>
+        <li class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700">{{ icon("pin", "size-5") }}</span>{{ site.address }}</li>
+      </ul>
+      {# On a client's live site this opens their WhatsApp chat; in the demo it leads to the Webmoris enquiry form. #}
+      <a href="{{ site.agencyUrl }}/en/contact/ready-made/{{ site.templateSlug }}/" target="_blank" rel="noopener noreferrer" class="btn mt-6 w-full bg-[#25d366] py-3.5 text-white hover:brightness-95">Chat on WhatsApp</a>
+      <p class="mt-2 text-center text-xs text-ink-500">Demo: opens the Webmoris enquiry form.</p>
+    </div>
+    <div class="relative aspect-[4/3] overflow-hidden rounded-card">{% picture "living-1", "A bright living room opening onto a terrace", "(min-width: 1024px) 33vw, 100vw", { widths: [480, 960] } %}</div>
+  </aside>
+</section>

@@ -1,0 +1,232 @@
+---
+layout: layouts/base.njk
+section: home
+heroHeader: true
+preload: { key: "hero", sizes: "100vw", widths: [960, 1440, 2000] }
+---
+{% from "partials/icon.njk" import icon %}
+
+{# ---------- Hero: full-bleed villa, camera dolly in on load and out on scroll, with the search ---------- #}
+<section class="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-emerald-950" data-hero>
+  <div class="absolute inset-0 -z-20 overflow-hidden" data-hero-media>
+    <div class="absolute inset-0 motion-safe:will-change-transform" data-hero-dolly>
+      {% picture "hero", "A modern villa with a pool and garden at dusk", "100vw", { widths: [960, 1440, 2000], eager: true } %}
+    </div>
+  </div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-emerald-950/95 via-emerald-950/35 to-emerald-950/40"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-r from-emerald-950/70 via-transparent to-transparent"></div>
+  <div class="absolute -right-40 -bottom-40 -z-10 size-[34rem] rounded-full bg-gold-400/25 blur-3xl" aria-hidden="true"></div>
+
+  <div class="container-x pt-32 pb-10 sm:pb-14" data-hero-content>
+    <p class="hero-rise glass inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold">{{ icon("globe", "size-3.5") }} Homes for international buyers</p>
+    <h1 class="hero-rise mt-6 max-w-4xl text-5xl text-white [animation-delay:80ms] sm:text-7xl lg:text-8xl">Your home in Mauritius, <span class="text-gold-light">hand-picked.</span></h1>
+    <p class="hero-rise mt-5 max-w-xl text-lg text-white/85 [animation-delay:160ms]">Villas, apartments and land across the island, checked by our team and explained in plain English, from the first viewing to the keys.</p>
+
+    {# Search: a plain GET form to the listings page (allowed by the demo kit). #}
+    <form action="/properties/" method="get" data-demo-navigation class="hero-rise card mt-9 grid gap-3 p-4 [animation-delay:240ms] sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] lg:items-end lg:p-5">
+      <label><span class="field-label">Area</span>
+        <select class="field" name="area"><option value="">Anywhere</option>{% for area in areas %}<option value="{{ area.slug }}">{{ area.name }}</option>{% endfor %}</select>
+      </label>
+      <label><span class="field-label">Type</span>
+        <select class="field" name="type"><option value="">Any type</option>{% for type in site.types %}<option value="{{ type.slug }}">{{ type.name }}</option>{% endfor %}</select>
+      </label>
+      <label class="sm:col-span-2 lg:col-span-1"><span class="field-label">Budget</span>
+        <select class="field" name="budget">{% for b in site.budgets %}<option value="{{ b.value }}" {% if b.value == 0 %}selected{% endif %}>{{ b.label }}</option>{% endfor %}</select>
+      </label>
+      <button type="submit" class="btn btn-primary h-[50px] px-8 text-base sm:col-span-2 lg:col-span-1" data-magnetic>{{ icon("search", "size-5") }} Search</button>
+    </form>
+  </div>
+</section>
+
+{# ---------- Places strip ---------- #}
+<section class="overflow-hidden bg-linear-to-r from-emerald-900 via-emerald-800 to-emerald-700 py-4 text-white" aria-label="Areas we cover">
+  <div class="flex w-max motion-safe:animate-marquee">
+    {% for copy in [1, 2] %}
+      <p class="flex shrink-0 items-center font-display text-xl whitespace-nowrap italic sm:text-2xl" {% if copy == 2 %}aria-hidden="true"{% endif %}>
+        {% for place in ["Grand Baie", "Pereybère", "Tamarin", "Black River", "Flic en Flac", "Belle Mare", "Bel Ombre", "Cap Malheureux", "Moka"] %}<span class="px-6">{{ place }}</span><span class="text-gold-400" aria-hidden="true">✦</span>{% endfor %}
+      </p>
+    {% endfor %}
+  </div>
+</section>
+
+{# ---------- Benefits ---------- #}
+<section class="bg-white" aria-label="Why Villa Select">
+  <ul class="container-x grid gap-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    {% for b in site.benefits %}
+      <li class="flex gap-4" data-reveal>
+        <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-emerald-700 to-emerald-500 text-gold-300 shadow-[0_8px_20px_-10px_rgb(20_97_79/0.8)]">{{ icon(b.icon) }}</span>
+        <div><h2 class="font-body text-base font-bold tracking-normal">{{ b.title }}</h2><p class="text-sm text-ink-500">{{ b.text }}</p></div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{# ---------- Featured homes ---------- #}
+<section class="container-x py-20 sm:py-24" aria-labelledby="featured-title">
+  <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+    <div>
+      <p class="eyebrow">For sale</p>
+      <h2 id="featured-title" class="section-title" data-split>Featured <span class="text-gold">homes</span></h2>
+    </div>
+    <a href="/properties/" class="btn btn-outline self-start sm:self-auto">All {{ properties | length }} properties {{ icon("arrow", "size-4") }}</a>
+  </div>
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% asyncEach home in properties | featured | limit(3) %}
+      <div data-reveal>{% include "partials/property-card.njk" %}</div>
+    {% endeach %}
+  </div>
+</section>
+
+{# ---------- Map: every listing on the island ---------- #}
+<section id="map" class="relative overflow-hidden bg-emerald-950 py-20 text-white sm:py-24" aria-labelledby="map-title">
+  <div class="absolute -top-32 -left-32 size-[30rem] rounded-full bg-emerald-500/20 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+    <figure class="relative mx-auto aspect-[832/1000] w-full max-w-lg overflow-hidden rounded-[1.75rem] bg-[#cfe6ec] shadow-2xl" data-map>
+      <img src="/img/map/mauritius.svg" alt="" width="832" height="1000" loading="lazy" decoding="async" class="absolute inset-0 size-full">
+      {% for home in properties %}
+        {% set p = home | mapPos %}
+        <a href="/properties/{{ home.slug }}/" class="group/pin absolute z-10 -translate-x-1/2 -translate-y-full [&.is-active]:z-20" style="left: {{ p.left }}%; top: {{ p.top }}%" data-pin="{{ home.slug }}" aria-label="{{ home.title }}, {{ home.place }}, {{ home.price | usd }}">
+          <span class="block rounded-full bg-emerald-900 px-2.5 py-1 text-[11px] font-extrabold whitespace-nowrap text-white shadow-lg ring-2 ring-white transition group-hover/pin:scale-110 group-[.is-active]/pin:bg-coral-500 group-[.is-active]/pin:scale-115">{{ home.price | usd }}</span>
+          <span class="mx-auto block h-2 w-0.5 bg-emerald-900 group-[.is-active]/pin:bg-coral-500"></span>
+        </a>
+      {% endfor %}
+      <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" class="absolute right-3 bottom-3 rounded bg-white/80 px-1.5 py-0.5 text-[10px] text-ink-500">© OpenStreetMap</a>
+      <figcaption class="sr-only">Map of Mauritius showing where each property for sale is.</figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow text-gold-400">On the map</p>
+      <h2 id="map-title" class="section-title" data-split>Find your <span class="text-gold-light">corner of the island</span></h2>
+      <p class="mt-4 max-w-md text-lg text-white/75">Every home we sell, where it really is. Hover a price to see the home.</p>
+      <ul class="mt-8 space-y-2">
+        {% for home in properties %}
+          <li>
+            <a href="/properties/{{ home.slug }}/" class="flex items-center justify-between gap-4 rounded-2xl border border-white/10 px-4 py-3 transition hover:bg-white/10 [&.is-active]:border-gold-400/60 [&.is-active]:bg-white/10" data-map-item="{{ home.slug }}">
+              <span><span class="block font-bold">{{ home.title }}</span><span class="text-sm text-white/60">{{ home.place }} · {{ home.type | lookup(site.types) }}</span></span>
+              <span class="font-display text-xl text-gold-300">{{ home.price | usd }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ---------- Dolly reveal: a framed photo widens to fill the screen ---------- #}
+<section class="dolly relative overflow-hidden bg-sand-50" data-dolly aria-labelledby="dolly-title">
+  <div class="relative h-[80svh] min-h-[520px] in-[.is-pinned]:h-[calc(100svh-4.5rem-var(--demo-bar-h,0px))]">
+    <div class="absolute inset-0 overflow-hidden" data-dolly-frame>
+      <div class="absolute inset-0" data-dolly-image>{% picture "dolly", "An infinity pool looking out over the sea", "100vw", { widths: [960, 1440, 2000] } %}</div>
+      <div class="absolute inset-0 bg-linear-to-t from-emerald-950/85 via-emerald-950/20 to-transparent"></div>
+    </div>
+    <div class="absolute inset-x-0 bottom-0 container-x pb-12 text-white sm:pb-16" data-dolly-text>
+      <p class="glass inline-flex px-4 py-1.5 text-xs font-bold">Island life, all year round</p>
+      <h2 id="dolly-title" class="mt-4 max-w-3xl text-4xl sm:text-6xl">Wake up to the lagoon. <span class="text-gold-light">Every single day.</span></h2>
+      <a href="/contact/" class="btn btn-primary mt-7 px-7 py-3.5" data-magnetic>Book a viewing {{ icon("arrow", "size-4") }}</a>
+    </div>
+  </div>
+</section>
+
+{# ---------- Areas ---------- #}
+<section id="areas" class="container-x py-20 sm:py-24" aria-labelledby="areas-title">
+  <div class="max-w-2xl">
+    <p class="eyebrow">Where to buy</p>
+    <h2 id="areas-title" class="section-title" data-split>Five coasts, <span class="text-gold">five lifestyles</span></h2>
+  </div>
+  <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+    {% asyncEach area in areas %}
+      {% set count = properties | inArea(area.slug) | length %}
+      <a href="/properties/?area={{ area.slug }}" class="group relative isolate block overflow-hidden rounded-card {% if loop.index <= 2 %}lg:col-span-3 aspect-[16/10]{% else %}lg:col-span-2 aspect-[4/5]{% endif %}" data-reveal>
+        <div class="zoom-img absolute inset-0 -z-10"><div class="absolute inset-0" data-zoom>{% picture area.photo, "", "(min-width: 1024px) 50vw, 100vw", { widths: [480, 960, 1440] } %}</div></div>
+        <div class="absolute inset-0 -z-10 bg-linear-to-t from-emerald-950/90 via-emerald-950/30 to-transparent"></div>
+        <div class="flex h-full flex-col justify-end p-6 text-white">
+          <p class="text-xs font-bold tracking-wide text-gold-300 uppercase">{{ area.places }}</p>
+          <h3 class="mt-1 text-3xl">{{ area.name }}</h3>
+          <p class="mt-1 text-sm text-white/80">{{ area.text }}</p>
+          <p class="mt-4 inline-flex items-center gap-2 text-sm font-bold">{{ count }} {{ "home" if count == 1 else "homes" }} for sale {{ icon("arrow", "size-4 transition group-hover:translate-x-1") }}</p>
+        </div>
+      </a>
+    {% endeach %}
+  </div>
+</section>
+
+{# ---------- Buying guide ---------- #}
+<section id="buying" class="relative overflow-hidden bg-linear-to-br from-emerald-950 via-emerald-900 to-emerald-700 py-20 text-white sm:py-24" aria-labelledby="buying-title">
+  <div class="absolute -right-32 -bottom-32 size-[30rem] rounded-full bg-gold-400/20 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <div class="max-w-2xl">
+      <p class="eyebrow text-gold-400">Buying from abroad</p>
+      <h2 id="buying-title" class="section-title" data-split>Four steps <span class="text-gold-light">to your keys</span></h2>
+    </div>
+    <div class="relative mt-12">
+      <div class="absolute top-[2.15rem] right-[12%] left-[12%] hidden h-0.5 origin-left bg-linear-to-r from-gold-300 to-coral-500 lg:block" data-draw-x aria-hidden="true"></div>
+      <ol class="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {% for step in site.steps %}
+          <li class="rounded-card border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm" data-reveal>
+            <span class="mx-auto grid size-12 place-items-center rounded-full bg-linear-to-br from-coral-500 to-gold-400 font-display text-xl text-white shadow-[0_8px_24px_-8px_rgb(242_107_79/0.9)]">{{ loop.index }}</span>
+            <h3 class="mt-5 text-2xl">{{ step.title }}</h3>
+            <p class="mt-2 text-sm text-white/75">{{ step.text }}</p>
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{# ---------- In numbers (facts about the service, not sales claims) ---------- #}
+<section class="bg-white" aria-label="Villa Select in numbers">
+  <dl class="container-x grid grid-cols-2 gap-8 py-14 lg:grid-cols-4">
+    {% for stat in [
+      { value: properties | length, suffix: "", label: "homes and plots for sale" },
+      { value: areas | length, suffix: "", label: "areas across the island" },
+      { value: 48, suffix: " h", label: "to receive your shortlist" },
+      { value: 2, suffix: "", label: "languages: English and French" }
+    ] %}
+      <div data-reveal>
+        <dd class="font-display text-5xl sm:text-6xl"><span class="text-gold"><span data-count>{{ stat.value }}</span>{{ stat.suffix }}</span></dd>
+        <dt class="mt-2 text-sm text-ink-500">{{ stat.label }}</dt>
+      </div>
+    {% endfor %}
+  </dl>
+</section>
+
+{# ---------- FAQ ---------- #}
+<section class="bg-sand-100">
+  <div class="container-x grid gap-12 py-20 sm:py-24 lg:grid-cols-[1fr_1.5fr]" aria-labelledby="faq-title">
+    <div>
+      <p class="eyebrow">Good to know</p>
+      <h2 id="faq-title" class="section-title" data-split>Questions from <span class="text-gold">buyers</span></h2>
+      <p class="lead mt-4">Every purchase is different. We'll answer yours on a free call.</p>
+      <a href="/contact/" class="btn btn-dark mt-6">Ask us a question</a>
+    </div>
+    <div class="divide-y divide-line border-y border-line">
+      {% for faq in site.faqs %}
+        <details class="group py-2" {% if loop.first %}open{% endif %}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 text-lg font-bold [&::-webkit-details-marker]:hidden">
+            {{ faq.q }}
+            <span class="grid size-8 shrink-0 place-items-center rounded-full bg-emerald-50 text-emerald-700 transition group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="pb-4 text-ink-500">{{ faq.a }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---------- Call to action ---------- #}
+<section class="container-x py-20 sm:py-24">
+  <div class="relative overflow-hidden rounded-[1.75rem] bg-linear-to-br from-emerald-900 via-emerald-800 to-emerald-600 px-6 py-14 text-white sm:px-14" data-reveal>
+    <div class="absolute -right-20 -bottom-24 size-96 rounded-full bg-coral-500/40 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -top-24 -left-10 size-72 rounded-full bg-gold-400/30 blur-3xl" aria-hidden="true"></div>
+    <div class="relative grid items-center gap-8 lg:grid-cols-[1.5fr_1fr]">
+      <div>
+        <h2 class="text-4xl sm:text-5xl">Tell us what you're looking for.</h2>
+        <p class="mt-3 text-lg text-white/80">We'll send a free shortlist of homes within 48 hours, with prices and all costs explained.</p>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:justify-end">
+        <a href="/contact/" class="btn btn-primary px-7 py-3.5" data-magnetic>Get my shortlist</a>
+        {# On a client's live site this opens their WhatsApp chat; in the demo it leads to the Webmoris enquiry form. #}
+        <a href="{{ site.agencyUrl }}/en/contact/ready-made/{{ site.templateSlug }}/" target="_blank" rel="noopener noreferrer" class="btn btn-white px-7 py-3.5">WhatsApp us</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -118,6 +118,20 @@ DESCRIPTION = (
 SCREENS_DIR = Path(__file__).resolve().parent / "demo_screens"
 # Gallery screenshots per template, in display order: (file, English caption, French caption).
 SCREENS = {
+    "villa-select": [
+        ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
+        (
+            "map.jpg",
+            "Every listing on the map of Mauritius",
+            "Toutes les annonces sur la carte de Maurice",
+        ),
+        ("listings.jpg", "Listings with filters", "Annonces avec filtres"),
+        (
+            "property.jpg",
+            "Property page with gallery and viewing request",
+            "Fiche bien avec galerie et demande de visite",
+        ),
+    ],
     "drive-moris": [
         ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
         (

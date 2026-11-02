@@ -1,0 +1,25 @@
+{
+  "name": "villa-select-demo",
+  "private": true,
+  "description": "Webmoris ready-made website demo: Villa Select (real estate, Mauritius). Fictional business.",
+  "type": "module",
+  "scripts": {
+    "build:css": "tailwindcss -i src/assets/css/main.css -o _site/assets/main.css --minify",
+    "build:js": "esbuild src/assets/js/main.js --bundle --format=esm --splitting --minify --outdir=_site/assets/js",
+    "build:fonts": "esbuild src/assets/css/fonts.css --bundle --minify --loader:.woff2=file --loader:.woff=file --asset-names=fonts/[name] --outdir=_site/assets",
+    "build:html": "eleventy",
+    "build": "npm run build:html && npm run build:fonts && npm run build:css && npm run build:js",
+    "serve": "eleventy --serve --port=5005"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7",
+    "@11ty/eleventy-img": "^7.1.1",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource/dm-serif-display": "^5.3.0",
+    "@tailwindcss/cli": "^4.3.3",
+    "esbuild": "^0.28.2",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.27",
+    "tailwindcss": "^4.3.3"
+  }
+}

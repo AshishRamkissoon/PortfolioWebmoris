@@ -143,4 +143,7 @@ def test_seed_uses_demo_screenshots_when_available():
     assert bistro.cover_image.name.endswith(".jpg")
     assert bistro.images.count() == len(SCREENS["lagon-bistro"])
     # Templates without a built demo keep their generated placeholders.
-    assert WebsiteTemplate.objects.get(slug="villa-select").cover_image.name.endswith(".png")
+    assert WebsiteTemplate.objects.get(slug="villa-select").images.count() == len(
+        SCREENS["villa-select"]
+    )
+    assert WebsiteTemplate.objects.get(slug="street-food-co").cover_image.name.endswith(".png")

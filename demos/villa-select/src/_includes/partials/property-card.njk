@@ -1,0 +1,24 @@
+{# Property card. Expects `home`; optional `eager`. Used inside asyncEach. #}
+{% from "partials/icon.njk" import icon %}
+<article class="group card lift flex h-full flex-col" data-property data-type="{{ home.type }}" data-area="{{ home.area }}" data-price="{{ home.price }}" data-beds="{{ home.beds }}">
+  <a href="/properties/{{ home.slug }}/" class="zoom-img relative block aspect-[4/3] bg-sand-100" tabindex="-1" aria-hidden="true">
+    {% picture home.photos[0], "", "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw", { widths: [480, 960], eager: eager } %}
+    <span class="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-emerald-950/70 to-transparent"></span>
+    <span class="absolute top-3 left-3 flex flex-wrap gap-2">
+      <span class="chip bg-white/95">{{ home.type | lookup(site.types) }}</span>
+      {% if home.tag %}<span class="chip bg-coral-500 text-white">{{ home.tag }}</span>{% endif %}
+    </span>
+    <span class="absolute bottom-3 left-4 font-display text-3xl text-white">{{ home.price | usd }}</span>
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="flex items-center gap-1.5 text-sm font-semibold text-emerald-700">{{ icon("pin", "size-4") }}{{ home.place }}</p>
+    <h3 class="mt-1 text-2xl"><a href="/properties/{{ home.slug }}/" class="hover:text-emerald-700">{{ home.title }}</a></h3>
+    <p class="mt-1 mb-5 text-sm text-ink-500">{{ home.summary }}</p>
+    <ul class="mt-auto flex flex-wrap gap-x-5 gap-y-1 border-t border-line pt-4 text-sm font-semibold text-ink-700">
+      {% if home.beds %}<li class="flex items-center gap-1.5">{{ icon("bed", "size-4 text-gold-500") }}{{ home.beds }} beds</li>{% endif %}
+      {% if home.baths %}<li class="flex items-center gap-1.5">{{ icon("bath", "size-4 text-gold-500") }}{{ home.baths }} baths</li>{% endif %}
+      {% if home.size %}<li class="flex items-center gap-1.5">{{ icon("size", "size-4 text-gold-500") }}{{ home.size }} m²</li>{% endif %}
+      {% if home.land and not home.size %}<li class="flex items-center gap-1.5">{{ icon("land", "size-4 text-gold-500") }}{{ home.land }} m² plot</li>{% endif %}
+    </ul>
+  </div>
+</article>

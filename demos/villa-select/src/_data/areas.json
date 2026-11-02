@@ -1,0 +1,7 @@
+[
+  { "slug": "north", "name": "The north", "places": "Grand Baie · Pereybère · Cap Malheureux", "text": "Restaurants, marinas and calm lagoons. The island's liveliest coast.", "photo": "area-north" },
+  { "slug": "west", "name": "The west", "places": "Tamarin · Black River · Flic en Flac", "text": "Sunsets, surf and the mountains behind. Popular with families.", "photo": "area-west" },
+  { "slug": "east", "name": "The east", "places": "Belle Mare · Trou d'Eau Douce", "text": "Long white beaches and a quieter pace.", "photo": "area-east" },
+  { "slug": "south", "name": "The south", "places": "Bel Ombre", "text": "Wild coastline, golf and nature reserves.", "photo": "area-south" },
+  { "slug": "centre", "name": "The centre", "places": "Moka", "text": "Cooler hills, good schools and quick access to Port Louis.", "photo": "area-centre" }
+]

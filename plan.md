@@ -430,6 +430,30 @@ Home (search, benefits, popular cars, how it works, coast route on the map, day 
 
 ---
 
+## Phase 10 — Fourth Live Demo: "Villa Select" (Real Estate)
+
+**Goal:** a premium, high-converting real estate demo that replaces the placeholder on the Villa Select ready-made card.
+
+**Decisions** (owner, 2026-11-02): more demos are needed; Villa Select first, then Eco Lodge (Phase 11). Same stack and rules as Phases 7–9 (static site, subdomain, licensed photos with credits, demo kit, no fake reviews or sales figures). Visual language follows what the owner approved for Drive Moris: bright, colourful, cinematic GSAP motion, conversion-focused.
+
+### Pages
+Home (hero search by area, type and budget; featured properties; properties on the Mauritius map; areas; buying process for international buyers; call to action), Properties (filters: type, area, price, bedrooms), one page per property (gallery, key facts, features, location, monthly payment estimate, viewing request), Credits, 404.
+
+### Exit criteria
+- All pages work on mobile and desktop with no console errors; forms are blocked by the demo kit.
+- Every page is complete without JavaScript and with reduced motion.
+- Mobile LCP ≤ 2.5 s and CLS ≤ 0.1 locally.
+- Every photo is credited; fictional agency and listings, clearly example prices, no reviews or sales claims.
+- On Webmoris, the Villa Select template shows real screenshots and the "Live demo" button (local URL until deployed).
+
+---
+
+## Phase 11 — Fifth Live Demo: "Eco Lodge" (Villa / Guesthouse)
+
+**Goal:** a direct-booking site for a small nature lodge: rooms, an availability calendar and a "book direct and save" message. Its Webmoris card moves from "Coming soon" to "Available" with a live demo. Same rules and exit criteria as Phase 10.
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.
