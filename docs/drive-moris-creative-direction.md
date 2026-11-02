@@ -1,5 +1,17 @@
 # Drive Moris — Creative Direction
 
+> **Revised 2026-11-01.** The owner reviewed the first build ("Coast Road", a dark, cinematic road-sign look, described from section 1 onwards) and asked for something more intuitive, professional and appealing. They chose the **"Bright island"** direction below, and the demo was rebuilt to it. The original concept is kept underneath for reference; where they differ, this section wins.
+>
+> **Bright island**
+> - **Feel:** light, airy and trustworthy, like a leading travel brand. Built for a tourist who has just landed and wants a car without effort.
+> - **Colour:** white and soft sand backgrounds, deep lagoon blue `#0e6e8c` for brand and links, coral `#ff6b4a` only for the main actions ("Book a car", "See prices"), dark ink `#0f2433` for text.
+> - **Type:** Plus Jakarta Sans throughout, sentence case, bold friendly headings.
+> - **Photos:** full colour, rounded corners, real Mauritius roads and coast.
+> - **Structure:** search first (dates and car in the hero), then benefits, popular cars as clear cards (photo, seats, bags, gearbox, price, Book), how it works in 3 steps, the coast route on the map, day trips, FAQ and a call to action. Car pages have a sticky summary card; the booking page has 4 numbered steps and a live price summary.
+> - **Motion:** gentle fade-ups, the route drawing itself around the island, rolling figures in the price summary. No WebGL, no heavy effects.
+
+---
+
 A demo website for a **fictional** car rental company at the airport in Mauritius. It's the third Webmoris live demo, after Island Explorer (tourism) and Lagon Bistro (restaurant). This brief sets the creative direction and also specifies how to build it, so it can be built as written.
 
 ---

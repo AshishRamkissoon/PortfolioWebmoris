@@ -1,20 +1,14 @@
 ---
 layout: layouts/base.njk
-title: Wrong turn
+title: Page not found
 permalink: /404.html
 ---
-<section class="container-x flex min-h-[80svh] flex-col justify-center py-40">
-  {# A U-turn sign #}
-  <svg class="size-28" viewBox="0 0 100 100" aria-hidden="true">
-    <rect width="100" height="100" fill="#1f3d2e"/><rect x="4" y="4" width="92" height="92" fill="none" stroke="#efece4" stroke-width="3"/>
-    <path d="M66 82 V44 a16 16 0 0 0 -32 0 V60" fill="none" stroke="#efece4" stroke-width="9"/>
-    <path d="M22 56 L34 74 L46 56Z" fill="#ffae1a"/>
-  </svg>
-  <p class="mt-10 label-km">Error 404</p>
-  <h1 class="mt-4 text-[clamp(4rem,13vw,12rem)]">Wrong <span class="text-sodium">turn.</span></h1>
-  <p class="mt-6 max-w-md text-lg text-road/75">This road doesn't go anywhere. Turn around: the fleet and the booking page are still where you left them.</p>
-  <div class="mt-10 flex flex-wrap gap-3">
-    <a href="/" class="btn btn-sodium" data-magnetic>Back to the start</a>
-    <a href="/fleet/" class="btn btn-line">See the fleet</a>
+<section class="container-x flex min-h-[70svh] flex-col items-center justify-center py-20 text-center">
+  <p class="text-8xl font-extrabold text-lagoon-700 sm:text-9xl">404</p>
+  <h1 class="mt-4 text-3xl sm:text-4xl">Looks like a wrong turn</h1>
+  <p class="lead mt-3 max-w-md">This page doesn't exist. Our cars and the booking page are still where you left them.</p>
+  <div class="mt-8 flex flex-wrap justify-center gap-3">
+    <a href="/" class="btn btn-primary">Back to home</a>
+    <a href="/fleet/" class="btn btn-outline">See our cars</a>
   </div>
 </section>

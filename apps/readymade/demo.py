@@ -125,7 +125,7 @@ SCREENS = {
             "The coast route draws itself as you scroll",
             "L'itinéraire côtier se dessine au défilement",
         ),
-        ("garage.jpg", "The fleet, one car at a time", "La flotte, une voiture à la fois"),
+        ("fleet.jpg", "Fleet with filters and clear prices", "Flotte avec filtres et prix clairs"),
         (
             "book.jpg",
             "Booking with a live trip ticket",

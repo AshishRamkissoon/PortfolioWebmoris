@@ -11,7 +11,7 @@ const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)"
 export function initHeader() {
   const header = document.querySelector("[data-header]");
   if (!header) return;
-  const update = () => header.classList.toggle("is-solid", window.scrollY > 40);
+  const update = () => header.classList.toggle("is-solid", window.scrollY > 10);
   update();
   window.addEventListener("scroll", update, { passive: true });
 }
@@ -24,7 +24,7 @@ export function initMobileMenu() {
     menu.hidden = !open;
     button.setAttribute("aria-expanded", String(open));
     if (open && !reducedMotion()) {
-      gsap.from(menu.querySelectorAll("[data-menu-link]"), { x: 40, autoAlpha: 0, stagger: 0.05, duration: 0.6, ease: "expo.out" });
+      gsap.from(menu.querySelectorAll("[data-menu-link]"), { y: 12, autoAlpha: 0, stagger: 0.04, duration: 0.4, ease: "power2.out" });
     }
   };
   button.addEventListener("click", () => setOpen(menu.hidden));
@@ -37,52 +37,7 @@ export function initMobileMenu() {
   });
 }
 
-/**
- * Garage stage: one car at a time under one light. Without JS it's a row you can swipe or scroll;
- * with JS the arrows, the counter and the keyboard drive it.
- */
-export function initGarage() {
-  document.querySelectorAll("[data-garage]").forEach((garage) => {
-    const track = garage.querySelector("[data-garage-track]");
-    const slides = [...track.children];
-    const counter = garage.querySelector("[data-garage-count]");
-    const controls = garage.querySelector("[data-garage-controls]");
-    controls.hidden = false;
-    let index = 0;
-    const go = (next) => {
-      index = (next + slides.length) % slides.length;
-      track.scrollTo({ left: slides[index].offsetLeft - track.offsetLeft, behavior: reducedMotion() ? "auto" : "smooth" });
-    };
-    garage.querySelector("[data-garage-prev]").addEventListener("click", () => go(index - 1));
-    garage.querySelector("[data-garage-next]").addEventListener("click", () => go(index + 1));
-    garage.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight") go(index + 1);
-      if (event.key === "ArrowLeft") go(index - 1);
-    });
-    // The slide nearest the middle is the active one (also when swiping).
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          index = slides.indexOf(entry.target);
-          slides.forEach((slide) => slide.classList.toggle("is-active", slide === entry.target));
-          if (counter) setOdometer(counter, `${String(index + 1).padStart(2, "0")}`, { animate: !reducedMotion(), duration: 0.5 });
-          const spec = entry.target.querySelector("[data-garage-price]");
-          if (spec && !spec.dataset.rolled && !reducedMotion()) {
-            spec.dataset.rolled = "1";
-            const text = spec.textContent.trim();
-            setOdometer(spec, text.replace(/\d/g, "0"), { animate: false });
-            setOdometer(spec, text, { duration: 1.1 });
-          }
-        });
-      },
-      { root: track, threshold: 0.6 },
-    );
-    slides.forEach((slide) => observer.observe(slide));
-  });
-}
-
-/** Fleet filter: plain links without JS; with JS it filters in place and the rows slide left to right. */
+/** Fleet filter: plain links without JS; with JS it filters the cards in place with a smooth Flip animation. */
 export function initFleetFilter() {
   const nav = document.querySelector("[data-filters]");
   const list = document.querySelector("[data-fleet]");
@@ -99,14 +54,14 @@ export function initFleetFilter() {
       shown += match ? 1 : 0;
     });
     buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === filter)));
-    if (count) setOdometer(count, String(shown).padStart(2, "0"), { animate: animate && !reducedMotion(), duration: 0.5 });
+    if (count) count.textContent = String(shown);
     if (!animate || reducedMotion()) return;
     Flip.from(state, {
       duration: 0.7,
       ease: "power3.inOut",
       absolute: true,
-      onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, x: 80 }, { autoAlpha: 1, x: 0, duration: 0.7, ease: "expo.out" }),
-      onLeave: (els) => gsap.to(els, { autoAlpha: 0, x: -80, duration: 0.4 }),
+      onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, scale: 0.94 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "power3.out" }),
+      onLeave: (els) => gsap.to(els, { autoAlpha: 0, scale: 0.94, duration: 0.3 }),
     });
   };
   buttons.forEach((button) =>
@@ -120,45 +75,8 @@ export function initFleetFilter() {
   if (initial && buttons.some((b) => b.dataset.filter === initial)) apply(initial, false);
 }
 
-/** Car page: drag (or use the slider) to turn the car between its two photographed angles. */
-export function initTurntable() {
-  document.querySelectorAll("[data-turntable]").forEach((stage) => {
-    const back = stage.querySelector("[data-turn-back]");
-    const range = stage.querySelector("input[data-turn-range]");
-    stage.classList.add("is-live");
-    stage.querySelector("[data-turn-control]").hidden = false;
-    const set = (value) => {
-      const t = value / 100;
-      // The front view slides out to the left while the rear view slides in: a quarter turn.
-      gsap.set(back, { opacity: t, xPercent: (1 - t) * 6, scale: 1 + (1 - t) * 0.04 });
-      gsap.set(stage.querySelector("[data-turn-front]"), { opacity: 1 - t * 0.9, xPercent: -t * 6, scale: 1 + t * 0.04 });
-    };
-    range.addEventListener("input", () => set(Number(range.value)));
-    let dragging = false;
-    let startX = 0;
-    let startValue = 0;
-    stage.addEventListener("pointerdown", (event) => {
-      if (event.target === range) return;
-      dragging = true;
-      startX = event.clientX;
-      startValue = Number(range.value);
-      stage.setPointerCapture(event.pointerId);
-    });
-    stage.addEventListener("pointermove", (event) => {
-      if (!dragging) return;
-      const value = Math.max(0, Math.min(100, startValue + ((event.clientX - startX) / stage.clientWidth) * -160));
-      range.value = String(value);
-      set(value);
-    });
-    stage.addEventListener("pointerup", () => {
-      dragging = false;
-    });
-    set(0);
-  });
-}
-
 /**
- * Book page: the trip ticket. Days × daily rate, extras, delivery fees and the total update live,
+ * Book page: the booking summary. Days × daily rate, extras, delivery fees and the total update live,
  * each figure rolling like an odometer. Without JS the form still submits (the demo kit stops it)
  * and the price table below shows the rates.
  */
@@ -201,7 +119,7 @@ export function initTripTicket() {
     out("car").textContent = car.name;
     out("dates").textContent = `${form.pickup_date.value || "—"} → ${form.return_date.value || "—"}`;
     const roll = (name, text) => setOdometer(out(name), text, { animate: !first && !reducedMotion(), duration: 0.7 });
-    roll("days", String(days).padStart(2, "0"));
+    roll("days", String(days));
     roll("rate", money(car.price));
     roll("rental", money(rental));
     roll("extras", money(extrasTotal));

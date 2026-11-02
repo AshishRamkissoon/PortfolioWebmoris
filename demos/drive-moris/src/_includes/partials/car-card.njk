@@ -1,0 +1,22 @@
+{# Car card. Expects `car` (and `fleet` for the class name); optional `eager`. Used inside asyncEach. #}
+{% from "partials/icon.njk" import icon %}
+<article class="group card flex h-full flex-col" data-class="{{ car.class }}">
+  <a href="/cars/{{ car.slug }}/" class="zoom-img relative block aspect-[16/10] bg-sand-100" tabindex="-1" aria-hidden="true">
+    {% picture car.photos[0], "", "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw", { widths: [480, 960], eager: eager } %}
+    <span class="chip absolute top-3 left-3 bg-white/95">{{ car.class | className(fleet.classes) }}</span>
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="text-xl"><a href="/cars/{{ car.slug }}/" class="hover:text-lagoon-700">{{ car.name }}</a></h3>
+    <p class="mt-1 text-sm text-ink-500">{{ car.line }}</p>
+    <ul class="mt-4 mb-5 grid grid-cols-2 gap-x-3 gap-y-2 text-sm text-ink-700">
+      <li class="flex items-center gap-2">{{ icon("seat", "size-4 text-lagoon-600") }}{{ car.seats }} seats</li>
+      <li class="flex items-center gap-2">{{ icon("bag", "size-4 text-lagoon-600") }}{{ car.bags }} bag{% if car.bags != 1 %}s{% endif %}</li>
+      <li class="flex items-center gap-2">{{ icon("gear", "size-4 text-lagoon-600") }}{{ car.gearbox }}</li>
+      <li class="flex items-center gap-2">{{ icon("snow", "size-4 text-lagoon-600") }}Air con</li>
+    </ul>
+    <div class="mt-auto flex items-end justify-between gap-3 border-t border-line pt-4">
+      <p class="text-sm text-ink-500">From <span class="block text-2xl font-extrabold text-ink-900">{{ car.price | money }}<span class="text-sm font-semibold text-ink-500"> /day</span></span></p>
+      <a href="/book/?car={{ car.slug }}" class="btn btn-blue px-5 py-2.5">Book</a>
+    </div>
+  </div>
+</article>

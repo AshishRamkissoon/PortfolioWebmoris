@@ -40,6 +40,11 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 9 — Ready for review (redesign) — Drive Moris rebuilt in the owner's chosen "Bright island" direction (http://127.0.0.1:5004).
+  - **Look:** light backgrounds, lagoon blue with a coral accent for main actions, Plus Jakarta Sans in sentence case, full-colour photos with rounded corners. The dark duotone grade, WebGL night drive, road-sign type, garage stage and turntable were removed.
+  - **Structure:** Home = search in the hero (dates + car), benefits, popular car cards (photo, seats, bags, gearbox, price, Book), how it works in 3 steps, coast route on the map (kept, restyled), day trips, FAQ accordion, call to action. Car pages have a sticky summary card; Book has 4 numbered steps and a live price summary.
+  - **Checks:** 22/22 demo QA checks, no console errors. Mobile (throttled) LCP 1.3–1.9 s, CLS 0. Webmoris tests pass, ruff clean. Webmoris card screenshots refreshed.
+- 2026-11-01 — Phase 9 — Changes requested — The owner doesn't like the layout, colour and structure; wants it more intuitive, professional and appealing. Redesign in progress.
 - 2026-11-01 — Phase 9 — Ready for review — Drive Moris car rental demo built to the "Coast Road" creative direction and tested locally (http://127.0.0.1:5004).
   - **Built:** `demos/drive-moris/`: Home (KM 00–80), Fleet with filter, 8 car pages, Book (live trip ticket), Credits, 404. Content in `site.json`, `fleet.json`, `drives.json`; 24 Wikimedia Commons photos, all credited and graded with one duotone at build time.
   - **Effects:** shader night-drive hero (GPU desktops only, static SVG road elsewhere), pinned coast route drawn on the real OpenStreetMap map with an odometer, garage stage, drag-to-turn car view, odometer prices, sign and film reveals, lane-line progress bar, page-change "truck pass".

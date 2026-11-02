@@ -4,21 +4,18 @@
   "description": "Webmoris ready-made website demo: Drive Moris (car rental, Mauritius). Fictional business.",
   "type": "module",
   "scripts": {
-    "build:photos": "node scripts/grade-photos.mjs",
     "build:map": "node scripts/build-map.mjs",
     "build:css": "tailwindcss -i src/assets/css/main.css -o _site/assets/main.css --minify",
     "build:js": "esbuild src/assets/js/main.js --bundle --format=esm --splitting --minify --outdir=_site/assets/js",
     "build:fonts": "esbuild src/assets/css/fonts.css --bundle --minify --loader:.woff2=file --loader:.woff=file --asset-names=fonts/[name] --outdir=_site/assets",
     "build:html": "eleventy",
-    "build": "npm run build:photos && npm run build:html && npm run build:fonts && npm run build:css && npm run build:js",
+    "build": "npm run build:html && npm run build:fonts && npm run build:css && npm run build:js",
     "serve": "eleventy --serve --port=5004"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.7",
     "@11ty/eleventy-img": "^7.1.1",
-    "@fontsource/barlow": "^5.3.0",
-    "@fontsource/big-shoulders-display": "^5.3.0",
-    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "@tailwindcss/cli": "^4.3.3",
     "esbuild": "^0.28.2",
     "gsap": "^3.15.0",

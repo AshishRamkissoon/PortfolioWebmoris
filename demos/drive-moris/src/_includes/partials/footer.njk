@@ -1,33 +1,34 @@
-<footer class="relative overflow-hidden border-t border-kerb pt-20">
-  <div class="container-x grid gap-12 pb-16 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
+<footer class="bg-ink-900 text-white">
+  <div class="container-x grid gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
     <div>
-      <a href="/" class="text-road" aria-label="{{ site.name }} home">{% include "partials/logo.njk" %}</a>
-      <p class="mt-5 max-w-xs text-dust">{{ site.tagline }}. The whole island, one key.</p>
+      <a href="/" class="text-white [&_.text-lagoon-700]:text-lagoon-100" aria-label="{{ site.name }} home">{% include "partials/logo.njk" %}</a>
+      <p class="mt-4 max-w-xs text-sm text-ink-300">Car rental at Mauritius airport. Full insurance included, a car waiting when you land.</p>
     </div>
     <div>
-      <h2 class="label-km">Desk</h2>
-      <ul class="mt-5 space-y-2 text-road/85">
+      <h2 class="text-sm font-bold">Our desk</h2>
+      <ul class="mt-4 space-y-2 text-sm text-ink-300">
         <li>{{ site.address }}</li>
-        <li class="figure text-sm">Open 24/7 for arrivals</li>
+        <li>Open 24/7 for arrivals</li>
       </ul>
     </div>
     <div>
-      <h2 class="label-km">Call</h2>
-      <ul class="mt-5 space-y-2 text-road/85">
-        <li class="figure text-sm">{{ site.phone }}</li>
-        <li class="figure text-sm">{{ site.email }}</li>
+      <h2 class="text-sm font-bold">Contact</h2>
+      <ul class="mt-4 space-y-2 text-sm text-ink-300">
+        <li>{{ site.phone }}</li>
+        <li>{{ site.email }}</li>
       </ul>
     </div>
     <div>
-      <h2 class="label-km">Explore</h2>
-      <ul class="mt-5 space-y-2 text-road/85">
-        <li><a href="/fleet/" class="hover:text-sodium">Fleet</a></li>
-        <li><a href="/book/" class="hover:text-sodium">Book a car</a></li>
-        <li><a href="/#terms" class="hover:text-sodium">Terms &amp; FAQ</a></li>
-        <li><a href="/credits/" class="hover:text-sodium">Photo credits</a></li>
+      <h2 class="text-sm font-bold">Explore</h2>
+      <ul class="mt-4 space-y-2 text-sm text-ink-300">
+        <li><a href="/fleet/" class="hover:text-white">Our cars</a></li>
+        <li><a href="/book/" class="hover:text-white">Book a car</a></li>
+        <li><a href="/#faq" class="hover:text-white">FAQ</a></li>
+        <li><a href="/credits/" class="hover:text-white">Photo credits</a></li>
       </ul>
     </div>
   </div>
-  <div class="lane-x h-0.5 opacity-40" aria-hidden="true"></div>
-  <p class="container-x py-6 font-mono text-[11px] tracking-[0.14em] text-dust uppercase">Drive Moris is a fictional company. Example prices. Demo website designed and built by Webmoris.</p>
+  <div class="border-t border-white/10">
+    <p class="container-x py-5 text-xs text-ink-300">Drive Moris is a fictional company. Example prices. Demo website designed and built by Webmoris.</p>
+  </div>
 </footer>

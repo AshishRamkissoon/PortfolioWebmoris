@@ -13,11 +13,11 @@ const IMAGE_OPTIONS = {
   sharpJpegOptions: { quality: 75, mozjpeg: true },
 };
 
-// Pages use the graded copies (scripts/grade-photos.mjs), never the raw originals.
+// Photos are the credited originals in src/images/photos/ (resized to 2000 px max).
 const source = (key) => {
   const photo = photos[key];
   if (!photo) throw new Error(`Unknown photo key: ${key}`);
-  return `src/images/graded/${photo.file}`;
+  return `src/images/photos/${photo.file}`;
 };
 
 /** Responsive <picture> (AVIF, WebP, JPEG) for a photo key from photos.json. */
@@ -54,6 +54,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("money", (amount) => `Rs ${Number(amount).toLocaleString("en-US")}`);
   eleventyConfig.addFilter("digits", (amount) => Number(amount).toLocaleString("en-US"));
   eleventyConfig.addFilter("featured", (cars) => cars.filter((car) => car.featured));
+  eleventyConfig.addFilter("limit", (items, count) => items.slice(0, count));
   eleventyConfig.addFilter("others", (cars, slug) => cars.filter((car) => car.slug !== slug));
   eleventyConfig.addFilter("className", (slug, classes) => classes.find((c) => c.slug === slug)?.name || slug);
   eleventyConfig.addFilter("pad", (value, length = 2) => String(value).padStart(length, "0"));
