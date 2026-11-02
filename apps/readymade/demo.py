@@ -118,6 +118,20 @@ DESCRIPTION = (
 SCREENS_DIR = Path(__file__).resolve().parent / "demo_screens"
 # Gallery screenshots per template, in display order: (file, English caption, French caption).
 SCREENS = {
+    "drive-moris": [
+        ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
+        (
+            "coast.jpg",
+            "The coast route draws itself as you scroll",
+            "L'itinéraire côtier se dessine au défilement",
+        ),
+        ("garage.jpg", "The fleet, one car at a time", "La flotte, une voiture à la fois"),
+        (
+            "book.jpg",
+            "Booking with a live trip ticket",
+            "Réservation avec ticket de voyage en direct",
+        ),
+    ],
     "lagon-bistro": [
         ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
         (

@@ -1,0 +1,218 @@
+@import "tailwindcss" source(none);
+@import "lenis/dist/lenis.css";
+
+@source "../../../src";
+
+/* Drive Moris — "Coast Road": the road at night, lit by sodium streetlights. */
+@theme {
+  --color-tarmac: #111213;
+  --color-asphalt: #1b1d1f;
+  --color-kerb: #2a2d30;
+  --color-road: #efece4;
+  --color-dust: #8c8a83;
+  --color-sodium: #ffae1a;
+  --color-sodium-deep: #e8930a;
+  --color-sign: #1f3d2e;
+  --color-cane: #9db06a;
+  --color-lagoon: #2e7d84;
+  --color-taillight: #e2412f;
+
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* "Clutch and brake": starts gently, stops firmly, never bounces. */
+  --ease-drive: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-arrive: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-rise: rise 1.1s var(--ease-arrive) both;
+  --animate-dash: dash 0.9s linear infinite;
+  --animate-blink: blink 1.6s steps(1) infinite;
+
+  @keyframes rise {
+    /* Enters from the right, like scenery from a car window. 0.01 so it still counts as painted. */
+    from { opacity: 0.01; transform: translateX(0.6em); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes dash {
+    to { background-position: 0 72px; }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+}
+
+@view-transition {
+  navigation: auto;
+}
+/* "Truck pass": pages swap behind a dark panel sweeping left to right. */
+::view-transition-old(root) {
+  animation: 0.5s var(--ease-drive) both truck-out;
+}
+::view-transition-new(root) {
+  animation: 0.5s var(--ease-drive) 0.1s both truck-in;
+}
+@keyframes truck-out {
+  to { clip-path: inset(0 0 0 100%); }
+}
+@keyframes truck-in {
+  from { clip-path: inset(0 100% 0 0); }
+}
+
+@layer base {
+  html {
+    @apply bg-tarmac text-road antialiased;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply font-body text-[17px] leading-[1.55] sm:text-[18px];
+  }
+
+  h1, h2, h3 {
+    @apply font-display leading-[0.86] font-black tracking-[-0.01em] uppercase;
+  }
+
+  ::selection {
+    @apply bg-sodium text-tarmac;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-sodium;
+  }
+
+  picture img {
+    @apply size-full object-cover;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-10;
+  }
+
+  /* — KM 12 · THE FLEET — : mono label preceded by a lane dash. */
+  .label-km {
+    @apply inline-flex items-center gap-3 font-mono text-xs font-medium tracking-[0.2em] text-dust uppercase;
+
+    &::before {
+      @apply h-0.5 w-6 bg-sodium;
+      content: "";
+    }
+  }
+
+  .figure {
+    @apply font-mono tabular-nums;
+  }
+
+  /* Road sign panel: white type on dark green (or tarmac), square corners, thin inner rule. */
+  .sign {
+    @apply inline-flex items-center gap-3 bg-sign px-4 py-2 font-display text-2xl font-black tracking-wide text-road uppercase shadow-[inset_0_0_0_2px_var(--color-sign),inset_0_0_0_4px_rgb(239_236_228/0.85)];
+  }
+  .sign-dark {
+    @apply bg-tarmac shadow-[inset_0_0_0_2px_var(--color-tarmac),inset_0_0_0_4px_rgb(239_236_228/0.6)];
+  }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-3 px-7 py-4 font-mono text-sm font-medium tracking-[0.12em] uppercase transition-[background-color,color,box-shadow] duration-300 will-change-transform;
+  }
+  .btn-sodium {
+    @apply bg-sodium text-tarmac shadow-[0_0_0_rgb(255_174_26/0)] hover:bg-road hover:shadow-[0_0_40px_rgb(255_174_26/0.45)];
+  }
+  .btn-line {
+    @apply text-road shadow-[inset_0_0_0_1px_var(--color-kerb)] hover:shadow-[inset_0_0_0_1px_var(--color-road)];
+  }
+
+  /* Cinema ratio frame with thin black bars. */
+  .letterbox {
+    @apply relative aspect-[2.39/1] overflow-hidden bg-black shadow-[inset_0_10px_0_#000,inset_0_-10px_0_#000];
+  }
+
+  /* Lane markings: a dashed white line. */
+  .lane {
+    background-image: linear-gradient(to bottom, var(--color-road) 0 50%, transparent 50% 100%);
+    background-size: 2px 36px;
+    background-repeat: repeat-y;
+  }
+  .lane-x {
+    background-image: linear-gradient(to right, var(--color-road) 0 50%, transparent 50% 100%);
+    background-size: 36px 2px;
+    background-repeat: repeat-x;
+    background-position: left center;
+  }
+
+  .field {
+    @apply w-full border-0 bg-asphalt px-4 py-3.5 font-mono text-sm text-road shadow-[inset_0_-2px_0_var(--color-kerb)] transition outline-none placeholder:text-dust focus:shadow-[inset_0_-2px_0_var(--color-sodium)];
+  }
+  .field-label {
+    @apply mb-2 block font-mono text-[11px] tracking-[0.2em] text-dust uppercase;
+  }
+
+  .site-header {
+    @apply fixed inset-x-0 z-40 transition-[background-color,box-shadow] duration-500;
+
+    &.is-solid {
+      @apply bg-tarmac/90 shadow-[0_1px_0_var(--color-kerb)] backdrop-blur-md;
+    }
+  }
+
+  .nav-link {
+    @apply relative font-mono text-xs tracking-[0.18em] text-road/75 uppercase transition hover:text-road;
+
+    &[aria-current="page"] {
+      @apply text-sodium;
+    }
+  }
+
+  .filter-btn {
+    @apply px-4 py-2.5 font-mono text-xs tracking-[0.16em] text-dust uppercase shadow-[inset_0_0_0_1px_var(--color-kerb)] transition hover:text-road;
+
+    &[aria-pressed="true"] {
+      @apply text-road shadow-[inset_0_0_0_1px_var(--color-taillight),inset_4px_0_0_var(--color-taillight)];
+    }
+  }
+
+  /* Odometer: each digit sits in its own window. */
+  .odo {
+    @apply inline-flex items-start font-mono leading-[1.15] tabular-nums;
+
+    & .odo-digit {
+      @apply relative inline-block h-[1.15em] overflow-hidden align-top leading-[1.15];
+    }
+    & .odo-reel {
+      @apply block;
+    }
+  }
+}
+
+/* Tarmac grain over the whole page: static, coarser than film grain. */
+.tarmac-grain {
+  @apply pointer-events-none fixed inset-0 z-[60] opacity-[0.09] mix-blend-overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The lane line down the left edge: the page's progress bar. */
+.lane-progress {
+  @apply pointer-events-none fixed top-0 bottom-0 left-3 z-30 hidden w-0.5 opacity-50 sm:left-5 lg:block;
+}
+
+/* --- Motion helpers: hidden only when JS runs and motion is allowed --- */
+.motion-ok [data-reveal] {
+  opacity: 0;
+}
+.motion-ok [data-sign] {
+  clip-path: inset(0 0 0 100%);
+}
+.motion-ok [data-split] {
+  opacity: 0;
+}
+
+.hero-rise {
+  @apply motion-safe:animate-rise;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}

@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+title: Photo credits
+section: credits
+---
+<section class="container-x max-w-5xl pt-40 pb-28">
+  <p class="label-km">Credits</p>
+  <h1 class="mt-6 text-6xl sm:text-8xl">Photo credits</h1>
+  <p class="mt-6 text-lg text-road/80">
+    Drive Moris is a fictional company created by Webmoris as a demo. All photos come from
+    <a href="https://commons.wikimedia.org/" class="text-sodium underline" rel="noopener noreferrer">Wikimedia Commons</a>
+    and are used under the licences below. They have been resized, cropped and colour-graded (duotone) for this website.
+    Car models appear for illustration only; no carmaker is connected with this demo.
+  </p>
+  <ul class="mt-12 divide-y divide-kerb border-y border-kerb">
+    {% asyncEach key, photo in photos %}
+      <li class="flex flex-col gap-4 py-5 sm:flex-row sm:items-center">
+        <div class="h-16 w-36 shrink-0 overflow-hidden">{% picture key, "", "144px", { widths: [480] } %}</div>
+        <div class="text-sm">
+          <p class="font-semibold text-road">“{{ photo.title }}”</p>
+          <p class="text-dust">by {{ photo.author }} ·
+            {% if photo.licenseUrl %}<a href="{{ photo.licenseUrl }}" class="underline hover:text-sodium" rel="noopener noreferrer">{{ photo.license }}</a>{% else %}{{ photo.license }}{% endif %}
+            · <a href="{{ photo.source }}" class="underline hover:text-sodium" rel="noopener noreferrer">source</a>
+          </p>
+        </div>
+      </li>
+    {% endeach %}
+  </ul>
+  <h2 class="mt-16 text-4xl">Map data</h2>
+  <p class="mt-4 text-road/80">The map and the coast route are drawn from <a href="https://www.openstreetmap.org/copyright" class="text-sodium underline" rel="noopener noreferrer">© OpenStreetMap contributors</a>, available under the Open Database Licence. The route follows the coastline and is approximate.</p>
+</section>

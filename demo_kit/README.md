@@ -21,6 +21,7 @@ If the demo has a fixed header, position it below the bar with `top: var(--demo-
 The script does three things:
 - shows a "Demo website by Webmoris" bar with a "Get this website" button
 - blocks every form submission and shows a short explanation instead
+  (one exception: a same-site `method="get"` form marked `data-demo-navigation`, such as a search bar that only opens another demo page)
 - adds a `noindex` meta tag
 
 ## 2. Keep demos out of Google (server side)

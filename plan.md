@@ -412,6 +412,24 @@
 
 ---
 
+## Phase 9 — Third Live Demo: "Drive Moris" (Car Rental)
+
+**Goal:** a cinematic car rental demo following [docs/drive-moris-creative-direction.md](docs/drive-moris-creative-direction.md) ("Coast Road"). It replaces the placeholder on the Drive Moris ready-made card.
+
+**Decisions** (owner, 2026-11-01): build the creative direction as written; same stack and rules as Phases 7–8 (static site, subdomain, licensed photos with credits, demo kit, no fake social proof).
+
+### Pages
+Home (night-drive hero, promises, coast route on the map, garage stage, five drives, terms, call to action), Fleet (filter), one page per car, Book (trip calculator), Credits, 404.
+
+### Exit criteria
+- All pages work on mobile and desktop with no console errors; forms are blocked by the demo kit.
+- Every page is complete without JavaScript and with reduced motion; WebGL only on capable desktops.
+- Mobile LCP ≤ 2.5 s and CLS ≤ 0.1 locally.
+- Every photo is graded consistently and credited; no reviews, ratings or real company names.
+- On Webmoris, the Drive Moris template shows real screenshots and the "Live demo" button (local URL until deployed).
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.

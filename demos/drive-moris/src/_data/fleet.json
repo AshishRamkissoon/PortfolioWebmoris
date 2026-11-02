@@ -1,0 +1,18 @@
+{
+  "classes": [
+    { "slug": "city", "name": "City" },
+    { "slug": "suv", "name": "SUV & 4×4" },
+    { "slug": "family", "name": "7 seats" },
+    { "slug": "open", "name": "Open top" }
+  ],
+  "cars": [
+    { "slug": "suzuki-swift", "name": "Suzuki Swift", "class": "city", "seats": 5, "bags": 2, "doors": 5, "gearbox": "Automatic", "aircon": true, "price": 1600, "line": "Small, quick and easy to park in Port Louis.", "photos": ["swift-1", "swift-2"], "featured": true },
+    { "slug": "kia-picanto", "name": "Kia Picanto", "class": "city", "seats": 4, "bags": 1, "doors": 5, "gearbox": "Automatic", "aircon": true, "price": 1400, "line": "The lightest way around the island, for two.", "photos": ["picanto-1", "picanto-2"] },
+    { "slug": "kia-sonet", "name": "Kia Sonet", "class": "suv", "seats": 5, "bags": 3, "doors": 5, "gearbox": "Automatic", "aircon": true, "price": 2400, "line": "Sits high, swallows luggage, handles the mountain roads.", "photos": ["sonet"], "featured": true },
+    { "slug": "suzuki-vitara", "name": "Suzuki Vitara", "class": "suv", "seats": 5, "bags": 3, "doors": 5, "gearbox": "Automatic", "aircon": true, "price": 2600, "line": "A comfortable SUV for long days on the coast road.", "photos": ["vitara"] },
+    { "slug": "suzuki-jimny", "name": "Suzuki Jimny", "class": "suv", "seats": 4, "bags": 1, "doors": 3, "gearbox": "Manual", "aircon": true, "price": 2800, "line": "Small, square and made for the tracks to the waterfalls.", "photos": ["jimny"], "featured": true },
+    { "slug": "suzuki-ertiga", "name": "Suzuki Ertiga", "class": "family", "seats": 7, "bags": 3, "doors": 5, "gearbox": "Automatic", "aircon": true, "price": 2700, "line": "Seven seats for the whole family and the beach bags.", "photos": ["ertiga"] },
+    { "slug": "toyota-innova", "name": "Toyota Innova", "class": "family", "seats": 7, "bags": 4, "doors": 5, "gearbox": "Automatic", "aircon": true, "price": 3600, "line": "Room for seven and their suitcases, from the airport onwards.", "photos": ["innova"], "featured": true },
+    { "slug": "mazda-mx5", "name": "Mazda MX-5", "class": "open", "seats": 2, "bags": 1, "doors": 2, "gearbox": "Manual", "aircon": true, "price": 4200, "line": "Roof down on the road to Le Morne. That's the whole pitch.", "photos": ["mx5-1", "mx5-2"], "featured": true }
+  ]
+}

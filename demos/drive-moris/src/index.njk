@@ -1,0 +1,211 @@
+---
+layout: layouts/base.njk
+section: home
+---
+{% set stopInfo = {
+  "Airport": { photo: "night-road", line: "Keys at arrivals. The road starts at the end of the runway." },
+  "Souillac": { photo: "road-maconde", line: "The south coast road at Macondé: rock on one side, open ocean on the other." },
+  "Le Morne": { photo: "road-lemorne", line: "Down the hill to Le Morne, the mountain and the lagoon in the windscreen." },
+  "Flic en Flac": { photo: "road-coast", line: "Filao trees, the island buses and the sea between the trunks." },
+  "Port Louis": { photo: "portlouis-road", line: "Into the capital, mountains behind the harbour." },
+  "Grand Baie": { photo: "coast-north", line: "The calm north: lagoons, boats and sunsets over the islands." },
+  "Belle Mare": { photo: "belle-mare", line: "Ten kilometres of white sand on the east coast." },
+  "Mahébourg": { photo: "jetty-sunset", line: "Back to the south-east, just as the light goes." }
+} %}
+
+{# ---------- KM 00 · Arrivals: the night drive ---------- #}
+<section class="relative isolate flex h-[calc(100svh-var(--demo-bar-h,0px))] min-h-[640px] flex-col justify-end overflow-hidden" data-hero>
+  <div class="absolute inset-0 -z-10" data-nightdrive>{% include "partials/road.njk" %}</div>
+  <div class="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-linear-to-t from-tarmac via-tarmac/60 to-transparent"></div>
+
+  <div class="container-x pb-8 sm:pb-12">
+    <p class="hero-rise label-km">KM 00 · Mauritius airport</p>
+    <h1 class="mt-5 text-[clamp(3.6rem,min(12vw,17svh),13rem)] text-road">
+      <span class="hero-rise block [animation-delay:90ms]">The whole island.</span>
+      <span class="hero-rise block text-sodium [animation-delay:200ms]">One key.</span>
+    </h1>
+    <p class="hero-rise mt-6 max-w-xl text-lg text-road/80 [animation-delay:320ms]">Pick up at arrivals. Hand back wherever the road ends. Full insurance in every price.</p>
+
+    {# Dashboard quote bar: a plain GET form to the booking page (allowed by the demo kit). #}
+    <form action="/book/" method="get" data-demo-navigation class="hero-rise mt-10 grid border-t border-kerb bg-tarmac/70 backdrop-blur-sm [animation-delay:440ms] sm:grid-cols-[1fr_1fr_1fr_auto]">
+      <label class="border-b border-kerb px-5 py-4 sm:border-r sm:border-b-0">
+        <span class="field-label">Pick up</span>
+        <input class="w-full bg-transparent font-mono text-road outline-none [color-scheme:dark]" type="date" name="pickup_date">
+      </label>
+      <label class="border-b border-kerb px-5 py-4 sm:border-r sm:border-b-0">
+        <span class="field-label">Return</span>
+        <input class="w-full bg-transparent font-mono text-road outline-none [color-scheme:dark]" type="date" name="return_date">
+      </label>
+      <label class="border-b border-kerb px-5 py-4 sm:border-b-0">
+        <span class="field-label">Car</span>
+        <select class="w-full bg-transparent font-mono text-road outline-none" name="car">
+          {% for car in fleet.cars %}<option class="bg-tarmac" value="{{ car.slug }}">{{ car.name }} · {{ car.price | money }}/day</option>{% endfor %}
+        </select>
+      </label>
+      <button type="submit" class="btn btn-sodium h-full px-9">See prices →</button>
+    </form>
+  </div>
+</section>
+
+{# ---------- KM 04 · The promise: three road signs ---------- #}
+<section class="container-x py-28 sm:py-36" aria-labelledby="promise-title">
+  <p class="label-km" data-reveal>KM 04 · The promise</p>
+  <h2 id="promise-title" class="mt-6 max-w-5xl text-6xl text-road sm:text-8xl" data-split>Landed at midnight? <span class="text-dust">The car is already there.</span></h2>
+  <ol class="mt-16 grid gap-px bg-kerb md:grid-cols-3">
+    {% for promise in site.promises %}
+      <li class="bg-tarmac p-8 sm:p-10" data-reveal>
+        <p class="sign" data-sign><span class="font-mono text-sm text-sodium">{{ loop.index | pad }}</span>{{ promise.title }}</p>
+        <p class="mt-6 max-w-sm text-road/75">{{ promise.text }}</p>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+
+{# ---------- KM 12 · The coast: the route draws itself around the island ---------- #}
+<section id="coast" class="coast relative border-y border-kerb bg-[#0d0f10]" data-coast data-km="{{ route.km }}" aria-labelledby="coast-title">
+  <div class="container-x grid gap-10 py-24 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:items-center in-[.is-pinned]:h-[calc(100svh-5rem-var(--demo-bar-h,0px))] in-[.is-pinned]:py-6">
+    <figure class="relative mx-auto aspect-[832/1000] w-full max-w-md in-[.is-pinned]:w-[calc((100svh-8rem-var(--demo-bar-h,0px))*0.832)] in-[.is-pinned]:max-w-full">
+      <img src="/img/map/mauritius.svg" alt="" width="832" height="1000" loading="lazy" decoding="async" class="absolute inset-0 size-full">
+      <svg class="absolute inset-0 size-full" viewBox="0 0 {{ route.width }} {{ route.height }}" aria-hidden="true">
+        <path d="{{ route.d }}" fill="none" stroke="#ffae1a" stroke-opacity=".18" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <path d="{{ route.d }}" fill="none" stroke="#ffae1a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" data-route/>
+        {% for stop in route.stops %}
+          <circle cx="{{ stop.x }}" cy="{{ stop.y }}" r="7" class="fill-tarmac stroke-road [&.is-reached]:fill-sodium" stroke-width="2.5" data-stop-dot/>
+        {% endfor %}
+        <g class="hidden in-[.is-pinned]:inline" data-route-car transform="translate({{ route.stops[0].x }} {{ route.stops[0].y }})">
+          <circle r="22" fill="#ffae1a" fill-opacity=".18"/><circle r="9" fill="#efece4"/>
+        </g>
+      </svg>
+      <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" class="absolute right-1 bottom-1 font-mono text-[10px] text-dust hover:text-road">© OpenStreetMap</a>
+      <figcaption class="sr-only">Map of Mauritius with the coast road drawn around the island from the airport.</figcaption>
+    </figure>
+
+    <div class="relative min-w-0">
+      <p class="label-km">KM 12 · The coast</p>
+      <h2 id="coast-title" class="mt-5 text-5xl sm:text-7xl in-[.is-pinned]:text-5xl in-[.is-pinned]:xl:text-6xl" data-split>Around the island in <span class="text-sodium">one day.</span></h2>
+      <p class="mt-4 max-w-md text-road/70">About {{ route.km }} km of coast road from the airport and back. Scroll to drive it.</p>
+      <p class="mt-5 hidden items-baseline gap-3 in-[.is-pinned]:flex" aria-hidden="true">
+        <span class="font-mono text-xs tracking-[0.2em] text-dust uppercase">Odometer</span>
+        <span class="font-mono text-6xl font-medium text-road tabular-nums sm:text-7xl" data-route-km>000</span>
+        <span class="font-mono text-lg text-dust">km</span>
+      </p>
+      <ol class="mt-10 grid gap-8 sm:grid-cols-2 in-[.is-pinned]:relative in-[.is-pinned]:mt-5 in-[.is-pinned]:block in-[.is-pinned]:h-[40vh] in-[.is-pinned]:max-w-xl">
+        {% asyncEach stop in route.stops %}
+          {% set info = stopInfo[stop.name] %}
+          <li class="in-[.is-pinned]:absolute in-[.is-pinned]:inset-0" data-stop data-at="{{ stop.at }}">
+            <p class="flex items-center gap-4"><span class="sign">{{ stop.name }}</span><span class="font-mono text-sm text-dust tabular-nums">KM {{ stop.km | pad(3) }}</span></p>
+            <div class="letterbox mt-4">{% picture info.photo, info.line, "(min-width: 768px) 45vw, 100vw", { widths: [480, 960, 1440] } %}</div>
+            <p class="mt-3 max-w-lg text-sm text-road/70">{{ info.line }}</p>
+          </li>
+        {% endeach %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{# ---------- KM 47 · The fleet: the garage stage ---------- #}
+<section id="fleet" class="py-28 sm:py-36" data-garage aria-labelledby="garage-title" tabindex="-1">
+  <div class="container-x flex flex-col justify-between gap-6 md:flex-row md:items-end">
+    <div>
+      <p class="label-km" data-reveal>KM 47 · The fleet</p>
+      <h2 id="garage-title" class="mt-6 text-6xl sm:text-8xl" data-split>Pick your <span class="text-sodium">key.</span></h2>
+    </div>
+    <div class="flex items-center gap-4" data-garage-controls hidden>
+      <p class="font-mono text-sm text-dust"><span class="text-road" data-garage-count>01</span> / {{ fleet.cars | featured | length | pad }}</p>
+      <button type="button" class="grid size-14 place-items-center shadow-[inset_0_0_0_1px_var(--color-kerb)] transition hover:shadow-[inset_0_0_0_1px_var(--color-road)]" data-garage-prev aria-label="Previous car">←</button>
+      <button type="button" class="grid size-14 place-items-center bg-sodium text-tarmac transition hover:bg-road" data-garage-next aria-label="Next car">→</button>
+    </div>
+  </div>
+  <div class="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 [scrollbar-width:none] sm:px-10" data-garage-track>
+    {% asyncEach car in fleet.cars | featured %}
+      <article class="group grid w-[88vw] shrink-0 snap-center gap-8 lg:w-[84vw] lg:grid-cols-[1.6fr_1fr] lg:items-end" aria-label="{{ car.name }}">
+        <a href="/cars/{{ car.slug }}/" class="relative block overflow-hidden bg-black">
+          <div class="aspect-[16/9] transition duration-700 group-[&:not(.is-active)]:opacity-40">{% picture car.photos[0], car.name, "(min-width: 1024px) 55vw, 88vw", { widths: [480, 960, 1440] } %}</div>
+          {# One light over the car on a dark floor #}
+          <div class="pointer-events-none absolute inset-0 bg-radial-[ellipse_at_50%_20%] from-transparent via-transparent to-black/70"></div>
+        </a>
+        <div class="border-t border-kerb pt-6">
+          <p class="font-mono text-xs tracking-[0.2em] text-dust uppercase">{{ car.class | className(fleet.classes) }}</p>
+          <h3 class="mt-2 text-5xl sm:text-6xl">{{ car.name }}</h3>
+          <p class="mt-3 max-w-sm text-road/70">{{ car.line }}</p>
+          <dl class="mt-6 grid grid-cols-4 gap-px bg-kerb text-center">
+            {% for spec in [["Seats", car.seats], ["Bags", car.bags], ["Doors", car.doors], ["Gear", "A" if car.gearbox == "Automatic" else "M"]] %}
+              <div class="bg-tarmac py-3"><dt class="font-mono text-[10px] tracking-[0.2em] text-dust uppercase">{{ spec[0] }}</dt><dd class="mt-1 font-mono text-2xl">{{ spec[1] }}</dd></div>
+            {% endfor %}
+          </dl>
+          <div class="mt-6 flex items-end justify-between gap-4">
+            <p><span class="block font-mono text-[10px] tracking-[0.2em] text-dust uppercase">From, per day</span><span class="font-mono text-4xl text-sodium tabular-nums" data-garage-price>{{ car.price | money }}</span></p>
+            <a href="/cars/{{ car.slug }}/" class="btn btn-line px-5 py-3">Details →</a>
+          </div>
+        </div>
+      </article>
+    {% endeach %}
+  </div>
+  <div class="container-x mt-10"><a href="/fleet/" class="btn btn-line">All {{ fleet.cars | length }} cars →</a></div>
+</section>
+
+{# ---------- KM 60 · Five drives ---------- #}
+<section id="drives" class="border-t border-kerb py-28 sm:py-36" aria-labelledby="drives-title">
+  <div class="container-x">
+    <p class="label-km" data-reveal>KM 60 · Five drives</p>
+    <h2 id="drives-title" class="mt-6 max-w-4xl text-6xl sm:text-8xl" data-split>Where the <span class="text-sodium">road goes.</span></h2>
+  </div>
+  <ol class="container-x mt-16 space-y-20">
+    {% asyncEach drive in drives %}
+      <li class="grid gap-8 lg:grid-cols-12 lg:items-center">
+        <div class="letterbox lg:col-span-8 {% if loop.index is even %}lg:order-2 lg:col-start-5{% endif %}" data-film>
+          <div class="absolute inset-y-0 -inset-x-[8%]" data-drift="4">{% picture drive.photo, drive.title, "(min-width: 1024px) 66vw, 100vw", { widths: [480, 960, 1440, 2000] } %}</div>
+        </div>
+        <div class="lg:col-span-4 {% if loop.index is even %}lg:order-1{% endif %}" data-reveal>
+          <p class="font-mono text-sm text-sodium tabular-nums">{{ loop.index | pad }} / 05</p>
+          <h3 class="mt-3 text-5xl">{{ drive.title }}</h3>
+          <p class="mt-2 font-mono text-xs tracking-[0.14em] text-dust uppercase">{{ drive.route }}</p>
+          <p class="mt-5 text-road/75">{{ drive.text }}</p>
+          <dl class="mt-6 flex gap-8 font-mono">
+            <div><dt class="text-[10px] tracking-[0.2em] text-dust uppercase">Distance</dt><dd class="mt-1 text-2xl" data-odo>{{ drive.km }} km</dd></div>
+            <div><dt class="text-[10px] tracking-[0.2em] text-dust uppercase">Driving</dt><dd class="mt-1 text-2xl">{{ drive.time }}</dd></div>
+          </dl>
+        </div>
+      </li>
+    {% endeach %}
+  </ol>
+</section>
+
+{# ---------- KM 72 · Honest terms ---------- #}
+<section id="terms" class="border-t border-kerb py-28 sm:py-36" aria-labelledby="terms-title">
+  <div class="container-x grid gap-16 lg:grid-cols-[1fr_1.4fr]">
+    <div>
+      <p class="label-km" data-reveal>KM 72 · Honest terms</p>
+      <h2 id="terms-title" class="mt-6 text-6xl sm:text-8xl" data-split>The small print, <span class="text-sodium">in large type.</span></h2>
+      <div class="mt-10 grid grid-cols-2 gap-px bg-kerb" data-reveal>
+        <div class="bg-tarmac p-6"><p class="font-mono text-[10px] tracking-[0.2em] text-dust uppercase">Deposit</p><p class="mt-2 font-mono text-2xl sm:text-3xl" data-odo>{{ site.deposit | money }}</p></div>
+        <div class="bg-tarmac p-6"><p class="font-mono text-[10px] tracking-[0.2em] text-dust uppercase">Excess</p><p class="mt-2 font-mono text-2xl sm:text-3xl">Rs 0</p></div>
+      </div>
+    </div>
+    <dl class="border-t border-kerb">
+      {% for term in site.terms %}
+        <div class="grid gap-3 border-b border-kerb py-7 sm:grid-cols-[3rem_1fr_1.4fr] sm:gap-6" data-reveal>
+          <span class="font-mono text-sm text-sodium tabular-nums">{{ loop.index | pad }}</span>
+          <dt class="font-display text-3xl font-black uppercase">{{ term.q }}</dt>
+          <dd class="text-road/75">{{ term.a }}</dd>
+        </div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>
+
+{# ---------- KM 80 · Hand-back ---------- #}
+<section class="relative overflow-hidden border-t border-kerb py-28 sm:py-40">
+  <div class="lane-x absolute inset-x-0 top-1/2 h-0.5 opacity-15" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <p class="label-km" data-reveal>KM 80 · Ready when you land</p>
+    <a href="/book/" class="mt-8 block" aria-label="Book a car">
+      <span class="block font-display text-[clamp(4.5rem,17vw,17rem)] leading-[0.82] font-black text-road uppercase transition hover:text-sodium" data-finale>The road's ready.</span>
+    </a>
+    <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+      <a href="/book/" class="btn btn-sodium" data-magnetic>Book a car →</a>
+      {# On a client's live site this opens their WhatsApp chat; in the demo it leads to the Webmoris enquiry form. #}
+      <a href="{{ site.agencyUrl }}/en/contact/ready-made/{{ site.templateSlug }}/" target="_blank" rel="noopener noreferrer" class="btn btn-line">WhatsApp ↗</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+{
+  "name": "Drive Moris",
+  "tagline": "Car rental · Mauritius airport",
+  "description": "Rent a car at Mauritius airport. Full insurance included, a car waiting at arrivals, and hand-back anywhere on the island. Example prices from Rs 1,400 a day.",
+  "phone": "+230 5000 0000",
+  "email": "hello@example.com",
+  "address": "Plaine Magnien, next to the airport (fictional)",
+  "templateSlug": "drive-moris",
+  "agencyUrl": "https://webmoris.mu",
+  "lang": "en",
+  "office": { "name": "Drive Moris desk", "lat": -20.4275, "lng": 57.677 },
+  "promises": [
+    { "title": "Waiting at arrivals", "text": "Your car is parked outside the terminal. We meet you with the keys, whatever time you land." },
+    { "title": "Full insurance in the price", "text": "Zero-excess cover is included in every daily rate. No surprises at the desk." },
+    { "title": "Hand back anywhere", "text": "Leave the car at your hotel, the airport or our Port Louis office. Same price." }
+  ],
+  "places": [
+    { "value": "airport", "label": "Airport arrivals", "fee": 0 },
+    { "value": "hotel", "label": "Your hotel (anywhere on the island)", "fee": 500 },
+    { "value": "portlouis", "label": "Port Louis office", "fee": 0 }
+  ],
+  "extras": [
+    { "value": "child-seat", "label": "Child seat", "note": "Per seat, all ages", "price": 150, "per": "day" },
+    { "value": "driver", "label": "Second driver", "note": "Covered by the same insurance", "price": 100, "per": "day" },
+    { "value": "gps", "label": "GPS with offline maps", "note": "Or use your phone", "price": 120, "per": "day" },
+    { "value": "fuel", "label": "Prepaid full tank", "note": "Return it empty, no refuelling stop", "price": 1900, "per": "trip" }
+  ],
+  "deposit": 10000,
+  "terms": [
+    { "q": "What's included in the price?", "a": "Zero-excess insurance, unlimited kilometres, 24/7 roadside help and airport pick-up. Taxes are included." },
+    { "q": "Is there a deposit?", "a": "Yes: Rs 10,000, held on your card and released when the car comes back. No cash needed." },
+    { "q": "Which side of the road?", "a": "Mauritius drives on the left. Every car has automatic or manual listed, and most are automatic." },
+    { "q": "What do I need to rent?", "a": "A driving licence held for at least a year, a passport and a credit card. Minimum age 21." },
+    { "q": "Fuel policy?", "a": "Full to full: you get it full and bring it back full. Or prepay a tank and bring it back empty." },
+    { "q": "Can I cancel?", "a": "Free cancellation up to 24 hours before pick-up." }
+  ]
+}

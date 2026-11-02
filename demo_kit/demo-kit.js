@@ -192,6 +192,16 @@
   document.addEventListener(
     "submit",
     function (event) {
+      // Only exception: a same-site GET form marked as navigation (e.g. a "see prices" search bar).
+      // It just opens another page of the demo and sends nothing anywhere.
+      var form = event.target;
+      if (
+        form.hasAttribute("data-demo-navigation") &&
+        (form.getAttribute("method") || "get").toLowerCase() === "get" &&
+        new URL(form.action, location.href).origin === location.origin
+      ) {
+        return;
+      }
       event.preventDefault();
       event.stopImmediatePropagation();
       showFormNotice();

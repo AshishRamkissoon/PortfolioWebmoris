@@ -1,0 +1,75 @@
+---
+layout: layouts/base.njk
+section: fleet
+pagination:
+  data: fleet.cars
+  size: 1
+  alias: car
+permalink: "/cars/{{ car.slug }}/"
+eleventyComputed:
+  title: "{{ car.name }}"
+  description: "Rent a {{ car.name }} in Mauritius with Drive Moris: {{ car.seats }} seats, {{ car.gearbox | lower }}, full insurance included. Example price {{ car.price | money }} a day."
+  preload: { key: "{{ car.photos[0] }}", sizes: "100vw", widths: [960, 1440, 2000] }
+---
+<section class="pt-28 sm:pt-32">
+  <div class="container-x">
+    <a href="/fleet/" class="font-mono text-xs tracking-[0.2em] text-dust uppercase hover:text-road">← The fleet</a>
+    <div class="mt-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+      <div>
+        <p class="hero-rise label-km">{{ car.class | className(fleet.classes) }}</p>
+        <h1 class="hero-rise mt-4 text-[clamp(3.8rem,11vw,10rem)] [animation-delay:90ms]">{{ car.name }}</h1>
+      </div>
+      <p class="hero-rise font-mono text-5xl text-sodium tabular-nums [animation-delay:180ms]">{{ car.price | money }}<span class="text-base text-dust"> /day</span></p>
+    </div>
+  </div>
+
+  {% if car.photos.length > 1 %}
+    {# Turntable: drag to turn between the two photographed angles. Without JS both photos are shown. #}
+    <div class="container-x mt-10">
+      <div class="group/turn relative grid gap-4 select-none sm:grid-cols-2 [&.is-live]:block [&.is-live]:cursor-ew-resize" data-turntable>
+        <div class="letterbox group-[.is-live]/turn:aspect-[2.39/1]" data-turn-front>{% picture car.photos[0], car.name + ", front", "100vw", { widths: [960, 1440, 2000], eager: true } %}</div>
+        <div class="letterbox group-[.is-live]/turn:absolute group-[.is-live]/turn:inset-0" data-turn-back>{% picture car.photos[1], car.name + ", rear", "100vw", { widths: [960, 1440, 2000] } %}</div>
+        <label class="absolute right-4 bottom-6 left-4 z-10 flex items-center gap-4 sm:right-auto sm:left-6 sm:w-80" hidden data-turn-control>
+          <span class="font-mono text-[10px] tracking-[0.2em] whitespace-nowrap text-road uppercase">Drag to turn</span>
+          <input type="range" min="0" max="100" value="0" class="w-full accent-[#ffae1a]" data-turn-range aria-label="Turn the car">
+        </label>
+      </div>
+    </div>
+  {% else %}
+    <div class="container-x mt-10"><div class="letterbox">{% picture car.photos[0], car.name, "100vw", { widths: [960, 1440, 2000], eager: true } %}</div></div>
+  {% endif %}
+</section>
+
+<section class="container-x grid gap-12 py-20 lg:grid-cols-[1fr_1.2fr]">
+  <div>
+    <p class="text-2xl text-road/85" data-reveal>{{ car.line }}</p>
+    <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+      <a href="/book/?car={{ car.slug }}" class="btn btn-sodium" data-magnetic>Book the {{ car.name }} →</a>
+      <a href="/fleet/" class="btn btn-line">Compare cars</a>
+    </div>
+  </div>
+  {# Instrument cluster #}
+  <dl class="grid grid-cols-2 gap-px bg-kerb sm:grid-cols-3" data-reveal>
+    {% for spec in [["Seats", car.seats], ["Bags", car.bags], ["Doors", car.doors], ["Gearbox", car.gearbox], ["Air con", "Yes" if car.aircon else "No"], ["Kilometres", "Unlimited"]] %}
+      <div class="bg-tarmac p-6"><dt class="font-mono text-[10px] tracking-[0.2em] text-dust uppercase">{{ spec[0] }}</dt><dd class="mt-2 font-mono text-2xl">{{ spec[1] }}</dd></div>
+    {% endfor %}
+  </dl>
+</section>
+
+<section class="border-t border-kerb py-20">
+  <div class="container-x">
+    <p class="label-km">Also in the garage</p>
+    <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% asyncEach other in fleet.cars | others(car.slug) %}
+        {% if loop.index <= 3 %}
+          <li class="group">
+            <a href="/cars/{{ other.slug }}/" class="block">
+              <div class="letterbox">{% picture other.photos[0], "", "(min-width: 1024px) 30vw, 100vw", { widths: [480, 960] } %}</div>
+              <p class="mt-4 flex items-baseline justify-between gap-4"><span class="font-display text-3xl font-black uppercase transition group-hover:text-sodium">{{ other.name }}</span><span class="font-mono text-sm text-dust">{{ other.price | money }}/day</span></p>
+            </a>
+          </li>
+        {% endif %}
+      {% endeach %}
+    </ul>
+  </div>
+</section>

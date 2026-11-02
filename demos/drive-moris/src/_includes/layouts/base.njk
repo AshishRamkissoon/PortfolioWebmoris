@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ site.name }} — demo</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#111213">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script src="/boot.js"></script>
+  {# The display face sets the headline; preload it so the big type doesn't reflow (layout shift). #}
+  <link rel="preload" href="/assets/fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  {% if preload %}{% preloadImage preload.key, preload.sizes, preload.widths %}{% endif %}
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body class="{{ bodyClass }}">
+  {# First in <body> and synchronous: the demo bar exists before first paint (no layout shift). #}
+  <script src="/demo-kit.js"
+          data-template="{{ site.templateSlug }}" data-agency="{{ site.agencyUrl }}" data-lang="{{ site.lang }}"></script>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-16 focus:left-4 focus:z-50 focus:bg-sodium focus:px-4 focus:py-2 focus:text-tarmac">Skip to content</a>
+  {% include "partials/header.njk" %}
+  <div class="lane-progress" aria-hidden="true">
+    <div class="lane absolute inset-0 opacity-30"></div>
+    <div class="lane absolute inset-x-0 top-0 h-full origin-top scale-y-0 bg-sodium [background-image:none]" data-lane-progress></div>
+  </div>
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  <div class="tarmac-grain" aria-hidden="true"></div>
+</body>
+</html>

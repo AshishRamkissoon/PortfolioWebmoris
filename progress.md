@@ -19,6 +19,7 @@
 | 6 | Motion, 3D, SEO & Launch Readiness | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-11-01 |
 | 7 | First Live Demo: Island Explorer (Tourism) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 | 8 | Second Live Demo: Lagon Bistro (Restaurant / Beach Bar) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
+| 9 | Third Live Demo: Drive Moris (Car Rental) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -39,6 +40,14 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 9 — Ready for review — Drive Moris car rental demo built to the "Coast Road" creative direction and tested locally (http://127.0.0.1:5004).
+  - **Built:** `demos/drive-moris/`: Home (KM 00–80), Fleet with filter, 8 car pages, Book (live trip ticket), Credits, 404. Content in `site.json`, `fleet.json`, `drives.json`; 24 Wikimedia Commons photos, all credited and graded with one duotone at build time.
+  - **Effects:** shader night-drive hero (GPU desktops only, static SVG road elsewhere), pinned coast route drawn on the real OpenStreetMap map with an odometer, garage stage, drag-to-turn car view, odometer prices, sign and film reveals, lane-line progress bar, page-change "truck pass".
+  - **Demo kit:** now lets a same-site GET form marked `data-demo-navigation` through (the home page quote bar); all other forms are still blocked (rechecked on Island Explorer and Lagon Bistro).
+  - **Checks:** 23/23 demo QA checks, no console errors. Mobile (throttled) LCP 1.4–1.9 s uncompressed, CLS ≤ 0.04. Webmoris tests pass, ruff clean.
+  - **Webmoris:** the Drive Moris card shows real screenshots; locally its Live demo URL is http://127.0.0.1:5004/.
+  - **How to test:** open http://127.0.0.1:5004/, move the mouse over the hero and scroll slowly through the coast section; use the quote bar; on Book change dates, car and extras; drag the car on a car page (e.g. Suzuki Swift).
+- 2026-11-01 — Phase 9 — Started — The owner approved the "Coast Road" creative direction and asked to start. Built on branch `phase/9-car-rental-demo` (from Phase 8, still awaiting approval).
 - 2026-11-01 — Phase 8 — Ready for review — Lagon Bistro restaurant demo built and tested locally (http://127.0.0.1:5003).
   - **Built:** `demos/lagon-bistro/` (Eleventy + Tailwind, same setup as Island Explorer): Home, Menu, Book a table, Credits, 404. Content in `site.json` and `menu.json` (26 dishes, 5 sections); 31 Wikimedia Commons photos, all credited.
   - **Effects:** WebGL sunset hero (sea glitter, swaying palms, mouse ripples and glow; GPU only, fps watchdog), pinned noon-to-night scene with a running clock, pinned cocktail reel that takes each drink's colour, cursor-follow dish photos, scroll-velocity marquee, 3D tilt cards, split text, custom cursor, film grain. Reduced motion and no-JS both show all content.

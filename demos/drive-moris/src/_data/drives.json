@@ -1,0 +1,7 @@
+[
+  { "slug": "south", "title": "The wild south", "route": "Mahébourg · Souillac · Gris Gris", "km": 60, "time": "1 h 30 driving", "text": "Cliffs, black rock and the open ocean. Stop at Gris Gris, where there's no reef and the waves hit the coast.", "photo": "gris-gris" },
+  { "slug": "gorges", "title": "Chamarel and the gorges", "route": "Le Morne · Chamarel · Black River Gorges", "km": 75, "time": "2 h driving", "text": "Switchbacks up from the coast to the Seven Coloured Earth and the gorges viewpoint. The best road on the island.", "photo": "road-lemorne" },
+  { "slug": "north", "title": "The north and its lagoons", "route": "Port Louis · Grand Baie · Cap Malheureux", "km": 70, "time": "1 h 45 driving", "text": "Calm lagoons, the red-roofed church at Cap Malheureux and sunset over the islands.", "photo": "coast-north" },
+  { "slug": "east", "title": "East coast beaches", "route": "Mahébourg · Belle Mare · Trou d'Eau Douce", "km": 55, "time": "1 h 20 driving", "text": "Long white beaches, filao trees and the boats to Île aux Cerfs.", "photo": "belle-mare" },
+  { "slug": "west", "title": "Port Louis and the west", "route": "Port Louis · Flic en Flac · Tamarin", "km": 50, "time": "1 h 15 driving", "text": "The capital's market in the morning, then the west coast for the sunset.", "photo": "portlouis-road" }
+]

@@ -1,0 +1,117 @@
+---
+layout: layouts/base.njk
+title: Book a car
+section: book
+description: Book a rental car at Mauritius airport. See the full price for your dates, car and extras before you send the request.
+---
+<section class="relative overflow-hidden pt-40 pb-12 sm:pt-48">
+  <div class="absolute inset-0 -z-10 opacity-35">{% picture "dashboard", "", "100vw", { widths: [960, 1440, 2000], eager: true } %}</div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-b from-tarmac/40 via-tarmac/80 to-tarmac"></div>
+  <div class="container-x">
+    <p class="hero-rise label-km">Book a car</p>
+    <h1 class="hero-rise mt-6 text-[clamp(3.8rem,11vw,10rem)] [animation-delay:100ms]">Your <span class="text-sodium">trip ticket.</span></h1>
+    <p class="hero-rise mt-6 max-w-xl text-lg text-road/75 [animation-delay:200ms]">Choose your dates, car and extras. The full price updates as you go. No payment now: we confirm by email within the hour.</p>
+  </div>
+</section>
+
+<form class="container-x grid gap-12 pb-28 lg:grid-cols-[1.5fr_1fr] lg:items-start" action="/book/" method="post" data-trip>
+  <div class="space-y-14">
+    <fieldset>
+      <legend class="label-km">01 · When and where</legend>
+      <div class="mt-6 grid gap-px bg-kerb sm:grid-cols-2">
+        <div class="bg-tarmac p-5">
+          <span class="field-label">Pick up</span>
+          <div class="grid grid-cols-[1fr_auto] gap-2">
+            <input class="field [color-scheme:dark]" type="date" name="pickup_date" aria-label="Pick-up date" required>
+            <input class="field [color-scheme:dark]" type="time" name="pickup_time" aria-label="Pick-up time" value="10:00">
+          </div>
+          <select class="field mt-2" name="pickup_place" aria-label="Pick-up place">{% for place in site.places %}<option value="{{ place.value }}">{{ place.label }}{% if place.fee %} (+{{ place.fee | money }}){% endif %}</option>{% endfor %}</select>
+        </div>
+        <div class="bg-tarmac p-5">
+          <span class="field-label">Return</span>
+          <div class="grid grid-cols-[1fr_auto] gap-2">
+            <input class="field [color-scheme:dark]" type="date" name="return_date" aria-label="Return date" required>
+            <input class="field [color-scheme:dark]" type="time" name="return_time" aria-label="Return time" value="10:00">
+          </div>
+          <select class="field mt-2" name="return_place" aria-label="Return place">{% for place in site.places %}<option value="{{ place.value }}">{{ place.label }}{% if place.fee %} (+{{ place.fee | money }}){% endif %}</option>{% endfor %}</select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="label-km">02 · Your car</legend>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+        {% asyncEach car in fleet.cars %}
+          <label class="group relative flex cursor-pointer items-center gap-4 bg-asphalt p-3 pr-5 shadow-[inset_0_0_0_1px_var(--color-kerb)] transition hover:shadow-[inset_0_0_0_1px_var(--color-dust)] has-[:checked]:shadow-[inset_0_0_0_1px_var(--color-taillight),inset_4px_0_0_var(--color-taillight)]">
+            <input type="radio" name="car" value="{{ car.slug }}" class="peer sr-only" {% if loop.first %}checked{% endif %}>
+            <span class="block h-16 w-28 shrink-0 overflow-hidden">{% picture car.photos[0], "", "112px", { widths: [480] } %}</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-display text-2xl leading-none font-black uppercase">{{ car.name }}</span>
+              <span class="mt-1 block font-mono text-xs text-dust">{{ car.seats }} seats · {{ car.gearbox }}</span>
+            </span>
+            <span class="font-mono text-sm text-sodium">{{ car.price | money }}</span>
+          </label>
+        {% endeach %}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="label-km">03 · Extras</legend>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+        {% for extra in site.extras %}
+          <label class="flex cursor-pointer items-start gap-4 bg-asphalt p-5 shadow-[inset_0_0_0_1px_var(--color-kerb)] transition has-[:checked]:shadow-[inset_0_0_0_1px_var(--color-sodium)]">
+            <input type="checkbox" name="extras" value="{{ extra.value }}" class="mt-1 size-4 accent-[#ffae1a]">
+            <span class="flex-1"><span class="block font-semibold">{{ extra.label }}</span><span class="block text-sm text-dust">{{ extra.note }}</span></span>
+            <span class="font-mono text-sm whitespace-nowrap text-road/80">{{ extra.price | money }}/{{ extra.per }}</span>
+          </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="label-km">04 · Driver</legend>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        <div><label class="field-label" for="name">Name</label><input class="field" id="name" name="name" required autocomplete="name"></div>
+        <div><label class="field-label" for="email">Email</label><input class="field" id="email" name="email" type="email" required autocomplete="email"></div>
+        <div><label class="field-label" for="phone">Phone / WhatsApp</label><input class="field" id="phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div><label class="field-label" for="flight">Flight number (optional)</label><input class="field" id="flight" name="flight" placeholder="So we wait if you're late"></div>
+      </div>
+    </fieldset>
+  </div>
+
+  {# The trip ticket (shown when JS runs) #}
+  <aside class="lg:sticky lg:top-32">
+    <div class="relative bg-road p-8 text-tarmac" data-ticket hidden aria-live="polite">
+      <div class="absolute inset-x-0 top-0 h-3 bg-[radial-gradient(circle_at_8px_0,var(--color-tarmac)_6px,transparent_6.5px)] bg-[length:16px_12px]" aria-hidden="true"></div>
+      <p class="font-mono text-[11px] tracking-[0.24em] uppercase">Drive Moris · Trip ticket</p>
+      <p class="mt-4 font-display text-4xl leading-none font-black uppercase" data-out="car">—</p>
+      <p class="mt-1 font-mono text-sm" data-out="dates">—</p>
+      <dl class="mt-6 space-y-3 border-t border-dashed border-tarmac/30 pt-5 font-mono text-sm">
+        <div class="flex justify-between"><dt>Days</dt><dd data-out="days">00</dd></div>
+        <div class="flex justify-between"><dt>Daily rate</dt><dd data-out="rate">Rs 0</dd></div>
+        <div class="flex justify-between"><dt>Rental</dt><dd data-out="rental">Rs 0</dd></div>
+        <div class="flex justify-between"><dt>Extras</dt><dd data-out="extras">Rs 0</dd></div>
+        <div class="flex justify-between"><dt>Delivery</dt><dd data-out="delivery">Rs 0</dd></div>
+        <div class="flex justify-between"><dt>Insurance</dt><dd>Included</dd></div>
+      </dl>
+      <div class="mt-5 flex items-end justify-between border-t-2 border-tarmac pt-5">
+        <p class="font-mono text-[11px] tracking-[0.24em] uppercase">Total</p>
+        <p class="font-mono text-4xl font-medium" data-out="total">Rs 0</p>
+      </div>
+      <p class="mt-3 font-mono text-xs text-taillight" data-out="warning" hidden>The return must be after the pick-up.</p>
+      <button type="submit" class="btn mt-6 w-full bg-tarmac text-road hover:bg-sodium hover:text-tarmac">Request this car →</button>
+      <p class="mt-3 text-center font-mono text-[11px] text-tarmac/60">Deposit {{ site.deposit | money }} held on your card · Example prices</p>
+    </div>
+
+    {# Without JS: the rates, and a plain submit button #}
+    <div class="bg-asphalt p-8" data-ticket-fallback>
+      <p class="label-km">Rates per day</p>
+      <table class="mt-5 w-full font-mono text-sm">
+        <tbody>{% for car in fleet.cars %}<tr class="border-b border-kerb"><td class="py-2">{{ car.name }}</td><td class="py-2 text-right text-sodium">{{ car.price | money }}</td></tr>{% endfor %}</tbody>
+      </table>
+      <button type="submit" class="btn btn-sodium mt-6 w-full">Request this car →</button>
+    </div>
+  </aside>
+</form>
+
+<script type="application/json" id="trip-data">{"cars": [{% for car in fleet.cars %}{"slug": "{{ car.slug }}", "name": "{{ car.name }}", "price": {{ car.price }}}{% if not loop.last %}, {% endif %}{% endfor %}], "extras": [{% for e in site.extras %}{"value": "{{ e.value }}", "price": {{ e.price }}, "per": "{{ e.per }}"}{% if not loop.last %}, {% endif %}{% endfor %}], "places": [{% for p in site.places %}{"value": "{{ p.value }}", "fee": {{ p.fee }}}{% if not loop.last %}, {% endif %}{% endfor %}]}</script>
