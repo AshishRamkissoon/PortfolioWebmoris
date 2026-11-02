@@ -89,13 +89,13 @@ TEMPLATES = [
         "eco-lodge",
         "tourism",
         "Eco Lodge",
-        None,
-        "coming_soon",
+        35000,
+        "available",
         False,
         ("#64748b", "#22c55e"),
         (
-            "A calm, nature-inspired site for guesthouses and lodges.",
-            "Un site apaisant, inspiré de la nature, pour maisons d'hôtes et lodges.",
+            "A calm, nature-inspired site for guesthouses and lodges, with direct booking.",
+            "Un site apaisant, inspiré de la nature, pour maisons d'hôtes et lodges, avec réservation directe.",
         ),
     ),
 ]
@@ -118,6 +118,20 @@ DESCRIPTION = (
 SCREENS_DIR = Path(__file__).resolve().parent / "demo_screens"
 # Gallery screenshots per template, in display order: (file, English caption, French caption).
 SCREENS = {
+    "eco-lodge": [
+        ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
+        (
+            "calendar.jpg",
+            "Availability calendar and 'book direct' saving",
+            "Calendrier des disponibilités et économie en réservation directe",
+        ),
+        (
+            "room.jpg",
+            "Room page with gallery and booking card",
+            "Page chambre avec galerie et réservation",
+        ),
+        ("experiences.jpg", "Experiences around the lodge", "Activités autour du lodge"),
+    ],
     "villa-select": [
         ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
         (

@@ -1,0 +1,204 @@
+---
+layout: layouts/base.njk
+section: home
+heroHeader: true
+preload: { key: "hero", sizes: "100vw", widths: [760, 1080, 1440, 2000] }
+---
+{% from "partials/icon.njk" import icon %}
+
+{# ---------- Hero: the gorges, camera dolly in on load and out on scroll, with the availability search ---------- #}
+<section class="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-forest-950" data-hero>
+  <div class="absolute inset-0 -z-20 overflow-hidden" data-hero-media>
+    <div class="absolute inset-0 motion-safe:will-change-transform" data-hero-dolly>
+      {% picture "hero", "Forested valleys of the Black River Gorges under a cloudy sky, Mauritius", "100vw", { widths: [760, 1080, 1440, 2000], eager: true } %}
+    </div>
+  </div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-forest-950/95 via-forest-950/30 to-forest-950/40"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-r from-forest-950/65 via-transparent to-transparent"></div>
+  <div class="absolute -right-40 -bottom-40 -z-10 size-[34rem] rounded-full bg-honey-400/25 blur-3xl" aria-hidden="true"></div>
+
+  <div class="container-x pt-32 pb-10 sm:pb-14" data-hero-content>
+    <p class="hero-rise glass inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold">{{ icon("leaf", "size-3.5") }} Chamarel · Black River Gorges</p>
+    <h1 class="hero-rise mt-6 max-w-4xl text-5xl text-white [animation-delay:80ms] sm:text-7xl lg:text-8xl">Sleep in the hills, <span class="text-warm-light">wake in the clouds.</span></h1>
+    <p class="hero-rise mt-5 max-w-xl text-lg text-white/85 [animation-delay:160ms]">Five wooden cabins and a treehouse above the Black River Gorges. Birdsong, waterfalls and breakfast from our garden.</p>
+
+    {# Search: a plain GET form to the booking page (allowed by the demo kit). #}
+    <form action="/book/" method="get" data-demo-navigation class="hero-rise card mt-9 grid gap-3 p-4 [animation-delay:240ms] sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1.2fr_auto] lg:items-end lg:p-5">
+      <label><span class="field-label">Check-in</span><input class="field min-w-0" type="date" name="checkin"></label>
+      <label><span class="field-label">Check-out</span><input class="field min-w-0" type="date" name="checkout"></label>
+      <label class="sm:col-span-2 lg:col-span-1"><span class="field-label">Room</span>
+        <select class="field" name="room">{% for room in rooms %}<option value="{{ room.slug }}">{{ room.name }} · {{ room.price | mur }}/night</option>{% endfor %}</select>
+      </label>
+      <button type="submit" class="btn btn-primary h-[50px] px-8 text-base sm:col-span-2 lg:col-span-1" data-magnetic>Check availability</button>
+    </form>
+    <p class="hero-rise mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm font-semibold text-white/90 [animation-delay:320ms]">
+      {% for item in ["10% off when you book direct", "Breakfast included", "Free cancellation up to 7 days"] %}<span class="flex items-center gap-2"><span class="grid size-5 place-items-center rounded-full bg-honey-400 text-forest-950">{{ icon("check", "size-3.5") }}</span>{{ item }}</span>{% endfor %}
+    </p>
+  </div>
+</section>
+
+{# ---------- Book direct ---------- #}
+<section id="direct" class="bg-white" aria-labelledby="direct-title">
+  <div class="container-x grid gap-10 py-16 lg:grid-cols-[1fr_2fr] lg:items-center">
+    <div>
+      <p class="eyebrow">Book direct and save</p>
+      <h2 id="direct-title" class="mt-3 text-4xl sm:text-5xl" data-split>The best price <span class="text-warm">is always here</span></h2>
+      <p class="lead mt-3">Booking sites take a commission. Book with us and that saving is yours, plus a few extras.</p>
+    </div>
+    <ul class="grid gap-4 sm:grid-cols-2">
+      {% for perk in site.perks %}
+        <li class="flex gap-4 rounded-2xl bg-cream-50 p-5 ring-1 ring-line" data-reveal>
+          <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-forest-700 to-forest-500 text-honey-300 shadow-[0_8px_20px_-10px_rgb(42_86_64/0.8)]">{{ icon(perk.icon) }}</span>
+          <div><h3 class="font-body text-base font-bold tracking-normal">{{ perk.title }}</h3><p class="text-sm text-ink-500">{{ perk.text }}</p></div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ---------- Rooms ---------- #}
+<section class="container-x py-20 sm:py-24" aria-labelledby="rooms-title">
+  <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+    <div>
+      <p class="eyebrow">Stay with us</p>
+      <h2 id="rooms-title" class="section-title" data-split>Cabins, a treehouse <span class="text-warm">and a villa</span></h2>
+    </div>
+    <a href="/rooms/" class="btn btn-outline self-start sm:self-auto">All {{ rooms | length }} rooms {{ icon("arrow", "size-4") }}</a>
+  </div>
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% asyncEach room in rooms | featured %}
+      <div data-reveal>{% include "partials/room-card.njk" %}</div>
+    {% endeach %}
+  </div>
+</section>
+
+{# ---------- Dolly reveal ---------- #}
+<section class="dolly relative overflow-hidden bg-cream-50" data-dolly aria-labelledby="dolly-title">
+  <div class="relative h-[80svh] min-h-[520px] in-[.is-pinned]:h-[calc(100svh-4.5rem-var(--demo-bar-h,0px))]">
+    <div class="absolute inset-0 overflow-hidden" data-dolly-frame>
+      <div class="absolute inset-0" data-dolly-image>{% picture "dolly", "A tall waterfall dropping into a forested gorge at Chamarel", "100vw", { widths: [960, 1440, 2000] } %}</div>
+      <div class="absolute inset-0 bg-linear-to-t from-forest-950/85 via-forest-950/20 to-transparent"></div>
+    </div>
+    <div class="absolute inset-x-0 bottom-0 container-x pb-12 text-white sm:pb-16" data-dolly-text>
+      <p class="glass inline-flex px-4 py-1.5 text-xs font-bold">Ten minutes from the lodge</p>
+      <h2 id="dolly-title" class="mt-4 max-w-3xl text-4xl sm:text-6xl">Waterfalls for neighbours. <span class="text-warm-light">Stars for a ceiling.</span></h2>
+      <a href="/book/" class="btn btn-primary mt-7 px-7 py-3.5" data-magnetic>Check availability {{ icon("arrow", "size-4") }}</a>
+    </div>
+  </div>
+</section>
+
+{# ---------- Experiences ---------- #}
+<section id="experiences" class="relative overflow-hidden bg-linear-to-br from-forest-950 via-forest-900 to-forest-700 py-20 text-white sm:py-24" aria-labelledby="exp-title">
+  <div class="absolute -right-32 -bottom-32 size-[30rem] rounded-full bg-honey-400/20 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <div class="max-w-2xl">
+      <p class="eyebrow text-honey-400">Experiences</p>
+      <h2 id="exp-title" class="section-title" data-split>Slow days <span class="text-warm-light">in the hills</span></h2>
+    </div>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {% asyncEach exp in site.experiences %}
+        <article class="group overflow-hidden rounded-card border border-white/10 bg-white/5 backdrop-blur-sm" data-reveal>
+          <div class="zoom-img relative aspect-[4/5]"><div class="absolute inset-0" data-zoom>{% picture exp.photo, exp.title, "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw", { widths: [480, 960] } %}</div></div>
+          <div class="p-5">
+            <p class="text-xs font-bold tracking-wide text-honey-300 uppercase">{{ exp.time }}</p>
+            <h3 class="mt-1 text-2xl">{{ exp.title }}</h3>
+            <p class="mt-1 text-sm text-white/75">{{ exp.text }}</p>
+          </div>
+        </article>
+      {% endeach %}
+    </div>
+  </div>
+</section>
+
+{# ---------- Commitments (facts about how the lodge runs, not reviews) ---------- #}
+<section class="bg-white" aria-label="How we run the lodge">
+  <dl class="container-x grid grid-cols-2 gap-8 py-14 lg:grid-cols-4">
+    {% for stat in site.promises %}
+      <div data-reveal>
+        <dd class="font-display text-5xl sm:text-6xl"><span class="text-warm"><span data-count>{{ stat.value }}</span>{{ stat.suffix }}</span></dd>
+        <dt class="mt-2 text-sm text-ink-500">{{ stat.label }}</dt>
+      </div>
+    {% endfor %}
+  </dl>
+</section>
+
+{# ---------- Breakfast ---------- #}
+<section class="bg-cream-100">
+  <div class="container-x grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-2">
+    <div class="relative aspect-[4/3] overflow-hidden rounded-[1.75rem]" data-reveal>
+      <div class="absolute inset-0" data-zoom>{% picture "breakfast", "Breakfast of fresh fruit, coffee and juice on a wooden table", "(min-width: 1024px) 50vw, 100vw", { widths: [480, 960, 1440] } %}</div>
+    </div>
+    <div>
+      <p class="eyebrow">Included with every stay</p>
+      <h2 class="section-title" data-split>Breakfast <span class="text-warm">from the garden</span></h2>
+      <p class="lead mt-4">Papaya, bananas and passion fruit from our trees, eggs from the village, bread baked each morning and coffee grown in Chamarel. Served on the veranda until 10:30.</p>
+      <a href="/rooms/" class="btn btn-dark mt-7">See the rooms</a>
+    </div>
+  </div>
+</section>
+
+{# ---------- Find us ---------- #}
+<section id="find-us" class="container-x grid gap-12 py-20 sm:py-24 lg:grid-cols-[1fr_1.1fr] lg:items-center" aria-labelledby="find-title">
+  {% set p = site.location | mapPos %}
+  <figure class="relative mx-auto aspect-[832/1000] w-full max-w-md overflow-hidden rounded-[1.75rem] bg-[#cfe6ec] shadow-xl" data-map>
+    <img src="/img/map/mauritius.svg" alt="" width="832" height="1000" loading="lazy" decoding="async" class="absolute inset-0 size-full">
+    <span class="absolute z-10" style="left: {{ p.left }}%; top: {{ p.top }}%" data-pin>
+      <span class="absolute top-0 left-0 size-12 -translate-1/2 rounded-full bg-terra-500/35 motion-safe:animate-ping-slow"></span>
+      <span class="absolute bottom-2 left-0 -translate-x-1/2 rounded-full bg-forest-900 px-3 py-1.5 text-xs font-bold whitespace-nowrap text-white shadow-lg ring-2 ring-white">{{ site.name }}</span>
+      <span class="absolute top-0 left-0 size-4 -translate-1/2 rounded-full border-[3px] border-white bg-terra-500 shadow-lg"></span>
+    </span>
+    <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" class="absolute right-3 bottom-3 rounded bg-white/80 px-1.5 py-0.5 text-[10px] text-ink-500">© OpenStreetMap</a>
+    <figcaption class="sr-only">Map of Mauritius showing the lodge in the hills of Chamarel, in the south-west.</figcaption>
+  </figure>
+  <div>
+    <p class="eyebrow">Find us</p>
+    <h2 id="find-title" class="section-title" data-split>In the hills <span class="text-warm">of the south-west</span></h2>
+    <ul class="mt-8 space-y-4 text-ink-700">
+      {% for line in [["car", "About 1 hour from the airport, free transfer from 3 nights"], ["pin", "10 minutes from the Chamarel waterfall and the coloured earths"], ["leaf", "15 minutes on foot to the Black River Gorges viewpoint"], ["clock", "25 minutes down to the beaches of Le Morne"]] %}
+        <li class="flex items-center gap-4"><span class="grid size-10 shrink-0 place-items-center rounded-xl bg-moss-50 text-forest-700">{{ icon(line[0], "size-5") }}</span>{{ line[1] }}</li>
+      {% endfor %}
+    </ul>
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination={{ site.location.lat }},{{ site.location.lng }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline mt-8">Directions ↗</a>
+  </div>
+</section>
+
+{# ---------- FAQ ---------- #}
+<section id="faq" class="bg-cream-100">
+  <div class="container-x grid gap-12 py-20 sm:py-24 lg:grid-cols-[1fr_1.5fr]" aria-labelledby="faq-title">
+    <div>
+      <p class="eyebrow">Good to know</p>
+      <h2 id="faq-title" class="section-title" data-split>Before <span class="text-warm">you come</span></h2>
+      <p class="lead mt-4">Anything else? Call us on {{ site.phone }}.</p>
+    </div>
+    <div class="divide-y divide-line border-y border-line">
+      {% for faq in site.faqs %}
+        <details class="group py-2" {% if loop.first %}open{% endif %}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 text-lg font-bold [&::-webkit-details-marker]:hidden">
+            {{ faq.q }}
+            <span class="grid size-8 shrink-0 place-items-center rounded-full bg-moss-50 text-forest-700 transition group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="pb-4 text-ink-500">{{ faq.a }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---------- Call to action ---------- #}
+<section class="container-x py-20 sm:py-24">
+  <div class="relative overflow-hidden rounded-[1.75rem] bg-linear-to-br from-forest-900 via-forest-800 to-forest-500 px-6 py-14 text-white sm:px-14" data-reveal>
+    <div class="absolute -right-20 -bottom-24 size-96 rounded-full bg-terra-500/40 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -top-24 -left-10 size-72 rounded-full bg-honey-400/30 blur-3xl" aria-hidden="true"></div>
+    <div class="relative grid items-center gap-8 lg:grid-cols-[1.5fr_1fr]">
+      <div>
+        <h2 class="text-4xl sm:text-5xl">Your cabin in the clouds is waiting.</h2>
+        <p class="mt-3 text-lg text-white/80">From {{ rooms | minPrice | mur }} a night with breakfast. Book direct for 10% off.</p>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:justify-end">
+        <a href="/book/" class="btn btn-primary px-7 py-3.5" data-magnetic>Check availability</a>
+        {# On a client's live site this opens their WhatsApp chat; in the demo it leads to the Webmoris enquiry form. #}
+        <a href="{{ site.agencyUrl }}/en/contact/ready-made/{{ site.templateSlug }}/" target="_blank" rel="noopener noreferrer" class="btn btn-white px-7 py-3.5">WhatsApp us</a>
+      </div>
+    </div>
+  </div>
+</section>

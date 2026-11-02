@@ -1,0 +1,38 @@
+{
+  "name": "Eco Lodge",
+  "tagline": "A nature lodge in the Chamarel hills",
+  "description": "Five wooden cabins and a treehouse in the hills of Chamarel, Mauritius, next to the Black River Gorges. Book direct for the best price, breakfast included.",
+  "phone": "+230 5000 0000",
+  "email": "hello@example.com",
+  "address": "Chamarel, Mauritius (fictional)",
+  "location": { "lat": -20.4268, "lng": 57.3935, "name": "Chamarel" },
+  "templateSlug": "eco-lodge",
+  "agencyUrl": "https://webmoris.mu",
+  "lang": "en",
+  "directDiscount": 10,
+  "perks": [
+    { "icon": "tag", "title": "10% off every night", "text": "The lowest price is always here, never on booking sites." },
+    { "icon": "cup", "title": "Breakfast included", "text": "Fruit from our garden, local coffee and fresh bread." },
+    { "icon": "clock", "title": "Late check-out", "text": "Stay until 2 pm on your last day, when the room allows." },
+    { "icon": "car", "title": "Free airport transfer", "text": "For stays of 3 nights or more." }
+  ],
+  "promises": [
+    { "value": 100, "suffix": "%", "label": "solar hot water" },
+    { "value": 0, "suffix": "", "label": "single-use plastic in the rooms" },
+    { "value": 80, "suffix": "%", "label": "of breakfast grown on the island" },
+    { "value": 15, "suffix": " min", "label": "walk to the gorges viewpoint" }
+  ],
+  "experiences": [
+    { "title": "Waterfall hike", "text": "A guided morning walk down to a hidden pool below the falls.", "time": "Half day", "photo": "exp-falls" },
+    { "title": "Sunrise yoga", "text": "On the deck above the valley, mats and tea provided.", "time": "1 hour", "photo": "exp-yoga" },
+    { "title": "Garden dinner", "text": "A Creole set menu from our garden and the village market.", "time": "Evenings", "photo": "exp-dinner" },
+    { "title": "Gorges viewpoint", "text": "Fifteen minutes on foot to one of the island's great views.", "time": "Anytime", "photo": "exp-gorges" }
+  ],
+  "faqs": [
+    { "q": "Why is it cheaper to book direct?", "a": "Booking sites charge us a commission of around 15–20%. When you book with us, we pass part of that saving back to you, and add breakfast and late check-out." },
+    { "q": "Do I need a car?", "a": "It helps for exploring, but it isn't required. We arrange airport transfers (free from 3 nights) and taxis to the beaches." },
+    { "q": "Is it cool in the hills?", "a": "Chamarel is a few degrees cooler than the coast, especially at night. Every room has fans and warm blankets; no air conditioning is needed." },
+    { "q": "Can children stay?", "a": "Yes. The Family Lodge sleeps five, and we have cots and high chairs on request." },
+    { "q": "What's the cancellation policy?", "a": "Free cancellation up to 7 days before arrival. After that, the first night is charged." }
+  ]
+}

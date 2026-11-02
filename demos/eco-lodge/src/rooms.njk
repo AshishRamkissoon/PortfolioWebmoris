@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: Rooms
+section: rooms
+description: Cabins, a treehouse, a family lodge and a villa with a plunge pool in the hills of Chamarel, Mauritius. Breakfast included; 10% off when you book direct.
+preload: { key: "tree-3", sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw", widths: [480, 960] }
+---
+<section class="relative overflow-hidden bg-linear-to-br from-forest-950 via-forest-900 to-forest-700 text-white">
+  <div class="absolute -top-24 -right-24 size-96 rounded-full bg-honey-400/25 blur-3xl" aria-hidden="true"></div>
+  <div class="absolute -bottom-32 left-1/3 size-80 rounded-full bg-terra-500/25 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative py-12 sm:py-16">
+    <p class="hero-rise eyebrow text-honey-400">Rooms</p>
+    <h1 class="hero-rise mt-3 text-5xl [animation-delay:80ms] sm:text-6xl">Five places <span class="text-warm-light">to wake up</span></h1>
+    <p class="hero-rise mt-4 max-w-2xl text-lg text-white/80 [animation-delay:160ms]">Every room has breakfast, Wi-Fi and a view of the forest. The crossed-out price is what booking sites charge; the price below is yours when you book direct.</p>
+  </div>
+</section>
+
+<section class="container-x py-12">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% asyncEach room in rooms %}
+      {% set eager = loop.first %}
+      {% include "partials/room-card.njk" %}
+    {% endeach %}
+  </div>
+</section>

@@ -147,3 +147,4 @@ def test_seed_uses_demo_screenshots_when_available():
         SCREENS["villa-select"]
     )
     assert WebsiteTemplate.objects.get(slug="street-food-co").cover_image.name.endswith(".png")
+    assert WebsiteTemplate.objects.get(slug="eco-lodge").images.count() == len(SCREENS["eco-lodge"])

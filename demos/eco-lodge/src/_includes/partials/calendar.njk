@@ -1,0 +1,14 @@
+{# Availability calendar shell; JS fills the days. Without JS it stays hidden and the date inputs do the job. #}
+<div class="rounded-2xl border border-line bg-white p-4 sm:p-5" {{ attrs | safe }} hidden>
+  <div class="flex items-center justify-between gap-3">
+    <button type="button" class="grid size-9 place-items-center rounded-full border border-line hover:border-ink-500 disabled:opacity-30" data-cal-prev aria-label="Previous month">←</button>
+    <p class="text-sm font-bold" data-cal-title aria-live="polite"></p>
+    <button type="button" class="grid size-9 place-items-center rounded-full border border-line hover:border-ink-500" data-cal-next aria-label="Next month">→</button>
+  </div>
+  <div class="mt-4 grid gap-6 md:grid-cols-2" data-cal-grid></div>
+  <p class="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-xs text-ink-500">
+    <span class="flex items-center gap-1.5"><span class="size-3 rounded bg-moss-50 ring-1 ring-forest-500/30"></span>Available</span>
+    <span class="flex items-center gap-1.5"><span class="size-3 rounded bg-forest-800"></span>Your dates</span>
+    <span class="flex items-center gap-1.5"><span class="text-ink-300 line-through">12</span>Booked</span>
+  </p>
+</div>

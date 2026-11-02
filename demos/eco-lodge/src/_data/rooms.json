@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "treehouse-suite", "name": "Treehouse Suite", "guests": 2, "beds": "1 king bed", "size": 38, "price": 6800, "featured": true, "seed": 7,
+    "summary": "Up in the trees, with a private deck facing the valley.",
+    "description": "Our most-loved room: a wooden suite built around an old tamarind tree, six metres up. A king bed faces the window and the valley; the deck has two loungers and an outdoor shower with a view of the gorges.",
+    "amenities": ["Private deck", "Outdoor rain shower", "Valley view", "Ceiling fan", "Coffee and tea", "Wi-Fi"],
+    "photos": ["tree-3", "tree-2", "path"]
+  },
+  {
+    "slug": "forest-cabin", "name": "Forest Cabin", "guests": 2, "beds": "1 queen bed", "size": 30, "price": 4900, "featured": true, "seed": 3,
+    "summary": "A snug wooden cabin at the edge of the forest.",
+    "description": "A one-room cabin of local timber, tucked between the guava trees. A queen bed under a mosquito net, a reading corner and a small veranda where the birds come for breakfast crumbs.",
+    "amenities": ["Veranda", "Forest view", "Ceiling fan", "Mosquito net", "Coffee and tea", "Wi-Fi"],
+    "photos": ["cabin-1", "cabin-2"]
+  },
+  {
+    "slug": "garden-bungalow", "name": "Garden Bungalow", "guests": 3, "beds": "1 queen + 1 single", "size": 42, "price": 5600, "featured": true, "seed": 11,
+    "summary": "Steps from the vegetable garden, with room for three.",
+    "description": "A bright bungalow opening onto the garden, with a queen bed and a single day bed. The terrace looks over the herb beds and the fruit trees that supply our kitchen.",
+    "amenities": ["Garden terrace", "Day bed", "Ceiling fan", "Writing desk", "Coffee and tea", "Wi-Fi"],
+    "photos": ["bungalow-1", "bungalow-2"]
+  },
+  {
+    "slug": "family-lodge", "name": "Family Lodge", "guests": 5, "beds": "1 king + 3 singles", "size": 70, "price": 8900, "featured": false, "seed": 5,
+    "summary": "Two bedrooms and a shared living room for families.",
+    "description": "Our largest lodge: a king bedroom for parents, a second room with three single beds, and a living room with a small kitchen. The wide veranda has a hammock and a table for six.",
+    "amenities": ["2 bedrooms", "Kitchenette", "Veranda with hammock", "Cots on request", "Coffee and tea", "Wi-Fi"],
+    "photos": ["family-1", "family-2"]
+  },
+  {
+    "slug": "valley-villa", "name": "Valley Villa", "guests": 4, "beds": "2 king beds", "size": 85, "price": 11500, "featured": false, "seed": 13,
+    "summary": "A private villa with a plunge pool over the valley.",
+    "description": "Set apart at the end of the path: two king suites, a lounge with a fireplace for cool evenings, and a plunge pool on the terrace looking straight down the Black River Gorges.",
+    "amenities": ["Plunge pool", "2 en-suite bedrooms", "Fireplace", "Private terrace", "Coffee and tea", "Wi-Fi"],
+    "photos": ["villa-1", "villa-2"]
+  }
+]

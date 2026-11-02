@@ -21,7 +21,7 @@
 | 8 | Second Live Demo: Lagon Bistro (Restaurant / Beach Bar) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 | 9 | Third Live Demo: Drive Moris (Car Rental) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 | 10 | Fourth Live Demo: Villa Select (Real Estate) | 🔵 Awaiting approval | 2026-11-02 | 2026-11-02 | — |
-| 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ⬜ Not started | — | — | — |
+| 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | 🔵 Awaiting approval | 2026-11-02 | 2026-11-02 | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -42,6 +42,13 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-02 — Phase 11 — Ready for review — Eco Lodge demo built and tested locally (http://127.0.0.1:5006).
+  - **Built:** `demos/eco-lodge/`: Home, Rooms, 5 room pages, Book, Credits, 404. Fictional lodge in the Chamarel hills; 19 Wikimedia Commons photos, all credited.
+  - **Conversion:** "book direct and save" throughout: booking-site price crossed out next to the direct price, perks (10% off, breakfast, late check-out, free transfer from 3 nights), availability calendar per room, live summary showing the saving, mobile action bar.
+  - **Look and motion:** forest green, terracotta and honey, Gloock + Outfit; hero camera dolly, dolly reveal of the Chamarel falls, word-by-word headings, counters, scroll zoom.
+  - **Checks:** 22/22 demo QA checks, no console errors. Mobile (throttled) LCP 1.6–2.7 s uncompressed, 1.6 s for the home page with gzip; CLS 0.
+  - **Webmoris:** Eco Lodge card changed from "Coming soon" to "Available" (from MUR 35,000) with real screenshots; local Live demo URL http://127.0.0.1:5006/. Tests pass, ruff clean.
+- 2026-11-02 — Phase 11 — Started — Eco Lodge (nature lodge / guesthouse) demo, the second demo the owner picked. Built on branch `phase/11-eco-lodge-demo` (from Phase 10, still awaiting approval).
 - 2026-11-02 — Phase 10 — Ready for review — Villa Select real estate demo built and tested locally (http://127.0.0.1:5005).
   - **Built:** `demos/villa-select/`: Home, Properties (filters), 9 property pages, Contact, Credits, 404. Fictional agency, 9 example listings across 5 real areas of Mauritius (prices in USD), 39 Wikimedia Commons photos, all credited.
   - **Look and motion:** deep emerald, champagne gold and coral, DM Serif Display + Manrope; hero camera dolly, pinned dolly reveal, word-by-word headings, price pins on the real Mauritius map, counting stats, places marquee, scroll zoom, magnetic buttons.

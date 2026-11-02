@@ -1,0 +1,19 @@
+{# Room card. Expects `room`; optional `eager`. Used inside asyncEach. #}
+{% from "partials/icon.njk" import icon %}
+<article class="group card lift flex h-full flex-col">
+  <a href="/rooms/{{ room.slug }}/" class="zoom-img relative block aspect-[4/3] bg-cream-100" tabindex="-1" aria-hidden="true">
+    {% picture room.photos[0], "", "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw", { widths: [480, 960], eager: eager } %}
+    <span class="chip absolute top-3 left-3 bg-white/95">{{ icon("users", "size-3.5") }} Up to {{ room.guests }}</span>
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="text-2xl"><a href="/rooms/{{ room.slug }}/" class="hover:text-forest-700">{{ room.name }}</a></h3>
+    <p class="mt-1 mb-5 text-sm text-ink-500">{{ room.summary }}</p>
+    <div class="mt-auto flex items-end justify-between gap-3 border-t border-line pt-4">
+      <p class="text-sm text-ink-500">
+        <span class="line-through" aria-label="Price on booking sites">{{ room.price | otaPrice(site.directDiscount) | mur }}</span>
+        <span class="block"><span class="text-2xl font-bold text-ink-900">{{ room.price | mur }}</span> / night</span>
+      </p>
+      <a href="/book/?room={{ room.slug }}" class="btn btn-dark px-5 py-2.5">Book</a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,73 @@
+---
+layout: layouts/base.njk
+section: rooms
+pagination:
+  data: rooms
+  size: 1
+  alias: room
+permalink: "/rooms/{{ room.slug }}/"
+eleventyComputed:
+  title: "{{ room.name }}"
+  description: "{{ room.summary }} Sleeps {{ room.guests }}. From {{ room.price | mur }} a night with breakfast at Eco Lodge, Chamarel. Example prices."
+  ctaHref: "/book/?room={{ room.slug }}"
+---
+{% from "partials/icon.njk" import icon %}
+<section class="container-x py-8">
+  <nav class="text-sm text-ink-500" aria-label="Breadcrumb"><a href="/rooms/" class="hover:text-forest-700">Rooms</a> / <span class="text-ink-900">{{ room.name }}</span></nav>
+  <div class="mt-4 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+    <div>
+      <p class="flex items-center gap-2 text-sm font-semibold text-forest-700">{{ icon("users", "size-4") }}Up to {{ room.guests }} guests · {{ room.beds }} · {{ room.size }} m²</p>
+      <h1 class="mt-2 text-5xl sm:text-6xl">{{ room.name }}</h1>
+    </div>
+    <p class="text-right"><span class="text-ink-500 line-through">{{ room.price | otaPrice(site.directDiscount) | mur }}</span> <span class="font-display text-4xl text-forest-800 sm:text-5xl">{{ room.price | mur }}</span><span class="text-ink-500"> / night</span></p>
+  </div>
+
+  <div class="mt-8 grid gap-3 {% if room.photos.length > 2 %}lg:h-[32rem] lg:grid-cols-3 lg:grid-rows-2{% else %}lg:h-[30rem] lg:grid-cols-[2fr_1fr]{% endif %}" data-gallery>
+    {% asyncEach key in room.photos %}
+      <a href="{% photoUrl key, 1920 %}" class="zoom-img relative block overflow-hidden rounded-2xl bg-cream-100 {% if loop.first %}aspect-[4/3] {% if room.photos.length > 2 %}lg:col-span-2 lg:row-span-2{% endif %} lg:aspect-auto{% else %}aspect-[4/3] lg:aspect-auto{% endif %}" data-gallery-item data-caption="{{ room.name }}, photo {{ loop.index }}">
+        {% picture key, room.name + ", photo " + loop.index, "(min-width: 1024px) 60vw, 100vw", { widths: [480, 960, 1440], eager: loop.first } %}
+      </a>
+    {% endeach %}
+  </div>
+</section>
+
+<section class="container-x grid gap-10 pb-16 lg:grid-cols-[1.5fr_1fr] lg:items-start">
+  <div>
+    <p class="text-xl text-ink-700">{{ room.description }}</p>
+    <h2 class="mt-10 text-3xl">In the room</h2>
+    <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+      {% for item in room.amenities %}<li class="flex items-center gap-3 text-ink-700"><span class="grid size-7 place-items-center rounded-full bg-moss-50 text-forest-700">{{ icon("check", "size-4") }}</span>{{ item }}</li>{% endfor %}
+      <li class="flex items-center gap-3 text-ink-700"><span class="grid size-7 place-items-center rounded-full bg-moss-50 text-forest-700">{{ icon("cup", "size-4") }}</span>Breakfast included</li>
+    </ul>
+
+    <h2 class="mt-12 text-3xl">Availability</h2>
+    <p class="mt-2 text-ink-500">Pick your check-in and check-out days, then book them in one step.</p>
+    <div class="mt-5">
+      {% set attrs = 'data-room-calendar data-seed="' ~ room.seed ~ '" data-price="' ~ room.price ~ '" data-room="' ~ room.slug ~ '"' %}
+      {% include "partials/calendar.njk" %}
+    </div>
+    <input type="hidden" name="checkin"><input type="hidden" name="checkout">
+  </div>
+
+  <aside class="card p-6 sm:p-7 lg:sticky lg:top-28">
+    <p class="text-sm text-ink-500"><span class="line-through">{{ room.price | otaPrice(site.directDiscount) | mur }}</span> on booking sites</p>
+    <p class="mt-1"><span class="font-display text-4xl text-forest-800">{{ room.price | mur }}</span><span class="text-ink-500"> / night, direct</span></p>
+    <ul class="mt-5 space-y-2 text-sm text-ink-700">
+      {% for perk in site.perks %}<li class="flex items-center gap-2">{{ icon("check", "size-4 text-forest-500") }}{{ perk.title }}</li>{% endfor %}
+    </ul>
+    <p class="mt-5 rounded-xl bg-moss-50 p-3 text-sm text-forest-800" data-dates-note>Pick your check-in and check-out days.</p>
+    <a href="/book/?room={{ room.slug }}" class="btn btn-primary mt-4 w-full py-3.5 text-base" data-book-dates data-magnetic>Book this room</a>
+    <p class="mt-3 text-center text-xs text-ink-500">No payment now · Free cancellation up to 7 days</p>
+  </aside>
+</section>
+
+<section class="bg-cream-100 py-16">
+  <div class="container-x">
+    <h2 class="text-3xl sm:text-4xl">Other <span class="text-warm">rooms</span></h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% asyncEach room in rooms | others(room.slug) | limit(3) %}
+        {% include "partials/room-card.njk" %}
+      {% endeach %}
+    </div>
+  </div>
+</section>
