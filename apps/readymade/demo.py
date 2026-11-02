@@ -76,13 +76,13 @@ TEMPLATES = [
         "street-food-co",
         "restaurant",
         "Street Food Co.",
-        None,
-        "coming_soon",
+        20000,
+        "available",
         False,
         ("#ec4899", "#f97316"),
         (
-            "A bold, mobile-first site for food trucks and takeaways.",
-            "Un site audacieux, pensé mobile, pour food trucks et vente à emporter.",
+            "A bold, mobile-first site for food trucks and takeaways, with order-ahead.",
+            "Un site audacieux, pensé mobile, pour food trucks et vente à emporter, avec commande à l'avance.",
         ),
     ),
     (
@@ -118,6 +118,12 @@ DESCRIPTION = (
 SCREENS_DIR = Path(__file__).resolve().parent / "demo_screens"
 # Gallery screenshots per template, in display order: (file, English caption, French caption).
 SCREENS = {
+    "street-food-co": [
+        ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
+        ("menu.jpg", "Menu with one-tap 'Add'", "Menu avec ajout en un clic"),
+        ("order.jpg", "Order ahead with a live total", "Commande à l'avance avec total en direct"),
+        ("where.jpg", "Where the truck is this week", "Où trouver le camion cette semaine"),
+    ],
     "eco-lodge": [
         ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
         (

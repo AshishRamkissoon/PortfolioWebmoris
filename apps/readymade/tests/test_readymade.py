@@ -142,9 +142,9 @@ def test_seed_uses_demo_screenshots_when_available():
     bistro = WebsiteTemplate.objects.get(slug="lagon-bistro")
     assert bistro.cover_image.name.endswith(".jpg")
     assert bistro.images.count() == len(SCREENS["lagon-bistro"])
-    # Templates without a built demo keep their generated placeholders.
     assert WebsiteTemplate.objects.get(slug="villa-select").images.count() == len(
         SCREENS["villa-select"]
     )
-    assert WebsiteTemplate.objects.get(slug="street-food-co").cover_image.name.endswith(".png")
+    # Every template now has a built demo with real screenshots.
+    assert all(t.cover_image.name.endswith(".jpg") for t in WebsiteTemplate.objects.all())
     assert WebsiteTemplate.objects.get(slug="eco-lodge").images.count() == len(SCREENS["eco-lodge"])

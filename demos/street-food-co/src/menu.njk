@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: Menu
+section: menu
+description: The Street Food Co. menu — farata wraps, hot plates, snacks and fresh drinks. Example prices in rupees. Order ahead and skip the queue.
+---
+{% from "partials/icon.njk" import icon %}
+<section class="border-b-[3px] border-ink-900 bg-sun-400">
+  <div class="container-x py-10 sm:py-14">
+    <p class="hero-rise eyebrow">The menu</p>
+    <h1 class="hero-rise mt-4 text-6xl [animation-delay:80ms] sm:text-7xl">Pick, add, <span class="text-pop">eat.</span></h1>
+    <p class="hero-rise lead mt-3 max-w-xl [animation-delay:160ms]">Everything is made fresh at the truck. Tap "Add" and your order waits for you on the order page.</p>
+  </div>
+</section>
+
+<nav class="sticky z-30 border-b-[3px] border-ink-900 bg-sun-50/95 backdrop-blur" style="top: calc(var(--demo-bar-h, 0px) + 4.75rem)" aria-label="Menu sections">
+  <div class="container-x flex gap-2 overflow-x-auto py-3 [scrollbar-width:none]">
+    {% for cat in menu.categories %}<a href="#{{ cat.slug }}" class="tab" data-tab="{{ cat.slug }}" aria-current="{{ 'true' if loop.first else 'false' }}"><span aria-hidden="true">{{ cat.emoji }}</span> {{ cat.name }}</a>{% endfor %}
+  </div>
+</nav>
+
+<div class="container-x py-12">
+  {% for cat in menu.categories %}
+    <section id="{{ cat.slug }}" class="scroll-mt-40 py-6" aria-labelledby="{{ cat.slug }}-title">
+      <h2 id="{{ cat.slug }}-title" class="text-5xl" data-split><span aria-hidden="true">{{ cat.emoji }}</span> {{ cat.name }}</h2>
+      <div class="mt-7 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+        {% asyncEach dish in menu.items | inCategory(cat.slug) %}
+          {% set eager = loop.first and cat.slug == "wraps" %}
+          <div data-reveal>{% include "partials/dish-card.njk" %}</div>
+        {% endeach %}
+      </div>
+    </section>
+  {% endfor %}
+  <p class="mt-8 rounded-2xl border-[3px] border-dashed border-ink-900 p-5 text-sm text-ink-700">Allergies? Tell us when you order. This menu is part of a demo website: dishes and prices are examples.</p>
+</div>

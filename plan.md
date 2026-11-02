@@ -454,6 +454,20 @@ Home (hero search by area, type and budget; featured properties; properties on t
 
 ---
 
+## Phase 12 — Sixth Live Demo: "Street Food Co." (Food Truck / Takeaway)
+
+**Goal:** fill the last "Coming soon" card with a bold, mobile-first demo for a food truck or takeaway, so all six ready-made cards have a live demo.
+
+**Decisions** (owner, 2026-11-02): build Street Food Co. as the sixth demo. Same stack and rules as Phases 7–11; style is bright and playful, clearly different from Lagon Bistro.
+
+### Pages
+Home (hero with today's spot and an order button, best sellers, how ordering works, where the truck is this week on the map, call to action), Menu (categories, add to order with a running basket), Order (pickup time, details; blocked by the demo kit), Credits, 404.
+
+### Exit criteria
+Same as Phase 10: all pages work on mobile and desktop with no console errors; forms blocked; complete without JavaScript and with reduced motion; mobile LCP ≤ 2.5 s with compression and CLS ≤ 0.1; photos credited; no fake reviews; Webmoris card moves from "Coming soon" to "Available" with real screenshots.
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.

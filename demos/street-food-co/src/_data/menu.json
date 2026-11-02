@@ -1,0 +1,23 @@
+{
+  "categories": [
+    { "slug": "wraps", "name": "Farata & wraps", "emoji": "🌯" },
+    { "slug": "plates", "name": "Hot plates", "emoji": "🍜" },
+    { "slug": "snacks", "name": "Snacks", "emoji": "🌶️" },
+    { "slug": "drinks", "name": "Drinks", "emoji": "🥤" }
+  ],
+  "items": [
+    { "slug": "chicken-farata", "category": "wraps", "name": "Chicken curry farata", "desc": "Soft farata bread, slow-cooked chicken curry, rougaille and green chilli.", "price": 175, "veg": false, "hot": true, "best": true, "photo": "wrap" },
+    { "slug": "veg-farata", "category": "wraps", "name": "Butter bean farata", "desc": "Butter bean curry, pickled vegetables and coriander chutney.", "price": 150, "veg": true, "hot": false, "best": false, "photo": "wrap-veg" },
+    { "slug": "kebab-wrap", "category": "wraps", "name": "Grilled chicken wrap", "desc": "Chargrilled chicken, garlic sauce, salad and chilli.", "price": 195, "veg": false, "hot": false, "best": true, "photo": "kebab" },
+    { "slug": "mine-frire", "category": "plates", "name": "Mine frire", "desc": "Wok-fried noodles with chicken, egg, spring onion and chilli sauce.", "price": 220, "veg": false, "hot": true, "best": true, "photo": "noodles" },
+    { "slug": "fried-rice", "category": "plates", "name": "Fried rice", "desc": "Island-style fried rice with chicken, prawns and vegetables.", "price": 230, "veg": false, "hot": false, "best": false, "photo": "rice" },
+    { "slug": "burger", "category": "plates", "name": "Truck burger", "desc": "Crispy chicken, pineapple chutney, slaw and fries.", "price": 260, "veg": false, "hot": false, "best": true, "photo": "burger" },
+    { "slug": "gateaux-piments", "category": "snacks", "name": "Gateaux piments (6)", "desc": "Crispy split-pea and chilli fritters, the island classic.", "price": 60, "veg": true, "hot": true, "best": true, "photo": "chilli-cakes" },
+    { "slug": "samoussas", "category": "snacks", "name": "Samoussas (4)", "desc": "Vegetable samoussas with tamarind dip.", "price": 80, "veg": true, "hot": false, "best": false, "photo": "samosa" },
+    { "slug": "chilli-fries", "category": "snacks", "name": "Chilli fries", "desc": "Fries with chilli salt and garlic mayo.", "price": 110, "veg": true, "hot": true, "best": false, "photo": "fries" },
+    { "slug": "wings", "category": "snacks", "name": "Sticky wings (6)", "desc": "Honey, soy and ginger glaze, sesame on top.", "price": 190, "veg": false, "hot": false, "best": false, "photo": "wings" },
+    { "slug": "passion-juice", "category": "drinks", "name": "Fresh passion juice", "desc": "Squeezed this morning, lightly sweetened.", "price": 90, "veg": true, "hot": false, "best": false, "photo": "juice" },
+    { "slug": "alouda", "category": "drinks", "name": "Alouda", "desc": "Cold milk, basil seeds, agar and vanilla.", "price": 85, "veg": true, "hot": false, "best": true, "photo": "milkshake" },
+    { "slug": "iced-tea", "category": "drinks", "name": "Vanilla iced tea", "desc": "Local black tea with vanilla and lime.", "price": 70, "veg": true, "hot": false, "best": false, "photo": "iced-tea" }
+  ]
+}

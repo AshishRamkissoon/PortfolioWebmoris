@@ -1,0 +1,138 @@
+{
+  "hero": {
+    "file": "hero.jpg",
+    "title": "Austin Texas food truck",
+    "author": "Kurtkaiser",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Austin_Texas_food_truck.jpg"
+  },
+  "truck-2": {
+    "file": "truck-2.jpg",
+    "title": "Mariefred, food-truck festival, 2019a",
+    "author": "Holger.Ellgaard",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mariefred,_food-truck_festival,_2019a.jpg"
+  },
+  "truck-night": {
+    "file": "truck-night.jpg",
+    "title": "HK CWB Tin Hau night Lau Sin Street food stall Ngan Mok Street May-2016 DSC",
+    "author": "HOWinGkims",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:HK_CWB_Tin_Hau_night_Lau_Sin_Street_food_stall_Ngan_Mok_Street_May-2016_DSC.JPG"
+  },
+  "events": {
+    "file": "events.jpg",
+    "title": "LentSpace - Food trucks",
+    "author": "Autopilot",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:LentSpace_-_Food_trucks.jpg"
+  },
+  "wrap": {
+    "file": "wrap.jpg",
+    "title": "Dal-Puri Food 01",
+    "author": "Suyash.dwivedi",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dal-Puri_Food_01.jpg"
+  },
+  "wrap-veg": {
+    "file": "wrap-veg.jpg",
+    "title": "DSCN2539 2 (5581013458)",
+    "author": "carrotmadman6 from Mauritius",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:DSCN2539_2_(5581013458).jpg"
+  },
+  "kebab": {
+    "file": "kebab.jpg",
+    "title": "Chicken Çöp Shish - Lavash 2023-12-13",
+    "author": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Chicken_%C3%87%C3%B6p_Shish_-_Lavash_2023-12-13.jpg"
+  },
+  "noodles": {
+    "file": "noodles.jpg",
+    "title": "Khao Soi with chicken THB20 - Night Market, Kad Suan Kaew (3455807164)",
+    "author": "Alpha from Melbourne, Australia",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Khao_Soi_with_chicken_THB20_-_Night_Market,_Kad_Suan_Kaew_(3455807164).jpg"
+  },
+  "rice": {
+    "file": "rice.jpg",
+    "title": "Fried rice with chicken (17234644521)",
+    "author": "Vee Satayamas from Bangkok, Thailand",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fried_rice_with_chicken_(17234644521).jpg"
+  },
+  "burger": {
+    "file": "burger.jpg",
+    "title": "O Burger & Crispy Wings Box, Oporto Sydney Airport T2, 2026 (04)",
+    "author": "Bahnfrend",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:O_Burger_%26_Crispy_Wings_Box,_Oporto_Sydney_Airport_T2,_2026_(04).jpg"
+  },
+  "chilli-cakes": {
+    "file": "chilli-cakes.jpg",
+    "title": "Bonbons piment",
+    "author": "Anoha",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bonbons_piment.JPG"
+  },
+  "samosa": {
+    "file": "samosa.jpg",
+    "title": "Samosa AMU's canteen",
+    "author": "Ning Gusti",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Samosa_AMU%27s_canteen.jpg"
+  },
+  "fries": {
+    "file": "fries.jpg",
+    "title": "Grilled Chicken Wrap, Steel Magnolias, Valdosta",
+    "author": "Michael Rivera",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Grilled_Chicken_Wrap,_Steel_Magnolias,_Valdosta.JPG"
+  },
+  "wings": {
+    "file": "wings.jpg",
+    "title": "Chicken Wings- It's been a while. Baton Rouge LA 2026",
+    "author": "Paul Lowry",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chicken_Wings-_It%27s_been_a_while._Baton_Rouge_LA_2026.jpg"
+  },
+  "juice": {
+    "file": "juice.jpg",
+    "title": "Glass of Fresh Orange Juice",
+    "author": "Rebeloasisx",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_of_Fresh_Orange_Juice.jpg"
+  },
+  "milkshake": {
+    "file": "milkshake.jpg",
+    "title": "San Vicente, Milkshake, Palawan, Philippines",
+    "author": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:San_Vicente,_Milkshake,_Palawan,_Philippines.jpg"
+  },
+  "iced-tea": {
+    "file": "iced-tea.jpg",
+    "title": "Iced tea with ice cubes",
+    "author": "Editor at Large",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:Iced_tea_with_ice_cubes.jpg"
+  }
+}

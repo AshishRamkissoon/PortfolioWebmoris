@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ site.name }} — demo</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ffd21f">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script src="/boot.js"></script>
+  {# Preload the fonts so headings don't reflow when they arrive (layout shift). #}
+  <link rel="preload" href="/assets/fonts/lilita-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  {% if preload %}{% preloadImage preload.key, preload.sizes, preload.widths %}{% endif %}
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/main.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body class="{{ bodyClass }}{% if section != 'order' %} has-cta-bar{% endif %}">
+  {# First in <body> and synchronous: the demo bar exists before first paint (no layout shift). #}
+  <script src="/demo-kit.js"
+          data-template="{{ site.templateSlug }}" data-agency="{{ site.agencyUrl }}" data-lang="{{ site.lang }}"></script>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-16 focus:left-4 focus:z-50 focus:rounded-full focus:bg-pink-500 focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+  {% include "partials/header.njk" %}
+  <main id="main" class="pt-[4.75rem]">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  {% if section != "order" %}
+    {# Phones: the order button (and, with JS, the basket count) is always one tap away. #}
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t-[3px] border-ink-900 bg-sun-400 px-4 py-3 md:hidden" data-cta-bar>
+      <div class="flex items-center justify-between gap-3">
+        <p class="text-sm leading-tight font-bold"><span class="block">Order ahead</span><span class="font-extrabold">skip the queue</span></p>
+        <a href="/order/" class="btn btn-primary px-5 py-2.5">{% from "partials/icon.njk" import icon %}{{ icon("bag", "size-5") }} Order <span class="rounded-full bg-white px-2 text-xs text-ink-900" data-basket-count hidden>0</span></a>
+      </div>
+    </div>
+  {% endif %}
+</body>
+</html>

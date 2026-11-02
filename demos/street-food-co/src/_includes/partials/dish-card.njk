@@ -1,0 +1,20 @@
+{# Dish card. Expects `dish`; optional `eager`. Used inside asyncEach. #}
+{% from "partials/icon.njk" import icon %}
+<article class="group card flex h-full flex-col transition duration-200 hover:-translate-y-1 hover:rotate-[-0.6deg]" data-dish>
+  <div class="zoom-img relative aspect-[4/3] border-b-[3px] border-ink-900 bg-sun-100">
+    {% picture dish.photo, dish.name, "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw", { widths: [480, 960], eager: eager } %}
+    <span class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+      {% if dish.best %}<span class="sticker -rotate-3 bg-sun-400">★ Best seller</span>{% endif %}
+      {% if dish.veg %}<span class="sticker bg-lime-400">Veg</span>{% endif %}
+      {% if dish.hot %}<span class="sticker bg-chilli-500 text-white">{{ icon("fire", "size-3.5") }} Spicy</span>{% endif %}
+    </span>
+  </div>
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="text-2xl">{{ dish.name }}</h3>
+    <p class="mt-1 mb-4 text-sm text-ink-700">{{ dish.desc }}</p>
+    <div class="mt-auto flex items-center justify-between gap-3">
+      <p class="font-display text-3xl">{{ dish.price | mur }}</p>
+      <a href="/order/#{{ dish.slug }}" class="btn btn-yellow px-4 py-2 text-sm" data-add="{{ dish.slug }}">{{ icon("plus", "size-4") }} <span data-add-label>Add</span></a>
+    </div>
+  </div>
+</article>

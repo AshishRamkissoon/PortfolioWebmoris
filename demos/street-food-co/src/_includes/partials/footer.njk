@@ -1,0 +1,33 @@
+<footer class="border-t-[3px] border-ink-900 bg-ink-900 text-white">
+  <div class="container-x grid gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div>
+      <a href="/" class="text-white" aria-label="{{ site.name }} home">{% include "partials/logo.njk" %}</a>
+      <p class="mt-4 max-w-xs text-sm text-white/60">{{ site.tagline }}. Order ahead, skip the queue.</p>
+    </div>
+    <div>
+      <h2 class="font-display text-xl text-sun-300">This week</h2>
+      <ul class="mt-3 space-y-1 text-sm text-white/70">
+        {% for stop in site.schedule %}<li><span class="font-bold text-white">{{ stop.name | truncate(3, true, "") }}</span> · {{ stop.place }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2 class="font-display text-xl text-sun-300">Say hi</h2>
+      <ul class="mt-3 space-y-1 text-sm text-white/70">
+        <li>{{ site.phone }}</li>
+        <li>{{ site.email }}</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="font-display text-xl text-sun-300">Explore</h2>
+      <ul class="mt-3 space-y-1 text-sm text-white/70">
+        <li><a href="/menu/" class="hover:text-white">Menu</a></li>
+        <li><a href="/order/" class="hover:text-white">Order ahead</a></li>
+        <li><a href="/#where" class="hover:text-white">Find the truck</a></li>
+        <li><a href="/credits/" class="hover:text-white">Photo credits</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <p class="container-x py-5 text-xs text-white/50">Street Food Co. is a fictional business. Menu and prices are examples. Demo website designed and built by Webmoris.</p>
+  </div>
+</footer>

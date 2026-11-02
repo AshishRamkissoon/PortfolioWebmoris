@@ -22,6 +22,7 @@
 | 9 | Third Live Demo: Drive Moris (Car Rental) | ✅ Completed | 2026-11-01 | 2026-11-01 | 2026-11-02 |
 | 10 | Fourth Live Demo: Villa Select (Real Estate) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
+| 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | 🔵 Awaiting approval | 2026-11-02 | 2026-11-02 | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -42,6 +43,13 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-02 — Phase 12 — Ready for review — Street Food Co. demo built and tested locally (http://127.0.0.1:5007). All six ready-made cards now have live demos.
+  - **Built:** `demos/street-food-co/`: Home, Menu, Order, Credits, 404. Fictional food truck; 13 dishes in 4 categories; weekly schedule across the island; 17 Wikimedia Commons photos, all credited.
+  - **Conversion:** "Order ahead, skip the queue" everywhere; one-tap "Add" with a basket that follows you to the order page, −/+ steppers and a live total; "Today we're at…" in the hero; mobile order bar.
+  - **Look:** sunshine yellow, pink, lime and ink; Lilita One + DM Sans; sticker-style cards and buttons with hard shadows; wiggling and spinning stickers, marquee, word-by-word headings.
+  - **Checks:** 15/15 demo QA checks, no console errors. Mobile (throttled) LCP 1.5–2.1 s uncompressed, 1.1–1.6 s with gzip; CLS ≤ 0.02.
+  - **Webmoris:** Street Food Co. card changed from "Coming soon" to "Available" (from MUR 20,000) with real screenshots; local Live demo URL http://127.0.0.1:5007/. Tests pass, ruff clean.
+- 2026-11-02 — Phase 12 — Started — The owner wants six demos; building Street Food Co. (food truck / takeaway) for the last "Coming soon" card. Branch `phase/12-street-food-demo` from `main`.
 - 2026-11-02 — Phases 7–11 — Approved — The owner approved all five live demos (Island Explorer, Lagon Bistro, Drive Moris, Villa Select, Eco Lodge). Merged into `main` and pushed. Still to do before they bring in enquiries: confirm the domain and hosting, deploy each demo to its subdomain, and switch the Live demo URLs in Webmoris admin from the local addresses.
 - 2026-11-02 — Phase 11 — Ready for review — Eco Lodge demo built and tested locally (http://127.0.0.1:5006).
   - **Built:** `demos/eco-lodge/`: Home, Rooms, 5 room pages, Book, Credits, 404. Fictional lodge in the Chamarel hills; 19 Wikimedia Commons photos, all credited.

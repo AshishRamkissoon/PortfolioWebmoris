@@ -1,0 +1,33 @@
+{
+  "name": "Street Food Co.",
+  "tagline": "Island street food from a yellow truck",
+  "description": "Mauritian street food from a yellow food truck: farata wraps, fried noodles, gateaux piments and fresh juices. Order ahead and skip the queue. Find this week's spots.",
+  "phone": "+230 5000 0000",
+  "email": "hello@example.com",
+  "address": "On the road, Mauritius (fictional)",
+  "templateSlug": "street-food-co",
+  "agencyUrl": "https://webmoris.mu",
+  "lang": "en",
+  "minOrder": 0,
+  "steps": [
+    { "icon": "menu", "title": "Pick your food", "text": "Add dishes to your order. Prices include everything." },
+    { "icon": "clock", "title": "Choose a pickup time", "text": "Every 15 minutes while we're open." },
+    { "icon": "bag", "title": "Skip the queue", "text": "Your name on the bag, ready at the window." }
+  ],
+  "schedule": [
+    { "day": 1, "name": "Monday", "place": "Caudan Waterfront, Port Louis", "time": "11:00 – 15:00", "lat": -20.1635, "lng": 57.4975 },
+    { "day": 2, "name": "Tuesday", "place": "Ebène Cybercity", "time": "11:00 – 15:00", "lat": -20.2435, "lng": 57.4895 },
+    { "day": 3, "name": "Wednesday", "place": "Quatre Bornes market", "time": "11:00 – 15:00", "lat": -20.2643, "lng": 57.48 },
+    { "day": 4, "name": "Thursday", "place": "Rose Hill, Plaza", "time": "11:00 – 15:00", "lat": -20.2343, "lng": 57.4693 },
+    { "day": 5, "name": "Friday", "place": "Flic en Flac public beach", "time": "17:00 – 22:00", "lat": -20.2841, "lng": 57.3669 },
+    { "day": 6, "name": "Saturday", "place": "Grand Baie, La Croisette", "time": "12:00 – 22:00", "lat": -20.0125, "lng": 57.5855 },
+    { "day": 0, "name": "Sunday", "place": "Mont Choisy beach", "time": "10:00 – 17:00", "lat": -20.0255, "lng": 57.5555 }
+  ],
+  "marquee": ["Farata wraps", "Mine frire", "Gateaux piments", "Dholl puri", "Chilli fries", "Alouda", "Fresh passion juice", "Boulettes"],
+  "faqs": [
+    { "q": "Do I have to order ahead?", "a": "No, walk-ups are always welcome. Ordering ahead just means no queue." },
+    { "q": "How do I pay?", "a": "At the window: cash, card or Juice. On a client's live site, payment can also happen online." },
+    { "q": "Do you cater for events?", "a": "Yes, weddings, office lunches and parties from 30 guests. Ask us on WhatsApp." },
+    { "q": "Vegetarian options?", "a": "Plenty: look for the green leaf on the menu." }
+  ]
+}

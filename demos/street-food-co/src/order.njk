@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+title: Order ahead
+section: order
+description: Order ahead from Street Food Co. and pick up at the truck window without queuing.
+---
+{% from "partials/icon.njk" import icon %}
+<section class="border-b-[3px] border-ink-900 bg-pink-500 text-white">
+  <div class="container-x py-10 sm:py-12">
+    <p class="hero-rise eyebrow bg-sun-400 text-ink-900">Order ahead</p>
+    <h1 class="hero-rise mt-4 text-6xl [animation-delay:80ms] sm:text-7xl">Skip the <span class="text-sun-300">queue.</span></h1>
+    <p class="hero-rise mt-3 max-w-xl text-lg text-white/90 [animation-delay:160ms]">Choose your food and a pickup time. Pay at the window when you collect.</p>
+  </div>
+</section>
+
+<form class="container-x grid gap-10 pt-10 pb-20 lg:grid-cols-[1.6fr_1fr] lg:items-start" action="/order/" method="post" data-order>
+  <div class="space-y-8">
+    {% for cat in menu.categories %}
+      <fieldset>
+        <legend class="font-display text-4xl"><span aria-hidden="true">{{ cat.emoji }}</span> {{ cat.name }}</legend>
+        <ul class="mt-4 space-y-3">
+          {% asyncEach dish in menu.items | inCategory(cat.slug) %}
+            <li id="{{ dish.slug }}" class="flex scroll-mt-32 items-center gap-4 rounded-2xl border-[3px] border-ink-900 bg-white p-3 transition [&.is-picked]:bg-sun-300 [&.is-picked]:shadow-[4px_4px_0_var(--color-ink-900)]" data-dish>
+              <span class="block size-16 shrink-0 overflow-hidden rounded-xl border-2 border-ink-900">{% picture dish.photo, "", "64px", { widths: [480] } %}</span>
+              <label for="qty-{{ dish.slug }}" class="min-w-0 flex-1">
+                <span class="block font-extrabold">{{ dish.name }}</span>
+                <span class="block text-sm text-ink-700">{{ dish.price | mur }}{% if dish.veg %} · <span class="text-lime-600">Veg</span>{% endif %}{% if dish.hot %} · <span class="text-chilli-500">Spicy</span>{% endif %}</span>
+              </label>
+              <span class="qty"><input id="qty-{{ dish.slug }}" type="number" name="qty-{{ dish.slug }}" min="0" max="20" value="0" inputmode="numeric" data-qty="{{ dish.slug }}" data-price="{{ dish.price }}" data-name="{{ dish.name }}"></span>
+            </li>
+          {% endeach %}
+        </ul>
+      </fieldset>
+    {% endfor %}
+  </div>
+
+  <aside class="space-y-5 lg:sticky lg:top-28">
+    <div class="card p-6" data-order-summary hidden aria-live="polite">
+      <h2 class="text-3xl">Your order</h2>
+      <p class="mt-3 text-sm text-ink-500" data-empty>Nothing yet. Tap + next to a dish.</p>
+      <ul class="mt-3 space-y-2 text-sm" data-lines></ul>
+      <div class="mt-5 flex items-end justify-between border-t-[3px] border-dashed border-ink-900 pt-4">
+        <p class="font-extrabold">Total</p>
+        <p class="text-3xl font-extrabold tracking-tight" data-total>Rs 0</p>
+      </div>
+    </div>
+    <div class="card space-y-4 p-6">
+      <h2 class="text-3xl">Pickup</h2>
+      <label class="block"><span class="field-label">Where</span>
+        <select class="field" name="spot">{% for stop in site.schedule %}<option>{{ stop.name }} · {{ stop.place }}</option>{% endfor %}</select>
+      </label>
+      <label class="block"><span class="field-label">When</span>
+        <select class="field" name="time"><option>As soon as possible (~15 min)</option>{% for t in ["11:30", "11:45", "12:00", "12:15", "12:30", "12:45", "13:00", "13:30", "14:00", "18:00", "18:30", "19:00", "19:30", "20:00"] %}<option>{{ t }}</option>{% endfor %}</select>
+      </label>
+      <label class="block"><span class="field-label">Name (for the bag)</span><input class="field" name="name" required autocomplete="given-name"></label>
+      <label class="block"><span class="field-label">Phone / WhatsApp</span><input class="field" name="phone" type="tel" required autocomplete="tel"></label>
+      <button type="submit" class="btn btn-primary w-full py-3.5 text-lg" data-magnetic>{{ icon("bag", "size-5") }} Place my order</button>
+      <p class="text-center text-xs text-ink-500">Pay at the window: cash, card or Juice. Example prices (demo).</p>
+    </div>
+  </aside>
+</form>

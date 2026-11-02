@@ -1,0 +1,222 @@
+@import "tailwindcss" source(none);
+@import "lenis/dist/lenis.css";
+
+@source "../../../src";
+
+/* Street Food Co. — loud and happy: sunshine yellow, ink black, hot pink, chilli red and lime. */
+@theme {
+  --color-sun-50: #fffbe6;
+  --color-sun-100: #fff3b8;
+  --color-sun-300: #ffe14d;
+  --color-sun-400: #ffd21f;
+  --color-sun-500: #f5c000;
+  --color-pink-400: #ff5fa2;
+  --color-pink-500: #f0337f;
+  --color-chilli-500: #ef3b24;
+  --color-lime-400: #a8e04a;
+  --color-lime-600: #5f9e1d;
+  --color-ink-950: #121110;
+  --color-ink-900: #1c1a18;
+  --color-ink-700: #3d3934;
+  --color-ink-500: #6e675f;
+  --color-ink-300: #b3aca3;
+  --color-line: #ece4cf;
+
+  --font-display: "Lilita One", "Arial Rounded MT Bold", ui-sans-serif, sans-serif;
+  --font-body: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.5rem;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-rise: rise 0.8s var(--ease-out-expo) both;
+  --animate-marquee: marquee 26s linear infinite;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-wiggle: wiggle 2.4s ease-in-out infinite;
+  --animate-ping-slow: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes rise {
+    /* 0.01, not 0: fully transparent text isn't counted as painted, which delays LCP. */
+    from { opacity: 0.01; transform: translateY(18px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    50% { transform: translateY(-10px) rotate(-2deg); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+  }
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@layer base {
+  html {
+    @apply bg-sun-50 text-ink-900 antialiased;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply font-body text-[16px] leading-relaxed sm:text-[17px];
+  }
+
+  h1, h2, h3 {
+    @apply font-display leading-[0.98] font-normal tracking-[-0.005em];
+  }
+
+  ::selection {
+    @apply bg-pink-400 text-white;
+  }
+
+  :focus-visible {
+    @apply rounded-md outline-3 outline-offset-2 outline-pink-500;
+  }
+
+  picture img {
+    @apply size-full object-cover;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex -rotate-2 rounded-full bg-ink-900 px-3 py-1 text-xs font-extrabold tracking-[0.14em] text-sun-300 uppercase;
+  }
+
+  .section-title {
+    @apply mt-4 text-5xl sm:text-6xl lg:text-7xl;
+  }
+
+  .lead {
+    @apply text-lg text-ink-700;
+  }
+
+  /* Accent words: a hot-pink highlight that sits behind the text like a marker stroke. */
+  .text-pop {
+    @apply text-pink-500;
+  }
+
+  /* Chunky "sticker" buttons with a hard ink shadow that presses down on click. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-[3px] border-ink-900 px-6 py-3 font-extrabold shadow-[4px_4px_0_var(--color-ink-900)] transition duration-150 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--color-ink-900)] active:translate-x-1 active:translate-y-1 active:shadow-none;
+  }
+  .btn-primary {
+    @apply bg-pink-500 text-white;
+  }
+  .btn-yellow {
+    @apply bg-sun-400 text-ink-900;
+  }
+  .btn-white {
+    @apply bg-white text-ink-900;
+  }
+  .btn-dark {
+    @apply bg-ink-900 text-sun-300;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-card border-[3px] border-ink-900 bg-white shadow-[6px_6px_0_var(--color-ink-900)];
+  }
+
+  .sticker {
+    @apply inline-flex items-center gap-1 rounded-full border-2 border-ink-900 px-2.5 py-0.5 text-xs font-extrabold;
+  }
+
+  .field {
+    @apply w-full rounded-xl border-[3px] border-ink-900 bg-white px-4 py-3 font-semibold text-ink-900 transition outline-none placeholder:text-ink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-400/30;
+  }
+  .field-label {
+    @apply mb-1.5 block text-xs font-extrabold tracking-[0.12em] text-ink-700 uppercase;
+  }
+
+  .site-header {
+    @apply fixed inset-x-0 z-40 border-b-[3px] border-ink-900 bg-sun-400;
+  }
+
+  .nav-link {
+    @apply rounded-full px-3 py-2 text-sm font-extrabold transition hover:bg-ink-900 hover:text-sun-300;
+
+    &[aria-current="page"] {
+      @apply bg-ink-900 text-sun-300;
+    }
+  }
+
+  .tab {
+    @apply shrink-0 rounded-full border-[3px] border-ink-900 bg-white px-4 py-2 text-sm font-extrabold transition hover:bg-sun-300;
+
+    &[aria-current="true"] {
+      @apply bg-ink-900 text-sun-300;
+    }
+  }
+
+  .zoom-img {
+    @apply overflow-hidden;
+
+    & img {
+      @apply transition-transform duration-500 ease-out-expo;
+    }
+  }
+  .group:hover .zoom-img img {
+    @apply scale-[1.08] rotate-1;
+  }
+
+  /* Quantity stepper: −/+ buttons added by JS around a plain number input. */
+  .qty {
+    @apply inline-flex items-center overflow-hidden rounded-full border-[3px] border-ink-900 bg-white;
+
+    & input {
+      @apply w-10 [appearance:textfield] border-0 bg-transparent text-center font-extrabold outline-none [&::-webkit-inner-spin-button]:appearance-none;
+    }
+    & button {
+      @apply grid size-9 place-items-center font-extrabold transition hover:bg-sun-300;
+    }
+  }
+
+  .odo {
+    @apply inline-flex items-start leading-[1.15] tabular-nums;
+
+    & .odo-digit {
+      @apply relative inline-block h-[1.15em] overflow-hidden align-top leading-[1.15];
+    }
+    & .odo-reel {
+      @apply block;
+    }
+  }
+}
+
+/* --- Motion helpers: hidden only when JS runs and motion is allowed --- */
+.motion-ok [data-reveal],
+.motion-ok [data-split] {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  body.has-cta-bar {
+    padding-bottom: 5.5rem;
+  }
+}
+
+.hero-rise {
+  @apply motion-safe:animate-rise;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+  .animate-marquee,
+  .animate-float,
+  .animate-spin-slow,
+  .animate-wiggle {
+    animation: none;
+  }
+}
