@@ -64,7 +64,7 @@ class WebsiteTemplate(models.Model):
         null=True,
         blank=True,
         validators=[MinValueValidator(0)],
-        help_text=_("Leave empty to show “Price on request”."),
+        help_text=_("Optional. Leave empty to show no price on the site."),
     )
     currency = models.CharField(
         _("currency"), max_length=3, choices=Currency.choices, default=Currency.MUR

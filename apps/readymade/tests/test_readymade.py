@@ -54,7 +54,9 @@ def test_prices_and_status(client, industry):
     make_template(industry, name="Soon", status=WebsiteTemplate.Status.COMING_SOON)
     content = client.get(LIST).content.decode()
     assert "From <strong>MUR 25,000</strong>" in content
-    assert "Price on request" in content
+    # Templates without a price show none at all.
+    assert "Price on request" not in content
+    assert content.count("From <strong>") == 1
     assert "Coming soon" in content
 
 

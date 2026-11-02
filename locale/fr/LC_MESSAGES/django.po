@@ -858,8 +858,8 @@ msgid "starting price"
 msgstr ""
 
 #: .\apps\readymade\models.py:67
-msgid "Leave empty to show “Price on request”."
-msgstr ""
+msgid "Optional. Leave empty to show no price on the site."
+msgstr "Facultatif. Laissez vide pour n'afficher aucun prix sur le site."
 
 #: .\apps\readymade\models.py:88
 msgid "live demo URL"
@@ -1507,8 +1507,8 @@ msgid "Related projects"
 msgstr "Projets similaires"
 
 #: .\templates\portfolio\list.html:5
-msgid "Websites, e-commerce stores and AI marketing campaigns we have delivered for our clients."
-msgstr "Sites web, boutiques en ligne et campagnes de marketing IA réalisés pour nos clients."
+msgid "Websites and online platforms we design and build for businesses in Mauritius, with the challenge, our approach and the results."
+msgstr "Sites web et plateformes en ligne que nous concevons et développons pour des entreprises à Maurice : le défi, notre approche et les résultats."
 
 #: .\templates\portfolio\list.html:12
 msgid "Work that speaks"
@@ -1519,8 +1519,8 @@ msgid "for itself."
 msgstr "d'elles-mêmes."
 
 #: .\templates\portfolio\list.html:15
-msgid "A selection of websites, online stores and AI marketing projects we've built for businesses in Mauritius and beyond."
-msgstr "Une sélection de sites web, de boutiques en ligne et de projets de marketing IA réalisés pour des entreprises à Maurice et ailleurs."
+msgid "Websites and online platforms we're designing and building for businesses in Mauritius. Each project shows the challenge, our approach and, once it's live, the results."
+msgstr "Les sites web et plateformes en ligne que nous concevons et développons pour des entreprises à Maurice. Chaque projet présente le défi, notre approche et, une fois en ligne, les résultats."
 
 #: .\templates\portfolio\partials\card.html:11
 msgid "View Case Study"

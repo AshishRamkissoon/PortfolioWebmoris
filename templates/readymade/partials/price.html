@@ -1,1 +1,1 @@
-{% load i18n humanize %}{% if template.starting_price is not None %}{% blocktranslate trimmed with currency=template.currency price=template.starting_price|intcomma %}From <strong>{{ currency }} {{ price }}</strong>{% endblocktranslate %}{% else %}{% translate "Price on request" %}{% endif %}
+{% load i18n humanize %}{% if template.starting_price is not None %}{% blocktranslate trimmed with currency=template.currency price=template.starting_price|intcomma %}From <strong>{{ currency }} {{ price }}</strong>{% endblocktranslate %}{% endif %}

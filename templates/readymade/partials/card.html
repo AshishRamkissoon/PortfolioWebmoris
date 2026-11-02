@@ -14,8 +14,8 @@
     <h3 class="mt-2 font-display text-2xl font-bold"><a href="{{ url }}" class="hover:text-neon-cyan">{{ template.name }}</a></h3>
     <p class="mt-2 flex-1 text-ink-300">{{ template.short_description }}</p>
     <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
-      <p class="text-ink-200">{% include "readymade/partials/price.html" %}</p>
-      <div class="flex gap-2">
+      {% if template.starting_price is not None %}<p class="text-ink-200">{% include "readymade/partials/price.html" %}</p>{% endif %}
+      <div class="ml-auto flex gap-2">
         {% if template.demo_url %}<a href="{{ template.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost">{% translate "Live demo" %}</a>{% endif %}
         <a href="{{ url }}" class="btn-primary">{% translate "Details" %}</a>
       </div>
