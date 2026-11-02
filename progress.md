@@ -22,7 +22,7 @@
 | 9 | Third Live Demo: Drive Moris (Car Rental) | ✅ Completed | 2026-11-01 | 2026-11-01 | 2026-11-02 |
 | 10 | Fourth Live Demo: Villa Select (Real Estate) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
-| 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | 🔵 Awaiting approval | 2026-11-02 | 2026-11-02 | — |
+| 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -43,6 +43,7 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-02 — Phase 12 — Approved — The owner approved Street Food Co. Merged into `main` and pushed. All six ready-made templates now have live demos (local ports 5002–5007); next is deployment to subdomains once the domain and hosting are confirmed.
 - 2026-11-02 — Phase 12 — Ready for review — Street Food Co. demo built and tested locally (http://127.0.0.1:5007). All six ready-made cards now have live demos.
   - **Built:** `demos/street-food-co/`: Home, Menu, Order, Credits, 404. Fictional food truck; 13 dishes in 4 categories; weekly schedule across the island; 17 Wikimedia Commons photos, all credited.
   - **Conversion:** "Order ahead, skip the queue" everywhere; one-tap "Add" with a basket that follows you to the order page, −/+ steppers and a live total; "Today we're at…" in the hero; mobile order bar.
