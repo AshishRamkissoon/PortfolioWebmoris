@@ -17,11 +17,11 @@
 | 4 | Lead Capture | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 5 | Pricing & Payments | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 6 | Motion, 3D, SEO & Launch Readiness | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-11-01 |
-| 7 | First Live Demo: Island Explorer (Tourism) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
-| 8 | Second Live Demo: Lagon Bistro (Restaurant / Beach Bar) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
-| 9 | Third Live Demo: Drive Moris (Car Rental) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
-| 10 | Fourth Live Demo: Villa Select (Real Estate) | 🔵 Awaiting approval | 2026-11-02 | 2026-11-02 | — |
-| 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | 🔵 Awaiting approval | 2026-11-02 | 2026-11-02 | — |
+| 7 | First Live Demo: Island Explorer (Tourism) | ✅ Completed | 2026-11-01 | 2026-11-01 | 2026-11-02 |
+| 8 | Second Live Demo: Lagon Bistro (Restaurant / Beach Bar) | ✅ Completed | 2026-11-01 | 2026-11-01 | 2026-11-02 |
+| 9 | Third Live Demo: Drive Moris (Car Rental) | ✅ Completed | 2026-11-01 | 2026-11-01 | 2026-11-02 |
+| 10 | Fourth Live Demo: Villa Select (Real Estate) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
+| 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -42,6 +42,7 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-02 — Phases 7–11 — Approved — The owner approved all five live demos (Island Explorer, Lagon Bistro, Drive Moris, Villa Select, Eco Lodge). Merged into `main` and pushed. Still to do before they bring in enquiries: confirm the domain and hosting, deploy each demo to its subdomain, and switch the Live demo URLs in Webmoris admin from the local addresses.
 - 2026-11-02 — Phase 11 — Ready for review — Eco Lodge demo built and tested locally (http://127.0.0.1:5006).
   - **Built:** `demos/eco-lodge/`: Home, Rooms, 5 room pages, Book, Credits, 404. Fictional lodge in the Chamarel hills; 19 Wikimedia Commons photos, all credited.
   - **Conversion:** "book direct and save" throughout: booking-site price crossed out next to the direct price, perks (10% off, breakfast, late check-out, free transfer from 3 nights), availability calendar per room, live summary showing the saving, mobile action bar.
