@@ -1,0 +1,46 @@
+{
+  "sections": [
+    { "slug": "street", "name": "Street food to share", "short": "To share", "intro": "The snacks every Mauritian grew up on, made fresh each morning." },
+    { "slug": "grill", "name": "From the fire", "short": "Grill", "intro": "Caught this morning, cooked over wood and charcoal." },
+    { "slug": "creole", "name": "Creole pots", "short": "Creole", "intro": "Slow-cooked island curries, served with rice, lentils and achards." },
+    { "slug": "sweet", "name": "Something sweet", "short": "Desserts", "intro": "Tropical fruit, coconut and Mauritian vanilla." },
+    { "slug": "bar", "name": "Cocktails & coolers", "short": "Bar", "intro": "Island rum, fresh fruit and plenty of ice." }
+  ],
+  "items": [
+    { "section": "street", "name": "Dholl puri", "desc": "Two soft split-pea flatbreads with butter bean curry, rougaille and coriander chutney.", "price": 180, "tags": ["v"], "photo": "dhollpuri", "signature": true },
+    { "section": "street", "name": "Gateaux piments", "desc": "Crispy chilli and split-pea fritters, coconut chutney.", "price": 150, "tags": ["v", "gf", "spicy"], "photo": "gateaux" },
+    { "section": "street", "name": "Fish samoussas", "desc": "Four crisp triangles of spiced tuna, tamarind dip.", "price": 220, "tags": [], "photo": "samosa" },
+    { "section": "street", "name": "Octopus salad", "desc": "Tender octopus, onion, chilli, lime and fresh herbs.", "price": 420, "tags": ["gf", "spicy"], "photo": "octopus" },
+    { "section": "street", "name": "Millionaire's salad", "desc": "Fresh heart of palm, lime and coconut cream.", "price": 390, "tags": ["v", "gf"] },
+
+    { "section": "grill", "name": "Catch of the day", "desc": "Whole fish from the morning boats, lime and herb butter, grilled vegetables.", "price": 850, "tags": ["gf"], "photo": "grill-fish", "signature": true },
+    { "section": "grill", "name": "Garlic king prawns", "desc": "Six prawns, garlic and parsley butter, sweet potato fries.", "price": 1150, "tags": ["gf"], "photo": "prawns" },
+    { "section": "grill", "name": "Half lobster", "desc": "Grilled spiny lobster, Creole sauce, rice and salad. Seasonal.", "price": 2400, "tags": ["gf"], "photo": "lobster", "signature": true },
+    { "section": "grill", "name": "Octopus skewers", "desc": "Charred octopus, chilli and lime glaze.", "price": 780, "tags": ["gf", "spicy"] },
+    { "section": "grill", "name": "Creole grilled chicken", "desc": "Half chicken marinated in ginger, garlic and thyme.", "price": 650, "tags": ["gf"] },
+    { "section": "grill", "name": "Halloumi & vegetables", "desc": "Grilled halloumi, aubergine, peppers and pineapple salsa.", "price": 520, "tags": ["v", "gf"] },
+
+    { "section": "creole", "name": "Octopus vindaye", "desc": "Octopus in mustard seed, turmeric and garlic, served warm.", "price": 690, "tags": ["gf"], "photo": "vindaye", "signature": true },
+    { "section": "creole", "name": "Fish curry", "desc": "Line-caught fish in a tamarind and curry leaf sauce.", "price": 720, "tags": ["gf", "spicy"], "photo": "curry" },
+    { "section": "creole", "name": "Prawn rougaille", "desc": "Prawns in a tomato, thyme and chilli Creole sauce.", "price": 880, "tags": ["gf"] },
+    { "section": "creole", "name": "Mauritian biryani", "desc": "Slow-cooked spiced rice with chicken and potato.", "price": 620, "tags": [] },
+    { "section": "creole", "name": "Vegetable curry & dhal", "desc": "Seasonal vegetables, yellow lentils, rice and achards.", "price": 450, "tags": ["v", "gf"] },
+
+    { "section": "sweet", "name": "Coconut & passion panna cotta", "desc": "Coconut cream, passion fruit and orange.", "price": 260, "tags": ["v", "gf"], "photo": "pannacotta", "signature": true },
+    { "section": "sweet", "name": "Vanilla & caramel flan", "desc": "Mauritian vanilla custard, burnt caramel, fresh berries.", "price": 240, "tags": ["v", "gf"], "photo": "flan" },
+    { "section": "sweet", "name": "Caramelised pineapple", "desc": "Victoria pineapple, dark rum, vanilla ice cream.", "price": 290, "tags": ["v", "gf"] },
+    { "section": "sweet", "name": "Coconut cake", "desc": "Soft coconut sponge soaked in three milks.", "price": 220, "tags": ["v"], "photo": "coconut-cake" },
+
+    { "section": "bar", "name": "Sunset rum punch", "desc": "Mauritian rum, passion fruit, orange, grenadine.", "price": 380, "tags": [], "photo": "punch", "color": "#ff7a3d", "signature": true },
+    { "section": "bar", "name": "Lagoon blue", "desc": "White rum, blue curaçao, lime, coconut water.", "price": 360, "tags": [], "photo": "blue", "color": "#1aa7c4" },
+    { "section": "bar", "name": "Island mojito", "desc": "Rum, fresh mint, lime and cane sugar.", "price": 350, "tags": [], "photo": "mojito", "color": "#5fae4e" },
+    { "section": "bar", "name": "Coconut colada", "desc": "Rum, fresh pineapple and coconut cream.", "price": 380, "tags": [], "photo": "colada", "color": "#e8c66a" },
+    { "section": "bar", "name": "Hibiscus sour", "desc": "Gin, hibiscus syrup, lime and a cherry.", "price": 340, "tags": [], "photo": "hibiscus", "color": "#d63a5c" },
+    { "section": "bar", "name": "Alouda", "desc": "The island's favourite cooler: milk, basil seeds, agar and vanilla. No alcohol.", "price": 180, "tags": ["v"] }
+  ],
+  "tags": {
+    "v": "Vegetarian",
+    "gf": "Gluten-free",
+    "spicy": "Spicy"
+  }
+}

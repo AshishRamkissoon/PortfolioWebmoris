@@ -18,6 +18,7 @@
 | 5 | Pricing & Payments | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-10-31 |
 | 6 | Motion, 3D, SEO & Launch Readiness | ✅ Completed | 2026-10-31 | 2026-10-31 | 2026-11-01 |
 | 7 | First Live Demo: Island Explorer (Tourism) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
+| 8 | Second Live Demo: Lagon Bistro (Restaurant / Beach Bar) | 🔵 Awaiting approval | 2026-11-01 | 2026-11-01 | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -38,6 +39,14 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 8 — Ready for review — Lagon Bistro restaurant demo built and tested locally (http://127.0.0.1:5003).
+  - **Built:** `demos/lagon-bistro/` (Eleventy + Tailwind, same setup as Island Explorer): Home, Menu, Book a table, Credits, 404. Content in `site.json` and `menu.json` (26 dishes, 5 sections); 31 Wikimedia Commons photos, all credited.
+  - **Effects:** WebGL sunset hero (sea glitter, swaying palms, mouse ripples and glow; GPU only, fps watchdog), pinned noon-to-night scene with a running clock, pinned cocktail reel that takes each drink's colour, cursor-follow dish photos, scroll-velocity marquee, 3D tilt cards, split text, custom cursor, film grain. Reduced motion and no-JS both show all content.
+  - **Checks:** 12/12 demo QA checks, no console errors. Mobile (throttled) LCP 2.0–2.6 s uncompressed, 2.1 s with gzip; CLS ≤ 0.04. Webmoris: 227 tests pass, ruff clean.
+  - **Webmoris:** the Lagon Bistro ready-made card uses real screenshots (`apps/readymade/demo_screens/lagon-bistro/`); locally its Live demo URL is http://127.0.0.1:5003/.
+  - **How to test:** open http://127.0.0.1:5003/ and scroll slowly through the home page; try the menu filter and hover dish names; submit the booking form (blocked); open the ready-made page on Webmoris.
+  - **Open:** the template's "Pages included" list in admin still shows the generic seed pages; set it to Home, Menu, Book a table.
+- 2026-11-01 — Phase 8 — Started — The owner asked for a restaurant / beach bar demo, as eye-catching as possible with GSAP and visual effects. Built on branch `phase/8-restaurant-demo` (from Phase 7, which is still awaiting approval).
 - 2026-11-01 — Phase 7 — Real map of Mauritius + click-to-load Google Map — The owner asked for a more professional first map at the right locations.
   - **Base map:** generated from OpenStreetMap data (`npm run build:map`): the real coastline and islets, lagoon reefs, reservoirs, national parks, the airport, and the motorway and main roads. "© OpenStreetMap" is credited on the map and the Credits page.
   - **Locations:** every tour and meeting point was checked against OpenStreetMap. Corrections: the Île aux Cerfs boats leave from the Trou d'Eau Douce ferry jetty; Tamarin Beach was moved to the actual beach; the Le Morne hike now meets at the trailhead car park.

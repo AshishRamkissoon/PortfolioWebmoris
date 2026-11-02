@@ -1,0 +1,90 @@
+---
+layout: layouts/base.njk
+title: Book a table
+section: reserve
+preload: { key: "table", sizes: "100vw", widths: [960, 1440, 2000] }
+description: Book a table at Lagon Bistro on Flic en Flac beach — lunch, sunset happy hour or dinner.
+---
+<section class="relative isolate overflow-hidden pt-40 pb-16 sm:pt-48">
+  <div class="absolute inset-0 -z-10 opacity-40">
+    {% picture "table", "", "100vw", { eager: true, widths: [960, 1440, 2000] } %}
+  </div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-b from-night-950/60 via-night-950/80 to-night-950"></div>
+  <div class="container-x">
+    <p class="hero-rise eyebrow">Reservations</p>
+    <h1 class="hero-rise mt-6 max-w-4xl text-[clamp(3.4rem,10vw,8rem)] leading-[0.88] font-extrabold [animation-delay:100ms]">Save us <span class="serif-i text-sunset">a sunset.</span></h1>
+    <p class="hero-rise mt-6 max-w-lg text-lg text-cream-200 [animation-delay:220ms]">Tables on the sand go first at sunset. Send a request and we'll confirm by email or WhatsApp within the hour.</p>
+  </div>
+</section>
+
+<section class="container-x grid gap-10 pb-28 lg:grid-cols-[1.4fr_1fr]">
+  <form class="rounded-card border border-cream-100/10 bg-night-900/80 p-7 sm:p-10" action="/reserve/" method="post" data-reveal>
+    <h2 class="text-3xl font-bold">Your table</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-3">
+      <div><label class="label" for="date">Date</label><input class="field [color-scheme:dark]" id="date" name="date" type="date" required></div>
+      <div>
+        <label class="label" for="time">Time</label>
+        <select class="field" id="time" name="time">
+          <optgroup label="Lunch">{% for t in ["12:00", "12:30", "13:00", "13:30", "14:00"] %}<option>{{ t }}</option>{% endfor %}</optgroup>
+          <optgroup label="Sunset">{% for t in ["17:00", "17:30", "18:00"] %}<option {% if t == "17:30" %}selected{% endif %}>{{ t }}</option>{% endfor %}</optgroup>
+          <optgroup label="Dinner">{% for t in ["19:00", "19:30", "20:00", "20:30", "21:00"] %}<option>{{ t }}</option>{% endfor %}</optgroup>
+        </select>
+      </div>
+      <div>
+        <label class="label" for="guests">Guests</label>
+        <select class="field" id="guests" name="guests">{% for n in range(1, 13) %}<option {% if n == 2 %}selected{% endif %}>{{ n }}</option>{% endfor %}</select>
+      </div>
+    </div>
+
+    <fieldset class="mt-8">
+      <legend class="label">Where would you like to sit?</legend>
+      <div class="grid gap-3 sm:grid-cols-3">
+        {% for seat in [
+          { value: "sand", title: "On the sand", text: "Feet in the sand, best for sunset." },
+          { value: "roof", title: "Under the roof", text: "Shade at lunch, shelter if it rains." },
+          { value: "bar", title: "At the bar", text: "Cocktails and a view of the grill." }
+        ] %}
+          <label class="group relative cursor-pointer rounded-2xl border border-cream-100/15 p-5 transition hover:border-cream-100/40 has-[:checked]:border-sun-400 has-[:checked]:bg-sun-500/10">
+            <input type="radio" name="seating" value="{{ seat.value }}" class="peer sr-only" {% if loop.first %}checked{% endif %}>
+            <span class="block font-semibold">{{ seat.title }}</span>
+            <span class="mt-1 block text-sm text-cream-400">{{ seat.text }}</span>
+            <span class="absolute top-4 right-4 size-4 rounded-full border-2 border-cream-100/30 peer-checked:border-[5px] peer-checked:border-sun-400" aria-hidden="true"></span>
+          </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      <div><label class="label" for="name">Name</label><input class="field" id="name" name="name" required autocomplete="name"></div>
+      <div><label class="label" for="phone">Phone or WhatsApp</label><input class="field" id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="sm:col-span-2"><label class="label" for="email">Email</label><input class="field" id="email" name="email" type="email" required autocomplete="email"></div>
+      <div class="sm:col-span-2">
+        <label class="label" for="occasion">Occasion (optional)</label>
+        <select class="field" id="occasion" name="occasion"><option>Just dinner</option><option>Birthday</option><option>Anniversary</option><option>Proposal 💍</option><option>Business</option></select>
+      </div>
+      <div class="sm:col-span-2"><label class="label" for="notes">Anything we should know?</label><textarea class="field" id="notes" name="notes" rows="4" placeholder="Allergies, a high chair, a table close to the water…"></textarea></div>
+    </div>
+    <button type="submit" class="btn btn-sun mt-8 w-full py-4 text-base sm:w-auto sm:px-12" data-magnetic>Request my table</button>
+    <p class="mt-4 text-sm text-cream-400">No payment needed. Free cancellation until 2 hours before.</p>
+  </form>
+
+  <aside class="space-y-6">
+    <div class="rounded-card bg-sun-500 p-8 text-night-950" data-reveal>
+      <h2 class="text-2xl font-bold">Faster on WhatsApp</h2>
+      <p class="mt-2">Message us and we'll hold a table while you finish your swim.</p>
+      {# On a client's live site this opens their WhatsApp chat; in the demo it leads to the Webmoris enquiry form. #}
+      <a href="{{ site.agencyUrl }}/en/contact/ready-made/{{ site.templateSlug }}/" target="_blank" rel="noopener noreferrer" class="btn btn-dark mt-6 w-full py-4">Chat on WhatsApp</a>
+      <p class="mt-2 text-center text-xs opacity-70">Demo: opens the Webmoris enquiry form.</p>
+    </div>
+    <div class="rounded-card border border-cream-100/10 p-8" data-reveal>
+      <h2 class="text-sm font-semibold tracking-[0.2em] text-sun-400 uppercase">Opening hours</h2>
+      <dl class="mt-5 space-y-3">
+        {% for slot in site.hours %}<div class="flex justify-between gap-4"><dt>{{ slot.name }}</dt><dd class="text-cream-400 tabular-nums">{{ slot.time }}</dd></div>{% endfor %}
+      </dl>
+      <p class="mt-6 border-t border-cream-100/10 pt-6 text-sm text-cream-400">Groups of 13 or more, weddings and private beach dinners: <a href="mailto:{{ site.email }}" class="text-sun-300 underline">{{ site.email }}</a></p>
+    </div>
+    <div class="relative h-64 overflow-hidden rounded-card" data-reveal-img>
+      {% picture "lantern", "A lantern glowing in the dark", "(min-width: 1024px) 33vw, 100vw", { widths: [480, 960] } %}
+    </div>
+  </aside>
+</section>

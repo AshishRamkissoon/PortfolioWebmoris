@@ -118,6 +118,16 @@ DESCRIPTION = (
 SCREENS_DIR = Path(__file__).resolve().parent / "demo_screens"
 # Gallery screenshots per template, in display order: (file, English caption, French caption).
 SCREENS = {
+    "lagon-bistro": [
+        ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
+        (
+            "day.jpg",
+            "From lunch to late: the sky changes as you scroll",
+            "Du déjeuner au soir : le ciel change au défilement",
+        ),
+        ("cocktails.jpg", "Cocktail reel", "Carrousel de cocktails"),
+        ("menu.jpg", "Menu with photo previews", "Menu avec aperçus photo"),
+    ],
     "island-explorer": [
         ("devices.jpg", "Home page on desktop and phone", "Accueil sur ordinateur et mobile"),
         ("moods.jpg", "Tours by mood", "Excursions par thème"),

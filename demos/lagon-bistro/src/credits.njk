@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+title: Photo credits
+section: credits
+---
+<section class="container-x max-w-4xl pt-40 pb-28">
+  <p class="eyebrow">Credits</p>
+  <h1 class="mt-6 text-5xl font-extrabold sm:text-6xl">Photo credits</h1>
+  <p class="mt-6 text-lg text-cream-200">
+    Lagon Bistro is a fictional restaurant created by Webmoris as a demo. All photos come from
+    <a href="https://commons.wikimedia.org/" class="text-sun-300 underline" rel="noopener noreferrer">Wikimedia Commons</a>
+    and are used under the licences below. They have been resized and cropped for this website.
+  </p>
+  <ul class="mt-12 divide-y divide-cream-100/10 border-y border-cream-100/10">
+    {% asyncEach key, photo in photos %}
+      <li class="flex flex-col gap-4 py-5 sm:flex-row sm:items-center">
+        <div class="h-20 w-32 shrink-0 overflow-hidden rounded-xl">{% picture key, "", "128px", { widths: [480] } %}</div>
+        <div class="text-sm">
+          <p class="font-semibold text-cream-50">“{{ photo.title }}”</p>
+          <p class="text-cream-400">by {{ photo.author }} ·
+            {% if photo.licenseUrl %}<a href="{{ photo.licenseUrl }}" class="underline hover:text-sun-300" rel="noopener noreferrer">{{ photo.license }}</a>{% else %}{{ photo.license }}{% endif %}
+            · <a href="{{ photo.source }}" class="underline hover:text-sun-300" rel="noopener noreferrer">source</a>
+          </p>
+        </div>
+      </li>
+    {% endeach %}
+  </ul>
+  <h2 class="mt-16 text-3xl font-bold">Map data</h2>
+  <p class="mt-4 text-cream-200">
+    The map is drawn from <a href="https://www.openstreetmap.org/copyright" class="text-sun-300 underline" rel="noopener noreferrer">© OpenStreetMap contributors</a>,
+    available under the Open Database Licence. The interactive map is provided by Google Maps and only loads when you open it.
+  </p>
+</section>

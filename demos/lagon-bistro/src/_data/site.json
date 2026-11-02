@@ -1,0 +1,34 @@
+{
+  "name": "Lagon Bistro",
+  "tagline": "Beach kitchen & bar · Flic en Flac",
+  "description": "Grilled catch of the day, Creole curries and rum cocktails with your feet in the sand on Flic en Flac beach, Mauritius. Open daily for lunch, sunset and dinner.",
+  "phone": "+230 5000 0000",
+  "email": "hello@example.com",
+  "address": "Flic en Flac beach, Mauritius (fictional)",
+  "location": { "lat": -20.2841, "lng": 57.3669, "name": "Flic en Flac beach" },
+  "templateSlug": "lagon-bistro",
+  "agencyUrl": "https://webmoris.mu",
+  "lang": "en",
+  "hours": [
+    { "name": "Lunch", "time": "12:00 – 15:00" },
+    { "name": "Sunset happy hour", "time": "17:00 – 19:00" },
+    { "name": "Dinner", "time": "19:00 – 23:00" }
+  ],
+  "marquee": ["Catch of the day", "Octopus vindaye", "Sunset rum punch", "Dholl puri", "Garlic prawns", "Coconut panna cotta", "Gateaux piments", "Live séga on Fridays"],
+  "facts": [
+    { "value": "6 am", "label": "Our fish comes in with the Flic en Flac fishermen every morning." },
+    { "value": "Wood fire", "label": "Everything from the grill is cooked over casuarina wood and charcoal." },
+    { "value": "On the sand", "label": "Sixty seats under the filaos, a few steps from the water." }
+  ],
+  "day": [
+    { "time": "12:00", "title": "Lunch in the shade", "text": "Grilled catch of the day, octopus salad and a cold coconut, under the filao trees." },
+    { "time": "17:00", "title": "Sunset happy hour", "text": "Two rum punches for the price of one while the sun drops behind the horizon." },
+    { "time": "19:30", "title": "Dinner by lantern light", "text": "Creole curries, lobster from the grill and lanterns on the sand." },
+    { "time": "22:00", "title": "Late under the stars", "text": "Dessert, a last cocktail, and live séga music every Friday." }
+  ],
+  "events": [
+    { "title": "Séga Fridays", "when": "Every Friday · 20:00", "text": "Live ravanne and séga music on the sand, with a set menu from the grill.", "photo": "music" },
+    { "title": "Sunday family barbecue", "when": "Every Sunday · 12:00", "text": "A long, slow lunch: whole fish, grilled chicken, salads and a kids' corner.", "photo": "fire" },
+    { "title": "Private events", "when": "On request", "text": "Birthdays, weddings and team dinners on the beach for up to 80 guests.", "photo": "terrace" }
+  ]
+}

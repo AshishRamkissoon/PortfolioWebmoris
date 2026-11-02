@@ -1,0 +1,35 @@
+<footer class="relative overflow-hidden border-t border-cream-100/10 bg-night-950 pt-24">
+  <div class="container-x grid gap-12 pb-16 md:grid-cols-[1.2fr_1.4fr_1.1fr_0.8fr]">
+    <div>
+      <a href="/" class="text-cream-50" aria-label="{{ site.name }} home">{% include "partials/logo.njk" %}</a>
+      <p class="mt-5 max-w-xs text-cream-400">{{ site.tagline }}. Sunsets, served daily.</p>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold tracking-[0.2em] text-sun-400 uppercase">Open daily</h2>
+      <ul class="mt-5 space-y-2 text-cream-200">
+        {% for slot in site.hours %}<li class="flex justify-between gap-4"><span>{{ slot.name }}</span><span class="whitespace-nowrap text-cream-400 tabular-nums">{{ slot.time }}</span></li>{% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold tracking-[0.2em] text-sun-400 uppercase">Find us</h2>
+      <ul class="mt-5 space-y-2 text-cream-200">
+        <li>{{ site.address }}</li>
+        <li>{{ site.phone }}</li>
+        <li>{{ site.email }}</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold tracking-[0.2em] text-sun-400 uppercase">Explore</h2>
+      <ul class="mt-5 space-y-2 text-cream-200">
+        <li><a href="/menu/" class="hover:text-sun-300">Menu</a></li>
+        <li><a href="/reserve/" class="hover:text-sun-300">Book a table</a></li>
+        <li><a href="/#events" class="hover:text-sun-300">Events</a></li>
+        <li><a href="/credits/" class="hover:text-sun-300">Photo credits</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="pointer-events-none -mb-[0.18em] text-center text-[15vw] leading-none font-extrabold whitespace-nowrap tracking-[-0.06em] text-cream-50/[0.04] select-none" aria-hidden="true">Lagon Bistro</p>
+  <div class="border-t border-cream-100/10">
+    <p class="container-x py-6 text-center text-xs text-cream-400">Lagon Bistro is a fictional restaurant. Demo website designed and built by Webmoris.</p>
+  </div>
+</footer>

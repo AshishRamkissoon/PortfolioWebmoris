@@ -1,0 +1,271 @@
+---
+layout: layouts/base.njk
+section: home
+preload: { key: "hero", sizes: "100vw" }
+---
+{# ---------- Hero: sunset photo, re-drawn by WebGL on capable desktops ---------- #}
+<section class="relative isolate flex h-[calc(100svh-var(--demo-bar-h,0px))] min-h-[600px] items-end overflow-hidden" data-hero>
+  <div class="absolute inset-0 -z-20 motion-safe:animate-kenburns" data-hero-photo>
+    {% picture "hero", "Palm trees and straw parasols on a beach under a purple and orange sunset", "100vw", { eager: true } %}
+  </div>
+  <div class="absolute inset-0 -z-10" data-sunset data-horizon="0.43" data-shore="0.385"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-night-950 via-night-950/30 to-night-950/50"></div>
+
+  <div class="container-x pb-10 sm:pb-24">
+    <p class="hero-rise eyebrow text-sun-300">Flic en Flac · Mauritius</p>
+    <h1 class="mt-6 text-[clamp(3.4rem,11vw,10rem)] leading-[0.86] font-extrabold text-cream-50">
+      <span class="hero-rise block [animation-delay:80ms]">Sunsets,</span>
+      <span class="hero-rise block [animation-delay:200ms]">served <span class="serif-i text-sunset pr-[0.06em]">daily.</span></span>
+    </h1>
+    <div class="hero-rise mt-6 flex flex-col gap-6 [animation-delay:340ms] sm:mt-8 sm:gap-8 md:flex-row md:items-end md:justify-between">
+      <p class="max-w-md text-lg text-cream-200">Grilled catch of the day, Creole curries and rum cocktails, with your feet in the sand.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/reserve/" class="btn btn-sun px-8 py-4 text-base" data-magnetic>Book a table</a>
+        <a href="/menu/" class="btn btn-ghost px-8 py-4 text-base" data-magnetic>See the menu</a>
+      </div>
+    </div>
+  </div>
+
+  {# Rotating badge #}
+  <a href="#day" class="absolute top-32 right-6 hidden size-36 place-items-center sm:grid lg:top-auto lg:right-12 lg:bottom-56" aria-label="Sunset happy hour every day, 17:00 to 19:00">
+    <svg class="absolute inset-0 size-full motion-safe:animate-spin-slow" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><path id="badge-circle" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0"/></defs>
+      <text class="fill-cream-50 text-[9px] font-semibold uppercase"><textPath href="#badge-circle" textLength="284" lengthAdjust="spacing">Open daily · Sunset happy hour 17–19 ·</textPath></text>
+    </svg>
+    <span class="grid size-14 place-items-center rounded-full bg-sun-500 text-night-950 motion-safe:animate-float" aria-hidden="true">
+      <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v2M5.6 5.6 7 7M3 12h2M19 12h2M17 7l1.4-1.4M7 16a5 5 0 0 1 10 0M3 19h18"/></svg>
+    </span>
+  </a>
+</section>
+
+{# ---------- Marquee: speeds up and skews with the scroll ---------- #}
+<section class="overflow-hidden border-y border-cream-100/10 py-8" aria-label="On the menu">
+  <div class="flex w-max" data-marquee>
+    {% for copy in [1, 2] %}
+      <p class="flex shrink-0 items-center text-6xl font-extrabold whitespace-nowrap sm:text-8xl" {% if copy == 2 %}aria-hidden="true"{% endif %}>
+        {% for word in site.marquee %}<span class="{% if loop.index is odd %}text-cream-50{% else %}text-outline{% endif %}">{{ word }}</span><span class="mx-8 text-sun-500" aria-hidden="true">✺</span>{% endfor %}
+      </p>
+    {% endfor %}
+  </div>
+</section>
+
+{# ---------- Story ---------- #}
+<section id="story" class="container-x grid items-center gap-16 py-28 sm:py-36 lg:grid-cols-[1fr_1.1fr]">
+  <div class="relative h-[560px]">
+    <div class="absolute top-0 left-0 h-[78%] w-[72%] overflow-hidden rounded-card" data-reveal-img>
+      <div class="absolute -inset-y-12 inset-x-0" data-parallax="-0.2">{% picture "beachbar", "A beach bar with a straw roof on the sand at sunset", "(min-width: 1024px) 35vw, 72vw" %}</div>
+    </div>
+    <div class="absolute right-0 bottom-0 h-[52%] w-[54%] overflow-hidden rounded-card border-8 border-night-950" data-reveal-img>
+      <div class="absolute -inset-y-12 inset-x-0" data-parallax="0.25">{% picture "pirogue", "A fisherman in a wooden pirogue at sunrise", "(min-width: 1024px) 25vw, 54vw" %}</div>
+    </div>
+    <p class="absolute bottom-6 left-0 rounded-full bg-sun-500 px-5 py-2 text-sm font-semibold text-night-950" data-reveal>Since the first sunset</p>
+  </div>
+  <div>
+    <p class="eyebrow" data-reveal>Our story</p>
+    <h2 class="mt-6 text-5xl leading-[0.95] font-extrabold sm:text-7xl" data-split>Feet in the sand, <span class="serif-i text-sun-300">fire on the grill.</span></h2>
+    <p class="mt-8 max-w-xl text-lg text-cream-200" data-reveal>Lagon Bistro started as a grill and a few tables under the filao trees. It's still that: fish from the morning boats, family recipes from across the island, and the best seat in Flic en Flac when the sun goes down.</p>
+    <dl class="mt-12 grid gap-8 sm:grid-cols-3">
+      {% for fact in site.facts %}
+        <div class="border-t border-cream-100/15 pt-5" data-reveal>
+          <dt class="text-2xl font-bold text-sun-300">{{ fact.value }}</dt>
+          <dd class="mt-2 text-sm text-cream-400">{{ fact.label }}</dd>
+        </div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>
+
+{# ---------- Signature dishes: hover reveals a floating photo (desktop) ---------- #}
+<section id="signature" class="bg-cream-100 py-28 text-ink-900 sm:py-36">
+  <div class="container-x">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div>
+        <p class="eyebrow text-sun-600" data-reveal>Signature plates</p>
+        <h2 class="mt-6 text-5xl leading-[0.95] font-extrabold sm:text-7xl" data-split>The island <span class="serif-i text-sun-600">on a plate.</span></h2>
+      </div>
+      <a href="/menu/" class="btn btn-dark self-start md:self-auto" data-magnetic>Full menu →</a>
+    </div>
+    <ol class="mt-16 border-t border-ink-900/15">
+      {% asyncEach dish in menu.items | signature %}
+        <li class="group border-b border-ink-900/15" data-reveal>
+          <a href="/menu/#{{ dish.section }}" class="grid grid-cols-[1fr_auto] items-center gap-4 py-7 sm:grid-cols-[auto_1fr_auto] sm:gap-10" data-preview="{% photoUrl dish.photo, 720 %}" data-cursor="Menu">
+            <span class="hidden text-sm font-semibold text-ink-600 tabular-nums sm:block">0{{ loop.index }}</span>
+            <span class="flex items-center gap-5">
+              <span class="block size-16 shrink-0 overflow-hidden rounded-2xl md:hidden">{% picture dish.photo, "", "64px", { widths: [480] } %}</span>
+              <span>
+                <span class="block text-3xl font-bold tracking-tight transition-transform duration-500 ease-out-expo group-hover:translate-x-3 sm:text-5xl">{{ dish.name }}</span>
+                <span class="mt-1 block max-w-xl text-ink-600">{{ dish.desc }}</span>
+              </span>
+            </span>
+            <span class="text-xl font-semibold whitespace-nowrap">{{ dish.price | money }}</span>
+          </a>
+        </li>
+      {% endeach %}
+    </ol>
+  </div>
+</section>
+
+{# ---------- Our day: noon to night as you scroll (pinned when motion is allowed) ---------- #}
+<section id="day" class="day-scene relative isolate overflow-hidden bg-night-900" data-day aria-labelledby="day-title">
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute inset-0 bg-linear-to-b from-[#58b4e0] via-[#a8dcef] to-[#fbe6c4]" data-sky></div>
+    <div class="absolute inset-0 bg-linear-to-b from-[#f08a4b] via-[#ffbf7a] to-[#ffe2a6] opacity-0" data-sky></div>
+    <div class="absolute inset-0 bg-linear-to-b from-[#241d4a] via-[#c13f6a] to-[#ff944a] opacity-0 in-[.day-scene:not(.is-pinned)]:opacity-100" data-sky></div>
+    <div class="absolute inset-0 bg-linear-to-b from-[#02040a] via-[#0a1330] to-[#1a2552] opacity-0" data-sky></div>
+    <div class="absolute inset-0 opacity-0" data-stars>
+      {% for i in range(0, 80) %}<span class="absolute size-[2px] rounded-full bg-white" style="left: {{ i | rand(0, 100) | round(2) }}%; top: {{ (i + 300) | rand(0, 55) | round(2) }}%; opacity: {{ (i + 700) | rand(0.3, 1) | round(2) }}"></span>{% endfor %}
+    </div>
+    <div class="absolute top-[30%] right-[30%] size-14 rounded-full bg-cream-50 opacity-0 shadow-[0_0_60px_10px_rgb(251_246_236/0.35)]" data-moon></div>
+    <div class="absolute top-[62%] left-1/2 hidden in-[.is-pinned]:block">
+      <div class="absolute size-[80vmin] -translate-1/2 rounded-full bg-radial from-sun-400/60 via-hibiscus-400/15 to-transparent to-70% blur-2xl" data-sun-glow></div>
+      <div class="absolute size-[14vmin] -translate-1/2 rounded-full bg-radial sm:size-[20vmin] from-[#fff3c4] via-sun-300 to-sun-500 shadow-[0_0_80px_20px_rgb(255_158_79/0.5)]" data-sun></div>
+    </div>
+    {# The sea lets the sky colour through, so it warms up at sunset on its own. #}
+    <div class="absolute inset-x-0 top-[62%] bottom-0 bg-linear-to-b from-[#26b9cc]/85 via-[#0f7c98]/90 to-[#06202e]/95" data-sea>
+      <div class="absolute inset-x-0 top-0 h-px bg-white/40"></div>
+    </div>
+    {# Festoon lights switch on at dusk. #}
+    <svg class="absolute inset-x-0 top-[48%] h-[16%] w-full opacity-0" viewBox="0 0 1000 100" preserveAspectRatio="none" data-lights>
+      <path d="M0 10Q250 110 500 20Q750 100 1000 15" fill="none" stroke="#0b0b0b" stroke-width="1.5"/>
+      {# Bulbs sit on the two quadratic curves above: x = 500t, y = (1-t)²·y0 + 2(1-t)t·c + t²·y1 #}
+      {% for i in range(1, 10) %}{% set t = i / 10 %}<circle cx="{{ 500 * t }}" cy="{{ (1 - t) * (1 - t) * 10 + 2 * (1 - t) * t * 110 + t * t * 20 }}" r="5" fill="#ffd27a"/><circle cx="{{ 500 + 500 * t }}" cy="{{ (1 - t) * (1 - t) * 20 + 2 * (1 - t) * t * 100 + t * t * 15 }}" r="5" fill="#ffd27a"/>{% endfor %}
+    </svg>
+    {# Shore silhouette: sand, palms and straw parasols #}
+    <svg class="absolute inset-x-0 bottom-0 h-[48%] w-full text-[#2f2a24]" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" data-shore>
+      <path fill="currentColor" d="M0 210 C200 190 400 205 600 200 S1000 185 1200 205 V300 H0Z"/>
+      <g fill="currentColor">
+        <path d="M150 210 C155 140 170 90 196 40 L203 43 C180 95 167 145 163 210Z"/>
+        <path d="M200 42 C170 30 130 34 100 58 C135 46 168 46 196 52 C175 60 150 82 136 110 C165 82 188 66 202 60 C204 80 214 110 232 130 C226 104 218 78 208 58 C230 56 262 66 288 84 C266 58 236 44 205 44 C222 30 246 22 274 22 C240 12 214 22 200 42Z"/>
+        <path d="M1010 205 C1006 150 1012 110 1030 60 L1037 62 C1022 112 1016 152 1022 205Z"/>
+        <path d="M1034 62 C1010 46 974 44 944 62 C976 56 1004 58 1030 70 C1006 80 986 102 976 130 C1000 102 1020 86 1036 80 C1042 100 1056 124 1076 140 C1066 116 1056 94 1044 76 C1070 76 1098 88 1120 106 C1102 80 1072 66 1040 64 C1056 48 1082 40 1108 42 C1074 30 1048 42 1034 62Z"/>
+        <path d="M420 168 L470 140 L520 168Z"/><rect x="467" y="166" width="5" height="40"/>
+        <path d="M620 172 L668 146 L716 172Z"/><rect x="665" y="170" width="5" height="34"/>
+        <rect x="440" y="190" width="60" height="5" rx="2"/><rect x="640" y="188" width="56" height="5" rx="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="container-x relative py-24 in-[.is-pinned]:flex in-[.is-pinned]:h-[100svh] in-[.is-pinned]:flex-col in-[.is-pinned]:py-10">
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <p class="eyebrow text-cream-50 in-[.is-pinned]:text-night-900" data-day-ink>From lunch to late</p>
+        <h2 id="day-title" class="mt-4 text-3xl font-extrabold text-cream-50 in-[.is-pinned]:text-night-900 sm:text-6xl" data-day-ink>Our day on the sand</h2>
+      </div>
+      <p class="hidden text-4xl font-extrabold text-night-900 tabular-nums in-[.is-pinned]:block sm:text-8xl" data-clock data-day-ink aria-hidden="true">12:00</p>
+    </div>
+    <ol class="mt-12 grid gap-5 md:grid-cols-2 in-[.is-pinned]:relative in-[.is-pinned]:mt-0 in-[.is-pinned]:block in-[.is-pinned]:flex-1">
+      {% for moment in site.day %}
+        <li class="rounded-card bg-night-950/70 p-8 backdrop-blur-md in-[.is-pinned]:absolute in-[.is-pinned]:inset-x-0 in-[.is-pinned]:top-[16%] in-[.is-pinned]:max-w-xl in-[.is-pinned]:bg-transparent in-[.is-pinned]:p-0 in-[.is-pinned]:backdrop-blur-none {% if loop.index <= 2 %}in-[.is-pinned]:text-night-950{% endif %}" data-day-panel>
+          <p class="chip">{{ moment.time }}</p>
+          <h3 class="mt-4 text-4xl leading-none font-extrabold sm:text-6xl">{{ moment.title }}</h3>
+          <p class="mt-4 max-w-md text-lg {% if loop.index <= 2 %}in-[.is-pinned]:text-night-800{% else %}text-cream-200{% endif %}">{{ moment.text }}</p>
+        </li>
+      {% endfor %}
+    </ol>
+    <div class="relative mt-auto hidden in-[.is-pinned]:block" aria-hidden="true">
+      <div class="h-0.5 rounded-full bg-current/25 text-night-900" data-day-ink><div class="h-full origin-left rounded-full bg-current" data-day-progress></div></div>
+      <div class="mt-3 flex justify-between text-xs font-semibold text-night-900" data-day-ink>{% for moment in site.day %}<span>{{ moment.time }}</span>{% endfor %}<span>23:00</span></div>
+    </div>
+  </div>
+</section>
+
+{# ---------- Cocktails: pinned horizontal reel, the background takes each drink's colour ---------- #}
+<section id="cocktails" class="relative isolate overflow-hidden" data-cocktails aria-labelledby="cocktails-title">
+  <div class="absolute inset-0 -z-20 bg-sun-500" data-cocktail-tint></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-b from-night-950/60 via-night-950/15 to-night-950/75"></div>
+  <div class="flex snap-x snap-mandatory scroll-px-5 gap-6 overflow-x-auto px-5 py-24 sm:scroll-px-8 [scrollbar-width:none] sm:px-8 lg:h-[100svh] lg:snap-none lg:items-center lg:gap-10 lg:overflow-visible lg:px-[8vw] lg:py-0" data-cocktail-track>
+    <div class="w-[80vw] shrink-0 snap-start self-center sm:w-[50vw] lg:w-[30vw]">
+      <p class="eyebrow text-sun-300">The bar</p>
+      <h2 id="cocktails-title" class="mt-6 text-5xl leading-[0.95] font-extrabold sm:text-7xl">Rum, fruit <span class="serif-i text-sun-300">&amp; ice.</span></h2>
+      <p class="mt-6 max-w-sm text-lg text-cream-200">Island rum, fresh juice and plenty of ice. Happy hour every day from 17:00 to 19:00: two for one.</p>
+      <p class="mt-8 hidden items-center gap-3 text-sm font-semibold text-cream-200 lg:flex">Keep scrolling <span aria-hidden="true">→</span></p>
+    </div>
+    {% asyncEach drink in menu.items | bySection("bar") %}
+      {% if drink.photo %}
+        <article class="group w-[70vw] shrink-0 snap-center cocktail-card transition duration-700 sm:w-[42vw] lg:w-[24vw]" data-color="{{ drink.color }}">
+          <div class="arch aspect-[3/4] overflow-hidden shadow-2xl" data-cocktail-photo>
+            {% picture drink.photo, drink.name, "(min-width: 1024px) 24vw, 70vw", { widths: [480, 960] } %}
+          </div>
+          <div class="mt-6 flex items-baseline justify-between gap-4">
+            <h3 class="text-3xl font-bold">{{ drink.name }}</h3>
+            <p class="text-lg font-semibold text-sun-300">{{ drink.price | money }}</p>
+          </div>
+          <p class="mt-2 text-cream-200">{{ drink.desc }}</p>
+        </article>
+      {% endif %}
+    {% endeach %}
+    <div class="w-px shrink-0 lg:w-[4vw]" aria-hidden="true"></div>
+  </div>
+</section>
+
+{# ---------- Gallery ---------- #}
+<section class="container-x py-28 sm:py-36" aria-labelledby="gallery-title">
+  <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+    <h2 id="gallery-title" class="text-5xl leading-[0.95] font-extrabold sm:text-7xl" data-split>Life on <span class="serif-i text-sun-300">the sand.</span></h2>
+    <p class="max-w-sm text-cream-400" data-reveal>Long lunches, golden hours and lantern-lit dinners, a few steps from the lagoon.</p>
+  </div>
+  <div class="mt-16 grid auto-rows-[220px] grid-cols-2 gap-4 md:auto-rows-[260px] md:grid-cols-12 md:gap-6">
+    {% set shots = [
+      { key: "parasol", alt: "A straw parasol on the beach at sunset", span: "col-span-2 row-span-2 md:col-span-7" },
+      { key: "platter", alt: "A grilled seafood platter with prawns, mussels and fish", span: "md:col-span-5" },
+      { key: "prawns", alt: "Prawns cooking on a charcoal grill", span: "md:col-span-5" },
+      { key: "bar-night", alt: "Cocktails on a bar counter at night", span: "md:col-span-4" },
+      { key: "sunset-boat", alt: "A boat on a golden sea at sunset", span: "col-span-2 md:col-span-8" }
+    ] %}
+    {% asyncEach shot in shots %}
+      <div class="relative overflow-hidden rounded-card {{ shot.span }}" data-reveal-img data-cursor="Look">
+        <div class="absolute -inset-y-16 inset-x-0" data-parallax="{{ '0.18' if loop.index is odd else '-0.18' }}">{% picture shot.key, shot.alt, "(min-width: 768px) 50vw, 100vw", { widths: [480, 960, 1440] } %}</div>
+      </div>
+    {% endeach %}
+  </div>
+</section>
+
+{# ---------- Events: 3D tilt cards ---------- #}
+<section id="events" class="bg-night-900 py-28 sm:py-36" aria-labelledby="events-title">
+  <div class="container-x">
+    <p class="eyebrow" data-reveal>Every week</p>
+    <h2 id="events-title" class="mt-6 text-5xl leading-[0.95] font-extrabold sm:text-7xl" data-split>Come for dinner, <span class="serif-i text-sun-300">stay for the music.</span></h2>
+    <div class="mt-16 grid gap-6 md:grid-cols-3">
+      {% asyncEach event in site.events %}
+        <article class="relative overflow-hidden rounded-card bg-night-800 will-change-transform" data-tilt data-reveal>
+          <div class="aspect-[4/3] overflow-hidden">{% picture event.photo, "", "(min-width: 768px) 33vw, 100vw", { widths: [480, 960] } %}</div>
+          <div class="p-8">
+            <p class="chip text-sun-300">{{ event.when }}</p>
+            <h3 class="mt-5 text-3xl font-bold">{{ event.title }}</h3>
+            <p class="mt-3 text-cream-400">{{ event.text }}</p>
+          </div>
+          <div class="pointer-events-none absolute inset-0" data-shine></div>
+        </article>
+      {% endeach %}
+    </div>
+  </div>
+</section>
+
+{# ---------- Visit: map + hours ---------- #}
+<section id="visit" class="container-x grid gap-12 py-28 sm:py-36 lg:grid-cols-[1.1fr_1fr] lg:items-center" aria-labelledby="visit-title">
+  {% include "partials/map.njk" %}
+  <div>
+    <p class="eyebrow" data-reveal>Visit us</p>
+    <h2 id="visit-title" class="mt-6 text-5xl leading-[0.95] font-extrabold sm:text-7xl" data-split>On the beach at <span class="serif-i text-sun-300">Flic en Flac.</span></h2>
+    <dl class="mt-10 divide-y divide-cream-100/10 border-y border-cream-100/10" data-reveal>
+      {% for slot in site.hours %}
+        <div class="flex items-center justify-between py-5"><dt class="text-lg font-semibold">{{ slot.name }}</dt><dd class="text-lg text-cream-200 tabular-nums">{{ slot.time }}</dd></div>
+      {% endfor %}
+    </dl>
+    <p class="mt-6 text-cream-400" data-reveal>Open every day. Free parking on the beach road. Walk-ins welcome; book for sunset.</p>
+    <div class="mt-8 flex flex-wrap gap-3" data-reveal>
+      <a href="/reserve/" class="btn btn-sun" data-magnetic>Book a table</a>
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination={{ site.location.lat }},{{ site.location.lng }}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Directions ↗</a>
+    </div>
+  </div>
+</section>
+
+{# ---------- Closing call to action ---------- #}
+<section class="relative overflow-hidden border-t border-cream-100/10 py-28 text-center sm:py-40">
+  <div class="absolute inset-x-0 bottom-0 -z-10 mx-auto h-[70%] w-[80%] rounded-full bg-radial from-sun-500/30 to-transparent blur-3xl" aria-hidden="true"></div>
+  <p class="eyebrow justify-center" data-reveal>Sunset happy hour · every day 17:00–19:00</p>
+  <a href="/reserve/" class="mt-8 block" data-cursor="Book">
+    <span class="block text-[clamp(3.5rem,14vw,13rem)] leading-[0.85] font-extrabold tracking-[-0.05em]" data-wave>Book a table</span>
+  </a>
+  <p class="mt-8 text-cream-400" data-reveal>Or call us on {{ site.phone }}</p>
+</section>

@@ -374,6 +374,44 @@
 
 ---
 
+## Phase 8 — Second Live Demo: "Lagon Bistro" (Restaurant / Beach Bar)
+
+**Goal:** a demo of the "Lagon Bistro" ready-made website that is as eye-catching as possible, so restaurant owners want one. Builds on Phase 7's setup (Eleventy, Tailwind, demo kit, photo pipeline).
+
+**Decisions** (owner, 2026-11-01):
+- **Industry:** restaurant / beach bar, the largest small-business market in Mauritius.
+- **Style:** GSAP and visual effects front and centre.
+- Same rules as Phase 7: static site, subdomain, licensed photos with credits, demo kit on every page.
+
+### Fictional brand and content
+- **Brand:** "Lagon Bistro", a beach kitchen and bar on the west coast (Flic en Flac), known for sunsets. Phone and email are invented.
+- **Menu:** about 24 dishes in 5 sections (street-food starters, grill, Creole curries, desserts, cocktails), each with a price in MUR and dietary tags.
+- **Opening times:** lunch, sunset happy hour, dinner.
+- **Banned:** no fake reviews, ratings, awards or "best in Mauritius" claims.
+
+### Pages
+1. **Home:** a WebGL sunset hero, the story, signature dishes, a day-to-night section, cocktails, a gallery, events, the location map and a reservation call to action.
+2. **Menu:** the full menu with section filters, dietary tags and photo previews.
+3. **Reserve:** a booking form (blocked by the demo kit), opening hours and a WhatsApp button that leads to the Webmoris enquiry form.
+4. **Credits** and **404**.
+
+### Visual effects
+- WebGL hero with a shimmering sunset sea and a mouse-driven ripple (skipped on weak devices).
+- Kinetic split-text headlines, a rotating "open daily" badge and a scroll-velocity marquee.
+- Menu items that reveal a floating photo following the cursor on desktop.
+- A pinned "day to night" section where the sky changes from lunch to sunset to night as you scroll.
+- A pinned cocktail carousel whose background takes each drink's colour.
+- Clip-path photo reveals, parallax, magnetic buttons, a custom cursor on desktop and subtle film grain.
+- Everything respects `prefers-reduced-motion` and works without JavaScript.
+
+### Exit criteria
+- All pages work on mobile and desktop with no console errors; forms are blocked by the demo kit.
+- Mobile LCP ≤ 2.5 s and CLS ≤ 0.1 locally; effects switch off for reduced motion.
+- Every photo is credited; no real people's reviews or fake social proof.
+- On Webmoris, the Lagon Bistro template shows real screenshots and the "Live demo" button (local URL until deployed).
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.

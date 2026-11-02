@@ -1,0 +1,262 @@
+@import "tailwindcss" source(none);
+@import "lenis/dist/lenis.css";
+
+@source "../../../src";
+
+/* Lagon Bistro — dusk on the beach: night blues, cream, sunset orange, gold and hibiscus. */
+@theme {
+  --color-night-950: #090c11;
+  --color-night-900: #0f141b;
+  --color-night-800: #171e28;
+  --color-night-700: #232d3b;
+  --color-cream-50: #fbf6ec;
+  --color-cream-100: #f5ead7;
+  --color-cream-200: #e8d5b5;
+  --color-cream-400: #b9a689;
+  --color-sun-300: #ffc66e;
+  --color-sun-400: #ff9e4f;
+  --color-sun-500: #ff7a3d;
+  --color-sun-600: #e9581f;
+  --color-hibiscus-400: #ff6f91;
+  --color-hibiscus-500: #e8466c;
+  --color-lagoon-400: #45d6c5;
+  --color-ink-900: #1c1712;
+  --color-ink-600: #5e5346;
+
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+
+  --radius-card: 1.75rem;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-rise: rise 1.2s var(--ease-out-expo) both;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-kenburns: kenburns 22s ease-out both;
+  --animate-grain: grain 0.9s steps(6) infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes rise {
+    /* 0.01, not 0: fully transparent text isn't counted as painted, which delays LCP. */
+    from { opacity: 0.01; transform: translateY(0.4em); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes kenburns {
+    from { transform: scale(1.14); }
+    to { transform: scale(1); }
+  }
+  @keyframes grain {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-3%, 2%); }
+    40% { transform: translate(2%, -4%); }
+    60% { transform: translate(-4%, -2%); }
+    80% { transform: translate(3%, 3%); }
+    100% { transform: translate(-1%, 4%); }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@layer base {
+  html {
+    @apply bg-night-950 text-cream-100 antialiased;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply font-body;
+  }
+
+  h1, h2, h3 {
+    @apply font-display tracking-[-0.03em];
+  }
+
+  ::selection {
+    @apply bg-sun-500 text-night-950;
+  }
+
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-offset-4 outline-sun-400;
+  }
+
+  picture img {
+    @apply size-full object-cover;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-semibold tracking-[0.3em] text-sun-400 uppercase;
+
+    &::before {
+      @apply h-px w-8 bg-current;
+      content: "";
+    }
+  }
+
+  /* The italic serif accent used inside big headlines. */
+  .serif-i {
+    @apply font-serif font-normal tracking-normal italic;
+  }
+
+  .text-sunset {
+    @apply bg-linear-to-r from-sun-300 via-sun-500 to-hibiscus-400 bg-clip-text text-transparent;
+  }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-7 py-3.5 text-sm font-semibold transition-[color,background-color,border-color,box-shadow] duration-300 will-change-transform;
+  }
+
+  .btn-sun {
+    @apply bg-linear-to-r from-sun-400 to-sun-600 text-night-950 shadow-[0_10px_40px_-10px_rgb(255_122_61/0.7)] hover:shadow-[0_14px_50px_-6px_rgb(255_122_61/0.95)];
+  }
+
+  .btn-ghost {
+    @apply border border-cream-100/25 text-cream-50 backdrop-blur-sm hover:border-cream-100 hover:bg-cream-50 hover:text-night-950;
+  }
+
+  .btn-dark {
+    @apply bg-night-950 text-cream-50 hover:bg-sun-500 hover:text-night-950;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-current/20 px-3 py-1 text-xs font-semibold;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border border-cream-100/15 bg-night-900 px-4 py-3.5 text-cream-50 transition outline-none placeholder:text-cream-400/60 focus:border-sun-400 focus:ring-4 focus:ring-sun-500/20;
+  }
+
+  .label {
+    @apply mb-2 block text-sm font-semibold text-cream-200;
+  }
+
+  .site-header {
+    @apply fixed inset-x-0 z-40 transition-[background-color,box-shadow,transform] duration-500;
+
+    &.is-solid {
+      @apply bg-night-950/80 shadow-[0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-xl;
+    }
+  }
+
+  .nav-link {
+    @apply relative text-sm font-medium text-cream-100/80 transition hover:text-cream-50;
+
+    &::after {
+      @apply absolute -bottom-1.5 left-1/2 size-1 -translate-x-1/2 scale-0 rounded-full bg-sun-400 transition-transform duration-300;
+      content: "";
+    }
+    &:hover::after,
+    &[aria-current="page"]::after {
+      @apply scale-100;
+    }
+  }
+
+  .filter-btn {
+    @apply shrink-0 rounded-full border border-ink-900/15 px-5 py-2.5 text-sm font-semibold text-ink-600 transition hover:border-ink-900/50 hover:text-ink-900;
+
+    &[aria-pressed="true"] {
+      @apply border-ink-900 bg-ink-900 text-cream-50;
+    }
+  }
+
+  /* Image wrapper that zooms its photo on hover. */
+  .zoom-img {
+    @apply overflow-hidden;
+
+    & img {
+      @apply transition-transform duration-[1.4s] ease-out-expo;
+    }
+  }
+  .group:hover .zoom-img img,
+  .zoom-img:hover img {
+    @apply scale-[1.07];
+  }
+
+  /* Arch-shaped photo frame (cocktails). */
+  .arch {
+    border-radius: 999px 999px 1.75rem 1.75rem;
+  }
+
+  /* Cocktail reel: drinks out of focus are dimmed (JS marks the one in focus). */
+  .cocktail-card {
+    & [data-cocktail-photo] {
+      @apply transition-[filter] duration-700;
+    }
+    /* Only when animations run: without them every drink stays bright. */
+    .motion-ok &:not(.is-active) [data-cocktail-photo] {
+      @apply brightness-50 saturate-50;
+    }
+    .motion-ok &:not(.is-active) :is(h3, p) {
+      @apply opacity-50;
+    }
+  }
+
+  /* Outlined display text for the marquee. */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(245 234 215 / 0.45);
+  }
+}
+
+/* Film grain over the whole page: a tiny SVG noise tile, nudged a few times a second. */
+.grain {
+  @apply pointer-events-none fixed -inset-1/2 z-[60] opacity-[0.07] mix-blend-overlay motion-safe:animate-grain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Custom cursor ring (desktop with a mouse only; created by JS). */
+.cursor {
+  @apply pointer-events-none fixed top-0 left-0 z-[70] grid size-10 -translate-1/2 place-items-center rounded-full border border-cream-50/60 text-[10px] font-semibold tracking-widest text-night-950 uppercase mix-blend-difference transition-[width,height,background-color,border-color] duration-300;
+
+  &.is-link {
+    @apply size-16 border-sun-400 bg-sun-400/20;
+  }
+  &.is-label {
+    @apply size-24 border-transparent bg-cream-50 mix-blend-normal;
+  }
+}
+
+/* Menu: the floating photo that follows the pointer over dish names (desktop). */
+.menu-preview {
+  @apply pointer-events-none fixed top-0 left-0 z-50 aspect-[4/5] w-60 overflow-hidden rounded-3xl opacity-0 shadow-2xl;
+
+  & img {
+    @apply size-full object-cover;
+  }
+}
+
+/* --- Motion helpers (hidden only when JS runs and motion is allowed) --- */
+.motion-ok [data-reveal] {
+  opacity: 0;
+}
+.motion-ok [data-reveal-img] {
+  clip-path: inset(100% 0 0 0);
+}
+.motion-ok [data-split] {
+  opacity: 0;
+}
+
+/* Hero headline: CSS-only entrance so it never waits for JavaScript. */
+.hero-rise {
+  @apply motion-safe:animate-rise;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
