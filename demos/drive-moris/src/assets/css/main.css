@@ -3,7 +3,7 @@
 
 @source "../../../src";
 
-/* Drive Moris — "Bright island": light, airy and trustworthy, with lagoon blue and a sunny coral accent. */
+/* Drive Moris — "Bright island": light and trustworthy, with deep lagoon blues, turquoise water and a sunny coral-to-orange accent. */
 @theme {
   --color-sand-50: #fdfbf7;
   --color-sand-100: #f7f2ea;
@@ -13,6 +13,11 @@
   --color-lagoon-500: #1592ad;
   --color-lagoon-600: #0e7a93;
   --color-lagoon-700: #0e6e8c;
+  --color-lagoon-800: #0b5872;
+  --color-lagoon-900: #08394d;
+  --color-turquoise-300: #6fe3dc;
+  --color-turquoise-400: #2fd3cf;
+  --color-sun-400: #ffb547;
   --color-coral-400: #ff8a6e;
   --color-coral-500: #ff6b4a;
   --color-coral-600: #ec5232;
@@ -29,11 +34,19 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   --animate-rise: rise 0.9s var(--ease-out-expo) both;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-float: float 5s ease-in-out infinite;
 
   @keyframes rise {
     /* 0.01, not 0: fully transparent text isn't counted as painted, which delays LCP. */
     from { opacity: 0.01; transform: translateY(18px); }
     to { opacity: 1; transform: none; }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    50% { transform: translateY(-8px); }
   }
 }
 
@@ -88,8 +101,9 @@
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition duration-200;
   }
+  /* Main action: a sunny coral-to-orange gradient with a soft glow. */
   .btn-primary {
-    @apply bg-coral-500 text-white shadow-[0_8px_24px_-8px_rgb(255_107_74/0.7)] hover:bg-coral-600;
+    @apply bg-linear-to-r from-coral-500 to-sun-400 text-white shadow-[0_10px_30px_-10px_rgb(255_107_74/0.85)] hover:shadow-[0_14px_36px_-8px_rgb(255_107_74/0.95)] hover:brightness-105;
   }
   .btn-blue {
     @apply bg-lagoon-700 text-white hover:bg-ink-900;
@@ -99,6 +113,19 @@
   }
   .btn-white {
     @apply bg-white text-ink-900 hover:bg-sand-100;
+  }
+
+  /* Accent words in headings: lagoon to turquoise. */
+  .text-gradient {
+    @apply bg-linear-to-r from-lagoon-600 to-turquoise-400 bg-clip-text text-transparent;
+  }
+  .text-gradient-light {
+    @apply bg-linear-to-r from-turquoise-300 to-sun-400 bg-clip-text text-transparent;
+  }
+
+  /* Frosted panel over photos. */
+  .glass {
+    @apply rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md;
   }
 
   .card {
@@ -149,7 +176,12 @@
     }
   }
   .group:hover .zoom-img img {
-    @apply scale-[1.05];
+    @apply scale-[1.07];
+  }
+
+  /* Cards lift a little on hover. */
+  .lift {
+    @apply transition duration-300 ease-out-expo hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-20px_rgb(15_36_51/0.35)];
   }
 
   /* Odometer: each digit sits in its own window (trip ticket and route counter). */
@@ -166,8 +198,16 @@
 }
 
 /* --- Motion helpers: hidden only when JS runs and motion is allowed --- */
-.motion-ok [data-reveal] {
+.motion-ok [data-reveal],
+.motion-ok [data-split] {
   opacity: 0;
+}
+
+/* Mobile "Book now" bar: page content gets room at the bottom so the bar never covers it. */
+@media (max-width: 767px) {
+  body.has-cta-bar {
+    padding-bottom: 5.5rem;
+  }
 }
 
 .hero-rise {
@@ -177,5 +217,9 @@
 @media (prefers-reduced-motion: reduce) {
   @view-transition {
     navigation: none;
+  }
+  .animate-marquee,
+  .animate-float {
+    animation: none;
   }
 }

@@ -8,7 +8,9 @@
 > - **Type:** Plus Jakarta Sans throughout, sentence case, bold friendly headings.
 > - **Photos:** full colour, rounded corners, real Mauritius roads and coast.
 > - **Structure:** search first (dates and car in the hero), then benefits, popular cars as clear cards (photo, seats, bags, gearbox, price, Book), how it works in 3 steps, the coast route on the map, day trips, FAQ and a call to action. Car pages have a sticky summary card; the booking page has 4 numbered steps and a live price summary.
-> - **Motion:** gentle fade-ups, the route drawing itself around the island, rolling figures in the price summary. No WebGL, no heavy effects.
+> - **Colour (update):** deeper lagoon blues (`#08394d` to `#0e6e8c`) with turquoise `#2fd3cf` and a coral-to-sun gradient (`#ff6b4a` → `#ffb547`) on the main buttons and accent words.
+> - **Motion (update, owner asked for more VFX):** a full-bleed hero photo with a camera dolly (pushes in on load, pulls further in and fades the text on scroll, slight mouse parallax); a pinned "dolly reveal" where a framed lagoon photo widens to fill the screen; word-by-word headings; counting stats; a destinations marquee; photos that zoom while they scroll; a line that draws between the booking steps; magnetic buttons; the coast route. Reduced motion turns all of it off.
+> - **Conversion:** search card in the hero, prices visible everywhere, and a "Book now" bar always on screen on phones.
 
 ---
 

@@ -5,19 +5,21 @@ section: book
 description: Book a rental car at Mauritius airport. See the full price for your dates, car and extras before you send the request.
 ---
 {% from "partials/icon.njk" import icon %}
-<section class="bg-linear-to-b from-lagoon-50 to-white">
+<section class="relative overflow-hidden bg-linear-to-br from-lagoon-900 via-lagoon-800 to-lagoon-600 text-white">
+  <div class="absolute -top-24 -right-24 size-96 rounded-full bg-turquoise-400/25 blur-3xl" aria-hidden="true"></div>
+  <div class="absolute -bottom-32 left-1/3 size-80 rounded-full bg-coral-500/25 blur-3xl" aria-hidden="true"></div>
   <div class="container-x py-10 sm:py-14">
-    <p class="hero-rise eyebrow">Book a car</p>
-    <h1 class="hero-rise mt-2 text-4xl [animation-delay:80ms] sm:text-5xl">Book your car in 4 easy steps</h1>
-    <p class="hero-rise lead mt-3 max-w-2xl [animation-delay:160ms]">The full price updates as you go. No payment now: we confirm by email within the hour.</p>
+    <p class="hero-rise eyebrow relative text-sun-400">Book a car</p>
+    <h1 class="hero-rise relative mt-2 text-4xl [animation-delay:80ms] sm:text-6xl">Book your car in <span class="text-gradient-light">4 easy steps</span></h1>
+    <p class="hero-rise relative mt-3 max-w-2xl text-lg text-white/85 [animation-delay:160ms]">The full price updates as you go. No payment now: we confirm by email within the hour.</p>
   </div>
 </section>
 
-<form class="container-x grid gap-10 pb-20 lg:grid-cols-[1.6fr_1fr] lg:items-start" action="/book/" method="post" data-trip>
+<form class="container-x grid gap-10 pt-10 pb-20 lg:grid-cols-[1.6fr_1fr] lg:items-start" action="/book/" method="post" data-trip>
   <div class="space-y-6">
     <fieldset class="card p-6 sm:p-7">
       <legend class="sr-only">When and where</legend>
-      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-lagoon-700 text-sm text-white">1</span>When and where</h2>
+      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-linear-to-br from-coral-500 to-sun-400 text-sm text-white">1</span>When and where</h2>
       <div class="mt-5 grid gap-5 sm:grid-cols-2">
         <div>
           <span class="field-label">Pick-up</span>
@@ -40,7 +42,7 @@ description: Book a rental car at Mauritius airport. See the full price for your
 
     <fieldset class="card p-6 sm:p-7">
       <legend class="sr-only">Your car</legend>
-      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-lagoon-700 text-sm text-white">2</span>Choose your car</h2>
+      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-linear-to-br from-coral-500 to-sun-400 text-sm text-white">2</span>Choose your car</h2>
       <div class="mt-5 grid gap-3 sm:grid-cols-2">
         {% asyncEach car in fleet.cars %}
           <label class="relative flex cursor-pointer items-center gap-3 rounded-2xl border border-line p-3 transition hover:border-ink-300 has-[:checked]:border-lagoon-600 has-[:checked]:bg-lagoon-50 has-[:checked]:ring-2 has-[:checked]:ring-lagoon-100">
@@ -58,7 +60,7 @@ description: Book a rental car at Mauritius airport. See the full price for your
 
     <fieldset class="card p-6 sm:p-7">
       <legend class="sr-only">Extras</legend>
-      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-lagoon-700 text-sm text-white">3</span>Add extras <span class="text-sm font-semibold text-ink-500">(optional)</span></h2>
+      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-linear-to-br from-coral-500 to-sun-400 text-sm text-white">3</span>Add extras <span class="text-sm font-semibold text-ink-500">(optional)</span></h2>
       <div class="mt-5 grid gap-3 sm:grid-cols-2">
         {% for extra in site.extras %}
           <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-line p-4 transition hover:border-ink-300 has-[:checked]:border-lagoon-600 has-[:checked]:bg-lagoon-50">
@@ -72,7 +74,7 @@ description: Book a rental car at Mauritius airport. See the full price for your
 
     <fieldset class="card p-6 sm:p-7">
       <legend class="sr-only">Your details</legend>
-      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-lagoon-700 text-sm text-white">4</span>Your details</h2>
+      <h2 class="flex items-center gap-3 text-xl"><span class="grid size-8 place-items-center rounded-full bg-linear-to-br from-coral-500 to-sun-400 text-sm text-white">4</span>Your details</h2>
       <div class="mt-5 grid gap-5 sm:grid-cols-2">
         <div><label class="field-label" for="name">Full name</label><input class="field" id="name" name="name" required autocomplete="name"></div>
         <div><label class="field-label" for="email">Email</label><input class="field" id="email" name="email" type="email" required autocomplete="email"></div>
@@ -96,12 +98,12 @@ description: Book a rental car at Mauritius airport. See the full price for your
         <div class="flex justify-between"><dt class="text-ink-500">Delivery</dt><dd class="font-semibold" data-out="delivery">Rs 0</dd></div>
         <div class="flex justify-between"><dt class="text-ink-500">Insurance</dt><dd class="font-semibold text-lagoon-700">Included</dd></div>
       </dl>
-      <div class="mt-5 flex items-end justify-between rounded-2xl bg-lagoon-50 p-4">
+      <div class="mt-5 flex items-end justify-between rounded-2xl bg-linear-to-br from-lagoon-700 to-lagoon-500 p-4 text-white">
         <p class="font-bold">Total</p>
-        <p class="text-3xl font-extrabold text-lagoon-700" data-out="total">Rs 0</p>
+        <p class="text-3xl font-extrabold" data-out="total">Rs 0</p>
       </div>
       <p class="mt-3 text-sm font-semibold text-coral-600" data-out="warning" hidden>The return must be after the pick-up.</p>
-      <button type="submit" class="btn btn-primary mt-5 w-full py-3.5 text-base">Request this car</button>
+      <button type="submit" class="btn btn-primary mt-5 w-full py-3.5 text-base" data-magnetic>Request this car</button>
       <ul class="mt-4 space-y-1.5 text-xs text-ink-500">
         <li class="flex items-center gap-2">{{ icon("check", "size-4 text-lagoon-600") }}No payment now</li>
         <li class="flex items-center gap-2">{{ icon("check", "size-4 text-lagoon-600") }}Deposit {{ site.deposit | money }} held on your card</li>

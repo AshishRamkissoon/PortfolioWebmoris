@@ -27,4 +27,4 @@ Home (search, benefits, popular cars, how it works, coast route, day trips, FAQ)
 
 `npm run build:map` draws the map and the coast route from OpenStreetMap data (`scripts/build-map.mjs`). It writes `src/static/img/map/mauritius.svg`, `src/_data/mapFrame.json` and `src/_data/route.json` (the route path, its length and where each stop falls). It reuses Island Explorer's downloaded data when present. On desktop the map is pinned while the route draws itself around the island.
 
-Animations are gentle (fade-ups, the route, rolling figures in the price summary) and respect `prefers-reduced-motion`. Every page works without JavaScript (the booking page shows a rate table instead of the live summary).
+Motion (GSAP + ScrollTrigger + SplitText, in `src/assets/js/motion.js`): hero camera dolly in on load and out on scroll, a pinned dolly reveal of the lagoon photo, word-by-word headings, counting stats, a destinations marquee, scroll zoom on photos, drawn lines, magnetic buttons and the coast route. All of it respects `prefers-reduced-motion`. Every page works without JavaScript (the booking page shows a rate table instead of the live summary).

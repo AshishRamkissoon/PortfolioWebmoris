@@ -40,6 +40,12 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-01 — Phase 9 — Ready for review (colour + VFX) — Richer colour and cinematic motion added to the Bright island design.
+  - **Colour:** deeper lagoon blues, turquoise and a coral-to-sun gradient on buttons and accent words; dark lagoon bands for How it works, stats and page headers.
+  - **Effects:** full-bleed hero with camera dolly in/out and mouse parallax (Belle Mare lagoon aerial), pinned dolly reveal of the lagoon photo, word-by-word headings, counting stats, destinations marquee, scroll zoom on trip photos, drawn step line, magnetic buttons, card lift on hover.
+  - **Conversion:** hero search card with "from Rs 1,400/day", a mobile "Book now" bar on every page except Book.
+  - **Checks:** 21/21 demo QA checks, no console errors; mobile (throttled) LCP 1.5–2.4 s uncompressed, CLS 0. Webmoris card screenshots refreshed.
+- 2026-11-01 — Phase 9 — Changes requested — The owner wants richer colour and more visual effects (GSAP, zoom, dolly in/out) so the demo is more appealing and converts better. Keeping the Bright island structure.
 - 2026-11-01 — Phase 9 — Ready for review (redesign) — Drive Moris rebuilt in the owner's chosen "Bright island" direction (http://127.0.0.1:5004).
   - **Look:** light backgrounds, lagoon blue with a coral accent for main actions, Plus Jakarta Sans in sentence case, full-colour photos with rounded corners. The dark duotone grade, WebGL night drive, road-sign type, garage stage and turntable were removed.
   - **Structure:** Home = search in the hero (dates + car), benefits, popular car cards (photo, seats, bags, gearbox, price, Book), how it works in 3 steps, coast route on the map (kept, restyled), day trips, FAQ accordion, call to action. Car pages have a sticky summary card; Book has 4 numbered steps and a live price summary.

@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 section: home
-preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths: [480, 960, 1440] }
+preload: { key: "belle-mare", sizes: "100vw", widths: [960, 1440, 2000] }
 ---
 {% from "partials/icon.njk" import icon %}
 {% set stopInfo = {
@@ -15,41 +15,55 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
   "Mahébourg": { photo: "jetty-sunset", line: "Back to the south-east, just as the light goes." }
 } %}
 
-{# ---------- Hero: headline, search and a big colour photo ---------- #}
-<section class="relative overflow-hidden bg-linear-to-b from-lagoon-50 to-white">
-  <div class="container-x grid items-center gap-10 py-12 lg:grid-cols-[1.05fr_1fr] lg:py-20">
-    <div>
-      <p class="hero-rise chip">{{ icon("plane", "size-3.5") }} Car rental at Mauritius airport</p>
-      <h1 class="hero-rise mt-5 text-4xl [animation-delay:80ms] sm:text-5xl lg:text-6xl">Explore Mauritius <span class="text-lagoon-700">your way.</span></h1>
-      <p class="hero-rise lead mt-5 max-w-lg [animation-delay:160ms]">Your car is waiting when you land, with full insurance in the price. Hand it back at the airport, your hotel or in Port Louis.</p>
+{# ---------- Hero: full-bleed photo with a camera "dolly" (in on load, out on scroll) and the search card ---------- #}
+<section class="relative isolate flex min-h-[calc(100svh-4.5rem-var(--demo-bar-h,0px))] items-end overflow-hidden bg-lagoon-900" data-hero>
+  <div class="absolute inset-0 -z-20 overflow-hidden" data-hero-media>
+    <div class="absolute inset-0 motion-safe:will-change-transform" data-hero-dolly>
+      {% picture "belle-mare", "Aerial view of the turquoise lagoon and white beach at Belle Mare, Mauritius", "100vw", { widths: [960, 1440, 2000], eager: true } %}
+    </div>
+  </div>
+  {# Colour grade: deep lagoon at the bottom for legibility, a warm glow top right. #}
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-lagoon-900/90 via-lagoon-900/25 to-transparent"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-r from-lagoon-900/65 via-lagoon-900/10 to-transparent"></div>
+  <div class="absolute -top-40 -right-40 -z-10 size-[36rem] rounded-full bg-sun-400/25 blur-3xl" aria-hidden="true"></div>
 
-      {# Search: a plain GET form to the booking page (allowed by the demo kit). #}
-      <form action="/book/" method="get" data-demo-navigation class="hero-rise card mt-8 grid gap-3 p-4 [animation-delay:240ms] sm:grid-cols-2">
-        <label><span class="field-label">Pick-up date</span><input class="field" type="date" name="pickup_date"></label>
-        <label><span class="field-label">Return date</span><input class="field" type="date" name="return_date"></label>
-        <label class="sm:col-span-2"><span class="field-label">Car</span>
-          <select class="field" name="car">{% for car in fleet.cars %}<option value="{{ car.slug }}">{{ car.name }} · {{ car.price | money }}/day</option>{% endfor %}</select>
-        </label>
-        <button type="submit" class="btn btn-primary h-[50px] text-base sm:col-span-2">See prices and book</button>
-      </form>
-      <ul class="hero-rise mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-ink-700 [animation-delay:320ms]">
-        {% for item in ["Full insurance included", "Free cancellation", "No payment now"] %}<li class="flex items-center gap-2">{{ icon("check", "size-4 text-lagoon-600") }}{{ item }}</li>{% endfor %}
+  <div class="container-x grid items-end gap-10 pt-24 pb-12 lg:grid-cols-[1.15fr_0.85fr] lg:pb-16" data-hero-content>
+    <div class="text-white">
+      <p class="hero-rise glass inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold">{{ icon("plane", "size-3.5") }} Car rental at Mauritius airport</p>
+      <h1 class="hero-rise mt-6 text-5xl leading-[1.02] [animation-delay:80ms] sm:text-6xl lg:text-7xl">Explore Mauritius <span class="text-gradient-light">your way.</span></h1>
+      <p class="hero-rise mt-5 max-w-lg text-lg text-white/85 [animation-delay:160ms]">Your car is waiting when you land, with full insurance in the price. Hand it back at the airport, your hotel or in Port Louis.</p>
+      <ul class="hero-rise mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-white/90 [animation-delay:240ms]">
+        {% for item in ["Full insurance included", "Free cancellation", "No payment now"] %}<li class="flex items-center gap-2"><span class="grid size-5 place-items-center rounded-full bg-turquoise-400 text-lagoon-900">{{ icon("check", "size-3.5") }}</span>{{ item }}</li>{% endfor %}
       </ul>
     </div>
 
-    <div class="hero-rise relative [animation-delay:120ms]">
-      <div class="aspect-[4/3] overflow-hidden rounded-[1.75rem] shadow-[0_30px_60px_-30px_rgb(15_36_51/0.45)] lg:aspect-[5/6]">
-        {% picture "road-maconde", "The coast road at Macondé, between black rock cliffs and the ocean, Mauritius", "(min-width: 1024px) 50vw, 100vw", { widths: [480, 960, 1440], eager: true } %}
+    {# Search: a plain GET form to the booking page (allowed by the demo kit). #}
+    <form action="/book/" method="get" data-demo-navigation class="hero-rise card grid gap-3 p-5 [animation-delay:200ms] sm:grid-cols-2 sm:p-6">
+      <div class="sm:col-span-2">
+        <p class="text-lg font-extrabold">Get your price in seconds</p>
+        <p class="text-sm text-ink-500">Insurance, unlimited km and airport pick-up included.</p>
       </div>
-      <div class="card absolute -bottom-5 left-4 flex items-center gap-3 p-4 sm:left-6">
-        <span class="grid size-11 place-items-center rounded-full bg-coral-500 text-white">{{ icon("car", "size-5") }}</span>
-        <p class="text-sm"><span class="block text-ink-500">Cars from</span><span class="text-lg font-extrabold">Rs 1,400 /day</span></p>
-      </div>
-      <div class="card absolute top-5 right-4 hidden items-center gap-3 p-3 pr-4 sm:flex">
-        <span class="grid size-9 place-items-center rounded-full bg-lagoon-50 text-lagoon-700">{{ icon("shield", "size-5") }}</span>
-        <p class="text-sm font-bold">Zero-excess insurance</p>
-      </div>
-    </div>
+      <label><span class="field-label">Pick-up date</span><input class="field min-w-0" type="date" name="pickup_date"></label>
+      <label><span class="field-label">Return date</span><input class="field min-w-0" type="date" name="return_date"></label>
+      <label class="sm:col-span-2"><span class="field-label">Car</span>
+        <select class="field" name="car">{% for car in fleet.cars %}<option value="{{ car.slug }}">{{ car.name }} · {{ car.price | money }}/day</option>{% endfor %}</select>
+      </label>
+      <button type="submit" class="btn btn-primary h-[52px] text-base sm:col-span-2" data-magnetic>See prices and book {{ icon("arrow", "size-4") }}</button>
+      <p class="text-center text-xs text-ink-500 sm:col-span-2">Cars from <strong class="text-ink-900">Rs 1,400 /day</strong> · No payment now</p>
+    </form>
+  </div>
+
+  <div class="glass absolute top-8 right-6 hidden items-center gap-2 px-4 py-2 text-sm font-bold motion-safe:animate-float lg:flex" aria-hidden="true">{{ icon("shield", "size-4") }} Zero-excess insurance</div>
+</section>
+
+{# ---------- Destinations strip ---------- #}
+<section class="overflow-hidden bg-linear-to-r from-lagoon-700 via-lagoon-600 to-turquoise-400 py-4 text-white" aria-label="Where you can drive">
+  <div class="flex w-max motion-safe:animate-marquee">
+    {% for copy in [1, 2] %}
+      <p class="flex shrink-0 items-center text-lg font-extrabold whitespace-nowrap sm:text-xl" {% if copy == 2 %}aria-hidden="true"{% endif %}>
+        {% for place in ["Le Morne", "Chamarel", "Grand Baie", "Belle Mare", "Port Louis", "Gris Gris", "Flic en Flac", "Île aux Cerfs", "Mahébourg", "Black River Gorges"] %}<span class="px-6">{{ place }}</span><span class="text-sun-400" aria-hidden="true">●</span>{% endfor %}
+      </p>
+    {% endfor %}
   </div>
 </section>
 
@@ -58,7 +72,7 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
   <ul class="container-x grid gap-6 py-10 sm:grid-cols-2 lg:grid-cols-4">
     {% for b in site.benefits %}
       <li class="flex gap-4" data-reveal>
-        <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-lagoon-50 text-lagoon-700">{{ icon(b.icon) }}</span>
+        <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-lagoon-600 to-turquoise-400 text-white shadow-[0_8px_20px_-10px_rgb(14_110_140/0.8)]">{{ icon(b.icon) }}</span>
         <div><h2 class="text-base font-bold tracking-normal">{{ b.title }}</h2><p class="text-sm text-ink-500">{{ b.text }}</p></div>
       </li>
     {% endfor %}
@@ -70,7 +84,7 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
   <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
     <div>
       <p class="eyebrow">Our cars</p>
-      <h2 id="cars-title" class="section-title">Popular for island trips</h2>
+      <h2 id="cars-title" class="section-title" data-split>Popular for <span class="text-gradient">island trips</span></h2>
     </div>
     <a href="/fleet/" class="btn btn-outline self-start sm:self-auto">See all {{ fleet.cars | length }} cars {{ icon("arrow", "size-4") }}</a>
   </div>
@@ -81,22 +95,58 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
   </div>
 </section>
 
+{# ---------- Dolly reveal: a framed lagoon photo widens to fill the screen as you scroll ---------- #}
+<section class="dolly relative overflow-hidden bg-white" data-dolly aria-labelledby="dolly-title">
+  <div class="relative h-[80svh] min-h-[520px] in-[.is-pinned]:h-[calc(100svh-4.5rem-var(--demo-bar-h,0px))]">
+    <div class="absolute inset-0 overflow-hidden" data-dolly-frame>
+      <div class="absolute inset-0" data-dolly-image>{% picture "blue-bay", "A white sand beach and a calm turquoise lagoon in Mauritius", "100vw", { widths: [960, 1440, 2000] } %}</div>
+      <div class="absolute inset-0 bg-linear-to-t from-lagoon-900/80 via-lagoon-900/20 to-transparent"></div>
+    </div>
+    <div class="absolute inset-x-0 bottom-0 container-x pb-12 text-white sm:pb-16" data-dolly-text>
+      <p class="glass inline-flex px-4 py-1.5 text-xs font-bold">No tour bus, no timetable</p>
+      <h2 id="dolly-title" class="mt-4 max-w-3xl text-4xl sm:text-6xl">The island is yours. <span class="text-gradient-light">Stop wherever you like.</span></h2>
+      <a href="/fleet/" class="btn btn-primary mt-7 px-7 py-3.5" data-magnetic>Choose your car {{ icon("arrow", "size-4") }}</a>
+    </div>
+  </div>
+</section>
+
+{# ---------- In numbers (facts about the service, not claims) ---------- #}
+<section class="bg-lagoon-900 text-white" aria-label="Drive Moris in numbers">
+  <dl class="container-x grid grid-cols-2 gap-8 py-14 lg:grid-cols-4">
+    {% for stat in [
+      { value: fleet.cars | length, suffix: "", label: "car models, from city cars to 7-seaters" },
+      { value: route.km, suffix: " km", label: "of coast road to explore" },
+      { value: 24, suffix: "/7", label: "airport desk for arrivals" },
+      { value: 0, suffix: "", prefix: "Rs ", label: "insurance excess" }
+    ] %}
+      <div data-reveal>
+        <dd class="text-4xl font-extrabold sm:text-5xl"><span class="text-gradient-light">{{ stat.prefix }}<span data-count>{{ stat.value }}</span>{{ stat.suffix }}</span></dd>
+        <dt class="mt-2 text-sm text-lagoon-100">{{ stat.label }}</dt>
+      </div>
+    {% endfor %}
+  </dl>
+</section>
+
 {# ---------- How it works ---------- #}
-<section id="how" class="bg-sand-100 py-20 sm:py-24" aria-labelledby="how-title">
+<section id="how" class="relative overflow-hidden bg-linear-to-br from-lagoon-900 via-lagoon-800 to-lagoon-700 py-20 text-white sm:py-24" aria-labelledby="how-title">
+  <div class="absolute -bottom-32 -left-32 size-[30rem] rounded-full bg-turquoise-400/20 blur-3xl" aria-hidden="true"></div>
   <div class="container-x">
     <div class="max-w-2xl">
-      <p class="eyebrow">How it works</p>
-      <h2 id="how-title" class="section-title">Book in two minutes, drive in ten</h2>
+      <p class="eyebrow text-sun-400">How it works</p>
+      <h2 id="how-title" class="section-title" data-split>Book in two minutes, <span class="text-gradient-light">drive in ten</span></h2>
     </div>
-    <ol class="mt-12 grid gap-6 md:grid-cols-3">
+    <div class="relative mt-12">
+    <div class="absolute top-[2.15rem] right-[16%] left-[16%] hidden h-0.5 origin-left bg-linear-to-r from-turquoise-400 to-sun-400 md:block" data-draw-x aria-hidden="true"></div>
+    <ol class="relative grid gap-6 md:grid-cols-3">
       {% for step in site.steps %}
-        <li class="card relative p-7" data-reveal>
-          <span class="grid size-11 place-items-center rounded-full bg-lagoon-700 text-lg font-extrabold text-white">{{ loop.index }}</span>
+        <li class="relative rounded-card border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm" data-reveal>
+          <span class="mx-auto grid size-12 place-items-center rounded-full bg-linear-to-br from-coral-500 to-sun-400 text-lg font-extrabold text-white shadow-[0_8px_24px_-8px_rgb(255_107_74/0.9)]">{{ loop.index }}</span>
           <h3 class="mt-5 text-xl">{{ step.title }}</h3>
-          <p class="mt-2 text-ink-500">{{ step.text }}</p>
+          <p class="mt-2 text-lagoon-100">{{ step.text }}</p>
         </li>
       {% endfor %}
     </ol>
+    </div>
   </div>
 </section>
 
@@ -121,7 +171,7 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
 
     <div class="relative min-w-0">
       <p class="eyebrow">Around the island</p>
-      <h2 id="coast-title" class="section-title">The whole coast in one day</h2>
+      <h2 id="coast-title" class="section-title">The whole coast <span class="text-gradient">in one day</span></h2>
       <p class="lead mt-3 max-w-md">About {{ route.km }} km of coast road from the airport and back. Scroll to drive it.</p>
       <p class="mt-6 hidden items-baseline gap-2 in-[.is-pinned]:flex" aria-hidden="true">
         <span class="text-5xl font-extrabold text-lagoon-700 tabular-nums sm:text-6xl" data-route-km>000</span>
@@ -150,13 +200,13 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
   <div class="container-x">
     <div class="max-w-2xl">
       <p class="eyebrow">Day trips</p>
-      <h2 id="trips-title" class="section-title">Five drives worth the trip</h2>
+      <h2 id="trips-title" class="section-title" data-split>Five drives <span class="text-gradient">worth the trip</span></h2>
       <p class="lead mt-3">Ideas from our team for your days on the island, with distance and driving time.</p>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-6">
       {% asyncEach drive in drives %}
-        <article class="group card flex flex-col {% if loop.index <= 2 %}lg:col-span-3{% else %}lg:col-span-2{% endif %}" data-reveal>
-          <div class="zoom-img aspect-[16/9]">{% picture drive.photo, drive.title, "(min-width: 768px) 50vw, 100vw", { widths: [480, 960, 1440] } %}</div>
+        <article class="group card lift flex flex-col {% if loop.index <= 2 %}lg:col-span-3{% else %}lg:col-span-2{% endif %}" data-reveal>
+          <div class="zoom-img relative aspect-[16/9]"><div class="absolute inset-0" data-zoom>{% picture drive.photo, drive.title, "(min-width: 768px) 50vw, 100vw", { widths: [480, 960, 1440] } %}</div></div>
           <div class="flex flex-1 flex-col p-6">
             <p class="text-xs font-bold tracking-wide text-ink-500 uppercase">{{ drive.route }}</p>
             <h3 class="mt-2 text-xl">{{ drive.title }}</h3>
@@ -176,7 +226,7 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
 <section id="faq" class="container-x grid gap-12 py-20 sm:py-24 lg:grid-cols-[1fr_1.5fr]" aria-labelledby="faq-title">
   <div>
     <p class="eyebrow">Good to know</p>
-    <h2 id="faq-title" class="section-title">Questions before you book</h2>
+    <h2 id="faq-title" class="section-title" data-split>Questions <span class="text-gradient">before you book</span></h2>
     <p class="lead mt-3">Clear terms, no surprises at the desk. Still unsure? Call us on {{ site.phone }}.</p>
     <dl class="mt-8 grid grid-cols-2 gap-4">
       <div class="card p-5"><dt class="text-sm text-ink-500">Deposit</dt><dd class="mt-1 text-2xl font-extrabold">{{ site.deposit | money }}</dd></div>
@@ -198,15 +248,16 @@ preload: { key: "road-maconde", sizes: "(min-width: 1024px) 50vw, 100vw", widths
 
 {# ---------- Call to action ---------- #}
 <section class="container-x pb-20 sm:pb-24">
-  <div class="relative overflow-hidden rounded-[1.75rem] bg-lagoon-700 px-6 py-14 text-white sm:px-14">
-    <div class="absolute -right-20 -bottom-24 size-80 rounded-full bg-coral-500/30 blur-3xl" aria-hidden="true"></div>
+  <div class="relative overflow-hidden rounded-[1.75rem] bg-linear-to-br from-lagoon-800 via-lagoon-700 to-lagoon-500 px-6 py-14 text-white sm:px-14" data-reveal>
+    <div class="absolute -right-20 -bottom-24 size-96 rounded-full bg-coral-500/40 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -top-24 -left-10 size-72 rounded-full bg-turquoise-400/30 blur-3xl" aria-hidden="true"></div>
     <div class="relative grid items-center gap-8 lg:grid-cols-[1.5fr_1fr]">
       <div>
         <h2 class="text-3xl sm:text-4xl">Your car is ready when you land.</h2>
         <p class="mt-3 text-lg text-lagoon-100">See the full price in seconds. No payment now, free cancellation.</p>
       </div>
       <div class="flex flex-wrap gap-3 lg:justify-end">
-        <a href="/book/" class="btn btn-primary px-7 py-3.5">Book a car</a>
+        <a href="/book/" class="btn btn-primary px-7 py-3.5" data-magnetic>Book a car</a>
         {# On a client's live site this opens their WhatsApp chat; in the demo it leads to the Webmoris enquiry form. #}
         <a href="{{ site.agencyUrl }}/en/contact/ready-made/{{ site.templateSlug }}/" target="_blank" rel="noopener noreferrer" class="btn btn-white px-7 py-3.5">WhatsApp us</a>
       </div>

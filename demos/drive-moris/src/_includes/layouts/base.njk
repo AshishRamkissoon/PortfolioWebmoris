@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="/assets/main.css">
   <script type="module" src="/assets/js/main.js"></script>
 </head>
-<body class="{{ bodyClass }}">
+<body class="{{ bodyClass }}{% if section != 'book' %} has-cta-bar{% endif %}">
   {# First in <body> and synchronous: the demo bar exists before first paint (no layout shift). #}
   <script src="/demo-kit.js"
           data-template="{{ site.templateSlug }}" data-agency="{{ site.agencyUrl }}" data-lang="{{ site.lang }}"></script>
@@ -26,5 +26,14 @@
     {{ content | safe }}
   </main>
   {% include "partials/footer.njk" %}
+  {% if section != "book" %}
+    {# Phones: the booking action is always one tap away. #}
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-12px_rgb(15_36_51/0.25)] backdrop-blur md:hidden" data-cta-bar>
+      <div class="flex items-center justify-between gap-3">
+        <p class="text-sm leading-tight"><span class="block text-ink-500">Cars from</span><span class="font-extrabold">Rs 1,400 /day</span></p>
+        <a href="/book/" class="btn btn-primary px-6">Book now</a>
+      </div>
+    </div>
+  {% endif %}
 </body>
 </html>

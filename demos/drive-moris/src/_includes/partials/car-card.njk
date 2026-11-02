@@ -1,6 +1,6 @@
 {# Car card. Expects `car` (and `fleet` for the class name); optional `eager`. Used inside asyncEach. #}
 {% from "partials/icon.njk" import icon %}
-<article class="group card flex h-full flex-col" data-class="{{ car.class }}">
+<article class="group card lift flex h-full flex-col" data-class="{{ car.class }}">
   <a href="/cars/{{ car.slug }}/" class="zoom-img relative block aspect-[16/10] bg-sand-100" tabindex="-1" aria-hidden="true">
     {% picture car.photos[0], "", "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw", { widths: [480, 960], eager: eager } %}
     <span class="chip absolute top-3 left-3 bg-white/95">{{ car.class | className(fleet.classes) }}</span>
