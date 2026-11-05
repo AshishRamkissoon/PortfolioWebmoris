@@ -1,37 +1,105 @@
 {% load i18n %}
-{# Replaced in place by HTMX after submit (errors or success). Works as a normal form without JS. #}
+{# The project brief. With JavaScript it shows one step at a time (frontend/src/js/modules/brief.js); #}
+{# without it, every step is visible and it's one ordinary form. HTMX replaces it in place after submit. #}
 <div id="quote-form" class="rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
   {% if sent %}
     {% include "leads/partials/success.html" %}
   {% else %}
-  <form method="post" action="{% url 'leads:contact' %}" enctype="multipart/form-data" novalidate
+  <form method="post" action="{% url 'leads:contact' %}" enctype="multipart/form-data" novalidate data-brief data-step-label="{% translate 'Step {n} of {total}' %}"
         hx-post="{% url 'leads:contact' %}" hx-target="#quote-form" hx-swap="outerHTML"
         hx-disabled-elt="find button[type=submit]">
     {% csrf_token %}
+
+    <div class="mb-8" data-brief-header hidden>
+      <div class="flex items-center justify-between text-sm text-ink-400">
+        <p aria-live="polite"><span data-brief-count></span></p>
+        <p>{% translate "About 2 minutes" %}</p>
+      </div>
+      <div class="brief-progress mt-3" aria-hidden="true"><span data-brief-progress style="width: 0%"></span></div>
+    </div>
+
     {% if form.non_field_errors %}
       <div role="alert" class="form-alert">{% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}</div>
     {% endif %}
 
-    <div class="grid gap-6 sm:grid-cols-2">
-      {% include "components/form_field.html" with field=form.name %}
-      {% include "components/form_field.html" with field=form.email %}
-      {% include "components/form_field.html" with field=form.phone %}
-      {% include "components/form_field.html" with field=form.company %}
-      {% include "components/form_field.html" with field=form.project_type wrapper_class="sm:col-span-2" %}
-      {% include "components/form_field.html" with field=form.budget %}
-      {% include "components/form_field.html" with field=form.timeline %}
-      {% include "components/form_field.html" with field=form.message wrapper_class="sm:col-span-2" %}
-      {% include "components/form_field.html" with field=form.attachment wrapper_class="sm:col-span-2" %}
-    </div>
-    {% include "components/form_spam_fields.html" %}
+    {# 1. What do you need? #}
+    <fieldset class="brief-step" data-step>
+      <legend class="brief-step-title"><span class="brief-step-number">1</span>{% translate "What do you need?" %}</legend>
+      <div class="brief-choices" role="radiogroup" aria-label="{{ form.project_type.label }}">
+        {% for choice in form.project_type %}
+          <label class="payment-option">{{ choice.tag }}<span class="payment-option-box font-semibold">{{ choice.choice_label }}</span></label>
+        {% endfor %}
+      </div>
+      {% for error in form.project_type.errors %}<p class="form-error">{{ error }}</p>{% endfor %}
+      <div class="mt-6">{% include "components/form_field.html" with field=form.package %}</div>
+    </fieldset>
 
-    <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
-      <p class="max-w-md text-sm text-ink-400">
+    {# 2. About your business #}
+    <fieldset class="brief-step" data-step>
+      <legend class="brief-step-title"><span class="brief-step-number">2</span>{% translate "About your business" %}</legend>
+      <div class="grid gap-6 sm:grid-cols-2">
+        {% include "components/form_field.html" with field=form.company %}
+        {% include "components/form_field.html" with field=form.industry %}
+        {% include "components/form_field.html" with field=form.current_website wrapper_class="sm:col-span-2" %}
+      </div>
+    </fieldset>
+
+    {# 3. Pages and features #}
+    <fieldset class="brief-step" data-step>
+      <legend class="brief-step-title"><span class="brief-step-number">3</span>{% translate "What should it include?" %}</legend>
+      {% include "components/form_field.html" with field=form.pages %}
+      <p class="form-label mt-6">{% translate "Features (tick all that apply)" %}</p>
+      <div class="brief-choices">
+        {% for choice in form.features %}
+          <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-ink-700 p-4 transition hover:border-ink-400 has-[:checked]:border-neon-cyan has-[:checked]:bg-neon-cyan/10">{{ choice.tag }}<span>{{ choice.choice_label }}</span></label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    {# 4. Style #}
+    <fieldset class="brief-step" data-step>
+      <legend class="brief-step-title"><span class="brief-step-number">4</span>{% translate "Look and feel" %}</legend>
+      <div class="grid gap-6">
+        {% include "components/form_field.html" with field=form.starting_template %}
+        <p class="-mt-4 text-sm text-ink-400">
+          {% url 'readymade:list' as demos_url %}
+          {% blocktranslate trimmed %}See them on the <a href="{{ demos_url }}" target="_blank" class="underline hover:text-neon-cyan">ready-made websites page</a>. We'll adapt it to your brand.{% endblocktranslate %}
+        </p>
+        {% include "components/form_field.html" with field=form.inspiration %}
+        {% include "components/form_field.html" with field=form.attachment %}
+      </div>
+    </fieldset>
+
+    {# 5. Budget and timing #}
+    <fieldset class="brief-step" data-step>
+      <legend class="brief-step-title"><span class="brief-step-number">5</span>{% translate "Budget and timing" %}</legend>
+      <div class="grid gap-6 sm:grid-cols-2">
+        {% include "components/form_field.html" with field=form.budget %}
+        {% include "components/form_field.html" with field=form.timeline %}
+        {% include "components/form_field.html" with field=form.message wrapper_class="sm:col-span-2" %}
+      </div>
+    </fieldset>
+
+    {# 6. Contact details #}
+    <fieldset class="brief-step" data-step>
+      <legend class="brief-step-title"><span class="brief-step-number">6</span>{% translate "Where should we send your quote?" %}</legend>
+      <div class="grid gap-6 sm:grid-cols-2">
+        {% include "components/form_field.html" with field=form.name %}
+        {% include "components/form_field.html" with field=form.email %}
+        {% include "components/form_field.html" with field=form.phone wrapper_class="sm:col-span-2" %}
+      </div>
+      {% include "components/form_spam_fields.html" %}
+      <p class="mt-6 max-w-md text-sm text-ink-400">
         {% url 'core:privacy' as privacy_url %}
         {% blocktranslate trimmed %}We only use your details to reply to your enquiry. See our <a href="{{ privacy_url }}" class="underline hover:text-neon-cyan">privacy policy</a>.{% endblocktranslate %}
       </p>
-      <button type="submit" class="btn-primary btn-lg">
-        <span class="htmx-indicator-hide">{% translate "Send my request" %}</span>
+    </fieldset>
+
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4">
+      <button type="button" class="btn-ghost" data-brief-prev hidden>&larr; {% translate "Back" %}</button>
+      <button type="button" class="btn-primary btn-lg ml-auto" data-brief-next hidden>{% translate "Next" %} &rarr;</button>
+      <button type="submit" class="btn-primary btn-lg ml-auto" data-brief-submit>
+        <span class="htmx-indicator-hide">{% translate "Send my brief" %}</span>
         <span class="htmx-indicator-show" aria-hidden="true">{% translate "Sending…" %}</span>
       </button>
     </div>

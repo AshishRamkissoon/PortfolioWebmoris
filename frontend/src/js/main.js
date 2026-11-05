@@ -2,6 +2,7 @@
 import Alpine from "@alpinejs/csp";
 import htmx from "htmx.org";
 
+import { initBrief } from "./modules/brief.js";
 import { initHeader } from "./modules/header.js";
 import { registerAnalytics } from "./modules/analytics.js";
 import { registerMediaComponents } from "./modules/media.js";
@@ -33,6 +34,7 @@ initHorizontalScroll();
 initMagnetic();
 initTilt();
 initHeader();
+initBrief();
 
 // Home hero 3D visual: separate chunk, only on capable devices.
 const hero3d = document.querySelector("[data-hero-3d]");
@@ -48,6 +50,7 @@ if (document.querySelector("[data-paypal]")) {
 // Animate content that HTMX swaps in (filters, "load more", forms). Already-revealed
 // elements are skipped, so rescanning the document is cheap and survives outerHTML swaps.
 document.body.addEventListener("htmx:afterSettle", () => {
+  initBrief();
   initReveals();
   initSplitHeadings();
   initTilt();

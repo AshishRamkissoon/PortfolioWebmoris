@@ -98,8 +98,9 @@
 {% if packages %}
 <section class="container-site mt-28">
   <div class="flex flex-wrap items-end justify-between gap-6">
-    {% translate "Pricing" as eyebrow %}{% translate "Clear prices. Pay online." as title %}
-    {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
+    {% translate "Packages" as eyebrow %}{% translate "Tell us about your project. Get a tailored quote." as title %}
+    {% translate "Pick a starting point and answer a few quick questions. We reply with a fixed quote, then you start with a deposit and pay the balance at launch." as intro %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
     <a href="{% url 'pricing:list' %}" class="btn-ghost">{% translate "All packages" %} &rarr;</a>
   </div>
   <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

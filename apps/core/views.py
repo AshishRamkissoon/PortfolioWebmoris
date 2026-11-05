@@ -25,7 +25,7 @@ def home(request):
             "service_groups": published_groups(),
             "featured_templates": WebsiteTemplate.objects.featured().select_related("industry")[:3],
             "process_steps": ProcessStep.objects.all(),
-            "packages": Package.objects.published().order_by("-is_popular", "order")[:3],
+            "packages": Package.objects.published().order_by("order")[:3],
         },
     )
 

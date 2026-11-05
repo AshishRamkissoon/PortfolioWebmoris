@@ -1,0 +1,21 @@
+{% load i18n core_tags %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<body style="margin:0;padding:24px;background:#05060a;font-family:Arial,Helvetica,sans-serif;color:#eef0f6">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#0b0d14;border:1px solid #161a26;border-radius:16px">
+    <tr><td style="padding:36px">
+      <p style="margin:0;font-size:20px;font-weight:bold">{{ site_settings.site_name }}<span style="color:#22e3ff">.</span></p>
+      <h1 style="margin:28px 0 12px;font-size:22px">{{ payment_request.description }}</h1>
+      <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#c9cfdc">{% blocktranslate with name=payment_request.name %}Hello {{ name }},{% endblocktranslate %}<br>{% translate "Thank you for choosing us. Here is your payment link." %}</p>
+      <div style="padding:18px;background:#161a26;border-radius:10px;font-size:15px;line-height:1.6">
+        <strong style="font-size:22px">{{ payment_request.amount|money:payment_request.currency }}</strong><br>
+        <span style="color:#8b93a7">{% blocktranslate with ref=payment_request.reference %}Reference: {{ ref }}{% endblocktranslate %}</span>
+        {% if payment_request.note %}<p style="margin:12px 0 0;color:#c9cfdc">{{ payment_request.note|linebreaksbr }}</p>{% endif %}
+      </div>
+      <p style="margin:24px 0 0"><a href="{{ pay_url }}" style="display:inline-block;padding:12px 22px;background:#22e3ff;color:#05060a;border-radius:999px;font-weight:bold;text-decoration:none">{% translate "Pay now" %}</a></p>
+      <p style="margin:16px 0 0;font-size:13px;color:#8b93a7">{% translate "PayPal, MCB Juice or bank transfer." %}</p>
+      <p style="margin:24px 0 0;font-size:15px;color:#c9cfdc">{% translate "Best regards," %}<br>{% blocktranslate with site=site_settings.site_name %}The {{ site }} team{% endblocktranslate %}</p>
+    </td></tr>
+  </table>
+</body>
+</html>

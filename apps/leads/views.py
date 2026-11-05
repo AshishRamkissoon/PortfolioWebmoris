@@ -9,6 +9,7 @@ from django.utils.translation import gettext as _
 from apps.core.spam import over_rate_limit, turnstile_enabled, turnstile_passed
 from apps.core.uploads import private_file_response
 from apps.portfolio.models import Project
+from apps.pricing.models import Package
 from apps.readymade.models import WebsiteTemplate
 from apps.services.models import Service
 
@@ -27,18 +28,38 @@ def _safe_path(request, value):
     return parsed.path[:200]
 
 
+def _package_type(package):
+    """The kind of project a package is for (care plans are monthly; stores and booking
+    sites are recognised by their slug, so admins can rename them freely)."""
+    types = QuoteRequest.ProjectType
+    if package.is_monthly:
+        return types.CARE
+    if any(word in package.slug for word in ("store", "shop", "booking", "ecommerce")):
+        return types.ECOMMERCE
+    return types.WEBSITE
+
+
 def _quote_initial(params):
-    """Pre-fill the quote form from ?template=, ?project=, ?service= or ?type= links.
+    """Pre-fill the project brief from ?package=, ?template=, ?project=, ?service= or ?type=.
 
     Only slugs of published objects are used, so links can't inject arbitrary text."""
     types = QuoteRequest.ProjectType
     templates = WebsiteTemplate.objects.published()
+
+    if (slug := params.get("package")) and (
+        package := Package.objects.published().filter(slug=slug).first()
+    ):
+        return {"package": package.pk, "project_type": _package_type(package)}
     projects = Project.objects.published()
     services = Service.objects.published().select_related("group")
 
     if (slug := params.get("template")) and (template := templates.filter(slug=slug).first()):
         message = _("I'm interested in the ready-made website “%(name)s”.")
-        return {"project_type": types.READYMADE, "message": message % {"name": template.name}}
+        return {
+            "project_type": types.READYMADE,
+            "starting_template": template.pk,
+            "message": message % {"name": template.name},
+        }
 
     if (slug := params.get("project")) and (project := projects.filter(slug=slug).first()):
         message = _("I'd like a project like “%(name)s”.")

@@ -254,3 +254,55 @@ def test_attachment_download_is_staff_only(client):
     assert response.status_code == 200
     assert response["Content-Disposition"].startswith("attachment;")
     assert b"".join(response.streaming_content) == b"%PDF-1.4 test"
+
+
+# --- Project brief ------------------------------------------------------------
+
+
+def test_brief_saves_features_and_details_and_message_is_optional(client):
+    from apps.pricing.models import Package
+
+    package = Package.objects.create(name="Business", slug="business-website", summary="s")
+    response = client.post(
+        URL,
+        valid_data(
+            package=package.pk,
+            industry="Tourism",
+            current_website="https://old.example.com",
+            pages="2_5",
+            features=["booking", "bilingual"],
+            inspiration="https://nice.example.com",
+            message="",
+        ),
+    )
+    assert response.status_code == 302
+    lead = QuoteRequest.objects.get()
+    assert lead.package == package and lead.pages == "2_5"
+    assert lead.features == "booking,bilingual"
+    assert lead.feature_labels == ["Online booking", "English and French"]
+    assert lead.message == ""
+
+
+def test_brief_rejects_unknown_features(client):
+    response = client.post(URL, valid_data(features=["booking", "hacked"]))
+    assert response.status_code == 200
+    assert not QuoteRequest.objects.exists()
+
+
+def test_brief_prefills_package_and_project_type(client):
+    from apps.pricing.models import Package
+
+    Package.objects.create(name="Store", slug="online-store-booking", summary="s")
+    Package.objects.create(name="Care", slug="care-plan", summary="s", billing="monthly")
+    form = client.get(URL + "?package=online-store-booking").context["form"]
+    assert form.initial["project_type"] == "ecommerce"
+    form = client.get(URL + "?package=care-plan").context["form"]
+    assert form.initial["project_type"] == "care"
+    assert "package" not in client.get(URL + "?package=nope").context["form"].initial
+
+
+def test_brief_renders_steps_that_work_without_js(client):
+    content = client.get(URL).content.decode()
+    assert "data-brief" in content and content.count("data-step>") == 6
+    # Without JS every step is visible: steps are only hidden by the script.
+    assert '<fieldset class="brief-step" data-step hidden' not in content

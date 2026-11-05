@@ -13,7 +13,7 @@
 2. **Presents services**: website development and AI marketing.
 3. **Sells ready-made websites** through an inquiry-based catalog.
 4. **Generates leads** through a quote form, WhatsApp and calendar booking.
-5. **Sells fixed-price service packages** online (PayPal and MCB Juice).
+5. **Presents service packages and wins projects quote-first**: visitors send a project brief, get a fixed tailored quote, then pay a deposit and the balance online (PayPal and MCB Juice). *(Changed 2026-11-05 from direct package purchase.)*
 
 ### 1.1 Goals
 - Build credibility through real projects, live links, screenshots, videos and results.
@@ -68,8 +68,9 @@
 /ready-made-websites/<slug>/  Template detail + inquiry form
 /services/                Services overview (Web Dev + AI Marketing)
 /services/<slug>/         Service detail
-/pricing/                 Service packages (purchasable online)
-/pricing/<slug>/checkout/ Package checkout (PayPal / MCB Juice)
+/pricing/                 Service packages (quote first; optional "From" price)
+/pricing/<slug>/checkout/ Package checkout, only for packages set to "buy online"
+/pricing/pay/<token>/      Private payment link for a deposit or balance (PayPal / MCB Juice / bank)
 /about/                   About, team, process
 /contact/                 Quote request form + calendar booking + WhatsApp
 /privacy/ /terms/         Legal pages
@@ -126,7 +127,9 @@ All public URLs are prefixed by language: `/en/` and `/fr/` (see §9).
     - **AI Chatbots**: website and WhatsApp chatbots for client businesses.
 - Each service has a detail page: description, benefits, deliverables, related projects, FAQ, and CTA.
 
-### 4.6 Pricing / Service packages (purchasable online)
+### 4.6 Pricing / Service packages (quote first)
+
+> **Updated 2026-11-05 (Phase 13).** Webmoris works quote-first. Packages (Starter Website, Business Website, Online Store or Booking Site, monthly Care Plan) describe what's included, with an optional "From" price (none by default) and a **"Recommended"** badge. Their button opens a **step-by-step project brief** (what you need, business, pages and features, look and feel or a demo to start from, budget and timing, contact). Staff reply with a quote, then create a **payment request** in admin (e.g. "50% deposit"); the client pays through a private link with PayPal, MCB Juice or bank transfer, using the order flow below. Direct "Buy" checkout remains available per package but is off by default. The original description below is kept for reference.
 - Package cards: name, price (MUR and optionally EUR/USD), billing type (**one-off** or **monthly**), features list, "popular" highlight.
 - Examples (final content to be provided): Starter Website, Business Website, AI Social Media Monthly, AI Chatbot Setup.
 - **Buy** button leads to a checkout page:
@@ -273,7 +276,7 @@ All content is manageable without code:
 - [ ] Case studies show the challenge/solution/results, a screenshot gallery with lightbox, a video and a live link.
 - [ ] Ready-made website catalog with live demo links and a working inquiry form (saved and emailed).
 - [ ] Quote form, WhatsApp floating button and Calendly booking all working.
-- [ ] Service packages purchasable via PayPal (one-off and monthly), and the MCB Juice manual-verification flow works end to end.
+- [ ] Project brief → quote → payment request (deposit / balance) via PayPal or MCB Juice works end to end, including Juice manual verification. *(Was: packages purchasable directly; changed 2026-11-05.)*
 - [ ] Dark, bold design with GSAP scroll animations and a Three.js hero, with `prefers-reduced-motion` and mobile fallbacks.
 - [ ] All content editable through Django admin, and seed data command available.
 - [ ] SEO basics (meta, OG, hreflang, sitemap, schema) and Lighthouse targets met.

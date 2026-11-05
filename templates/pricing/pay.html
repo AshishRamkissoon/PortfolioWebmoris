@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n core_tags %}
+
+{% block title %}{{ payment_request.description }} · {{ site_settings.site_name }}{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+<section class="container-site max-w-5xl py-20 sm:py-28">
+  <p class="eyebrow">{% blocktranslate with ref=payment_request.reference %}Payment {{ ref }}{% endblocktranslate %}</p>
+  <h1 class="mt-4 font-display text-4xl font-bold sm:text-5xl">{{ payment_request.description }}</h1>
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-[3fr_2fr]">
+    <div class="rounded-card border border-ink-800 bg-ink-900 p-6 sm:p-10">
+      {% if paid_order %}
+        <p class="font-display text-2xl font-bold text-neon-cyan">{% translate "Paid — thank you!" %}</p>
+        <p class="mt-3 text-ink-300">{% translate "We've received this payment. A confirmation was sent to your email." %}</p>
+        <a href="{{ paid_order.get_absolute_url }}" class="btn-ghost mt-6 inline-flex">{% translate "View receipt" %}</a>
+      {% elif pending_order %}
+        <p class="font-display text-2xl font-bold">{% translate "We're checking your payment" %}</p>
+        <p class="mt-3 text-ink-300">{% translate "Thanks for sending your receipt. We usually confirm within one business day." %}</p>
+        <a href="{{ pending_order.get_absolute_url }}" class="btn-ghost mt-6 inline-flex">{% translate "View payment" %}</a>
+      {% elif not payment_request.is_active %}
+        <p class="text-ink-300">{% translate "This payment link is no longer active. Please contact us if you have any questions." %}</p>
+        <a href="{% url 'leads:contact' %}" class="btn-primary mt-6 inline-flex">{% translate "Contact us" %}</a>
+      {% elif not methods %}
+        <p class="text-ink-300">{% translate "Online payment isn't available right now. Please contact us and we'll help you pay." %}</p>
+        <a href="{% url 'leads:contact' %}" class="btn-primary mt-6 inline-flex">{% translate "Contact us" %}</a>
+      {% else %}
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}<div role="alert" class="form-alert">{% for e in form.non_field_errors %}<p>{{ e }}</p>{% endfor %}</div>{% endif %}
+        <fieldset>
+          <legend class="form-label">{{ form.payment_method.label }} <span class="text-neon-cyan" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-3">
+            {% for radio in form.payment_method %}
+            <label class="payment-option">
+              {{ radio.tag }}
+              <span class="payment-option-box">
+                <span class="font-semibold">{{ radio.choice_label }}</span>
+                <span class="text-sm text-ink-300">
+                  {% if radio.data.value == "paypal" %}{{ payment_request.paypal_amount|money:payment_request.paypal_currency }} · {% translate "card or PayPal account, confirmed instantly" %}
+                  {% else %}{{ payment_request.amount|money:payment_request.currency }} · {% translate "pay, then upload your receipt — we confirm within one business day" %}{% endif %}
+                </span>
+              </span>
+            </label>
+            {% endfor %}
+          </div>
+          {% for error in form.payment_method.errors %}<p class="form-error">{{ error }}</p>{% endfor %}
+        </fieldset>
+        <button type="submit" class="btn-primary btn-lg mt-8 w-full">{% translate "Continue to payment" %}</button>
+        <p class="mt-4 text-center text-sm text-ink-400">
+          {% url 'core:terms' as terms_url %}{% url 'core:privacy' as privacy_url %}
+          {% blocktranslate trimmed %}By continuing you agree to our <a href="{{ terms_url }}" class="underline hover:text-neon-cyan">terms</a> and <a href="{{ privacy_url }}" class="underline hover:text-neon-cyan">privacy policy</a>.{% endblocktranslate %}
+        </p>
+      </form>
+      {% endif %}
+    </div>
+
+    <aside class="h-fit rounded-card border border-ink-800 bg-ink-900 p-8">
+      <h2 class="meta-label">{% translate "Amount due" %}</h2>
+      <p class="mt-4 font-display text-4xl font-bold">{{ payment_request.amount|money:payment_request.currency }}</p>
+      {% if payment_request.paypal_amount %}<p class="mt-1 text-sm text-ink-400">{% blocktranslate with price=payment_request.paypal_amount|money:payment_request.paypal_currency %}or {{ price }} with PayPal{% endblocktranslate %}</p>{% endif %}
+      <dl class="mt-6 space-y-2 text-sm">
+        <div class="flex justify-between gap-4"><dt class="text-ink-400">{% translate "For" %}</dt><dd class="text-right font-semibold">{{ payment_request.name }}{% if payment_request.company %}, {{ payment_request.company }}{% endif %}</dd></div>
+        <div class="flex justify-between gap-4"><dt class="text-ink-400">{% translate "Reference" %}</dt><dd class="font-mono">{{ payment_request.reference }}</dd></div>
+      </dl>
+      {% if payment_request.note %}<p class="mt-6 border-t border-ink-800 pt-6 text-sm text-ink-300">{{ payment_request.note|linebreaksbr }}</p>{% endif %}
+    </aside>
+  </div>
+</section>
+{% endblock %}

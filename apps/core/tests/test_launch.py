@@ -117,7 +117,10 @@ def test_project_and_pricing_schemas(client):
     data = json_ld(client.get(project.get_absolute_url()))
     assert data[1]["@type"] == "CreativeWork" and data[1]["name"] == "Dive School"
 
-    Package.objects.create(name="Starter", slug="starter", summary="s", price=Decimal("25000"))
+    Package.objects.create(
+        name="Starter", slug="starter", summary="s", price=Decimal("25000"), is_purchasable=True
+    )
+    Package.objects.create(name="Care", slug="care", summary="c", order=9)  # no price
     graph = json_ld(client.get("/en/pricing/"))[1]["@graph"]
     assert graph[0]["offers"] == {
         "@type": "Offer",

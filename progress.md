@@ -23,6 +23,7 @@
 | 10 | Fourth Live Demo: Villa Select (Real Estate) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
+| 13 | Project Brief, Quote-First Pricing and Deposits | 🔵 Awaiting approval | 2026-11-05 | 2026-11-05 | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -43,6 +44,13 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-05 — Phase 13 — Ready for review — Quote-first pricing built (branch `phase/13-project-brief-and-deposits`).
+  - **Project brief** (Contact page): 6 steps with progress, Back/Next and per-step checks; one normal form without JS. Captures project type, package, business, current site, pages, features, a demo to start from, inspiration, budget, timeline and contact. Package and demo pre-fill from links.
+  - **Packages:** Starter Website, Business Website (Recommended), Online Store or Booking Site, Care Plan (monthly). No prices by default (optional "From" price in admin); buttons open the brief. AI marketing packages removed from Pricing (still on Services).
+  - **Payment requests:** created in admin, one click from a quote request (client details and "50% deposit — …" pre-filled); private pay page; client picks PayPal / Juice / bank and pays through the existing order flow; amount set by staff on the server; "Email the payment link" admin action.
+  - **Wording:** Pricing ("Tell us about your project. Get a tailored quote.", 3 steps), Home section, Contact page; English and French.
+  - **Checks:** 240 tests pass (new tests for the brief and payment requests), ruff clean, migrations leads 0003 and pricing 0003.
+  - **How to test:** /en/pricing/ → "Start your project" → fill the brief; in admin open the quote request → "Create a payment request" → save → "Email the payment link" or open the payment page.
 - 2026-11-02 — Phase 12 — Approved — The owner approved Street Food Co. Merged into `main` and pushed. All six ready-made templates now have live demos (local ports 5002–5007); next is deployment to subdomains once the domain and hosting are confirmed.
 - 2026-11-02 — Phase 12 — Ready for review — Street Food Co. demo built and tested locally (http://127.0.0.1:5007). All six ready-made cards now have live demos.
   - **Built:** `demos/street-food-co/`: Home, Menu, Order, Credits, 404. Fictional food truck; 13 dishes in 4 categories; weekly schedule across the island; 17 Wikimedia Commons photos, all credited.

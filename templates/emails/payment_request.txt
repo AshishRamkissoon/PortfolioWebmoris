@@ -1,0 +1,14 @@
+{% load i18n core_tags %}{% autoescape off %}{% blocktranslate with name=payment_request.name %}Hello {{ name }},{% endblocktranslate %}
+
+{% blocktranslate with what=payment_request.description amount=payment_request.amount|money:payment_request.currency %}Here is your payment link for: {{ what }} ({{ amount }}).{% endblocktranslate %}
+{% if payment_request.note %}
+{{ payment_request.note }}
+{% endif %}
+{% translate "Open the link to pay with PayPal, MCB Juice or bank transfer:" %}
+{{ pay_url }}
+
+{% blocktranslate with ref=payment_request.reference %}Reference: {{ ref }}{% endblocktranslate %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site=site_settings.site_name %}The {{ site }} team{% endblocktranslate %}
+{% endautoescape %}

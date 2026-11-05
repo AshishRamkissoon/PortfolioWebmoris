@@ -1,4 +1,5 @@
-"""Demo packages for `manage.py seed_demo`. Prices are placeholders: set real ones in admin.
+"""Demo packages for `manage.py seed_demo`. No prices: visitors send a brief and get a quote.
+Add an optional "From" price per package in admin if you want one shown.
 
 The demo Juice/bank details are obviously fake ("DEMO"), so nobody can pay into them.
 """
@@ -17,72 +18,65 @@ PACKAGES = [
         ),
         "features": (
             "One-page website\nMobile-friendly design\nContact form & WhatsApp button\n"
-            "Basic SEO\n1 round of revisions",
+            "Basic SEO and Google setup\nOnline in about 2 weeks",
             "Site d'une page\nDesign adapté au mobile\nFormulaire de contact & WhatsApp\n"
-            "SEO de base\n1 série de modifications",
+            "SEO de base et Google\nEn ligne en 2 semaines environ",
         ),
         "billing": "one_off",
-        "price": 25000,
-        "paypal_price": 550,
         "popular": False,
-        "purchasable": True,
     },
     {
         "slug": "business-website",
         "name": ("Business Website", "Site Business"),
         "summary": (
-            "A complete multi-page website that builds trust and wins clients.",
-            "Un site complet de plusieurs pages qui inspire confiance.",
+            "A complete multi-page website that builds trust and brings in enquiries.",
+            "Un site complet de plusieurs pages qui inspire confiance et génère des demandes.",
         ),
         "features": (
-            "Up to 6 pages\nCustom design & animations\nBlog or portfolio section\n"
-            "SEO setup & Google Analytics\nEasy admin panel\n30 days of support",
-            "Jusqu'à 6 pages\nDesign et animations sur mesure\nBlog ou portfolio\n"
-            "SEO & Google Analytics\nAdministration simple\n30 jours de support",
+            "Up to 8 pages\nCustom design & animations\nEnglish and French\n"
+            "Blog, portfolio or services pages\nSEO setup & Google Analytics\n"
+            "Easy admin panel\n30 days of support after launch",
+            "Jusqu'à 8 pages\nDesign et animations sur mesure\nAnglais et français\n"
+            "Blog, portfolio ou pages services\nSEO & Google Analytics\n"
+            "Administration simple\n30 jours de support après la mise en ligne",
         ),
         "billing": "one_off",
-        "price": 60000,
-        "paypal_price": 1300,
         "popular": True,
-        "purchasable": True,
     },
     {
-        "slug": "ai-chatbot-setup",
-        "name": ("AI Chatbot Setup", "Chatbot IA"),
+        "slug": "online-store-booking",
+        "name": ("Online Store or Booking Site", "Boutique en ligne ou site de réservation"),
         "summary": (
-            "A website or WhatsApp chatbot trained on your business.",
-            "Un chatbot site web ou WhatsApp formé sur votre entreprise.",
+            "Sell products or take bookings online, with payments built in.",
+            "Vendez en ligne ou prenez des réservations, avec paiement intégré.",
         ),
         "features": (
-            "Website or WhatsApp chatbot\nTrained on your content\nLead capture\nMonthly report",
-            "Chatbot site web ou WhatsApp\nFormé sur vos contenus\nCapture de prospects\n"
-            "Rapport mensuel",
+            "Product catalogue or booking calendar\nOnline payments (PayPal, MCB Juice)\n"
+            "Customer accounts & order emails\nEnglish and French\n"
+            "Easy admin panel\n60 days of support after launch",
+            "Catalogue ou calendrier de réservation\nPaiement en ligne (PayPal, MCB Juice)\n"
+            "Comptes clients & e-mails de commande\nAnglais et français\n"
+            "Administration simple\n60 jours de support après la mise en ligne",
         ),
         "billing": "one_off",
-        "price": 35000,
-        "paypal_price": None,
         "popular": False,
-        "purchasable": False,  # needs a discussion first → "Request a quote"
     },
     {
-        "slug": "ai-social-media-monthly",
-        "name": ("AI Social Media", "Réseaux sociaux IA"),
+        "slug": "care-plan",
+        "name": ("Care Plan", "Forfait Entretien"),
         "summary": (
-            "AI-powered posts, visuals and captions every month.",
-            "Publications, visuels et légendes générés par IA chaque mois.",
+            "Hosting, updates, backups and small changes, so you never have to worry.",
+            "Hébergement, mises à jour, sauvegardes et petites modifications, l'esprit tranquille.",
         ),
         "features": (
-            "12 posts per month\nAI-generated visuals\nCaptions in EN/FR\nScheduling & publishing\n"
-            "Monthly performance report",
-            "12 publications par mois\nVisuels générés par IA\nLégendes EN/FR\n"
-            "Planification & publication\nRapport mensuel",
+            "Fast, secure hosting & SSL\nDaily backups\nSecurity & software updates\n"
+            "Small content changes each month\nMonthly health report\nPriority WhatsApp support",
+            "Hébergement rapide et sécurisé (SSL)\nSauvegardes quotidiennes\n"
+            "Mises à jour de sécurité\nPetites modifications chaque mois\n"
+            "Rapport mensuel\nSupport WhatsApp prioritaire",
         ),
         "billing": "monthly",
-        "price": 8000,
-        # PayPal needs a billing plan ID from your PayPal account before it can be enabled.
-        "paypal_price": None,
         "popular": False,
-        "purchasable": True,
     },
 ]
 
@@ -108,10 +102,8 @@ def seed_pricing(stdout=None):
             features_en=data["features"][0],
             features_fr=data["features"][1],
             billing=data["billing"],
-            price=data["price"],
-            paypal_price=data["paypal_price"],
             is_popular=data["popular"],
-            is_purchasable=data["purchasable"],
+            is_purchasable=False,
             order=order,
         )
         created += 1

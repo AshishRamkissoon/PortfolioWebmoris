@@ -200,6 +200,38 @@
     @apply flex flex-col gap-1 rounded-xl border border-ink-700 p-4 transition peer-checked:border-neon-cyan peer-checked:bg-neon-cyan/10 peer-focus-visible:outline-2 peer-focus-visible:outline-neon-cyan hover:border-ink-400;
   }
 
+  /* Project brief: steps, choice cards and progress (steps only hide when JS runs). */
+  .brief-step {
+    @apply min-w-0 border-0 p-0;
+
+    & + & {
+      @apply mt-12;
+    }
+    [data-brief].is-stepped & + & {
+      @apply mt-0;
+    }
+  }
+
+  .brief-step-title {
+    @apply mb-6 flex items-center gap-3 font-display text-2xl font-bold;
+  }
+
+  .brief-step-number {
+    @apply grid size-9 shrink-0 place-items-center rounded-full bg-neon-cyan/15 text-base text-neon-cyan;
+  }
+
+  .brief-choices {
+    @apply grid gap-3 sm:grid-cols-2;
+  }
+
+  .brief-progress {
+    @apply h-1.5 overflow-hidden rounded-full bg-ink-800;
+
+    & span {
+      @apply block h-full rounded-full bg-gradient-to-r from-neon-cyan to-neon-violet transition-[width] duration-500;
+    }
+  }
+
   /* --- Forms --- */
   .form-label {
     @apply mb-2 block text-sm font-semibold text-ink-200;

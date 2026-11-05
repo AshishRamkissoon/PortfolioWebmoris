@@ -43,7 +43,9 @@ class Lead(models.Model):
 class QuoteRequest(Lead):
     class ProjectType(models.TextChoices):
         WEBSITE = "website", _("Website")
-        ECOMMERCE = "ecommerce", _("E-commerce store")
+        ECOMMERCE = "ecommerce", _("Online store")
+        BOOKING = "booking", _("Booking website")
+        CARE = "care", _("Care plan (hosting & maintenance)")
         LANDING = "landing", _("Landing page")
         AI_MARKETING = "ai_marketing", _("AI marketing")
         READYMADE = "readymade", _("Ready-made website")
@@ -56,6 +58,27 @@ class QuoteRequest(Lead):
         OVER_150K = "over_150k", _("Over MUR 150,000")
         UNSURE = "unsure", _("Not sure yet")
 
+    class Pages(models.TextChoices):
+        ONE = "1", _("1 page")
+        FEW = "2_5", _("2–5 pages")
+        SEVERAL = "6_10", _("6–10 pages")
+        MANY = "10_plus", _("More than 10 pages")
+        UNSURE = "unsure", _("Not sure yet")
+
+    # Brief checkboxes; stored as a comma-separated list of these keys.
+    FEATURES = {
+        "booking": _("Online booking"),
+        "payments": _("Online payments"),
+        "shop": _("Product catalogue / shop"),
+        "blog": _("Blog or news"),
+        "bilingual": _("English and French"),
+        "whatsapp": _("WhatsApp button"),
+        "forms": _("Contact / enquiry forms"),
+        "gallery": _("Photo or video gallery"),
+        "seo": _("SEO and Google setup"),
+        "copywriting": _("Help writing the content"),
+    }
+
     class Timeline(models.TextChoices):
         ASAP = "asap", _("As soon as possible")
         ONE_MONTH = "1_month", _("Within a month")
@@ -66,6 +89,29 @@ class QuoteRequest(Lead):
     project_type = models.CharField(_("project type"), max_length=20, choices=ProjectType.choices)
     budget = models.CharField(_("budget"), max_length=20, choices=Budget.choices)
     timeline = models.CharField(_("timeline"), max_length=20, choices=Timeline.choices)
+
+    # Project brief (all optional, so older enquiries and short forms still fit).
+    package = models.ForeignKey(
+        "pricing.Package",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="quote_requests",
+        verbose_name=_("package"),
+    )
+    industry = models.CharField(_("industry"), max_length=100, blank=True)
+    current_website = models.URLField(_("current website"), blank=True)
+    pages = models.CharField(_("number of pages"), max_length=10, choices=Pages.choices, blank=True)
+    features = models.CharField(_("features"), max_length=300, blank=True)
+    inspiration = models.TextField(_("websites you like"), max_length=1000, blank=True)
+    starting_template = models.ForeignKey(
+        WebsiteTemplate,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="quote_requests",
+        verbose_name=_("start from demo"),
+    )
     attachment = models.FileField(
         _("attachment"),
         upload_to=RandomFilename("quotes"),
@@ -78,6 +124,10 @@ class QuoteRequest(Lead):
     class Meta(Lead.Meta):
         verbose_name = _("quote request")
         verbose_name_plural = _("quote requests")
+
+    @property
+    def feature_labels(self):
+        return [str(self.FEATURES[key]) for key in self.features.split(",") if key in self.FEATURES]
 
 
 class TemplateInquiry(Lead):

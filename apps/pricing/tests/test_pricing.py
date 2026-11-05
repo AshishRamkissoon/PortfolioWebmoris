@@ -12,7 +12,7 @@ from django.test import Client
 
 from apps.core.models import SiteSettings
 from apps.pricing import paypal
-from apps.pricing.models import Order, Package, PayPalWebhookEvent
+from apps.pricing.models import Order, Package, PaymentRequest, PayPalWebhookEvent
 
 pytestmark = pytest.mark.django_db
 
@@ -44,6 +44,7 @@ def make_package(**kwargs):
         "summary": "Complete site.",
         "price": Decimal("60000"),
         "paypal_price": Decimal("1300"),
+        "is_purchasable": True,  # direct online checkout (packages default to "quote first")
     }
     return Package.objects.create(**{**defaults, **kwargs})
 
@@ -118,8 +119,18 @@ def test_pricing_page(client):
     assert [p.slug for p in response.context["monthly"]] == ["social"]
     assert "Hidden" not in content
     assert "/en/pricing/business/checkout/" in content
-    assert "Request a quote" in content
+    # Not bought online: the button starts a project brief with the package pre-selected.
+    assert "/en/contact/?package=chatbot" in content and "Start your project" in content
     assert "MUR 60,000" in content
+
+
+def test_packages_without_a_price_show_no_price_and_no_checkout(client):
+    package = make_package(slug="store", name="Store", price=None, is_purchasable=True)
+    content = client.get("/en/pricing/").content.decode()
+    assert "Fixed quote, tailored to your project" in content
+    assert "/en/contact/?package=store" in content
+    assert "/en/pricing/store/checkout/" not in content
+    assert client.get(package.get_checkout_url()).status_code == 404
 
 
 def test_checkout_requires_purchasable_published_package(client):
@@ -473,7 +484,7 @@ def test_private_files_have_no_public_url():
 def test_home_shows_pricing_teaser(client):
     make_package(is_popular=True)
     content = client.get("/en/").content.decode()
-    assert "Business Website" in content and "Most popular" in content
+    assert "Business Website" in content and "Recommended" in content
 
 
 def test_seed_demo_pricing():
@@ -484,6 +495,96 @@ def test_seed_demo_pricing():
     call_command("seed_demo", stdout=StringIO())
     call_command("seed_demo", stdout=StringIO())
     assert Package.objects.count() == 4
-    assert not Package.objects.get(slug="ai-chatbot-setup").is_purchasable
+    # Quote first: no prices and no direct checkout on the demo packages.
+    assert not Package.objects.filter(is_purchasable=True).exists()
+    assert not Package.objects.filter(price__isnull=False).exists()
+    assert Package.objects.get(slug="care-plan").is_monthly
     # Demo payment details never overwrite real ones (the fixture set a real number).
     assert SiteSettings.load().juice_number == "5123 4567"
+
+
+# --- Payment requests (deposit / balance after a quote) ------------------------------
+
+
+def make_payment_request(**kwargs):
+    defaults = {
+        "description": "50% deposit — Business website",
+        "name": "Jane",
+        "email": "jane@example.com",
+        "amount": Decimal("30000"),
+    }
+    return PaymentRequest.objects.create(**{**defaults, **kwargs})
+
+
+def test_pay_page_shows_amount_and_methods(client):
+    pr = make_payment_request(paypal_amount=Decimal("650"))
+    response = client.get(pr.get_absolute_url())
+    content = response.content.decode()
+    assert "50% deposit — Business website" in content and "MUR 30,000" in content
+    assert response.context["methods"] == ["juice", "bank"]  # PayPal needs credentials
+    assert "noindex" in content
+
+
+def test_pay_creates_order_with_server_amount(client):
+    pr = make_payment_request()
+    response = client.post(pr.get_absolute_url(), {"payment_method": "juice", "amount": "1"})
+    order = Order.objects.get()
+    assert response.status_code == 302 and response["Location"] == order.get_absolute_url()
+    assert order.payment_request == pr and order.package is None
+    assert (order.amount, order.currency) == (Decimal("30000"), "MUR")
+    assert order.package_name == pr.description and order.email == "jane@example.com"
+    # Juice: payment instructions to the client and a note to the team.
+    assert {tuple(m.to) for m in mail.outbox} == {("jane@example.com",), ("team@webmoris.test",)}
+    # Choosing the same method again reuses the unpaid order.
+    client.post(pr.get_absolute_url(), {"payment_method": "juice"})
+    assert Order.objects.count() == 1
+
+
+def test_pay_with_paypal_uses_paypal_amount(client, paypal_on):
+    pr = make_payment_request(paypal_amount=Decimal("650"))
+    client.post(pr.get_absolute_url(), {"payment_method": "paypal"})
+    order = Order.objects.get()
+    assert (order.amount, order.currency) == (Decimal("650"), "USD")
+
+
+def test_paid_or_inactive_requests_cannot_be_paid_again(client):
+    pr = make_payment_request()
+    client.post(pr.get_absolute_url(), {"payment_method": "juice"})
+    Order.objects.get().mark_paid("REF")
+    content = client.get(pr.get_absolute_url()).content.decode()
+    assert "Paid" in content
+    client.post(pr.get_absolute_url(), {"payment_method": "bank"})
+    assert Order.objects.count() == 1
+
+    closed = make_payment_request(is_active=False)
+    assert "no longer active" in client.get(closed.get_absolute_url()).content.decode()
+    client.post(closed.get_absolute_url(), {"payment_method": "juice"})
+    assert not Order.objects.filter(payment_request=closed).exists()
+
+
+def test_pay_link_unknown_token_is_404(client):
+    assert client.get("/en/pricing/pay/not-a-token/").status_code == 404
+
+
+def test_admin_payment_request_prefilled_from_quote_and_emailed(client):
+    from apps.leads.models import QuoteRequest
+
+    user = get_user_model().objects.create_superuser("o", "o@example.com", "pw-123456789")
+    client.force_login(user)
+    package = make_package(slug="biz", name="Business Website")
+    quote = QuoteRequest.objects.create(
+        name="Jane", email="jane@example.com", message="x", project_type="website",
+        budget="25k_75k", timeline="1_month", package=package, language="fr",
+    )  # fmt: skip
+    response = client.get(f"/{settings.ADMIN_URL}pricing/paymentrequest/add/?quote={quote.pk}")
+    initial = response.context["adminform"].form.initial
+    assert initial["email"] == "jane@example.com" and initial["language"] == "fr"
+    assert initial["description"] == "50% deposit — Business Website"
+
+    pr = make_payment_request(quote=quote, language="fr")
+    mail.outbox.clear()
+    client.post(
+        f"/{settings.ADMIN_URL}pricing/paymentrequest/",
+        {"action": "email_payment_link", "_selected_action": [pr.pk]},
+    )
+    assert len(mail.outbox) == 1 and pr.access_token in mail.outbox[0].body

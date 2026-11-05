@@ -468,6 +468,25 @@ Same as Phase 10: all pages work on mobile and desktop with no console errors; f
 
 ---
 
+## Phase 13 — Project Brief, Quote-First Pricing and Deposits
+
+**Goal:** replace direct "Buy now" package checkout with a modern quote-first flow: a step-by-step project brief, a tailored quote, then a deposit and balance paid online.
+
+**Decisions** (owner, 2026-11-05): ask for project details first; packages are Starter Website, Business Website, Online Store or Booking Site and a monthly Care Plan (AI marketing stays on the Services page); deposit then balance; "Most popular" becomes "Recommended".
+
+### Tasks
+- Project brief on the Contact page: six steps with JS (progress, Back/Next, per-step checks), one ordinary form without JS; package and demo pre-fill from links.
+- Packages: optional "From" price, "Start your project" button, "Recommended" badge; direct checkout only when a package is set to buy online and has a price.
+- Payment requests in admin (amount set by staff, optional PayPal amount), created from a quote request in one click, emailed to the client; private pay page reusing the order flow (PayPal capture, Juice / bank proof and verification).
+- New wording on Pricing, Home and Contact; English and French; tests.
+
+### Exit criteria
+- A brief can be sent with and without JavaScript and appears in admin with all details.
+- A payment request can be created from a brief, emailed, and paid by Juice (verified in admin) or PayPal; the amount always comes from the server.
+- No package shows a price unless one is set in admin; tests and ruff pass.
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.

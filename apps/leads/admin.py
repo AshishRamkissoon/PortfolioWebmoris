@@ -62,23 +62,50 @@ class LeadAdmin(admin.ModelAdmin):
 
 @admin.register(QuoteRequest)
 class QuoteRequestAdmin(LeadAdmin):
-    list_display = ("name", "email", "project_type", "budget", "timeline", "status", "created_at")
-    list_filter = ("status", "project_type", "budget", "language", "created_at")
-    search_fields = ("name", "email", "company", "message")
-    extra_readonly = ("attachment_link",)
+    list_display = (
+        "name", "company", "project_type", "package", "budget", "timeline", "status", "created_at",
+    )  # fmt: skip
+    list_filter = ("status", "project_type", "package", "budget", "language", "created_at")
+    search_fields = ("name", "email", "company", "industry", "message")
+    extra_readonly = ("attachment_link", "feature_list", "payment_request_link")
     fieldsets = (
-        ("Pipeline", {"fields": ("status", "notes")}),
-        ("Contact", {"fields": ("name", "email", "phone", "company", "language")}),
+        ("Pipeline", {"fields": ("status", "notes", "payment_request_link")}),
+        ("Contact", {"fields": ("name", "email", "phone", "language")}),
+        ("Business", {"fields": ("company", "industry", "current_website")}),
         (
-            "Project",
-            {"fields": ("project_type", "budget", "timeline", "message", "attachment_link")},
-        ),
+            "Project brief",
+            {
+                "fields": (
+                    "project_type",
+                    "package",
+                    "pages",
+                    "feature_list",
+                    "starting_template",
+                    "inspiration",
+                    "budget",
+                    "timeline",
+                    "message",
+                    "attachment_link",
+                )
+            },
+        ),  # fmt: skip
         ("Source", {"fields": ("source_page", "created_at")}),
     )
     csv_fields = [
-        "created_at", "status", "name", "email", "phone", "company", "project_type",
-        "budget", "timeline", "message", "language", "source_page", "notes",
+        "created_at", "status", "name", "email", "phone", "company", "industry",
+        "current_website", "project_type", "package", "pages", "features", "starting_template",
+        "inspiration", "budget", "timeline", "message", "language", "source_page", "notes",
     ]  # fmt: skip
+
+    @admin.display(description="Features")
+    def feature_list(self, obj):
+        return ", ".join(obj.feature_labels) or "—"
+
+    @admin.display(description="Payment request")
+    def payment_request_link(self, obj):
+        """After agreeing a quote: one click to a deposit request pre-filled with the client."""
+        url = reverse("admin:pricing_paymentrequest_add") + f"?quote={obj.pk}"
+        return format_html('<a class="button" href="{}">Create a payment request</a>', url)
 
     def get_urls(self):
         return [

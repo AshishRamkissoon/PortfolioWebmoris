@@ -72,3 +72,21 @@ def send_payment_confirmed(request, order):
     with translation.override(order.language):
         subject = _("Payment confirmed — order %(ref)s") % {"ref": order.reference}
         send_templated_email(subject, "order_paid", _context(request, order), [order.email])
+
+
+def send_payment_request(request, payment_request):
+    """Email the client their private payment link. Returns False if sending failed."""
+    context = {
+        "payment_request": payment_request,
+        "site_settings": SiteSettings.load(),
+        "pay_url": request.build_absolute_uri(payment_request.get_absolute_url()),
+        "site_url": request.build_absolute_uri("/"),
+    }
+    try:
+        with translation.override(payment_request.language):
+            subject = _("Payment link: %(what)s") % {"what": payment_request.description}
+            send_templated_email(subject, "payment_request", context, [payment_request.email])
+    except Exception:
+        logger.exception("Payment request email failed for id=%s", payment_request.pk)
+        return False
+    return True

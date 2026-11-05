@@ -2,20 +2,29 @@
 {% load i18n seo_tags %}
 
 {% block title %}{% translate "Pricing" %} · {{ site_settings.site_name }}{% endblock %}
-{% block meta_description %}{% translate "Clear, fixed prices for websites and AI marketing. Pay online with PayPal or MCB Juice." %}{% endblock %}
+{% block meta_description %}{% translate "Website, online store and care plan packages. Tell us about your project and get a fixed, tailored quote." %}{% endblock %}
 
 {% block structured_data %}{{ block.super }}{% schema_packages packages %}{% endblock %}
 
 {% block content %}
 <section class="container-site pt-24 sm:pt-32">
   <p data-reveal class="eyebrow">{% translate "Pricing" %}</p>
-  <h1 class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{% translate "Simple packages, clear prices." %}</h1>
-  <p class="mt-6 max-w-2xl text-lg text-ink-300">{% translate "Pick a package and pay online with PayPal, MCB Juice or bank transfer — or ask us for a custom quote." %}</p>
+  <h1 class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{% translate "Tell us about your project." %} <span class="text-gradient">{% translate "Get a tailored quote." %}</span></h1>
+  <p class="mt-6 max-w-2xl text-lg text-ink-300">{% translate "Pick the package closest to what you need and answer a few quick questions. We reply with a fixed quote, usually within one business day." %}</p>
+  <ol class="mt-10 grid gap-4 sm:grid-cols-3">
+    {% for step in steps %}
+      <li data-reveal data-reveal-delay="{% cycle '0' '0.1' '0.2' %}" class="rounded-card border border-ink-800 bg-ink-900 p-5">
+        <p class="font-display text-sm font-bold text-neon-cyan">0{{ forloop.counter }}</p>
+        <p class="mt-2 font-semibold">{{ step.0 }}</p>
+        <p class="mt-1 text-sm text-ink-400">{{ step.1 }}</p>
+      </li>
+    {% endfor %}
+  </ol>
 </section>
 
 {% if one_off %}
 <section class="container-site mt-20" aria-labelledby="one-off-heading">
-  <h2 id="one-off-heading" class="meta-label">{% translate "Websites — one-off" %}</h2>
+  <h2 id="one-off-heading" class="meta-label">{% translate "Websites and online stores" %}</h2>
   <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     {% for package in one_off %}{% cycle "0" "0.1" "0.2" as delay silent %}{% include "pricing/partials/package_card.html" %}{% endfor %}
   </div>
@@ -24,7 +33,7 @@
 
 {% if monthly %}
 <section class="container-site mt-20" aria-labelledby="monthly-heading">
-  <h2 id="monthly-heading" class="meta-label">{% translate "AI marketing — monthly" %}</h2>
+  <h2 id="monthly-heading" class="meta-label">{% translate "Keep it running — monthly" %}</h2>
   <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     {% for package in monthly %}{% cycle "0" "0.1" "0.2" as delay silent %}{% include "pricing/partials/package_card.html" %}{% endfor %}
   </div>
@@ -32,11 +41,11 @@
 {% endif %}
 
 {% if not one_off and not monthly %}
-<p class="container-site mt-16 text-ink-300">{% translate "Our packages will be listed here soon. In the meantime, ask us for a quote." %}</p>
+<p class="container-site mt-16 text-ink-300">{% translate "Our packages will be listed here soon. In the meantime, tell us about your project." %}</p>
 {% endif %}
 
 <section class="container-site mt-16">
-  <p data-reveal class="text-center text-sm text-ink-400">{% translate "Prices in MUR. PayPal is charged in the currency shown. Need something different?" %} <a href="{% url 'leads:contact' %}" class="underline hover:text-neon-cyan">{% translate "Ask for a custom quote" %}</a>.</p>
+  <p data-reveal class="text-center text-sm text-ink-400">{% translate "Every quote is fixed before we start. Pay by PayPal, MCB Juice or bank transfer. Need something different?" %} <a href="{% url 'leads:contact' %}" class="underline hover:text-neon-cyan">{% translate "Tell us what you need" %}</a>.</p>
 </section>
 
 {% include "components/cta_band.html" %}

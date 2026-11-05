@@ -39,7 +39,16 @@ class Package(models.Model):
     )
 
     price = models.DecimalField(
-        _("price"), max_digits=10, decimal_places=2, validators=[MinValueValidator(1)]
+        _("price"),
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(1)],
+        help_text=_(
+            "Optional “From” price shown on the site. Leave empty to show no price "
+            "(visitors start a project brief and get a quote)."
+        ),
     )
     currency = models.CharField(
         _("currency"), max_length=3, choices=Currency.choices, default=Currency.MUR
@@ -68,10 +77,18 @@ class Package(models.Model):
 
     is_purchasable = models.BooleanField(
         _("can be bought online"),
-        default=True,
-        help_text=_("Untick to show “Request a quote” instead of “Buy”."),
+        default=False,
+        help_text=_(
+            "Tick to let visitors pay the full price online straight away. Untick (usual) to "
+            "show “Start your project”: visitors send a brief, you send a quote and a "
+            "payment request for the deposit."
+        ),
     )
-    is_popular = models.BooleanField(_("highlight as popular"), default=False)
+    is_popular = models.BooleanField(
+        _("highlight as recommended"),
+        default=False,
+        help_text=_("Shows a “Recommended” badge on this package."),
+    )
     is_published = models.BooleanField(_("published"), default=True)
     order = models.PositiveSmallIntegerField(_("order"), default=0)
 
@@ -93,6 +110,11 @@ class Package(models.Model):
 
     def get_checkout_url(self):
         return reverse("pricing:checkout", kwargs={"slug": self.slug})
+
+    @property
+    def can_checkout(self):
+        """Direct online purchase needs a price and the "can be bought online" setting."""
+        return self.is_purchasable and self.price is not None
 
     @property
     def is_monthly(self):
@@ -120,6 +142,88 @@ def _new_token():
     return secrets.token_urlsafe(24)
 
 
+class PaymentRequest(models.Model):
+    """A deposit or balance that staff ask a client to pay after agreeing a quote.
+
+    The amount is set here in the admin (never by the visitor); the client opens a private
+    link, picks PayPal / MCB Juice / bank transfer and pays through the usual order flow.
+    """
+
+    reference = models.CharField(_("reference"), max_length=12, unique=True, default=_new_reference)
+    access_token = models.CharField(max_length=40, unique=True, default=_new_token, editable=False)
+
+    quote = models.ForeignKey(
+        "leads.QuoteRequest",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="payment_requests",
+        verbose_name=_("quote request"),
+    )
+    description = models.CharField(
+        _("description"),
+        max_length=80,
+        help_text=_("Shown to the client, e.g. “50% deposit — Business website”."),
+    )
+    name = models.CharField(_("client name"), max_length=100)
+    email = models.EmailField(_("client email"))
+    phone = models.CharField(_("phone / WhatsApp"), max_length=30, blank=True)
+    company = models.CharField(_("company"), max_length=120, blank=True)
+    language = models.CharField(
+        _("language"), max_length=8, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE
+    )
+
+    amount = models.DecimalField(
+        _("amount"), max_digits=10, decimal_places=2, validators=[MinValueValidator(1)]
+    )
+    currency = models.CharField(
+        _("currency"), max_length=3, choices=Currency.choices, default=Currency.MUR
+    )
+    paypal_amount = models.DecimalField(
+        _("PayPal amount"),
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(1)],
+        help_text=_("PayPal can't charge in MUR. Leave empty to offer only Juice / bank."),
+    )
+    paypal_currency = models.CharField(
+        _("PayPal currency"),
+        max_length=3,
+        choices=PayPalCurrency.choices,
+        default=PayPalCurrency.USD,
+    )
+    note = models.TextField(
+        _("note to the client"), max_length=1000, blank=True, help_text=_("Optional.")
+    )
+    is_active = models.BooleanField(
+        _("active"), default=True, help_text=_("Untick to close the payment link.")
+    )
+    created_at = models.DateTimeField(_("created"), auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = _("payment request")
+        verbose_name_plural = _("payment requests")
+
+    def __str__(self):
+        return f"{self.reference} — {self.description}"
+
+    def get_absolute_url(self):
+        return reverse("pricing:pay", kwargs={"token": self.access_token})
+
+    @property
+    def paid_order(self):
+        return self.orders.filter(status=Order.Status.PAID).first()
+
+    @property
+    def paypal_available(self):
+        from . import paypal
+
+        return bool(self.paypal_amount) and paypal.is_configured()
+
+
 class Order(models.Model):
     class Method(models.TextChoices):
         PAYPAL = "paypal", "PayPal"
@@ -140,7 +244,20 @@ class Order(models.Model):
     access_token = models.CharField(max_length=40, unique=True, default=_new_token, editable=False)
 
     package = models.ForeignKey(
-        Package, on_delete=models.PROTECT, related_name="orders", verbose_name=_("package")
+        Package,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="orders",
+        verbose_name=_("package"),
+    )
+    payment_request = models.ForeignKey(
+        PaymentRequest,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="orders",
+        verbose_name=_("payment request"),
     )
     package_name = models.CharField(_("package name"), max_length=80)
     billing = models.CharField(_("billing"), max_length=10, choices=Package.Billing.choices)
@@ -187,6 +304,10 @@ class Order(models.Model):
 
     def get_absolute_url(self):
         return reverse("pricing:order", kwargs={"token": self.access_token})
+
+    @property
+    def is_monthly(self):
+        return self.billing == Package.Billing.MONTHLY
 
     @property
     def is_paid(self):

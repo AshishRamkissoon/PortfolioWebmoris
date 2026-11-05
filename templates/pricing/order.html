@@ -35,7 +35,7 @@
         <div class="mt-8" data-paypal
              data-client-id="{{ paypal_client_id }}"
              data-currency="{{ order.currency }}"
-             data-mode="{% if order.package.is_monthly %}subscription{% else %}capture{% endif %}"
+             data-mode="{% if order.is_monthly %}subscription{% else %}capture{% endif %}"
              data-plan-id="{{ order.package.paypal_plan_id }}"
              data-reference="{{ order.reference }}"
              data-create-url="{% url 'pricing:paypal_create' order.access_token %}"

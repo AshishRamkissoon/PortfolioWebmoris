@@ -18,6 +18,34 @@ def available_methods(package, site_settings):
     return methods
 
 
+def payment_request_methods(payment_request, site_settings):
+    """Payment methods a payment request can be paid with right now."""
+    methods = []
+    if payment_request.paypal_available:
+        methods.append(Order.Method.PAYPAL)
+    if site_settings.juice_number:
+        methods.append(Order.Method.JUICE)
+    if site_settings.bank_details:
+        methods.append(Order.Method.BANK)
+    return methods
+
+
+class PaymentMethodForm(forms.Form):
+    payment_method = forms.ChoiceField(
+        label=_("How would you like to pay?"), widget=forms.RadioSelect
+    )
+
+    def __init__(self, *args, methods, **kwargs):
+        super().__init__(*args, **kwargs)
+        field = self.fields["payment_method"]
+        field.choices = [
+            (value, label) for value, label in Order.Method.choices if value in methods
+        ]
+        field.widget.attrs["class"] = "sr-only peer"  # styled as cards in the template
+        if len(methods) == 1:
+            field.initial = methods[0]
+
+
 class CheckoutForm(SpamProtectedForm):
     class Meta:
         model = Order

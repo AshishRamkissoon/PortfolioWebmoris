@@ -125,18 +125,20 @@ def schema_template(context, website_template):
 @register.simple_tag(takes_context=True)
 def schema_packages(context, packages):
     origin = _origin(context)
-    items = [
-        {
+    items = []
+    for package in packages:
+        item = {
             "@type": "Product",
             "name": package.name,
             "description": package.summary,
             "brand": {"@id": f"{origin}/#organization"},
-            "offers": _offer(
+        }
+        # Only packages with a published price get an offer (no invented prices).
+        if package.price is not None:
+            item["offers"] = _offer(
                 package.price,
                 package.currency,
-                origin + (package.get_checkout_url() if package.is_purchasable else "/"),
-            ),
-        }
-        for package in packages
-    ]
+                origin + (package.get_checkout_url() if package.can_checkout else "/"),
+            )
+        items.append(item)
     return _script(context, _with_context({"@graph": items})) if items else ""
