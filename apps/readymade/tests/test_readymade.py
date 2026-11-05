@@ -150,3 +150,17 @@ def test_seed_uses_demo_screenshots_when_available():
     # Every template now has a built demo with real screenshots.
     assert all(t.cover_image.name.endswith(".jpg") for t in WebsiteTemplate.objects.all())
     assert WebsiteTemplate.objects.get(slug="eco-lodge").images.count() == len(SCREENS["eco-lodge"])
+
+
+def test_templates_without_price_offer_a_price_enquiry(client, industry):
+    template = make_template(industry, name="NoPrice")
+    url = f"/en/contact/ready-made/{template.slug}/?ask=price"
+    assert url in client.get(LIST).content.decode()
+    assert url in client.get(template.get_absolute_url()).content.decode()
+    form = client.get(url).content.decode()
+    assert "Could you send me the price for the" in form
+
+
+def test_priced_templates_have_no_price_enquiry_link(client, industry):
+    make_template(industry, name="Priced", starting_price=25000)
+    assert "?ask=price" not in client.get(LIST).content.decode()

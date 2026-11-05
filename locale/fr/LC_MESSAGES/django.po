@@ -1921,3 +1921,9 @@ msgstr "En savoir plus"
 #: .\templates\services\list.html:34
 msgid "Our services will be listed here soon."
 msgstr "Nos services seront bientôt présentés ici."
+
+msgid "Ask for the price"
+msgstr "Demander le prix"
+
+msgid "Could you send me the price for the “%(name)s” website, customised for my business?"
+msgstr "Pourriez-vous m'envoyer le prix du site « %(name)s », personnalisé pour mon entreprise ?"

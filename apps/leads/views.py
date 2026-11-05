@@ -123,12 +123,14 @@ def template_inquiry(request, slug):
                 return redirect(f"{request.path}?sent=1")
             sent = True
     else:
-        form = TemplateInquiryForm(
-            initial={
-                "message": _("I'm interested in the “%(name)s” website for my business.")
-                % {"name": template.name}
-            }
-        )
+        if request.GET.get("ask") == "price":
+            message = _(
+                "Could you send me the price for the “%(name)s” website, "
+                "customised for my business?"
+            )
+        else:
+            message = _("I'm interested in the “%(name)s” website for my business.")
+        form = TemplateInquiryForm(initial={"message": message % {"name": template.name}})
 
     context = {
         "form": form,

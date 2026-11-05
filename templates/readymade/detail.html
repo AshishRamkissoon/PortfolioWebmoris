@@ -41,7 +41,10 @@
         </div>
       </template>
       {% if template.demo_url %}<a href="{{ template.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-lg">{% translate "View live demo" %} &nearr;</a>{% endif %}
-      {% if template.starting_price is not None %}<p class="text-lg text-ink-200">{% include "readymade/partials/price.html" %}</p>{% endif %}
+      {% if template.starting_price is not None %}<p class="text-lg text-ink-200">{% include "readymade/partials/price.html" %}</p>
+      {% else %}<a href="{{ inquiry_url }}?ask=price" class="font-semibold text-neon-cyan underline-offset-4 hover:underline"
+                   hx-get="{{ inquiry_url }}?ask=price" hx-target="#inquiry-dialog-body" hx-swap="innerHTML"
+                   @click="openDialog()">{% translate "Ask for the price" %} &rarr;</a>{% endif %}
     </div>
   </header>
 
