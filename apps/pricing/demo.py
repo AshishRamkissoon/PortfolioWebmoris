@@ -1,8 +1,10 @@
-"""Demo packages for `manage.py seed_demo`. No prices: visitors send a brief and get a quote.
-Add an optional "From" price per package in admin if you want one shown.
+"""Demo packages for `manage.py seed_demo`, with "From" prices at Mauritian market level.
+Visitors still send a brief and get a fixed quote; nothing is bought online by default.
 
 The demo Juice/bank details are obviously fake ("DEMO"), so nobody can pay into them.
 """
+
+from decimal import Decimal
 
 from apps.core.models import SiteSettings
 
@@ -11,22 +13,25 @@ from .models import Package
 PACKAGES = [
     {
         "slug": "starter-website",
+        "price": Decimal("12000"),
         "name": ("Starter Website", "Site Starter"),
         "summary": (
             "A clean one-page site to get your business online fast.",
             "Un site d'une page pour être en ligne rapidement.",
         ),
         "features": (
-            "One-page website\nMobile-friendly design\nContact form & WhatsApp button\n"
-            "Basic SEO and Google setup\nOnline in about 2 weeks",
-            "Site d'une page\nDesign adapté au mobile\nFormulaire de contact & WhatsApp\n"
-            "SEO de base et Google\nEn ligne en 2 semaines environ",
+            "1 page (or up to 3 short pages)\nMobile-friendly design\n"
+            "Contact form & WhatsApp button\n1 round of changes\nOnline in about 2 weeks",
+            "1 page (ou jusqu'à 3 pages courtes)\nDesign adapté au mobile\n"
+            "Formulaire de contact & WhatsApp\n1 série de modifications\n"
+            "En ligne en 2 semaines environ",
         ),
         "billing": "one_off",
         "popular": False,
     },
     {
         "slug": "business-website",
+        "price": Decimal("30000"),
         "name": ("Business Website", "Site Business"),
         "summary": (
             "A complete multi-page website that builds trust and brings in enquiries.",
@@ -45,6 +50,7 @@ PACKAGES = [
     },
     {
         "slug": "online-store-booking",
+        "price": Decimal("60000"),
         "name": ("Online Store or Booking Site", "Boutique en ligne ou site de réservation"),
         "summary": (
             "Sell products or take bookings online, with payments built in.",
@@ -63,6 +69,7 @@ PACKAGES = [
     },
     {
         "slug": "care-plan",
+        "price": Decimal("1200"),
         "name": ("Care Plan", "Forfait Entretien"),
         "summary": (
             "Hosting, updates, backups and small changes, so you never have to worry.",
@@ -79,6 +86,22 @@ PACKAGES = [
         "popular": False,
     },
 ]
+
+LAUNCH_OFFER = {
+    "offer_title_en": "Founding client offer: 20% off your website",
+    "offer_title_fr": "Offre clients fondateurs : 20 % de réduction sur votre site",
+    "offer_text_en": (
+        "For our first 5 clients: 20% off any website package, and the first 2 months of the "
+        "Care Plan free with the monthly price locked. In return, we ask for a short "
+        "testimonial and permission to show your site as a case study."
+    ),
+    "offer_text_fr": (
+        "Pour nos 5 premiers clients : 20 % de réduction sur toute formule site web, et les "
+        "2 premiers mois du Forfait Entretien offerts, avec un tarif mensuel garanti. En "
+        "échange, nous vous demandons un court témoignage et l'autorisation de présenter "
+        "votre site comme étude de cas."
+    ),
+}
 
 DEMO_PAYMENT_DETAILS = {
     "juice_number": "5000 0000 (DEMO)",
@@ -101,6 +124,7 @@ def seed_pricing(stdout=None):
             summary_fr=data["summary"][1],
             features_en=data["features"][0],
             features_fr=data["features"][1],
+            price=data["price"],
             billing=data["billing"],
             is_popular=data["popular"],
             is_purchasable=False,
@@ -112,6 +136,10 @@ def seed_pricing(stdout=None):
     for field, value in DEMO_PAYMENT_DETAILS.items():
         if not getattr(site_settings, field):
             setattr(site_settings, field, value)
+    if not site_settings.offer_title_en:
+        for field, value in LAUNCH_OFFER.items():
+            setattr(site_settings, field, value)
+        site_settings.offer_enabled = True
     site_settings.save()
 
     if stdout:

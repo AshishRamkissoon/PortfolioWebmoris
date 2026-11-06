@@ -22,6 +22,10 @@
   </ol>
 </section>
 
+{% if site_settings.offer_enabled and site_settings.offer_title %}
+<section class="container-site mt-16">{% include "pricing/partials/launch_offer.html" %}</section>
+{% endif %}
+
 {% if one_off %}
 <section class="container-site mt-20" aria-labelledby="one-off-heading">
   <h2 id="one-off-heading" class="meta-label">{% translate "Websites and online stores" %}</h2>
@@ -45,7 +49,7 @@
 {% endif %}
 
 <section class="container-site mt-16">
-  <p data-reveal class="text-center text-sm text-ink-400">{% translate "Every quote is fixed before we start. Pay by PayPal, MCB Juice or bank transfer. Need something different?" %} <a href="{% url 'leads:contact' %}" class="underline hover:text-neon-cyan">{% translate "Tell us what you need" %}</a>.</p>
+  <p data-reveal class="text-center text-sm text-ink-400">{% translate "Prices in MUR. Every quote is fixed before we start. Pay by PayPal, MCB Juice or bank transfer. Need something different?" %} <a href="{% url 'leads:contact' %}" class="underline hover:text-neon-cyan">{% translate "Tell us what you need" %}</a>.</p>
 </section>
 
 {% include "components/cta_band.html" %}

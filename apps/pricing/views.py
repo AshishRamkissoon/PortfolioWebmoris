@@ -47,7 +47,10 @@ def package_list(request):
                     _("Get a fixed quote"),
                     _("Clear scope, price and timeline, usually within a day."),
                 ),
-                (_("Pay a deposit, we start"), _("The balance is due when your site goes live.")),
+                (
+                    _("Pay a deposit, we start"),
+                    _("The rest is paid in stages, the last part when your site goes live."),
+                ),
             ],
         },
     )

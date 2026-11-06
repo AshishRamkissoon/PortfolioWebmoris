@@ -485,6 +485,8 @@ Same as Phase 10: all pages work on mobile and desktop with no console errors; f
 - A payment request can be created from a brief, emailed, and paid by Juice (verified in admin) or PayPal; the amount always comes from the server.
 - No package shows a price unless one is set in admin; tests and ruff pass.
 
+**Update (owner, 2026-11-06):** show "From" prices at Mauritian market level (Starter MUR 12,000, Business MUR 30,000, Online Store or Booking MUR 60,000, Care Plan MUR 1,200 / month) and an admin-editable "founding client" launch offer (20% off for the first 5 clients) on Pricing and Home. Details in `docs/pricing-draft.txt`.
+
 ---
 
 ## Future Phases (post-v1, from requirements §11)

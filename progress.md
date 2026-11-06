@@ -23,7 +23,7 @@
 | 10 | Fourth Live Demo: Villa Select (Real Estate) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
-| 13 | Project Brief, Quote-First Pricing and Deposits | 🔵 Awaiting approval | 2026-11-05 | 2026-11-05 | — |
+| 13 | Project Brief, Quote-First Pricing and Deposits | 🔵 Awaiting approval | 2026-11-05 | 2026-11-06 | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -44,6 +44,12 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-06 — Phase 13 — Ready for review (update) — "From" prices at Mauritian market level and a founding client offer, after the owner reviewed `docs/pricing-draft.txt` (prices compared with 8 local agencies).
+  - **Prices** (seed + local DB): Starter from MUR 12,000, Business from MUR 30,000, Online Store or Booking from MUR 60,000, Care Plan from MUR 1,200 / month. Still quote-first: buttons open the brief, no online checkout.
+  - **Launch offer** (Site settings → "Launch offer", EN/FR, on/off): "Founding client offer: 20% off your website" for the first 5 clients, Care Plan first 2 months free with the price locked, in exchange for a testimonial and a case study. Shown above the packages on Pricing and Home.
+  - Starter features match the draft (1–3 pages, 1 round of changes; Google setup is an extra). Step 3 now says the rest is paid in stages; footnote says prices are in MUR.
+  - Also fixed broken French accents in the Odyssey Mauritius project text (local DB).
+  - **How to test:** `/en/pricing/` and `/fr/pricing/`, Home packages section; turn the offer off in admin → Site settings and check it disappears. 242 tests pass; ruff clean.
 - 2026-11-05 — Phase 13 — Ready for review — Quote-first pricing built (branch `phase/13-project-brief-and-deposits`).
   - **Project brief** (Contact page): 6 steps with progress, Back/Next and per-step checks; one normal form without JS. Captures project type, package, business, current site, pages, features, a demo to start from, inspiration, budget, timeline and contact. Package and demo pre-fill from links.
   - **Packages:** Starter Website, Business Website (Recommended), Online Store or Booking Site, Care Plan (monthly). No prices by default (optional "From" price in admin); buttons open the brief. AI marketing packages removed from Pricing (still on Services).

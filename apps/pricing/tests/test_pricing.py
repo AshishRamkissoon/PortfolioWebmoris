@@ -495,9 +495,10 @@ def test_seed_demo_pricing():
     call_command("seed_demo", stdout=StringIO())
     call_command("seed_demo", stdout=StringIO())
     assert Package.objects.count() == 4
-    # Quote first: no prices and no direct checkout on the demo packages.
+    # Quote first: "From" prices, but no direct checkout on the demo packages.
     assert not Package.objects.filter(is_purchasable=True).exists()
-    assert not Package.objects.filter(price__isnull=False).exists()
+    assert Package.objects.get(slug="starter-website").price == Decimal("12000")
+    assert SiteSettings.load().offer_enabled
     assert Package.objects.get(slug="care-plan").is_monthly
     # Demo payment details never overwrite real ones (the fixture set a real number).
     assert SiteSettings.load().juice_number == "5123 4567"
@@ -588,3 +589,29 @@ def test_admin_payment_request_prefilled_from_quote_and_emailed(client):
         {"action": "email_payment_link", "_selected_action": [pr.pk]},
     )
     assert len(mail.outbox) == 1 and pr.access_token in mail.outbox[0].body
+
+
+def test_launch_offer_shown_only_when_enabled(client):
+    make_package(price=None, is_purchasable=False)
+    site_settings = SiteSettings.load()
+    site_settings.offer_title = "Founding client offer"
+    site_settings.offer_text = "20% off for our first 5 clients."
+    site_settings.save()
+    for url in ("/en/pricing/", "/en/"):
+        assert "Founding client offer" not in client.get(url).content.decode()
+
+    site_settings.offer_enabled = True
+    site_settings.save()
+    for url in ("/en/pricing/", "/en/"):
+        content = client.get(url).content.decode()
+        assert "Founding client offer" in content and "20% off for our first 5 clients." in content
+
+
+def test_seeded_packages_show_from_prices_and_start_a_brief(client):
+    from apps.pricing.demo import seed_pricing
+
+    seed_pricing()
+    content = client.get("/en/pricing/").content.decode()
+    assert "MUR 12,000" in content and "MUR 1,200" in content
+    assert "/en/contact/?package=starter-website" in content
+    assert "/checkout/" not in content

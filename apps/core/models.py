@@ -44,6 +44,14 @@ class SiteSettings(SingletonModel):
     announcement_text = models.CharField(_("announcement text"), max_length=200, blank=True)
     announcement_link = models.URLField(_("announcement link"), blank=True)
 
+    offer_enabled = models.BooleanField(
+        _("show launch offer"),
+        default=False,
+        help_text=_("Shown above the packages on the Pricing page and the Home page."),
+    )
+    offer_title = models.CharField(_("launch offer title"), max_length=100, blank=True)
+    offer_text = models.TextField(_("launch offer text"), blank=True)
+
     whatsapp_number = models.CharField(
         _("WhatsApp number"), max_length=15, blank=True, validators=[whatsapp_validator]
     )

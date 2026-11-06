@@ -9,6 +9,8 @@ class SiteSettingsTranslationOptions(TranslationOptions):
         "tagline",
         "footer_about",
         "announcement_text",
+        "offer_title",
+        "offer_text",
         "whatsapp_message",
         "seo_title",
         "seo_description",
