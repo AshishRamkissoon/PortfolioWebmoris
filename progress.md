@@ -23,7 +23,8 @@
 | 10 | Fourth Live Demo: Villa Select (Real Estate) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
-| 13 | Project Brief, Quote-First Pricing and Deposits | 🔵 Awaiting approval | 2026-11-05 | 2026-11-06 | — |
+| 13 | Project Brief, Quote-First Pricing and Deposits | ✅ Completed | 2026-11-05 | 2026-11-06 | 2026-11-07 |
+| 14 | Services Page Redesign | 🟡 In progress | 2026-11-07 | — | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -44,6 +45,8 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-07 — Phase 14 — Started — Services page redesign (numbered service sections, packages, call to action), adding Hosting & Email, Branding & Print, and Photo & Video (owner's choice). Branch `phase/14-services-page`.
+- 2026-11-07 — Phase 13 — Approved by owner — merged into `main` and pushed.
 - 2026-11-06 — Phase 13 — Ready for review (update) — "From" prices at Mauritian market level and a founding client offer, after the owner reviewed `docs/pricing-draft.txt` (prices compared with 8 local agencies).
   - **Prices** (seed + local DB): Starter from MUR 12,000, Business from MUR 30,000, Online Store or Booking from MUR 60,000, Care Plan from MUR 1,200 / month. Still quote-first: buttons open the brief, no online checkout.
   - **Launch offer** (Site settings → "Launch offer", EN/FR, on/off): "Founding client offer: 20% off your website" for the first 5 clients, Care Plan first 2 months free with the price locked, in exchange for a testimonial and a case study. Shown above the packages on Pricing and Home.
