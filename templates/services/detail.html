@@ -41,7 +41,7 @@
       <section data-reveal data-reveal-delay="0.1" class="rounded-card border border-ink-800 bg-ink-900 p-8">
         <h2 class="meta-label">{% translate "What you get" %}</h2>
         <ul class="mt-5 space-y-3">
-          {% for item in items %}<li class="flex gap-3"><span class="text-neon-cyan" aria-hidden="true">✓</span><span>{{ item }}</span></li>{% endfor %}
+          {% for item in items %}{% include "services/partials/point.html" %}{% endfor %}
         </ul>
       </section>
       {% endif %}{% endwith %}

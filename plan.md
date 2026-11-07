@@ -489,6 +489,23 @@ Same as Phase 10: all pages work on mobile and desktop with no console errors; f
 
 ---
 
+## Phase 14 — Services Page Redesign
+
+**Goal:** a clearer Services page that explains each service in detail, like a modern agency services page, and adds the services Webmoris also offers.
+
+**Decisions** (owner, 2026-11-07): add Hosting & Email, Branding & Print, and Photo & Video (not SEO as a separate service).
+
+### Tasks
+- Numbered service sections (title and summary; description and labelled points), packages and call to action.
+- Three new services with icons and a "Brand & Content" group; unique EN/FR content for every service in the seed.
+- Brief pre-fill maps each service to a project type; Home services block fits three groups.
+
+### Exit criteria
+- The page shows every published service in order with its points; works without JS; English and French.
+- All content editable in admin; tests and ruff pass.
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.

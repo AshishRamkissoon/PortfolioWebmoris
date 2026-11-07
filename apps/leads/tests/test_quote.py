@@ -72,6 +72,12 @@ def test_prefill_from_template_project_service_and_type(client):
     Service.objects.create(group=group, title="AI Chatbots", slug="chatbots", summary="s")
     initial = client.get(f"{URL}?service=chatbots").context["form"].initial
     assert initial["project_type"] == "ai_marketing"
+    web = ServiceGroup.objects.create(name="Web", slug="web-development")
+    expected_types = {"hosting-email": "care", "photo-video": "photo_video", "x": "website"}
+    for slug, expected in expected_types.items():
+        Service.objects.create(group=web, title=slug, slug=slug, summary="s")
+        form = client.get(f"{URL}?service={slug}").context["form"]
+        assert form.initial["project_type"] == expected
 
     assert client.get(f"{URL}?type=landing").context["form"].initial == {"project_type": "landing"}
     assert client.get(f"{URL}?type=<script>").context["form"].initial == {}

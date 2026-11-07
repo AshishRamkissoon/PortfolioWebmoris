@@ -49,6 +49,8 @@ class QuoteRequest(Lead):
         LANDING = "landing", _("Landing page")
         AI_MARKETING = "ai_marketing", _("AI marketing")
         READYMADE = "readymade", _("Ready-made website")
+        BRANDING = "branding", _("Branding & print")
+        PHOTO_VIDEO = "photo_video", _("Photo & video")
         OTHER = "other", _("Other")
 
     class Budget(models.TextChoices):

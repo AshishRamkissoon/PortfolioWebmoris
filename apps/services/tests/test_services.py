@@ -18,17 +18,55 @@ def make_service(group, **kwargs):
     return Service.objects.create(group=group, **{**defaults, **kwargs})
 
 
-def test_list_groups_only_published_services(client, group):
-    make_service(group, title="Shown")
+def test_list_shows_published_services_numbered_across_groups(client, group):
+    later = ServiceGroup.objects.create(name="Brand & Content", slug="brand", order=5)
+    make_service(later, title="Photo", slug="photo")
+    make_service(group, title="Shown", deliverables="Fast loading: clean code\nNo label here")
     make_service(group, title="Hidden", slug="hidden", is_published=False)
-    ServiceGroup.objects.create(name="Empty group", slug="empty")
 
     response = client.get("/en/services/")
     content = response.content.decode()
-    assert [g.name for g in response.context["groups"]] == ["Web Development"]
-    assert "Shown" in content
+    assert [s.title for s in response.context["services"]] == ["Shown", "Photo"]
+    assert "01 — Web Development" in content and "02 — Brand &amp; Content" in content
     assert "Hidden" not in content
-    assert "Empty group" not in content
+    assert '<strong class="font-semibold text-ink-100">Fast loading:</strong> clean code' in content
+    assert "No label here" in content
+
+
+def test_list_shows_packages(client, group):
+    from apps.pricing.models import Package
+
+    make_service(group)
+    Package.objects.create(name="Starter Website", slug="starter", summary="s")
+    content = client.get("/en/services/").content.decode()
+    assert "Starter Website" in content and "/en/contact/?package=starter" in content
+
+
+@pytest.mark.parametrize(
+    ("item", "expected"),
+    [
+        ("Fast loading: clean code", ("Fast loading:", "clean code")),
+        ("Bases SEO : structure claire", ("Bases SEO :", "structure claire")),
+        ("No label", ("", "No label")),
+        ("See https://example.com", ("", "See https://example.com")),
+        ("Ends with colon: ", ("", "Ends with colon: ")),
+    ],
+)
+def test_label_split(item, expected):
+    from apps.core.templatetags.core_tags import label_split
+
+    assert label_split(item) == expected
+
+
+def test_seed_creates_all_services():
+    from apps.services.demo import seed_services
+
+    seed_services()
+    seed_services()
+    assert Service.objects.count() == 9
+    assert ServiceGroup.objects.count() == 3
+    hosting = Service.objects.get(slug="hosting-email")
+    assert hosting.icon == "server" and hosting.body_fr and hosting.deliverables_fr
 
 
 def test_detail_page_sections(client, group):

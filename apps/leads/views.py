@@ -39,6 +39,24 @@ def _package_type(package):
     return types.WEBSITE
 
 
+SERVICE_TYPES = {
+    "e-commerce": QuoteRequest.ProjectType.ECOMMERCE,
+    "landing-pages": QuoteRequest.ProjectType.LANDING,
+    "hosting-email": QuoteRequest.ProjectType.CARE,
+    "branding-print": QuoteRequest.ProjectType.BRANDING,
+    "photo-video": QuoteRequest.ProjectType.PHOTO_VIDEO,
+}
+
+
+def _service_type(service):
+    """Best project type for a service link; AI marketing by group, websites otherwise."""
+    if service.slug in SERVICE_TYPES:
+        return SERVICE_TYPES[service.slug]
+    if service.group.slug == "ai-marketing":
+        return QuoteRequest.ProjectType.AI_MARKETING
+    return QuoteRequest.ProjectType.WEBSITE
+
+
 def _quote_initial(params):
     """Pre-fill the project brief from ?package=, ?template=, ?project=, ?service= or ?type=.
 
@@ -66,9 +84,8 @@ def _quote_initial(params):
         return {"project_type": types.WEBSITE, "message": message % {"name": project.title}}
 
     if (slug := params.get("service")) and (service := services.filter(slug=slug).first()):
-        is_ai = service.group.slug == "ai-marketing"
         return {
-            "project_type": types.AI_MARKETING if is_ai else types.WEBSITE,
+            "project_type": _service_type(service),
             "message": _("I'm interested in: %(name)s.") % {"name": service.title},
         }
 

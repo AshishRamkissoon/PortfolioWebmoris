@@ -84,7 +84,7 @@ def test_home_with_demo_content(client):
     content = response.content.decode()
     assert response.context["featured_projects"]
     assert response.context["featured_templates"]
-    assert len(response.context["service_groups"]) == 2
+    assert len(response.context["service_groups"]) == 3
     for text in ["data-hscroll", "AI Chatbots", "Lagon Bistro", "Discover", "Get a Quote"]:
         assert text in content, text
 
@@ -93,7 +93,7 @@ def test_seed_demo_counts_and_markers():
     out = StringIO()
     call_command("seed_demo", stdout=out)
     call_command("seed_demo", stdout=out)
-    assert Service.objects.count() == 6
+    assert Service.objects.count() == 9
     assert WebsiteTemplate.objects.count() == 6
     assert ProcessStep.objects.count() == 5
     assert all("(demo)" in m.name for m in TeamMember.objects.all())

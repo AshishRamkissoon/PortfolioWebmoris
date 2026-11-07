@@ -1,38 +1,61 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n core_tags %}
 
 {% block title %}{% translate "Services" %} · {{ site_settings.site_name }}{% endblock %}
-{% block meta_description %}{% translate "Website development, e-commerce, landing pages, AI content and AI chatbots for businesses in Mauritius and abroad." %}{% endblock %}
+{% block meta_description %}{% translate "Websites, online stores, hosting and email, AI marketing, branding, photo and video for businesses in Mauritius." %}{% endblock %}
 
 {% block content %}
 <section class="container-site pt-24 sm:pt-32">
   <p data-reveal class="eyebrow">{% translate "Services" %}</p>
   <h1 class="mt-4 max-w-4xl font-display text-5xl font-bold tracking-tight sm:text-7xl">{% translate "Everything you need to grow online." %}</h1>
-  <p class="mt-6 max-w-2xl text-lg text-ink-300">{% translate "We design and build websites that convert, then use AI to keep your marketing working while you focus on your business." %}</p>
+  <p class="mt-6 max-w-2xl text-lg text-ink-300">{% translate "Websites, hosting, AI marketing, branding and content for businesses in Mauritius. Pick one service or combine them into a complete package." %}</p>
+  <div data-reveal data-reveal-delay="0.2" class="mt-10 flex flex-wrap gap-4">
+    <a href="{% url 'leads:contact' %}" class="btn-primary btn-lg">{% translate "Get a Quote" %}</a>
+    <a href="{% url 'pricing:list' %}" class="btn-ghost btn-lg">{% translate "See pricing" %} &rarr;</a>
+  </div>
 </section>
 
-{% for group in groups %}
-<section class="container-site mt-24" aria-labelledby="group-{{ group.slug }}">
-  <div class="max-w-3xl">
-    <h2 id="group-{{ group.slug }}" data-split class="font-display text-4xl font-bold">{{ group.name }}</h2>
-    {% if group.intro %}<p data-reveal class="mt-3 text-lg text-ink-300">{{ group.intro }}</p>{% endif %}
-  </div>
-  <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {% for service in group.services.all %}
-    <li data-reveal data-reveal-delay="{% cycle '0' '0.1' '0.2' %}">
-      <a href="{{ service.get_absolute_url }}" class="service-card group">
-        <span class="grid size-12 place-items-center rounded-xl bg-ink-800 text-neon-cyan transition group-hover:bg-neon-cyan group-hover:text-ink-950">{% include "components/icon.html" with name=service.icon %}</span>
-        <h3 class="mt-6 font-display text-2xl font-bold">{{ service.title }}</h3>
-        <p class="mt-2 flex-1 text-ink-300">{{ service.summary }}</p>
-        <span class="mt-6 text-sm font-semibold text-neon-cyan">{% translate "Learn more" %} <span aria-hidden="true" class="inline-block transition group-hover:translate-x-1">&rarr;</span></span>
-      </a>
+{% if services %}
+<section class="container-site mt-20 sm:mt-28" aria-label="{% translate 'Our services' %}">
+  <ol class="divide-y divide-ink-800 border-y border-ink-800">
+    {% for service in services %}
+    <li id="{{ service.slug }}" class="grid scroll-mt-28 gap-8 py-14 lg:grid-cols-[2fr_3fr] lg:gap-16">
+      <div data-reveal>
+        <div class="flex items-center gap-4">
+          <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-ink-800 text-neon-cyan">{% include "components/icon.html" with name=service.icon %}</span>
+          <p class="eyebrow">{{ forloop.counter|stringformat:"02d" }} — {{ service.group.name }}</p>
+        </div>
+        <h2 class="mt-5 font-display text-3xl font-bold sm:text-4xl">{{ service.title }}</h2>
+        <p class="mt-3 text-ink-300">{{ service.summary }}</p>
+        <a href="{{ service.get_absolute_url }}" class="group mt-6 inline-flex text-sm font-semibold text-neon-cyan">{% translate "Learn more" %}<span class="sr-only">: {{ service.title }}</span>&nbsp;<span aria-hidden="true" class="inline-block transition group-hover:translate-x-1">&rarr;</span></a>
+      </div>
+      <div data-reveal data-reveal-delay="0.1">
+        {% if service.body %}<div class="prose-site">{{ service.body|linebreaks }}</div>{% endif %}
+        {% with items=service.deliverables|lines %}{% if items %}
+        <ul class="mt-6 space-y-3">{% for item in items %}{% include "services/partials/point.html" %}{% endfor %}</ul>
+        {% endif %}{% endwith %}
+      </div>
     </li>
     {% endfor %}
-  </ul>
+  </ol>
 </section>
-{% empty %}
+{% else %}
 <p class="container-site mt-16 text-ink-300">{% translate "Our services will be listed here soon." %}</p>
-{% endfor %}
+{% endif %}
+
+{% if packages %}
+<section class="container-site mt-28">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    {% translate "Packages" as eyebrow %}{% translate "Not sure where to start? Pick a package." as title %}
+    {% translate "Our most requested combinations. Send a short brief and we reply with a fixed quote." as intro %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
+    <a href="{% url 'pricing:list' %}" class="btn-ghost">{% translate "All packages" %} &rarr;</a>
+  </div>
+  <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {% for package in packages %}{% cycle "0" "0.1" "0.2" as delay silent %}{% include "pricing/partials/package_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
 
 {% include "components/cta_band.html" %}
 {% endblock %}

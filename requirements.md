@@ -126,6 +126,7 @@ All public URLs are prefixed by language: `/en/` and `/fr/` (see §9).
     - **AI Content & Social Media**: AI-generated posts, captions, images and video for social media.
     - **AI Chatbots**: website and WhatsApp chatbots for client businesses.
 - Each service has a detail page: description, benefits, deliverables, related projects, FAQ, and CTA.
+- **Updated 2026-11-07 (Phase 14):** a third group, **Brand & Content** (Branding & Print, Photo & Video), and **Hosting & Email** under Web Development. The Services page lists every service as a numbered section (summary, description, labelled "what you get" points), followed by packages and a CTA.
 
 ### 4.6 Pricing / Service packages (quote first)
 

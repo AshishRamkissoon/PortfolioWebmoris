@@ -37,6 +37,9 @@ class Service(models.Model):
         CHAT = "chat", _("Chat")
         MEGAPHONE = "megaphone", _("Megaphone")
         CHART = "chart", _("Chart")
+        SERVER = "server", _("Server")
+        BRUSH = "brush", _("Brush")
+        CAMERA = "camera", _("Camera")
 
     group = models.ForeignKey(
         ServiceGroup, on_delete=models.PROTECT, related_name="services", verbose_name=_("group")

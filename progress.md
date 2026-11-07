@@ -24,7 +24,7 @@
 | 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 13 | Project Brief, Quote-First Pricing and Deposits | ✅ Completed | 2026-11-05 | 2026-11-06 | 2026-11-07 |
-| 14 | Services Page Redesign | 🟡 In progress | 2026-11-07 | — | — |
+| 14 | Services Page Redesign | 🔵 Awaiting approval | 2026-11-07 | 2026-11-07 | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -45,6 +45,11 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-07 — Phase 14 — Ready for review — Services page redesigned (branch `phase/14-services-page`).
+  - **Layout:** hero with "Get a Quote" and "See pricing"; one numbered section per service (01–09): group, title and summary on the left; description and "what you get" points on the right ("Label: text" lines show the label in bold); then 3 packages and the call-to-action band. Original wording, no copy from other agencies.
+  - **New services** (owner's choice): Hosting & Email (Web Development), Branding & Print and Photo & Video (new "Brand & Content" group), with new icons. All 9 services have their own description, points and benefits in English and French (seed + local DB). Hosting copy makes no uptime guarantee.
+  - Home "What we do" now shows 3 groups ("Websites, marketing and content, under one roof."). Service links pre-select the right project type in the brief (new types: Branding & print, Photo & video).
+  - **How to test:** `/en/services/` and `/fr/services/` (desktop and phone), the new detail pages, "Get a Quote" on a service page. Edit points in admin → Services ("What you get", one per line). 249 tests pass; ruff clean.
 - 2026-11-07 — Phase 14 — Started — Services page redesign (numbered service sections, packages, call to action), adding Hosting & Email, Branding & Print, and Photo & Video (owner's choice). Branch `phase/14-services-page`.
 - 2026-11-07 — Phase 13 — Approved by owner — merged into `main` and pushed.
 - 2026-11-06 — Phase 13 — Ready for review (update) — "From" prices at Mauritian market level and a founding client offer, after the owner reviewed `docs/pricing-draft.txt` (prices compared with 8 local agencies).

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webmoris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-06 11:04-0800\n"
+"POT-Creation-Date: 2026-11-07 11:29-0800\n"
 "PO-Revision-Date: 2026-10-31 12:00+0400\n"
 "Last-Translator: Webmoris\n"
 "Language-Team: French\n"
@@ -190,7 +190,7 @@ msgstr ""
 #: .\apps\pricing\models.py:93 .\apps\pricing\models.py:299
 #: .\apps\readymade\models.py:23 .\apps\readymade\models.py:101
 #: .\apps\readymade\models.py:139 .\apps\services\models.py:14
-#: .\apps\services\models.py:55 .\apps\services\models.py:77
+#: .\apps\services\models.py:58 .\apps\services\models.py:80
 msgid "order"
 msgstr ""
 
@@ -203,12 +203,12 @@ msgid "team members"
 msgstr ""
 
 #: .\apps\core\models.py:195 .\apps\core\models.py:214
-#: .\apps\portfolio\models.py:41 .\apps\services\models.py:44
+#: .\apps\portfolio\models.py:41 .\apps\services\models.py:47
 msgid "title"
 msgstr ""
 
 #: .\apps\core\models.py:196 .\apps\pricing\models.py:164
-#: .\apps\readymade\models.py:56 .\apps\services\models.py:48
+#: .\apps\readymade\models.py:56 .\apps\services\models.py:51
 msgid "description"
 msgstr ""
 
@@ -314,8 +314,8 @@ msgstr "Collez quelques liens et dites-nous ce qui vous plaît."
 msgid "Choose…"
 msgstr "Choisir…"
 
-#: .\apps\leads\forms.py:77 .\apps\leads\models.py:59
-#: .\apps\leads\models.py:66
+#: .\apps\leads\forms.py:77 .\apps\leads\models.py:61
+#: .\apps\leads\models.py:68
 msgid "Not sure yet"
 msgstr "Je ne sais pas encore"
 
@@ -407,209 +407,217 @@ msgid "Ready-made website"
 msgstr "Site clés en main"
 
 #: .\apps\leads\models.py:52
+msgid "Branding & print"
+msgstr "Identité visuelle & impression"
+
+#: .\apps\leads\models.py:53
+msgid "Photo & video"
+msgstr "Photo & vidéo"
+
+#: .\apps\leads\models.py:54
 msgid "Other"
 msgstr "Autre"
 
-#: .\apps\leads\models.py:55
+#: .\apps\leads\models.py:57
 msgid "Under MUR 25,000"
 msgstr "Moins de 25 000 MUR"
 
-#: .\apps\leads\models.py:56
+#: .\apps\leads\models.py:58
 msgid "MUR 25,000 – 75,000"
 msgstr "25 000 – 75 000 MUR"
 
-#: .\apps\leads\models.py:57
+#: .\apps\leads\models.py:59
 msgid "MUR 75,000 – 150,000"
 msgstr "75 000 – 150 000 MUR"
 
-#: .\apps\leads\models.py:58
+#: .\apps\leads\models.py:60
 msgid "Over MUR 150,000"
 msgstr "Plus de 150 000 MUR"
 
-#: .\apps\leads\models.py:62
+#: .\apps\leads\models.py:64
 msgid "1 page"
 msgstr "1 page"
 
-#: .\apps\leads\models.py:63
+#: .\apps\leads\models.py:65
 msgid "2–5 pages"
 msgstr "2 à 5 pages"
 
-#: .\apps\leads\models.py:64
+#: .\apps\leads\models.py:66
 msgid "6–10 pages"
 msgstr "6 à 10 pages"
 
-#: .\apps\leads\models.py:65
+#: .\apps\leads\models.py:67
 msgid "More than 10 pages"
 msgstr "Plus de 10 pages"
 
-#: .\apps\leads\models.py:70
+#: .\apps\leads\models.py:72
 msgid "Online booking"
 msgstr "Réservation en ligne"
 
-#: .\apps\leads\models.py:71
+#: .\apps\leads\models.py:73
 msgid "Online payments"
 msgstr "Paiement en ligne"
 
-#: .\apps\leads\models.py:72
+#: .\apps\leads\models.py:74
 msgid "Product catalogue / shop"
 msgstr "Catalogue produits / boutique"
 
-#: .\apps\leads\models.py:73
+#: .\apps\leads\models.py:75
 msgid "Blog or news"
 msgstr "Blog ou actualités"
 
-#: .\apps\leads\models.py:74
+#: .\apps\leads\models.py:76
 msgid "English and French"
 msgstr "Anglais et français"
 
-#: .\apps\leads\models.py:75
+#: .\apps\leads\models.py:77
 msgid "WhatsApp button"
 msgstr "Bouton WhatsApp"
 
-#: .\apps\leads\models.py:76
+#: .\apps\leads\models.py:78
 msgid "Contact / enquiry forms"
 msgstr "Formulaires de contact / demande"
 
-#: .\apps\leads\models.py:77
+#: .\apps\leads\models.py:79
 msgid "Photo or video gallery"
 msgstr "Galerie photo ou vidéo"
 
-#: .\apps\leads\models.py:78
+#: .\apps\leads\models.py:80
 msgid "SEO and Google setup"
 msgstr "SEO et configuration Google"
 
-#: .\apps\leads\models.py:79
+#: .\apps\leads\models.py:81
 msgid "Help writing the content"
 msgstr "Aide à la rédaction des textes"
 
-#: .\apps\leads\models.py:83
+#: .\apps\leads\models.py:85
 msgid "As soon as possible"
 msgstr "Dès que possible"
 
-#: .\apps\leads\models.py:84
+#: .\apps\leads\models.py:86
 msgid "Within a month"
 msgstr "Sous un mois"
 
-#: .\apps\leads\models.py:85
+#: .\apps\leads\models.py:87
 msgid "In 1–3 months"
 msgstr "Dans 1 à 3 mois"
 
-#: .\apps\leads\models.py:86
+#: .\apps\leads\models.py:88
 msgid "Flexible"
 msgstr "Flexible"
 
-#: .\apps\leads\models.py:88 .\apps\pricing\models.py:171
+#: .\apps\leads\models.py:90 .\apps\pricing\models.py:171
 #: .\apps\pricing\models.py:268
 msgid "company"
 msgstr "entreprise"
 
-#: .\apps\leads\models.py:89
+#: .\apps\leads\models.py:91
 msgid "project type"
 msgstr "type de projet"
 
-#: .\apps\leads\models.py:90
+#: .\apps\leads\models.py:92
 msgid "budget"
 msgstr "budget"
 
-#: .\apps\leads\models.py:91
+#: .\apps\leads\models.py:93
 msgid "timeline"
 msgstr "délai"
 
-#: .\apps\leads\models.py:100 .\apps\pricing\models.py:99
+#: .\apps\leads\models.py:102 .\apps\pricing\models.py:99
 #: .\apps\pricing\models.py:252
 msgid "package"
 msgstr ""
 
-#: .\apps\leads\models.py:102 .\apps\portfolio\models.py:44
+#: .\apps\leads\models.py:104 .\apps\portfolio\models.py:44
 #: .\apps\readymade\models.py:27 .\apps\readymade\models.py:53
 msgid "industry"
 msgstr ""
 
-#: .\apps\leads\models.py:103
+#: .\apps\leads\models.py:105
 msgid "current website"
 msgstr ""
 
-#: .\apps\leads\models.py:104
+#: .\apps\leads\models.py:106
 msgid "number of pages"
 msgstr ""
 
-#: .\apps\leads\models.py:105 .\apps\pricing\models.py:36
+#: .\apps\leads\models.py:107 .\apps\pricing\models.py:36
 msgid "features"
 msgstr ""
 
-#: .\apps\leads\models.py:106
+#: .\apps\leads\models.py:108
 msgid "websites you like"
 msgstr ""
 
-#: .\apps\leads\models.py:113
+#: .\apps\leads\models.py:115
 msgid "start from demo"
 msgstr ""
 
-#: .\apps\leads\models.py:116
+#: .\apps\leads\models.py:118
 msgid "attachment"
 msgstr "pièce jointe"
 
-#: .\apps\leads\models.py:121
+#: .\apps\leads\models.py:123
 msgid "Optional brief or brand files: PDF, Word, images or ZIP, max 10 MB."
 msgstr "Cahier des charges ou fichiers de marque (facultatif) : PDF, Word, images ou ZIP, 10 Mo max."
 
-#: .\apps\leads\models.py:125 .\apps\pricing\models.py:161
+#: .\apps\leads\models.py:127 .\apps\pricing\models.py:161
 msgid "quote request"
 msgstr ""
 
-#: .\apps\leads\models.py:126
+#: .\apps\leads\models.py:128
 msgid "quote requests"
 msgstr ""
 
-#: .\apps\leads\models.py:139
+#: .\apps\leads\models.py:141
 msgid "template"
 msgstr ""
 
-#: .\apps\leads\models.py:142
+#: .\apps\leads\models.py:144
 msgid "template name"
 msgstr ""
 
-#: .\apps\leads\models.py:143
+#: .\apps\leads\models.py:145
 msgid "business name"
 msgstr "nom de l'entreprise"
 
-#: .\apps\leads\models.py:146
+#: .\apps\leads\models.py:148
 msgid "template enquiry"
 msgstr ""
 
-#: .\apps\leads\models.py:147
+#: .\apps\leads\models.py:149
 msgid "template enquiries"
 msgstr ""
 
-#: .\apps\leads\views.py:57
+#: .\apps\leads\views.py:75
 #, python-format
 msgid "I'm interested in the ready-made website “%(name)s”."
 msgstr "Le site clés en main « %(name)s » m'intéresse."
 
-#: .\apps\leads\views.py:65
+#: .\apps\leads\views.py:83
 #, python-format
 msgid "I'd like a project like “%(name)s”."
 msgstr "J'aimerais un projet comme « %(name)s »."
 
-#: .\apps\leads\views.py:72
+#: .\apps\leads\views.py:89
 #, python-format
 msgid "I'm interested in: %(name)s."
 msgstr "Je suis intéressé(e) par : %(name)s."
 
-#: .\apps\leads\views.py:85
+#: .\apps\leads\views.py:102
 msgid "You've sent several messages already. Please try again later."
 msgstr "Vous avez déjà envoyé plusieurs messages. Veuillez réessayer plus tard."
 
-#: .\apps\leads\views.py:88
+#: .\apps\leads\views.py:105
 msgid "Please complete the spam check and try again."
 msgstr "Veuillez compléter la vérification anti-spam et réessayer."
 
-#: .\apps\leads\views.py:149
+#: .\apps\leads\views.py:166
 #, python-format
 msgid "Could you send me the price for the “%(name)s” website, customised for my business?"
 msgstr "Pourriez-vous m'envoyer le prix du site « %(name)s », personnalisé pour mon entreprise ?"
 
-#: .\apps\leads\views.py:153
+#: .\apps\leads\views.py:170
 #, python-format
 msgid "I'm interested in the “%(name)s” website for my business."
 msgstr "Le site « %(name)s » m'intéresse pour mon entreprise."
@@ -617,7 +625,7 @@ msgstr "Le site « %(name)s » m'intéresse pour mon entreprise."
 #: .\apps\portfolio\models.py:13 .\apps\portfolio\models.py:42
 #: .\apps\pricing\models.py:34 .\apps\readymade\models.py:22
 #: .\apps\readymade\models.py:48 .\apps\services\models.py:12
-#: .\apps\services\models.py:45
+#: .\apps\services\models.py:48
 msgid "slug"
 msgstr ""
 
@@ -703,7 +711,7 @@ msgid "In-progress projects show a badge and hide results and the live-site link
 msgstr ""
 
 #: .\apps\portfolio\models.py:102 .\apps\pricing\models.py:92
-#: .\apps\readymade\models.py:99 .\apps\services\models.py:54
+#: .\apps\readymade\models.py:99 .\apps\services\models.py:57
 msgid "published"
 msgstr ""
 
@@ -712,12 +720,12 @@ msgid "featured on home page"
 msgstr ""
 
 #: .\apps\portfolio\models.py:106 .\apps\readymade\models.py:102
-#: .\apps\services\models.py:56
+#: .\apps\services\models.py:59
 msgid "SEO title"
 msgstr ""
 
 #: .\apps\portfolio\models.py:107 .\apps\readymade\models.py:103
-#: .\apps\services\models.py:57
+#: .\apps\services\models.py:60
 msgid "meta description"
 msgstr ""
 
@@ -822,7 +830,7 @@ msgstr "Paiement unique"
 msgid "Monthly"
 msgstr "Mensuel"
 
-#: .\apps\pricing\models.py:35 .\apps\services\models.py:47
+#: .\apps\pricing\models.py:35 .\apps\services\models.py:50
 msgid "summary"
 msgstr ""
 
@@ -1166,47 +1174,59 @@ msgstr ""
 msgid "Chart"
 msgstr ""
 
+#: .\apps\services\models.py:40
+msgid "Server"
+msgstr ""
+
+#: .\apps\services\models.py:41
+msgid "Brush"
+msgstr ""
+
 #: .\apps\services\models.py:42
+msgid "Camera"
+msgstr ""
+
+#: .\apps\services\models.py:45
 msgid "group"
 msgstr ""
 
-#: .\apps\services\models.py:46
+#: .\apps\services\models.py:49
 msgid "icon"
 msgstr ""
 
-#: .\apps\services\models.py:49
+#: .\apps\services\models.py:52
 msgid "benefits"
 msgstr ""
 
-#: .\apps\services\models.py:50
+#: .\apps\services\models.py:53
 msgid "what you get"
 msgstr ""
 
-#: .\apps\services\models.py:52
+#: .\apps\services\models.py:55
 msgid "related projects"
 msgstr ""
 
-#: .\apps\services\models.py:63
+#: .\apps\services\models.py:66
 msgid "service"
 msgstr ""
 
-#: .\apps\services\models.py:64
+#: .\apps\services\models.py:67
 msgid "services"
 msgstr ""
 
-#: .\apps\services\models.py:75
+#: .\apps\services\models.py:78
 msgid "question"
 msgstr ""
 
-#: .\apps\services\models.py:76
+#: .\apps\services\models.py:79
 msgid "answer"
 msgstr ""
 
-#: .\apps\services\models.py:81 .\templates\services\detail.html:67
+#: .\apps\services\models.py:84 .\templates\services\detail.html:67
 msgid "FAQ"
 msgstr "FAQ"
 
-#: .\apps\services\models.py:82
+#: .\apps\services\models.py:85
 msgid "FAQs"
 msgstr ""
 
@@ -1252,7 +1272,7 @@ msgstr "Parlez-nous de votre projet et nous vous enverrons un devis sur mesure."
 
 #: .\templates\components\cta_band.html:10 .\templates\pages\home.html:20
 #: .\templates\partials\header.html:15 .\templates\partials\header.html:35
-#: .\templates\services\detail.html:22
+#: .\templates\services\detail.html:22 .\templates\services\list.html:13
 msgid "Get a Quote"
 msgstr "Demander un devis"
 
@@ -1639,8 +1659,8 @@ msgid "What we do"
 msgstr "Ce que nous faisons"
 
 #: .\templates\pages\home.html:52
-msgid "Websites and AI marketing, under one roof."
-msgstr "Sites web et marketing IA, sous un même toit."
+msgid "Websites, marketing and content, under one roof."
+msgstr "Sites web, marketing et contenu, sous un même toit."
 
 #: .\templates\pages\home.html:83
 msgid "Ready-made websites"
@@ -1658,7 +1678,7 @@ msgstr "Choisissez un design pour votre secteur et nous l'adaptons à votre marq
 msgid "Browse all"
 msgstr "Tout voir"
 
-#: .\templates\pages\home.html:101
+#: .\templates\pages\home.html:101 .\templates\services\list.html:49
 msgid "Packages"
 msgstr "Formules"
 
@@ -1671,6 +1691,7 @@ msgid "Pick a starting point and answer a few quick questions. We reply with a f
 msgstr "Choisissez un point de départ et répondez à quelques questions. Nous vous envoyons un devis fixe ; vous démarrez avec un acompte et réglez le solde à la mise en ligne."
 
 #: .\templates\pages\home.html:104 .\templates\pricing\checkout.html:9
+#: .\templates\services\list.html:52
 msgid "All packages"
 msgstr "Toutes les formules"
 
@@ -2301,24 +2322,46 @@ msgid "Let's talk about your %(service)s project."
 msgstr "Parlons de votre projet %(service)s."
 
 #: .\templates\services\list.html:5
-msgid "Website development, e-commerce, landing pages, AI content and AI chatbots for businesses in Mauritius and abroad."
-msgstr "Développement web, e-commerce, pages d'atterrissage, contenu IA et chatbots IA pour les entreprises à Maurice et à l'étranger."
+msgid "Websites, online stores, hosting and email, AI marketing, branding, photo and video for businesses in Mauritius."
+msgstr "Sites web, boutiques en ligne, hébergement et e-mail, marketing IA, identité visuelle, photo et vidéo pour les entreprises à Maurice."
 
 #: .\templates\services\list.html:10
 msgid "Everything you need to grow online."
 msgstr "Tout ce qu'il faut pour grandir en ligne."
 
 #: .\templates\services\list.html:11
-msgid "We design and build websites that convert, then use AI to keep your marketing working while you focus on your business."
-msgstr "Nous concevons des sites qui convertissent, puis utilisons l'IA pour que votre marketing travaille pendant que vous vous concentrez sur votre entreprise."
+msgid "Websites, hosting, AI marketing, branding and content for businesses in Mauritius. Pick one service or combine them into a complete package."
+msgstr "Sites web, hébergement, marketing IA, identité visuelle et contenu pour les entreprises à Maurice. Choisissez un service ou combinez-les en une offre complète."
 
-#: .\templates\services\list.html:27
+#: .\templates\services\list.html:14
+msgid "See pricing"
+msgstr "Voir les tarifs"
+
+#: .\templates\services\list.html:19
+msgid "Our services"
+msgstr "Nos services"
+
+#: .\templates\services\list.html:30
 msgid "Learn more"
 msgstr "En savoir plus"
 
-#: .\templates\services\list.html:34
+#: .\templates\services\list.html:43
 msgid "Our services will be listed here soon."
 msgstr "Nos services seront bientôt présentés ici."
+
+#: .\templates\services\list.html:49
+msgid "Not sure where to start? Pick a package."
+msgstr "Vous ne savez pas par où commencer ? Choisissez une formule."
+
+#: .\templates\services\list.html:50
+msgid "Our most requested combinations. Send a short brief and we reply with a fixed quote."
+msgstr "Nos combinaisons les plus demandées. Envoyez un court brief et nous vous répondons avec un devis fixe."
+
+#~ msgid "Website development, e-commerce, landing pages, AI content and AI chatbots for businesses in Mauritius and abroad."
+#~ msgstr "Développement web, e-commerce, pages d'atterrissage, contenu IA et chatbots IA pour les entreprises à Maurice et à l'étranger."
+
+#~ msgid "We design and build websites that convert, then use AI to keep your marketing working while you focus on your business."
+#~ msgstr "Nous concevons des sites qui convertissent, puis utilisons l'IA pour que votre marketing travaille pendant que vous vous concentrez sur votre entreprise."
 
 #~ msgid "E-commerce store"
 #~ msgstr "Boutique en ligne"

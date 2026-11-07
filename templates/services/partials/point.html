@@ -1,0 +1,3 @@
+{% load core_tags %}{% with parts=item|label_split %}
+<li class="flex gap-3"><span class="mt-[0.7em] h-0.5 w-3 shrink-0 bg-neon-cyan" aria-hidden="true"></span><span class="text-ink-300">{% if parts.0 %}<strong class="font-semibold text-ink-100">{{ parts.0 }}</strong> {% endif %}{{ parts.1 }}</span></li>
+{% endwith %}

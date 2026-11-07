@@ -39,6 +39,17 @@ def lines(value):
     return [line.strip() for line in str(value or "").splitlines() if line.strip()]
 
 
+@register.filter
+def label_split(item):
+    """ "Fast loading: clean code" -> ("Fast loading:", "clean code"); ("", item) without a label.
+
+    The label keeps its colon, so French spacing ("Bases SEO :") is preserved."""
+    label, sep, text = str(item).partition(": ")
+    if sep and text and 0 < len(label) <= 60:
+        return (label + ":", text)
+    return ("", str(item))
+
+
 @register.filter(name="booking_embed_url")
 def booking_embed_url_filter(url):
     return booking_embed_url(url)

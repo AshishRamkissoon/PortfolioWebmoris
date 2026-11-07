@@ -1,6 +1,8 @@
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, render
 
+from apps.pricing.models import Package
+
 from .models import Service, ServiceGroup
 
 
@@ -15,7 +17,15 @@ def published_groups():
 
 
 def service_list(request):
-    return render(request, "services/list.html", {"groups": published_groups()})
+    return render(
+        request,
+        "services/list.html",
+        {
+            # One numbered list across groups, in group order.
+            "services": Service.objects.published().select_related("group"),
+            "packages": Package.objects.published().order_by("order")[:3],
+        },
+    )
 
 
 def service_detail(request, slug):
