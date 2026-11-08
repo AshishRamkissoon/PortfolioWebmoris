@@ -21,9 +21,12 @@ PACKAGES = [
         ),
         "features": (
             "1 page (or up to 3 short pages)\nMobile-friendly design\n"
-            "Contact form & WhatsApp button\n1 round of changes\nOnline in about 2 weeks",
+            "Contact form & WhatsApp button\n"
+            "1 round of changes (one list of edits after the preview)\n"
+            "Online in about 2 weeks",
             "1 page (ou jusqu'à 3 pages courtes)\nDesign adapté au mobile\n"
-            "Formulaire de contact & WhatsApp\n1 série de modifications\n"
+            "Formulaire de contact & WhatsApp\n"
+            "1 série de modifications (une liste de retouches après l'aperçu)\n"
             "En ligne en 2 semaines environ",
         ),
         "billing": "one_off",
@@ -40,10 +43,11 @@ PACKAGES = [
         "features": (
             "Up to 8 pages\nCustom design & animations\nEnglish and French\n"
             "Blog, portfolio or services pages\nSEO setup & Google Analytics\n"
-            "Easy admin panel\n30 days of support after launch",
+            "Easy admin panel\n2 rounds of changes\n30 days of support after launch",
             "Jusqu'à 8 pages\nDesign et animations sur mesure\nAnglais et français\n"
             "Blog, portfolio ou pages services\nSEO & Google Analytics\n"
-            "Administration simple\n30 jours de support après la mise en ligne",
+            "Administration simple\n2 séries de modifications\n"
+            "30 jours de support après la mise en ligne",
         ),
         "billing": "one_off",
         "popular": True,
@@ -59,10 +63,11 @@ PACKAGES = [
         "features": (
             "Product catalogue or booking calendar\nOnline payments (PayPal, MCB Juice)\n"
             "Customer accounts & order emails\nEnglish and French\n"
-            "Easy admin panel\n60 days of support after launch",
+            "Easy admin panel\n3 rounds of changes\n60 days of support after launch",
             "Catalogue ou calendrier de réservation\nPaiement en ligne (PayPal, MCB Juice)\n"
             "Comptes clients & e-mails de commande\nAnglais et français\n"
-            "Administration simple\n60 jours de support après la mise en ligne",
+            "Administration simple\n3 séries de modifications\n"
+            "60 jours de support après la mise en ligne",
         ),
         "billing": "one_off",
         "popular": False,
