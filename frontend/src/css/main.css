@@ -284,61 +284,6 @@
     }
   }
 
-  /* Launch offer badge above the home headline. */
-  .hero-pill {
-    @apply inline-flex max-w-full items-center gap-3 rounded-full border border-neon-cyan/40 bg-ink-900/80 py-2 pr-4 pl-3 text-sm font-semibold text-ink-100 backdrop-blur transition hover:border-neon-cyan hover:shadow-glow;
-  }
-
-  .hero-pill-dot {
-    @apply relative size-2.5 shrink-0 rounded-full bg-neon-cyan;
-
-    &::after {
-      @apply absolute inset-0 rounded-full bg-neon-cyan content-[''];
-      animation: hero-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
-  }
-
-  .hero-check {
-    @apply flex items-center gap-2.5;
-  }
-
-  /* Browser-window mock-ups of real project covers. */
-  .hero-showcase {
-    @apply relative mx-auto w-full max-w-xl pb-10 lg:pb-16;
-  }
-
-  .hero-window {
-    @apply block overflow-hidden rounded-card border border-ink-700 bg-ink-900;
-  }
-
-  .hero-window-front {
-    @apply relative z-10 shadow-2xl shadow-neon-violet/20 transition hover:border-neon-cyan/60;
-  }
-
-  .hero-window-back {
-    @apply absolute -top-8 -right-6 hidden w-4/5 rotate-3 opacity-50 sm:block;
-  }
-
-  .hero-window-bar {
-    @apply flex items-center gap-1.5 border-b border-ink-800 bg-ink-950/80 px-4 py-3;
-
-    & > span {
-      @apply size-2.5 rounded-full bg-ink-700;
-    }
-  }
-
-  .hero-window-url {
-    @apply ml-3 flex-1 truncate rounded-full bg-ink-800 px-3 py-1 text-xs text-ink-400;
-  }
-
-  .hero-phone {
-    @apply absolute -right-4 bottom-0 z-20 hidden aspect-[9/19] w-28 overflow-hidden rounded-[1.5rem] border-4 border-ink-700 bg-ink-900 shadow-2xl sm:block lg:-right-8 lg:w-32;
-  }
-
-  .hero-badge {
-    @apply absolute bottom-2 -left-4 z-20 flex items-center gap-3 rounded-2xl border border-ink-700 bg-ink-900/90 px-4 py-3 text-sm shadow-xl backdrop-blur sm:-left-8 lg:bottom-6;
-  }
-
   .hero-glow {
     @apply pointer-events-none absolute inset-0 -z-10;
     background:
@@ -364,31 +309,4 @@
 
 .htmx-request .htmx-indicator-hide {
   display: none;
-}
-
-/* Home hero: gentle float and a pulsing offer dot, only when motion is welcome. */
-@keyframes hero-ping {
-  75%,
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
-}
-
-@keyframes hero-float {
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-float {
-    animation: hero-float 5s ease-in-out infinite;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-pill-dot::after {
-    animation: none;
-  }
 }

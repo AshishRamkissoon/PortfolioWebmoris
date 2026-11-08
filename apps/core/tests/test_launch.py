@@ -178,36 +178,6 @@ def test_home_hero_has_3d_mount_and_css_fallback(client):
     assert 'class="hero-glow"' in content
 
 
-def test_home_hero_conversion_elements(client):
-    settings_obj = SiteSettings.load()
-    settings_obj.whatsapp_number = "23050000000"
-    settings_obj.offer_enabled = True
-    settings_obj.offer_title = "Founding offer: 20% off"
-    settings_obj.save()
-    Package.objects.create(name="Store", slug="store", summary="s", price=Decimal("60000"))
-    Package.objects.create(name="Starter", slug="starter", summary="s", price=Decimal("12000"))
-    Package.objects.create(
-        name="Care", slug="care", summary="s", price=Decimal("1200"), billing="monthly"
-    )
-    project = ProjectFactory(title="Hero project", is_featured=True)
-
-    content = client.get("/en/").content.decode()
-    assert 'class="hero-pill"' in content and "Founding offer: 20% off" in content
-    assert "/en/pricing/#offer" in content
-    # The cheapest one-off package, never the monthly Care Plan.
-    assert "Websites from <strong" in content and "MUR 12,000" in content
-    assert "Get a free quote" in content
-    assert 'href="https://wa.me/23050000000' in content and 'rel="noopener noreferrer"' in content
-    assert f'href="{project.get_absolute_url()}" class="hero-window hero-window-front' in content
-
-
-def test_home_hero_without_offer_price_or_covers(client):
-    content = client.get("/en/").content.decode()
-    assert "hero-pill" not in content and "Web development & AI marketing" in content
-    assert "Websites from" not in content
-    assert "hero-showcase" not in content
-
-
 # --- Regressions found in visual QA ---------------------------------------------------------
 
 

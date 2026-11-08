@@ -45,7 +45,6 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
-- 2026-11-08 — Phase 14 — Additions requested by owner before approval — Home hero redesigned for conversion: launch-offer badge linking to the offer, "Get a free quote" and WhatsApp calls to action, trust points with the real lowest "From" price, and browser/phone mock-ups of real project and ready-made covers. Package cards list the rounds of changes; team photos are cropped from the top. Test: open `/en/` and `/fr/` on desktop and mobile.
 - 2026-11-07 — Phase 14 — Ready for review — Services page redesigned (branch `phase/14-services-page`).
   - **Layout:** hero with "Get a Quote" and "See pricing"; one numbered section per service (01–09): group, title and summary on the left; description and "what you get" points on the right ("Label: text" lines show the label in bold); then 3 packages and the call-to-action band. Original wording, no copy from other agencies.
   - **New services** (owner's choice): Hosting & Email (Web Development), Branding & Print and Photo & Video (new "Brand & Content" group), with new icons. All 9 services have their own description, points and benefits in English and French (seed + local DB). Hosting copy makes no uptime guarantee.
