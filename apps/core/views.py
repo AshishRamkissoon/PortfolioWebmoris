@@ -15,17 +15,40 @@ from .models import AboutPage, LegalPage, ProcessStep, TeamMember
 SHOWCASE_MIN_COMPLETED = 3
 
 
+def hero_shots(projects, templates, limit=3):
+    """Real covers for the hero mock-ups: featured projects first, then ready-made sites."""
+    shots = [
+        {"title": p.title, "url": p.get_absolute_url(), "image": p.cover_card.url}
+        for p in projects
+        if p.cover_image
+    ]
+    shots += [
+        {"title": t.name, "url": t.get_absolute_url(), "image": t.cover_card.url}
+        for t in templates
+        if t.cover_image
+    ]
+    return shots[:limit]
+
+
 def home(request):
+    featured_projects = list(Project.objects.featured().prefetch_related("categories")[:6])
+    featured_templates = list(WebsiteTemplate.objects.featured().select_related("industry")[:3])
     return render(
         request,
         "pages/home.html",
         {
-            "featured_projects": Project.objects.featured().prefetch_related("categories")[:6],
+            "featured_projects": featured_projects,
             "has_showcase": Project.objects.completed().count() >= SHOWCASE_MIN_COMPLETED,
             "service_groups": published_groups(),
-            "featured_templates": WebsiteTemplate.objects.featured().select_related("industry")[:3],
+            "featured_templates": featured_templates,
             "process_steps": ProcessStep.objects.all(),
             "packages": Package.objects.published().order_by("order")[:3],
+            "hero_shots": hero_shots(featured_projects, featured_templates),
+            # The lowest one-off "From" price, so the hero quotes a real figure.
+            "starting_package": Package.objects.published()
+            .filter(billing=Package.Billing.ONE_OFF, price__isnull=False)
+            .order_by("price")
+            .first(),
         },
     )
 
