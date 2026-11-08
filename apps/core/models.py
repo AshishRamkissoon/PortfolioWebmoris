@@ -169,8 +169,12 @@ class TeamMember(models.Model):
     photo = models.ImageField(
         _("photo"), upload_to=RandomFilename("team"), validators=image_validators, blank=True
     )
+    # Portraits are cropped from the top, so tall photos keep the head and lose the waist.
     photo_square = ImageSpecField(
-        source="photo", processors=[ResizeToFill(600, 600)], format="WEBP", options={"quality": 82}
+        source="photo",
+        processors=[ResizeToFill(600, 600, anchor="t")],
+        format="WEBP",
+        options={"quality": 82},
     )
     linkedin_url = models.URLField("LinkedIn", blank=True)
     is_active = models.BooleanField(_("show on site"), default=True)

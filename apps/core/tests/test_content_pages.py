@@ -26,6 +26,26 @@ def test_about_values_and_tools_parsing():
     assert about.tools_list == ["Django", "GSAP"]
 
 
+def test_team_photo_square_keeps_the_top_of_a_tall_portrait(settings, tmp_path):
+    from io import BytesIO
+
+    from django.core.files.uploadedfile import SimpleUploadedFile
+    from PIL import Image
+
+    settings.MEDIA_ROOT = tmp_path
+    portrait = Image.new("RGB", (100, 200), "blue")
+    portrait.paste(Image.new("RGB", (100, 20), "red"), (0, 0))  # the "head"
+    buffer = BytesIO()
+    portrait.save(buffer, "PNG")
+    member = TeamMember.objects.create(
+        name="Tall", role="Director", photo=SimpleUploadedFile("p.png", buffer.getvalue())
+    )
+    member.photo_square.generate()
+    with Image.open(member.photo_square.path) as square:
+        red, green, blue = square.convert("RGB").getpixel((300, 5))
+    assert square.size == (600, 600) and red > 200 and blue < 60
+
+
 def test_about_page(client):
     about = AboutPage.load()
     about.story = "Our story."
