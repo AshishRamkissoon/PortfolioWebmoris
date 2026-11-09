@@ -25,7 +25,7 @@
 | 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 13 | Project Brief, Quote-First Pricing and Deposits | ✅ Completed | 2026-11-05 | 2026-11-06 | 2026-11-07 |
 | 14 | Services Page Redesign | ✅ Completed | 2026-11-07 | 2026-11-07 | 2026-11-09 |
-| 15 | Demo Conversion Tour ("See why it converts") | 🔵 Awaiting approval | 2026-11-09 | 2026-11-09 | — |
+| 15 | Demo Conversion Tour ("See why it converts") | ✅ Completed | 2026-11-09 | 2026-11-09 | 2026-11-09 |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -46,6 +46,7 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-09 — Phase 15 — Approved by owner ("merge it") — merged into `main` and pushed. Badge and tour switch now show as soon as a demo loads.
 - 2026-11-09 — Phase 15 — Ready for review — Pilot approved by owner, rolled out to all 6 demos (9 tour stops each for the 5 others, notes written per business and checked against each demo's content). Badge price = the ready-made website's starting price in admin; WhatsApp = Site Settings number (fictional +230 5000 0000 until the owner provides the real one), served by the new public endpoint `/api/demo-badge/<slug>/` (CORS, no cookies); demo CSP examples allow connecting to webmoris.mu. Test: ports 5002–5007, desktop and phone; set a starting price in admin and check the badge (works once webmoris.mu is live; locally only when a demo's data-agency points to http://127.0.0.1:5001).
 - 2026-11-09 — Phase 15 — Pilot ready for owner review (Lagon Bistro only, at the owner's request) — Demo kit extended (`demo_kit/demo-kit.js` + new `demo-kit.css`), driven by `demos/lagon-bistro/src/static/demo-tour.json`: "Get this website" badge and card, "See why it converts" tour (12 stops, page blueprint with 5 stages), mobile Call · WhatsApp · Book bar, "Hungry yet?" nudge. Other demos unchanged until approved. Test: http://127.0.0.1:5003/ on desktop and phone.
 - 2026-11-09 — Phase 15 — Started — "See why it converts" mode on the 6 demos (owner approved the mock-up): floating "Get this website" badge and mini card, x-ray tour with hotspots and notes per demo, page blueprint, sticky mobile action bar and scroll nudge. Front end only (no admin, no tracking). Branch `phase/15-demo-tour`.
