@@ -191,3 +191,103 @@ def test_section_intros_do_not_leak_into_later_sections(client):
     # The ready-made section's intro used to reappear under "How we work" and "Pricing".
     assert content.count("Pick a design for your industry") == 1
     assert len(client.get("/en/").context["featured_templates"]) == 3  # one full row
+
+
+# --- Hero business picker ---------------------------------------------------------------
+
+
+@pytest.fixture
+def hero_businesses():
+    from apps.core.models import HeroBusiness
+    from apps.readymade.models import TemplateIndustry
+    from apps.readymade.tests.test_readymade import make_template
+
+    industry = TemplateIndustry.objects.create(name="Food", slug="food")
+    bistro = make_template(industry, name="Bistro Demo", slug="bistro")
+    garage = make_template(industry, name="Garage Demo", slug="garage")
+    store = Package.objects.create(name="Store", slug="store", summary="s", price=Decimal("60000"))
+    return [
+        HeroBusiness.objects.create(
+            label="Restaurant",
+            slug="restaurant",
+            features="Menu online\nTable booking\nWhatsApp orders\nA fourth one",
+            template=bistro,
+        ),
+        HeroBusiness.objects.create(
+            label="Car rental",
+            slug="car-rental",
+            features="Fleet & prices",
+            package=store,
+            template=garage,
+            project_type="booking",
+            order=1,
+        ),
+        HeroBusiness.objects.create(label="Hidden", slug="hidden", features="x", is_active=False),
+    ]
+
+
+def test_hero_is_generic_until_a_business_is_picked(client, hero_businesses):
+    response = client.get("/en/")
+    content = response.content.decode()
+    assert [b["slug"] for b in response.context["hero_businesses"]] == ["restaurant", "car-rental"]
+    assert 'href="?business=restaurant#hero"' in content and "Hidden" not in content
+    assert 'href="/en/contact/" class="btn-primary btn-lg group"' in content
+    assert 'data-hero-result aria-live="polite" hidden' in content
+    # The preview starts on the first demo, with generic feature tags.
+    assert response.context["hero_preview"]["demo_name"] == "Bistro Demo"
+    assert "Mobile-ready" in content
+    assert (
+        'data-hero-json="{&quot;businesses&quot;: [{&quot;slug&quot;: &quot;restaurant&quot;'
+        in content
+    )
+
+
+def test_hero_picked_business_without_js(client, hero_businesses):
+    response = client.get("/en/?business=car-rental")
+    content = response.content.decode()
+    assert 'data-hero-chip="car-rental" aria-current="true"' in content
+    assert "Fleet &amp; prices" in content and "MUR 60,000" in content
+    assert 'href="/en/contact/?type=booking" class="btn-primary btn-lg group"' in content
+    assert response.context["hero_preview"]["demo_name"] == "Garage Demo"
+
+
+def test_hero_business_data(client, hero_businesses):
+    restaurant, car_rental = json.loads(client.get("/en/").context["hero_json"])["businesses"]
+    assert restaurant["features"] == ["Menu online", "Table booking", "WhatsApp orders"]
+    assert restaurant["price"] == "" and restaurant["quote_url"] == "/en/contact/?type=website"
+    assert car_rental["demo_url"] == "/en/ready-made-websites/garage/"
+    # Unpublished demos and packages are never shown.
+    hero_businesses[1].template.is_published = False
+    hero_businesses[1].template.save()
+    hero_businesses[1].package.is_published = False
+    hero_businesses[1].package.save()
+    car_rental = json.loads(client.get("/en/").context["hero_json"])["businesses"][1]
+    assert car_rental["image"] == "" and car_rental["price"] == ""
+
+
+def test_hero_without_business_types_or_demos(client):
+    content = client.get("/en/").content.decode()
+    assert "hero-chip" not in content and "hero-stage" not in content
+    assert 'href="/en/contact/" class="btn-primary btn-lg group"' in content
+
+
+def test_hero_business_admin_and_seed(client):
+    from io import StringIO
+
+    from django.contrib.auth import get_user_model
+    from django.core.management import call_command
+
+    from apps.core.models import HeroBusiness
+
+    call_command("seed_demo", stdout=StringIO())
+    call_command("seed_demo", stdout=StringIO())
+    assert HeroBusiness.objects.count() == 5
+    assert all(b.template and b.package and b.label_fr for b in HeroBusiness.objects.all())
+
+    admin = get_user_model().objects.create_superuser("o", "o@example.com", "pw-123456789")
+    client.force_login(admin)
+    base = f"/{settings.ADMIN_URL}core/herobusiness/"
+    business = HeroBusiness.objects.first()
+    for url in [base, f"{base}add/", f"{base}{business.pk}/change/"]:
+        assert client.get(url).status_code == 200, url
+    assert 'value="photo_video"' in client.get(f"{base}add/").content.decode()

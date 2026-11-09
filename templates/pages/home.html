@@ -3,23 +3,66 @@
 
 {% block content %}
 {# --- Hero --- #}
-<section class="hero relative isolate overflow-hidden">
+<section id="hero" class="hero relative isolate overflow-hidden" data-hero data-hero-json="{{ hero_json }}">
   {# CSS glow is the fallback; capable devices get the Three.js particle wave on top. #}
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-3d" data-hero-3d aria-hidden="true"></div>
 
-  <div class="container-site flex min-h-[85vh] flex-col justify-center py-24">
-    <p data-reveal class="eyebrow">{% translate "Web development & AI marketing · Mauritius" %}</p>
-    <h1 class="mt-6 max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
-      {% translate "We build websites that" %} <span class="text-gradient">{% translate "win clients." %}</span>
-    </h1>
-    {% if site_settings.tagline %}
-    <p class="mt-6 max-w-2xl text-lg text-ink-300 sm:text-xl">{{ site_settings.tagline }}</p>
-    {% endif %}
-    <div data-reveal data-reveal-delay="0.3" class="mt-10 flex flex-wrap gap-4">
-      <a href="{% url 'leads:contact' %}" class="btn-primary btn-lg" data-magnetic>{% translate "Get a Quote" %}</a>
-      <a href="{% url 'portfolio:list' %}" class="btn-ghost btn-lg" data-magnetic>{% translate "View Our Work" %}</a>
+  <div class="container-site grid min-h-[85vh] items-center gap-16 py-20 {% if hero_preview %}lg:grid-cols-[1.05fr_1fr]{% endif %}">
+    <div>
+      <p data-reveal class="eyebrow">{% translate "Web development & AI marketing · Mauritius" %}</p>
+      <h1 class="mt-6 max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl {% if hero_preview %}lg:text-6xl{% endif %}">
+        {% translate "We build websites that" %} <span class="text-gradient">{% translate "win clients." %}</span>
+      </h1>
+      {% if site_settings.tagline %}
+      <p class="mt-6 max-w-2xl text-lg text-ink-300 sm:text-xl">{{ site_settings.tagline }}</p>
+      {% endif %}
+
+      {% if hero_businesses %}
+      {# Links work without JS (?business=…); the script switches them in place. #}
+      <div data-reveal data-reveal-delay="0.2" class="mt-8">
+        <p id="hero-picker-label" class="text-sm text-ink-400">{% translate "See what we could build for you" %}</p>
+        <ul class="mt-3 flex flex-wrap gap-2.5" aria-labelledby="hero-picker-label">
+          {% for business in hero_businesses %}
+          <li><a href="?business={{ business.slug }}#hero" class="hero-chip" data-hero-chip="{{ business.slug }}" {% if business == hero_selected %}aria-current="true"{% endif %}><span class="hero-chip-dot" aria-hidden="true"></span>{{ business.label }}</a></li>
+          {% endfor %}
+        </ul>
+        <div class="hero-result" data-hero-result aria-live="polite" {% if not hero_selected %}hidden{% endif %}>
+          <div class="min-w-0">
+            <p class="text-xs text-ink-400">{% translate "Typical features" %}</p>
+            <p class="mt-0.5 font-display font-semibold text-ink-100" data-hero-features>{{ hero_selected.features|join:" · " }}</p>
+          </div>
+          <div class="hero-result-price" data-hero-price {% if not hero_selected.price %}hidden{% endif %}>
+            <p class="text-xs text-ink-400">{% translate "From" %}</p>
+            <p class="mt-0.5 font-display font-semibold whitespace-nowrap text-ink-100" data-hero-price-value>{{ hero_selected.price }}</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div data-reveal data-reveal-delay="0.3" class="mt-8 flex flex-wrap gap-4">
+        <a href="{{ hero_quote_url }}" class="btn-primary btn-lg group" data-magnetic data-hero-cta>
+          {% translate "Start my website" %}<span aria-hidden="true" class="ml-2 inline-block transition group-hover:translate-x-1">&rarr;</span>
+        </a>
+        <a href="{% url 'portfolio:list' %}" class="btn-ghost btn-lg" data-magnetic>{% translate "View Our Work" %}</a>
+      </div>
     </div>
+
+    {% if hero_preview %}
+    {# The matching ready-made demo in a browser window that tilts with the pointer. #}
+    <div data-reveal data-reveal-delay="0.2" class="hero-stage">
+      <a href="{{ hero_preview.demo_url }}" class="hero-window" data-tilt data-hero-window>
+        <span class="hero-window-bar" aria-hidden="true"><i></i><i></i><i></i><span class="hero-window-url" data-hero-demo-name>{{ hero_preview.demo_name }}</span></span>
+        <img src="{{ hero_preview.image }}" alt="{% blocktranslate with name=hero_preview.demo_name %}Ready-made demo: {{ name }}{% endblocktranslate %}" width="800" height="600" fetchpriority="high" class="hero-window-image" data-hero-image>
+      </a>
+      {% with features=hero_preview.features %}
+      <p class="hero-tag hero-tag-1" aria-hidden="true">{% include "components/icon.html" with name="check" class="size-4" %}<span data-hero-tag>{% if hero_selected %}{{ features.0 }}{% else %}{% translate "Mobile-ready" %}{% endif %}</span></p>
+      <p class="hero-tag hero-tag-2" aria-hidden="true">{% include "components/icon.html" with name="check" class="size-4" %}<span data-hero-tag>{% if hero_selected %}{{ features.1 }}{% else %}{% translate "English & French" %}{% endif %}</span></p>
+      <p class="hero-tag hero-tag-3" aria-hidden="true">{% include "components/icon.html" with name="check" class="size-4" %}<span data-hero-tag>{% if hero_selected %}{{ features.2 }}{% else %}{% translate "WhatsApp button" %}{% endif %}</span></p>
+      {% endwith %}
+      <a href="{{ hero_preview.demo_url }}" class="hero-demo-link" data-hero-demo-link><span>{% translate "Ready-made demo" %}</span><span aria-hidden="true">·</span><span class="text-neon-cyan">{% translate "Live preview" %} &rarr;</span></a>
+    </div>
+    {% endif %}
   </div>
 </section>
 

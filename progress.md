@@ -45,6 +45,7 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-09 — Phase 14 — Additions requested by owner before approval — Interactive home hero (owner approved the mock-up): generic headline and "Start my website" button; optional "See what we could build for you" business types (new `HeroBusiness` model in admin: label, features, package, ready-made demo, brief project type) showing typical features and the "From" price; demo preview in a browser window that tilts with the pointer, rotates through the demos until one is picked, and has floating feature tags. Works without JS (?business=…) and with reduced motion. Also: package cards list rounds of changes; team photos cropped from the top. Test: open `/en/` and `/fr/`, pick a business type, then click "Start my website".
 - 2026-11-07 — Phase 14 — Ready for review — Services page redesigned (branch `phase/14-services-page`).
   - **Layout:** hero with "Get a Quote" and "See pricing"; one numbered section per service (01–09): group, title and summary on the left; description and "what you get" points on the right ("Label: text" lines show the label in bold); then 3 packages and the call-to-action band. Original wording, no copy from other agencies.
   - **New services** (owner's choice): Hosting & Email (Web Development), Branding & Print and Photo & Video (new "Brand & Content" group), with new icons. All 9 services have their own description, points and benefits in English and French (seed + local DB). Hosting copy makes no uptime guarantee.

@@ -4,7 +4,7 @@ Team members are clearly marked "(demo)", and the legal pages say they must be r
 neither should ever go live as if it were real.
 """
 
-from .models import AboutPage, LegalPage, ProcessStep, TeamMember
+from .models import AboutPage, HeroBusiness, LegalPage, ProcessStep, TeamMember
 
 PROCESS = [
     (
@@ -107,3 +107,88 @@ def seed_core_content(stdout=None):
             f"About/team/process/legal: filled {len(filled)} about field(s); "
             f"{ProcessStep.objects.count()} steps, {TeamMember.objects.count()} team members."
         )
+
+
+# Home hero "See what we could build for you": (slug, label, features, package, demo, brief type).
+HERO_BUSINESSES = [
+    (
+        "restaurant",
+        ("Restaurant", "Restaurant"),
+        (
+            "Menu online\nTable booking\nWhatsApp orders",
+            "Menu en ligne\nRéservation de table\nCommandes WhatsApp",
+        ),
+        "business-website",
+        "lagon-bistro",
+        "website",
+    ),
+    (
+        "tours",
+        ("Tours & activities", "Excursions & activités"),
+        (
+            "Online booking\nActivity pages\nReviews & photos",
+            "Réservation en ligne\nPages d'activités\nAvis & photos",
+        ),
+        "online-store-booking",
+        "island-explorer",
+        "booking",
+    ),
+    (
+        "car-rental",
+        ("Car rental", "Location de voitures"),
+        (
+            "Fleet & prices\nBooking requests\nAirport pick-up info",
+            "Flotte & tarifs\nDemandes de réservation\nInfos aéroport",
+        ),
+        "online-store-booking",
+        "drive-moris",
+        "booking",
+    ),
+    (
+        "villas",
+        ("Villas & real estate", "Villas & immobilier"),
+        (
+            "Property listings\nPhoto galleries\nEnquiry forms",
+            "Annonces de biens\nGaleries photos\nFormulaires de contact",
+        ),
+        "business-website",
+        "villa-select",
+        "website",
+    ),
+    (
+        "hotels",
+        ("Hotels & lodges", "Hôtels & lodges"),
+        (
+            "Room booking\nEnglish & French\nGoogle Maps & reviews",
+            "Réservation de chambres\nAnglais & français\nGoogle Maps & avis",
+        ),
+        "online-store-booking",
+        "eco-lodge",
+        "booking",
+    ),
+]
+
+
+def seed_hero_businesses(stdout=None):
+    """Runs after pricing and ready-made seeds, since each type links a package and a demo."""
+    from apps.pricing.models import Package
+    from apps.readymade.models import WebsiteTemplate
+
+    if HeroBusiness.objects.exists():
+        return
+    for order, (slug, label, features, package, template, project_type) in enumerate(
+        HERO_BUSINESSES
+    ):
+        HeroBusiness.objects.create(
+            slug=slug,
+            label_en=label[0],
+            label_fr=label[1],
+            features_en=features[0],
+            features_fr=features[1],
+            package=Package.objects.filter(slug=package).first(),
+            template=WebsiteTemplate.objects.filter(slug=template).first(),
+            project_type=project_type,
+            order=order,
+        )
+    if stdout:
+        stdout.write(f"Hero: {len(HERO_BUSINESSES)} business types.")

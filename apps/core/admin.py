@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 from modeltranslation.admin import TabbedTranslationAdmin
 
-from .models import AboutPage, LegalPage, ProcessStep, SiteSettings, TeamMember
+from .models import AboutPage, HeroBusiness, LegalPage, ProcessStep, SiteSettings, TeamMember
 
 admin.site.site_header = "Webmoris admin"
 admin.site.site_title = "Webmoris admin"
@@ -96,3 +96,34 @@ class ProcessStepAdmin(TabbedTranslationAdmin):
 class LegalPageAdmin(TabbedTranslationAdmin):
     list_display = ("title", "kind", "updated_at")
     readonly_fields = ("updated_at",)
+
+
+@admin.register(HeroBusiness)
+class HeroBusinessAdmin(TabbedTranslationAdmin):
+    list_display = ("label", "package", "template", "is_active", "order")
+    list_editable = ("is_active", "order")
+    prepopulated_fields = {"slug": ("label_en",)}
+    fields = (
+        "label",
+        "slug",
+        "features",
+        "package",
+        "template",
+        "project_type",
+        "is_active",
+        "order",
+    )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == "project_type":
+            # Same choices as the brief; imported here to keep core free of a leads import cycle.
+            from django import forms
+
+            from apps.leads.models import QuoteRequest
+
+            return forms.ChoiceField(
+                choices=QuoteRequest.ProjectType.choices,
+                label=db_field.verbose_name,
+                help_text=db_field.help_text,
+            )
+        return super().formfield_for_dbfield(db_field, request, **kwargs)

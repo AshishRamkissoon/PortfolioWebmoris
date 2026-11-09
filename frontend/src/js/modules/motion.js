@@ -142,7 +142,7 @@ export function initMagnetic(root = document) {
 /** Project cards tilt slightly in 3D under the pointer (mouse devices only). */
 export function initTilt(root = document) {
   if (!motionAllowed() || !canHover()) return;
-  root.querySelectorAll(".project-card:not([data-tilted])").forEach((card) => {
+  root.querySelectorAll(".project-card:not([data-tilted]), [data-tilt]:not([data-tilted])").forEach((card) => {
     card.dataset.tilted = "";
     gsap.set(card, { transformPerspective: 900 });
     const rotateX = gsap.quickTo(card, "rotationX", { duration: 0.5, ease: "power3.out" });

@@ -4,6 +4,7 @@ import htmx from "htmx.org";
 
 import { initBrief } from "./modules/brief.js";
 import { initHeader } from "./modules/header.js";
+import { initHeroPicker } from "./modules/hero.js";
 import { registerAnalytics } from "./modules/analytics.js";
 import { registerMediaComponents } from "./modules/media.js";
 import { registerUiComponents } from "./modules/ui.js";
@@ -35,6 +36,7 @@ initMagnetic();
 initTilt();
 initHeader();
 initBrief();
+initHeroPicker();
 
 // Home hero 3D visual: separate chunk, only on capable devices.
 const hero3d = document.querySelector("[data-hero-3d]");

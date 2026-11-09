@@ -229,3 +229,52 @@ class LegalPage(models.Model):
 
     def get_absolute_url(self):
         return reverse(f"core:{self.kind}")
+
+
+class HeroBusiness(models.Model):
+    """A business type visitors can pick in the home hero ("See what we could build for you")."""
+
+    label = models.CharField(_("label"), max_length=40, help_text=_("E.g. “Restaurant”."))
+    slug = models.SlugField(_("slug"), max_length=40, unique=True)
+    features = models.TextField(
+        _("typical features"),
+        help_text=_(
+            "One per line, e.g. “Table booking”. The first three float around the preview."
+        ),
+    )
+    package = models.ForeignKey(
+        "pricing.Package",
+        verbose_name=_("package"),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        help_text=_("Its “From” price is shown when this business type is picked."),
+    )
+    template = models.ForeignKey(
+        "readymade.WebsiteTemplate",
+        verbose_name=_("ready-made demo"),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        help_text=_("Shown in the preview window."),
+    )
+    project_type = models.CharField(
+        _("project type in the brief"),
+        max_length=20,
+        default="website",
+        help_text=_("Pre-ticked in the project brief when “Start my website” is clicked."),
+    )
+    is_active = models.BooleanField(_("show on site"), default=True)
+    order = models.PositiveSmallIntegerField(_("order"), default=0)
+
+    class Meta:
+        ordering = ["order", "pk"]
+        verbose_name = _("hero business type")
+        verbose_name_plural = _("hero business types")
+
+    def __str__(self):
+        return self.label
+
+    @property
+    def feature_list(self):
+        return [line.strip() for line in self.features.splitlines() if line.strip()]

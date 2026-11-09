@@ -284,6 +284,92 @@
     }
   }
 
+  /* Home hero business picker. */
+  .hero-chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-900/70 px-4 py-2 text-sm text-ink-200 backdrop-blur transition hover:border-neon-cyan hover:text-ink-100;
+
+    &[aria-current="true"] {
+      @apply border-neon-cyan bg-neon-cyan font-semibold text-ink-950 shadow-glow;
+    }
+  }
+
+  .hero-chip-dot {
+    @apply size-2 rounded-full bg-neon-cyan;
+
+    [aria-current="true"] > & {
+      @apply bg-ink-950;
+    }
+  }
+
+  .hero-result {
+    @apply mt-4 flex max-w-xl flex-col items-start gap-3 rounded-2xl border border-ink-800 bg-ink-900/80 px-5 py-3.5 backdrop-blur sm:flex-row sm:items-center sm:gap-5;
+
+    &[hidden] {
+      @apply hidden;
+    }
+  }
+
+  .hero-result-price {
+    @apply w-full border-t border-ink-800 pt-3 sm:w-auto sm:border-t-0 sm:border-l sm:pt-0 sm:pl-5;
+
+    &[hidden] {
+      @apply hidden;
+    }
+  }
+
+  /* Ready-made demo preview: a browser window with floating feature tags. */
+  .hero-stage {
+    @apply relative mx-auto w-full max-w-xl py-8;
+  }
+
+  .hero-window {
+    @apply relative block overflow-hidden rounded-card border border-ink-700 bg-ink-900 shadow-2xl shadow-neon-violet/25 transition-colors hover:border-neon-cyan/60;
+  }
+
+  .hero-window-bar {
+    @apply flex items-center gap-1.5 border-b border-ink-800 bg-ink-950/85 px-4 py-3;
+
+    & > i {
+      @apply size-2.5 rounded-full bg-ink-700;
+    }
+  }
+
+  .hero-window-url {
+    @apply ml-3 flex-1 truncate rounded-full bg-ink-800 px-3 py-1 text-xs text-ink-400;
+  }
+
+  .hero-window-image {
+    @apply aspect-[4/3] w-full object-cover transition-opacity duration-300;
+
+    &.is-swapping {
+      @apply opacity-0;
+    }
+  }
+
+  .hero-tag {
+    @apply pointer-events-none absolute z-10 hidden items-center gap-2 rounded-xl border border-ink-700 bg-ink-900/90 px-3.5 py-2.5 text-sm font-semibold whitespace-nowrap text-ink-100 shadow-xl backdrop-blur sm:flex;
+
+    & svg {
+      @apply text-neon-cyan;
+    }
+  }
+
+  .hero-tag-1 {
+    @apply top-1/3 -left-8;
+  }
+
+  .hero-tag-2 {
+    @apply top-2 -right-6;
+  }
+
+  .hero-tag-3 {
+    @apply -right-4 bottom-14;
+  }
+
+  .hero-demo-link {
+    @apply relative z-10 mt-4 inline-flex gap-1.5 rounded-xl border border-ink-700 bg-ink-900/90 px-4 py-2.5 text-sm font-semibold text-ink-100 transition hover:border-neon-cyan sm:absolute sm:bottom-0 sm:left-6 sm:mt-0;
+  }
+
   .hero-glow {
     @apply pointer-events-none absolute inset-0 -z-10;
     background:
@@ -309,4 +395,31 @@
 
 .htmx-request .htmx-indicator-hide {
   display: none;
+}
+
+/* Home hero: feature tags drift gently, only when motion is welcome. */
+@keyframes hero-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-tag {
+    animation: hero-float 6s ease-in-out infinite;
+  }
+
+  .hero-tag-2 {
+    animation-delay: -2s;
+  }
+
+  .hero-tag-3 {
+    animation-delay: -4s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-window-image {
+    transition: none;
+  }
 }

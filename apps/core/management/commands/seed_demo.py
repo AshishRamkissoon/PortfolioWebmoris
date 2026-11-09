@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from apps.core.demo import seed_core_content
+from apps.core.demo import seed_core_content, seed_hero_businesses
 from apps.core.models import SiteSettings
 from apps.portfolio.demo import seed_portfolio
 from apps.pricing.demo import seed_pricing
@@ -52,5 +52,6 @@ class Command(BaseCommand):
             seed_services,
             seed_readymade,
             seed_pricing,
+            seed_hero_businesses,
         ):
             seed(stdout=self.stdout)
