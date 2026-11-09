@@ -1,7 +1,12 @@
 {
-  "theme": { "accent": "linear-gradient(90deg, #f6a04d, #ef5d2e)", "accentText": "#1b120b", "surface": "#1b120b", "surfaceText": "#fff7ea", "border": "#f08a4b" },
+  "theme": {
+    "accent": "linear-gradient(90deg, #f6a04d, #ef5d2e)",
+    "accentText": "#1b120b",
+    "surface": "#1b120b",
+    "surfaceText": "#fff7ea",
+    "border": "#f08a4b"
+  },
   "badge": {
-    "price": null,
     "pitch": {
       "en": "Get it for your restaurant, with your logo, colours, photos, menu and texts. Online in about 2 weeks.",
       "fr": "Obtenez-le pour votre restaurant, avec votre logo, vos couleurs, vos photos, votre menu et vos textes. En ligne en 2 semaines environ."
@@ -10,92 +15,285 @@
   "mobileBar": {
     "call": true,
     "whatsapp": true,
-    "action": { "href": "/reserve/", "label": { "en": "Book a table", "fr": "Réserver" } }
+    "action": {
+      "href": "/reserve/",
+      "label": {
+        "en": "Book a table",
+        "fr": "Réserver"
+      }
+    }
   },
   "nudge": {
     "after": "#signature",
-    "text": { "en": "Hungry yet?", "fr": "Une petite faim ?" },
-    "action": { "href": "/reserve/", "label": { "en": "Book your table →", "fr": "Réservez votre table →" } }
+    "text": {
+      "en": "Hungry yet?",
+      "fr": "Une petite faim ?"
+    },
+    "action": {
+      "href": "/reserve/",
+      "label": {
+        "en": "Book your table →",
+        "fr": "Réservez votre table →"
+      }
+    }
   },
   "blueprint": [
-    { "target": "[data-hero]", "stage": { "en": "Attention", "fr": "Attention" }, "title": { "en": "Hero", "fr": "Accueil" }, "text": { "en": "What it is and where, in 3 seconds. Booking already visible.", "fr": "Ce que c'est et où, en 3 secondes. La réservation est déjà visible." } },
-    { "target": "#story", "stage": { "en": "Interest", "fr": "Intérêt" }, "title": { "en": "Our story", "fr": "Notre histoire" }, "text": { "en": "What makes this place different from the beach bar next door.", "fr": "Ce qui distingue ce lieu du bar de plage d'à côté." } },
-    { "target": "#signature", "stage": { "en": "Desire", "fr": "Désir" }, "title": { "en": "Signature plates", "fr": "Plats signature" }, "text": { "en": "Real dishes with prices. People buy with their eyes first.", "fr": "De vrais plats avec leurs prix. On achète d'abord avec les yeux." } },
-    { "target": "#gallery", "stage": { "en": "Trust", "fr": "Confiance" }, "title": { "en": "Photos & events", "fr": "Photos & événements" }, "text": { "en": "Proof the place is real, lively and worth the trip.", "fr": "La preuve que le lieu est vivant et vaut le détour." } },
-    { "target": "#visit", "stage": { "en": "Action", "fr": "Action" }, "title": { "en": "Visit & book", "fr": "Visite & réservation" }, "text": { "en": "Hours, map, Book a table and directions, together.", "fr": "Horaires, carte, réservation et itinéraire, au même endroit." } }
+    {
+      "target": "[data-hero]",
+      "stage": {
+        "en": "Attention",
+        "fr": "Attention"
+      },
+      "title": {
+        "en": "Hero",
+        "fr": "Accueil"
+      },
+      "text": {
+        "en": "What it is and where, in 3 seconds. Booking already visible.",
+        "fr": "Ce que c'est et où, en 3 secondes. La réservation est déjà visible."
+      }
+    },
+    {
+      "target": "#story",
+      "stage": {
+        "en": "Interest",
+        "fr": "Intérêt"
+      },
+      "title": {
+        "en": "Our story",
+        "fr": "Notre histoire"
+      },
+      "text": {
+        "en": "What makes this place different from the beach bar next door.",
+        "fr": "Ce qui distingue ce lieu du bar de plage d'à côté."
+      }
+    },
+    {
+      "target": "#signature",
+      "stage": {
+        "en": "Desire",
+        "fr": "Désir"
+      },
+      "title": {
+        "en": "Signature plates",
+        "fr": "Plats signature"
+      },
+      "text": {
+        "en": "Real dishes with prices. People buy with their eyes first.",
+        "fr": "De vrais plats avec leurs prix. On achète d'abord avec les yeux."
+      }
+    },
+    {
+      "target": "#gallery",
+      "stage": {
+        "en": "Trust",
+        "fr": "Confiance"
+      },
+      "title": {
+        "en": "Photos & events",
+        "fr": "Photos & événements"
+      },
+      "text": {
+        "en": "Proof the place is real, lively and worth the trip.",
+        "fr": "La preuve que le lieu est vivant et vaut le détour."
+      }
+    },
+    {
+      "target": "#visit",
+      "stage": {
+        "en": "Action",
+        "fr": "Action"
+      },
+      "title": {
+        "en": "Visit & book",
+        "fr": "Visite & réservation"
+      },
+      "text": {
+        "en": "Hours, map, Book a table and directions, together.",
+        "fr": "Horaires, carte, réservation et itinéraire, au même endroit."
+      }
+    }
   ],
   "stops": [
     {
       "target": "[data-tour=nav-book]",
-      "title": { "en": "\"Book a table\" never leaves the screen", "fr": "« Réserver » ne quitte jamais l'écran" },
-      "text": { "en": "The main action sits in the menu bar, which stays visible as you scroll.", "fr": "L'action principale est dans la barre de menu, qui reste visible pendant le défilement." },
-      "why": { "en": "Visitors decide at different moments. Wherever they are on the page, booking is one tap away.", "fr": "Chaque visiteur se décide à un moment différent. Où qu'il soit sur la page, la réservation est à un clic." }
+      "title": {
+        "en": "\"Book a table\" never leaves the screen",
+        "fr": "« Réserver » ne quitte jamais l'écran"
+      },
+      "text": {
+        "en": "The main action sits in the menu bar, which stays visible as you scroll.",
+        "fr": "L'action principale est dans la barre de menu, qui reste visible pendant le défilement."
+      },
+      "why": {
+        "en": "Visitors decide at different moments. Wherever they are on the page, booking is one tap away.",
+        "fr": "Chaque visiteur se décide à un moment différent. Où qu'il soit sur la page, la réservation est à un clic."
+      }
     },
     {
       "target": "[data-tour=headline]",
-      "title": { "en": "A headline you feel, not read", "fr": "Un titre qu'on ressent" },
-      "text": { "en": "Four words and a sunset photo say what this place is about.", "fr": "Quatre mots et un coucher de soleil disent tout du lieu." },
-      "why": { "en": "People judge a page in seconds. An emotion (sunset, sand, food) makes them stay; a long welcome text makes them leave.", "fr": "On juge une page en quelques secondes. Une émotion (coucher de soleil, sable, cuisine) retient ; un long texte de bienvenue fait fuir." }
+      "title": {
+        "en": "A headline you feel, not read",
+        "fr": "Un titre qu'on ressent"
+      },
+      "text": {
+        "en": "Four words and a sunset photo say what this place is about.",
+        "fr": "Quatre mots et un coucher de soleil disent tout du lieu."
+      },
+      "why": {
+        "en": "People judge a page in seconds. An emotion (sunset, sand, food) makes them stay; a long welcome text makes them leave.",
+        "fr": "On juge une page en quelques secondes. Une émotion (coucher de soleil, sable, cuisine) retient ; un long texte de bienvenue fait fuir."
+      }
     },
     {
       "target": "[data-tour=hero-book]",
-      "title": { "en": "\"Book a table\", twice on the first screen", "fr": "« Réserver », deux fois dès le premier écran" },
-      "text": { "en": "It's in the menu bar and again right under the headline, where the eye lands after reading it.", "fr": "Il est dans le menu et à nouveau sous le titre, là où le regard arrive après la lecture." },
-      "why": { "en": "When visitors are ready, the next step must already be in front of them. Orange is used only for booking, so nothing competes with it.", "fr": "Quand le visiteur est prêt, l'étape suivante doit déjà être devant lui. L'orange est réservé à la réservation : rien ne lui fait concurrence." }
+      "title": {
+        "en": "\"Book a table\", twice on the first screen",
+        "fr": "« Réserver », deux fois dès le premier écran"
+      },
+      "text": {
+        "en": "It's in the menu bar and again right under the headline, where the eye lands after reading it.",
+        "fr": "Il est dans le menu et à nouveau sous le titre, là où le regard arrive après la lecture."
+      },
+      "why": {
+        "en": "When visitors are ready, the next step must already be in front of them. Orange is used only for booking, so nothing competes with it.",
+        "fr": "Quand le visiteur est prêt, l'étape suivante doit déjà être devant lui. L'orange est réservé à la réservation : rien ne lui fait concurrence."
+      }
     },
     {
       "target": "[data-tour=hours-badge]",
-      "title": { "en": "Opening hours, answered at a glance", "fr": "Les horaires, en un coup d'œil" },
-      "text": { "en": "The turning badge says \"Open daily · Sunset happy hour 17–19\".", "fr": "Le badge tournant indique « Ouvert tous les jours · Happy hour 17–19 h »." },
-      "why": { "en": "\"Are they open tonight?\" is the first question. Answering it before it's asked removes a reason to leave.", "fr": "« Est-ce ouvert ce soir ? » est la première question. Y répondre d'avance enlève une raison de partir." }
+      "title": {
+        "en": "Opening hours, answered at a glance",
+        "fr": "Les horaires, en un coup d'œil"
+      },
+      "text": {
+        "en": "The turning badge says \"Open daily · Sunset happy hour 17–19\".",
+        "fr": "Le badge tournant indique « Ouvert tous les jours · Happy hour 17–19 h »."
+      },
+      "why": {
+        "en": "\"Are they open tonight?\" is the first question. Answering it before it's asked removes a reason to leave.",
+        "fr": "« Est-ce ouvert ce soir ? » est la première question. Y répondre d'avance enlève une raison de partir."
+      }
     },
     {
       "target": "#story h2",
-      "title": { "en": "A story, not a list of services", "fr": "Une histoire, pas une liste" },
-      "text": { "en": "Fishermen at 6 am, a wood-fire grill, sixty seats on the sand.", "fr": "Les pêcheurs à 6 h, le grill au feu de bois, soixante places sur le sable." },
-      "why": { "en": "Concrete details make a place memorable and different from the competition. That's what people repeat to their friends.", "fr": "Des détails concrets rendent un lieu mémorable et différent. C'est ce que les gens racontent à leurs amis." }
+      "title": {
+        "en": "A story, not a list of services",
+        "fr": "Une histoire, pas une liste"
+      },
+      "text": {
+        "en": "Fishermen at 6 am, a wood-fire grill, sixty seats on the sand.",
+        "fr": "Les pêcheurs à 6 h, le grill au feu de bois, soixante places sur le sable."
+      },
+      "why": {
+        "en": "Concrete details make a place memorable and different from the competition. That's what people repeat to their friends.",
+        "fr": "Des détails concrets rendent un lieu mémorable et différent. C'est ce que les gens racontent à leurs amis."
+      }
     },
     {
       "target": "[data-tour=dishes]",
-      "title": { "en": "Prices on show", "fr": "Des prix affichés" },
-      "text": { "en": "Signature dishes with photos and clear prices.", "fr": "Les plats signature avec photos et prix clairs." },
-      "why": { "en": "Hidden prices make people hesitate and leave. Clear prices answer \"can I afford it?\" before it's asked.", "fr": "Des prix cachés font hésiter puis partir. Des prix clairs répondent à « est-ce dans mon budget ? » d'avance." }
+      "title": {
+        "en": "Prices on show",
+        "fr": "Des prix affichés"
+      },
+      "text": {
+        "en": "Signature dishes with photos and clear prices.",
+        "fr": "Les plats signature avec photos et prix clairs."
+      },
+      "why": {
+        "en": "Hidden prices make people hesitate and leave. Clear prices answer \"can I afford it?\" before it's asked.",
+        "fr": "Des prix cachés font hésiter puis partir. Des prix clairs répondent à « est-ce dans mon budget ? » d'avance."
+      }
     },
     {
       "target": "[data-tour=full-menu]",
-      "title": { "en": "A short path to the full menu", "fr": "Un chemin court vers la carte" },
-      "text": { "en": "Four favourites here, everything else one click away.", "fr": "Quatre favoris ici, tout le reste à un clic." },
-      "why": { "en": "Too many choices on the home page slow people down. A short selection sells; the full menu is there for the curious.", "fr": "Trop de choix ralentit. Une courte sélection fait vendre ; la carte complète est là pour les curieux." }
+      "title": {
+        "en": "A short path to the full menu",
+        "fr": "Un chemin court vers la carte"
+      },
+      "text": {
+        "en": "Four favourites here, everything else one click away.",
+        "fr": "Quatre favoris ici, tout le reste à un clic."
+      },
+      "why": {
+        "en": "Too many choices on the home page slow people down. A short selection sells; the full menu is there for the curious.",
+        "fr": "Trop de choix ralentit. Une courte sélection fait vendre ; la carte complète est là pour les curieux."
+      }
     },
     {
       "target": "[data-tour=photos]",
-      "title": { "en": "Photos that do the selling", "fr": "Des photos qui vendent" },
-      "text": { "en": "Real food, real beach, real sunsets, large and sharp.", "fr": "Vrais plats, vraie plage, vrais couchers de soleil, en grand et net." },
-      "why": { "en": "People buy with their eyes first, especially food and places. Good photos do more than any paragraph.", "fr": "On achète d'abord avec les yeux, surtout pour un repas ou un lieu. De bonnes photos valent mieux que tout paragraphe." }
+      "title": {
+        "en": "Photos that do the selling",
+        "fr": "Des photos qui vendent"
+      },
+      "text": {
+        "en": "Real food, real beach, real sunsets, large and sharp.",
+        "fr": "Vrais plats, vraie plage, vrais couchers de soleil, en grand et net."
+      },
+      "why": {
+        "en": "People buy with their eyes first, especially food and places. Good photos do more than any paragraph.",
+        "fr": "On achète d'abord avec les yeux, surtout pour un repas ou un lieu. De bonnes photos valent mieux que tout paragraphe."
+      }
     },
     {
       "target": "#events h2",
-      "title": { "en": "A reason to come back", "fr": "Une raison de revenir" },
-      "text": { "en": "Séga Fridays and other weekly events.", "fr": "Séga le vendredi et d'autres soirées chaque semaine." },
-      "why": { "en": "Regular events turn a one-time visit into a habit and give people a date to book for.", "fr": "Des rendez-vous réguliers transforment une visite en habitude et donnent une date pour réserver." }
+      "title": {
+        "en": "A reason to come back",
+        "fr": "Une raison de revenir"
+      },
+      "text": {
+        "en": "Séga Fridays and other weekly events.",
+        "fr": "Séga le vendredi et d'autres soirées chaque semaine."
+      },
+      "why": {
+        "en": "Regular events turn a one-time visit into a habit and give people a date to book for.",
+        "fr": "Des rendez-vous réguliers transforment une visite en habitude et donnent une date pour réserver."
+      }
     },
     {
       "target": "[data-tour=hours]",
-      "title": { "en": "Everything to decide \"let's go tonight\"", "fr": "Tout pour décider « on y va ce soir »" },
-      "text": { "en": "Hours, parking and walk-in info, next to the map.", "fr": "Horaires, parking et accueil sans réservation, à côté de la carte." },
-      "why": { "en": "The last doubts before visiting are practical. Answering them in one place removes friction.", "fr": "Les derniers doutes sont pratiques. Y répondre au même endroit enlève les freins." }
+      "title": {
+        "en": "Everything to decide \"let's go tonight\"",
+        "fr": "Tout pour décider « on y va ce soir »"
+      },
+      "text": {
+        "en": "Hours, parking and walk-in info, next to the map.",
+        "fr": "Horaires, parking et accueil sans réservation, à côté de la carte."
+      },
+      "why": {
+        "en": "The last doubts before visiting are practical. Answering them in one place removes friction.",
+        "fr": "Les derniers doutes sont pratiques. Y répondre au même endroit enlève les freins."
+      }
     },
     {
       "target": "[data-tour=visit-actions]",
-      "title": { "en": "Book or get directions, right there", "fr": "Réserver ou s'y rendre, juste là" },
-      "text": { "en": "The two actions people need at this point: reserve, or open the route in Google Maps.", "fr": "Les deux actions utiles à ce moment : réserver, ou ouvrir l'itinéraire dans Google Maps." },
-      "why": { "en": "Each section ends with an action that matches what the visitor just read. No dead ends.", "fr": "Chaque section se termine par l'action qui correspond à ce que le visiteur vient de lire. Aucune impasse." }
+      "title": {
+        "en": "Book or get directions, right there",
+        "fr": "Réserver ou s'y rendre, juste là"
+      },
+      "text": {
+        "en": "The two actions people need at this point: reserve, or open the route in Google Maps.",
+        "fr": "Les deux actions utiles à ce moment : réserver, ou ouvrir l'itinéraire dans Google Maps."
+      },
+      "why": {
+        "en": "Each section ends with an action that matches what the visitor just read. No dead ends.",
+        "fr": "Chaque section se termine par l'action qui correspond à ce que le visiteur vient de lire. Aucune impasse."
+      }
     },
     {
       "target": "[data-tour=closing-book]",
-      "title": { "en": "A final, unmissable call", "fr": "Un dernier appel impossible à manquer" },
-      "text": { "en": "A giant \"Book a table\" and the phone number end the page.", "fr": "Un immense « Réserver une table » et le téléphone terminent la page." },
-      "why": { "en": "Visitors who scroll to the bottom are interested. Give them one clear thing to do.", "fr": "Ceux qui descendent jusqu'en bas sont intéressés. Donnez-leur une seule chose claire à faire." }
+      "title": {
+        "en": "A final, unmissable call",
+        "fr": "Un dernier appel impossible à manquer"
+      },
+      "text": {
+        "en": "A giant \"Book a table\" and the phone number end the page.",
+        "fr": "Un immense « Réserver une table » et le téléphone terminent la page."
+      },
+      "why": {
+        "en": "Visitors who scroll to the bottom are interested. Give them one clear thing to do.",
+        "fr": "Ceux qui descendent jusqu'en bas sont intéressés. Donnez-leur une seule chose claire à faire."
+      }
     }
   ]
 }

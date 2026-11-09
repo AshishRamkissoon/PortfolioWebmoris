@@ -164,3 +164,52 @@ def test_templates_without_price_offer_a_price_enquiry(client, industry):
 def test_priced_templates_have_no_price_enquiry_link(client, industry):
     make_template(industry, name="Priced", starting_price=25000)
     assert "?ask=price" not in client.get(LIST).content.decode()
+
+
+# --- Demo badge API (read by the live demos) ---------------------------------------------
+
+
+def test_demo_badge_api_gives_price_and_whatsapp_from_admin(client):
+    from decimal import Decimal
+    from urllib.parse import unquote
+
+    from apps.core.models import SiteSettings
+
+    site_settings = SiteSettings.load()
+    site_settings.whatsapp_number = "23050000000"
+    site_settings.save()
+    template = make_template(
+        TemplateIndustry.objects.create(name="Food", slug="food"),
+        name="Bistro",
+        slug="bistro",
+        starting_price=Decimal("20000"),
+    )
+    response = client.get(f"/api/demo-badge/{template.slug}/")
+    assert response.status_code == 200
+    assert response["Access-Control-Allow-Origin"] == "*"
+    assert "Set-Cookie" not in response.headers
+    data = response.json()
+    assert data["price"] == {"en": "MUR 20,000", "fr": "MUR 20 000"}
+    assert data["whatsapp"]["en"].startswith("https://wa.me/23050000000?text=Hi%20Webmoris")
+    assert "Bonjour Webmoris" in unquote(data["whatsapp"]["fr"])
+
+
+def test_demo_badge_api_without_price_or_number(client):
+    from apps.core.models import SiteSettings
+
+    site_settings = SiteSettings.load()
+    site_settings.whatsapp_number = ""
+    site_settings.save()
+    template = make_template(TemplateIndustry.objects.create(name="Food", slug="food"))
+    assert client.get(f"/api/demo-badge/{template.slug}/").json() == {
+        "price": None,
+        "whatsapp": None,
+    }
+
+
+def test_demo_badge_api_hides_unpublished_templates(client):
+    template = make_template(
+        TemplateIndustry.objects.create(name="Food", slug="food"), is_published=False
+    )
+    assert client.get(f"/api/demo-badge/{template.slug}/").status_code == 404
+    assert client.post(f"/api/demo-badge/{template.slug}/").status_code in (403, 405)

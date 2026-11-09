@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webmoris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:29-0800\n"
+"POT-Creation-Date: 2026-11-09 03:07-0800\n"
 "PO-Revision-Date: 2026-10-31 12:00+0400\n"
 "Last-Translator: Webmoris\n"
 "Language-Team: French\n"
@@ -180,12 +180,12 @@ msgstr ""
 msgid "photo"
 msgstr ""
 
-#: .\apps\core\models.py:180 .\apps\core\models.py:265
+#: .\apps\core\models.py:180 .\apps\core\models.py:267
 msgid "show on site"
 msgstr ""
 
 #: .\apps\core\models.py:181 .\apps\core\models.py:201
-#: .\apps\core\models.py:266 .\apps\portfolio\models.py:14
+#: .\apps\core\models.py:268 .\apps\portfolio\models.py:14
 #: .\apps\portfolio\models.py:104 .\apps\portfolio\models.py:157
 #: .\apps\portfolio\models.py:185 .\apps\pricing\models.py:93
 #: .\apps\pricing\models.py:299 .\apps\readymade\models.py:23
@@ -272,40 +272,40 @@ msgstr ""
 msgid "typical features"
 msgstr ""
 
-#: .\apps\core\models.py:241
+#: .\apps\core\models.py:242
 msgid "One per line, e.g. “Table booking”. The first three float around the preview."
 msgstr ""
 
-#: .\apps\core\models.py:245 .\apps\leads\models.py:102
+#: .\apps\core\models.py:247 .\apps\leads\models.py:102
 #: .\apps\pricing\models.py:99 .\apps\pricing\models.py:252
 msgid "package"
 msgstr ""
 
-#: .\apps\core\models.py:249
+#: .\apps\core\models.py:251
 msgid "Its “From” price is shown when this business type is picked."
 msgstr ""
 
-#: .\apps\core\models.py:253
+#: .\apps\core\models.py:255
 msgid "ready-made demo"
 msgstr ""
 
-#: .\apps\core\models.py:257
+#: .\apps\core\models.py:259
 msgid "Shown in the preview window."
 msgstr ""
 
-#: .\apps\core\models.py:260
+#: .\apps\core\models.py:262
 msgid "project type in the brief"
 msgstr ""
 
-#: .\apps\core\models.py:263
+#: .\apps\core\models.py:265
 msgid "Pre-ticked in the project brief when “Start my website” is clicked."
 msgstr ""
 
-#: .\apps\core\models.py:270
+#: .\apps\core\models.py:272
 msgid "hero business type"
 msgstr ""
 
-#: .\apps\core\models.py:271
+#: .\apps\core\models.py:273
 msgid "hero business types"
 msgstr ""
 
@@ -318,15 +318,15 @@ msgstr ""
 msgid "Use a YouTube or Vimeo video link."
 msgstr ""
 
-#: .\apps\core\views.py:63 .\templates\pages\home.html:59
+#: .\apps\core\views.py:70 .\templates\pages\home.html:59
 msgid "Mobile-ready"
 msgstr "Adapté au mobile"
 
-#: .\apps\core\views.py:63 .\templates\pages\home.html:60
+#: .\apps\core\views.py:71 .\templates\pages\home.html:60
 msgid "English & French"
 msgstr "Anglais & français"
 
-#: .\apps\core\views.py:63 .\apps\leads\models.py:77
+#: .\apps\core\views.py:72 .\apps\leads\models.py:77
 #: .\templates\pages\home.html:61
 msgid "WhatsApp button"
 msgstr "Bouton WhatsApp"
@@ -1175,10 +1175,14 @@ msgstr ""
 msgid "website templates"
 msgstr ""
 
-#: .\apps\readymade\views.py:36
+#: .\apps\readymade\views.py:43
 #, python-format
 msgid "Hello, I'm interested in the ready-made website “%(name)s”."
 msgstr "Bonjour, le site clés en main « %(name)s » m'intéresse."
+
+#: .\apps\readymade\views.py:68
+msgid "Hi Webmoris! I'm interested in the %(name)s website."
+msgstr "Bonjour Webmoris ! Le site %(name)s m'intéresse."
 
 #: .\apps\services\models.py:13
 msgid "intro"
@@ -1698,6 +1702,7 @@ msgid "Start my website"
 msgstr "Lancer mon site"
 
 #: .\templates\pages\home.html:56
+#, python-format
 msgid "Ready-made demo: %(name)s"
 msgstr "Démo de site clé en main : %(name)s"
 
@@ -1709,67 +1714,67 @@ msgstr "Démo clé en main"
 msgid "Live preview"
 msgstr "Aperçu en direct"
 
-#: .\templates\pages\home.html:76
+#: .\templates\pages\home.html:75
 msgid "Selected work"
 msgstr "Réalisations choisies"
 
-#: .\templates\pages\home.html:76
+#: .\templates\pages\home.html:75
 msgid "Projects we're proud of."
 msgstr "Des projets dont nous sommes fiers."
 
-#: .\templates\pages\home.html:78
+#: .\templates\pages\home.html:77
 msgid "Work in progress"
 msgstr "Projets en cours"
 
-#: .\templates\pages\home.html:78
+#: .\templates\pages\home.html:77
 msgid "What we're building now."
 msgstr "Ce que nous construisons en ce moment."
 
-#: .\templates\pages\home.html:79
+#: .\templates\pages\home.html:78
 msgid "A look at the client projects we're currently designing and developing."
 msgstr "Un aperçu des projets clients que nous concevons et développons actuellement."
 
-#: .\templates\pages\home.html:82
+#: .\templates\pages\home.html:81
 msgid "View all projects"
 msgstr "Voir tous les projets"
 
-#: .\templates\pages\home.html:96
+#: .\templates\pages\home.html:95
 msgid "What we do"
 msgstr "Ce que nous faisons"
 
-#: .\templates\pages\home.html:96
+#: .\templates\pages\home.html:95
 msgid "Websites, marketing and content, under one roof."
 msgstr "Sites web, marketing et contenu, sous un même toit."
 
-#: .\templates\pages\home.html:127
+#: .\templates\pages\home.html:126
 msgid "Ready-made websites"
 msgstr "Sites clés en main"
 
-#: .\templates\pages\home.html:127
+#: .\templates\pages\home.html:126
 msgid "Launch fast with a ready-made site."
 msgstr "Lancez-vous vite avec un site clés en main."
 
-#: .\templates\pages\home.html:127
+#: .\templates\pages\home.html:126
 msgid "Pick a design for your industry and we'll customise it with your brand, content and domain."
 msgstr "Choisissez un design pour votre secteur et nous l'adaptons à votre marque, vos contenus et votre domaine."
 
-#: .\templates\pages\home.html:129
+#: .\templates\pages\home.html:128
 msgid "Browse all"
 msgstr "Tout voir"
 
-#: .\templates\pages\home.html:145 .\templates\services\list.html:49
+#: .\templates\pages\home.html:144 .\templates\services\list.html:49
 msgid "Packages"
 msgstr "Formules"
 
-#: .\templates\pages\home.html:145
+#: .\templates\pages\home.html:144
 msgid "Tell us about your project. Get a tailored quote."
 msgstr "Parlez-nous de votre projet. Recevez un devis sur mesure."
 
-#: .\templates\pages\home.html:146
+#: .\templates\pages\home.html:145
 msgid "Pick a starting point and answer a few quick questions. We reply with a fixed quote, then you start with a deposit and pay the balance at launch."
 msgstr "Choisissez un point de départ et répondez à quelques questions. Nous vous envoyons un devis fixe ; vous démarrez avec un acompte et réglez le solde à la mise en ligne."
 
-#: .\templates\pages\home.html:148 .\templates\pricing\checkout.html:9
+#: .\templates\pages\home.html:147 .\templates\pricing\checkout.html:9
 #: .\templates\services\list.html:52
 msgid "All packages"
 msgstr "Toutes les formules"

@@ -8,6 +8,7 @@ from django.urls import include, path
 from apps.core.sitemaps import SITEMAPS
 from apps.core.views import robots_txt
 from apps.pricing.views import paypal_webhook
+from apps.readymade.views import demo_badge
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
@@ -15,6 +16,8 @@ urlpatterns = [
     path("payments/paypal/webhook/", paypal_webhook, name="paypal_webhook"),
     path("sitemap.xml", sitemap, {"sitemaps": SITEMAPS}, name="sitemap"),
     path("robots.txt", robots_txt, name="robots_txt"),
+    # Read by the live demos (other domains) for the badge price and WhatsApp link.
+    path("api/demo-badge/<slug:slug>/", demo_badge, name="demo_badge"),
 ]
 
 urlpatterns += i18n_patterns(

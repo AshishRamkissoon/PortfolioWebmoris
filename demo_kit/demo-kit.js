@@ -298,14 +298,29 @@
         css.rel = "stylesheet";
         css.href = new URL("demo-kit.css", script.src).href;
         css.onload = function () {
-          buildExtras(tour);
+          buildExtras(tour, fetchBadgeData());
         };
         document.head.appendChild(css);
       })
-      .catch(function () {});
+      .catch(function (error) {
+        if (window.console) console.warn("Webmoris demo kit:", error);
+      });
   }
 
-  function buildExtras(tour) {
+  // Price and WhatsApp link come from the agency site, where they are managed in admin.
+  function fetchBadgeData() {
+    if (!config.template) return Promise.resolve(null);
+    var url = new URL("/api/demo-badge/" + encodeURIComponent(config.template) + "/", config.agency).href;
+    return fetch(url, { mode: "cors", credentials: "omit" })
+      .then(function (response) {
+        return response.ok ? response.json() : null;
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+  function buildExtras(tour, badgeData) {
     var root = make("div", "dk-root");
     root.dataset.demoKit = "extras";
     var theme = tour.theme || {};
@@ -318,7 +333,7 @@
     var floats = make("div", "dk-floats");
     root.appendChild(floats);
     var tourApi = buildTour(tour, root, floats);
-    buildBadge(tour.badge || {}, floats, tourApi);
+    buildBadge(tour.badge || {}, badgeData, floats, tourApi);
     if (tour.mobileBar) buildMobileBar(tour.mobileBar, root);
     if (tour.nudge) buildNudge(tour.nudge, root, tourApi);
 
@@ -329,7 +344,7 @@
   }
 
   // ---- "Get this website" badge ----
-  function buildBadge(badge, floats, tourApi) {
+  function buildBadge(badge, badgeData, floats, tourApi) {
     var card = make("div", "dk-card");
     card.id = "dk-card";
     card.hidden = true;
@@ -343,12 +358,16 @@
     card.appendChild(make("h2", null, TEXT.cardTitle));
     card.appendChild(make("p", null, t(badge.pitch) || TEXT.pitch));
     var price = make("div", "dk-price");
-    if (badge.price) {
-      price.appendChild(make("span", null, TEXT.priceFrom));
-      price.appendChild(make("strong", null, t(badge.price)));
-    } else {
-      price.appendChild(make("span", null, TEXT.priceAsk));
+    function showPrice(value) {
+      price.textContent = "";
+      if (value) {
+        price.appendChild(make("span", null, TEXT.priceFrom));
+        price.appendChild(make("strong", null, value));
+      } else {
+        price.appendChild(make("span", null, TEXT.priceAsk));
+      }
     }
+    showPrice(t(badge.price));
     card.appendChild(price);
     var checks = make("ul", "dk-checks");
     TEXT.checks.forEach(function (item) {
@@ -360,6 +379,21 @@
     cta.target = "_blank";
     cta.rel = "noopener noreferrer";
     card.appendChild(cta);
+    var actions = make("div", "dk-actions");
+    card.insertBefore(actions, cta);
+    actions.appendChild(cta);
+    badgeData.then(function (data) {
+      if (!data) return;
+      if (data.price) showPrice(t(data.price));
+      var link = t(data.whatsapp);
+      if (link && /^https:\/\/wa\.me\//.test(link)) {
+        var whatsapp = make("a", "dk-whatsapp", TEXT.whatsapp);
+        whatsapp.href = link;
+        whatsapp.target = "_blank";
+        whatsapp.rel = "noopener noreferrer";
+        actions.appendChild(whatsapp);
+      }
+    });
     if (tourApi.available) {
       var why = button("dk-link", TEXT.toggle + " →");
       why.addEventListener("click", function () {

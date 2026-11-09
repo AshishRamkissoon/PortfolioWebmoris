@@ -1,6 +1,13 @@
+from django.conf import settings
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.utils import translation
 from django.utils.cache import patch_vary_headers
 from django.utils.translation import gettext as _
+from django.views.decorators.http import require_GET
+
+from apps.core.models import SiteSettings
+from apps.core.templatetags.core_tags import money
 
 from .models import TemplateIndustry, WebsiteTemplate
 
@@ -41,3 +48,31 @@ def template_detail(request, slug):
         "readymade/detail.html",
         {"template": template, "other_templates": others, "whatsapp_message": whatsapp_message},
     )
+
+
+@require_GET
+def demo_badge(request, slug):
+    """Public data for the "Get this website" badge on a live demo (another domain).
+
+    Only what is already public on the site: the starting price and the WhatsApp link,
+    both managed in admin. No cookies, so the demos can read it with a plain CORS request.
+    """
+    template = get_object_or_404(WebsiteTemplate.objects.published(), slug=slug)
+    site_settings = SiteSettings.load()
+    data = {"price": None, "whatsapp": None}
+    for lang, _name in settings.LANGUAGES:
+        with translation.override(lang):
+            if template.starting_price is not None:
+                data["price"] = data["price"] or {}
+                data["price"][lang] = money(template.starting_price, "MUR")
+            message = _("Hi Webmoris! I'm interested in the %(name)s website.") % {
+                "name": template.name
+            }
+            link = site_settings.whatsapp_link_for(message)
+            if link:
+                data["whatsapp"] = data["whatsapp"] or {}
+                data["whatsapp"][lang] = link
+    response = JsonResponse(data)
+    response["Access-Control-Allow-Origin"] = "*"
+    response["Cache-Control"] = "public, max-age=300"
+    return response

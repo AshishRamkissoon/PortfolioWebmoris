@@ -182,6 +182,27 @@
   color: var(--dk-cyan);
   font-weight: 800;
 }
+.dk-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.dk-actions .dk-cta {
+  flex: 1;
+  margin-top: 0;
+}
+.dk-whatsapp {
+  display: grid;
+  place-items: center;
+  padding: 0 16px;
+  border: 1px solid #25d366;
+  border-radius: 999px;
+  color: #25d366 !important;
+  font-weight: 700;
+}
+.dk-whatsapp:hover {
+  background: rgb(37 211 102 / 0.12);
+}
 .dk-cta {
   display: block;
   margin-top: 14px;
