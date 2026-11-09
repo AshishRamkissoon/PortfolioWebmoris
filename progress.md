@@ -24,7 +24,8 @@
 | 11 | Fifth Live Demo: Eco Lodge (Villa / Guesthouse) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 12 | Sixth Live Demo: Street Food Co. (Food Truck / Takeaway) | ✅ Completed | 2026-11-02 | 2026-11-02 | 2026-11-02 |
 | 13 | Project Brief, Quote-First Pricing and Deposits | ✅ Completed | 2026-11-05 | 2026-11-06 | 2026-11-07 |
-| 14 | Services Page Redesign | 🔵 Awaiting approval | 2026-11-07 | 2026-11-07 | — |
+| 14 | Services Page Redesign | ✅ Completed | 2026-11-07 | 2026-11-07 | 2026-11-09 |
+| 15 | Demo Conversion Tour ("See why it converts") | 🟡 In progress | 2026-11-09 | — | — |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -45,6 +46,8 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-09 — Phase 15 — Started — "See why it converts" mode on the 6 demos (owner approved the mock-up): floating "Get this website" badge and mini card, x-ray tour with hotspots and notes per demo, page blueprint, sticky mobile action bar and scroll nudge. Front end only (no admin, no tracking). Branch `phase/15-demo-tour`.
+- 2026-11-09 — Phase 14 — Approved by owner — merged into `main` and pushed.
 - 2026-11-09 — Phase 14 — Additions requested by owner before approval — Interactive home hero (owner approved the mock-up): generic headline and "Start my website" button; optional "See what we could build for you" business types (new `HeroBusiness` model in admin: label, features, package, ready-made demo, brief project type) showing typical features and the "From" price; demo preview in a browser window that tilts with the pointer, rotates through the demos until one is picked, and has floating feature tags. Works without JS (?business=…) and with reduced motion. Also: package cards list rounds of changes; team photos cropped from the top. Test: open `/en/` and `/fr/`, pick a business type, then click "Start my website".
 - 2026-11-07 — Phase 14 — Ready for review — Services page redesigned (branch `phase/14-services-page`).
   - **Layout:** hero with "Get a Quote" and "See pricing"; one numbered section per service (01–09): group, title and summary on the left; description and "what you get" points on the right ("Label: text" lines show the label in bold); then 3 packages and the call-to-action band. Original wording, no copy from other agencies.
