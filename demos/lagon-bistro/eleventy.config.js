@@ -63,6 +63,7 @@ async function preloadImage(key, sizes = "100vw", widths = WIDTHS) {
 export default function (eleventyConfig) {
   // The reusable Webmoris demo kit (banner, blocked forms, noindex).
   eleventyConfig.addPassthroughCopy({ "../../demo_kit/demo-kit.js": "demo-kit.js" });
+  eleventyConfig.addPassthroughCopy({ "../../demo_kit/demo-kit.css": "demo-kit.css" });
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
 
   eleventyConfig.addAsyncShortcode("picture", picture);

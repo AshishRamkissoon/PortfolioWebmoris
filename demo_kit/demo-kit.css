@@ -1,0 +1,563 @@
+/*!
+ * Webmoris demo kit: styles for the "Get this website" badge, the "See why it converts"
+ * tour, the mobile action bar and the scroll nudge. Loaded by demo-kit.js only on demos
+ * that ship a demo-tour.json. Everything is prefixed "dk-" to stay clear of the demo's CSS.
+ */
+.dk-root {
+  --dk-cyan: #22e3ff;
+  --dk-ink: #05060a;
+  --dk-ink-2: #0b0d14;
+  --dk-ink-3: #161a26;
+  --dk-line: #232838;
+  --dk-text: #eef0f6;
+  --dk-muted: #a3abbd;
+  --dk-bottom: 20px;
+  font: 400 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--dk-text);
+}
+.dk-root *,
+.dk-root *::before,
+.dk-root *::after {
+  box-sizing: border-box;
+}
+.dk-root button {
+  font: inherit;
+  cursor: pointer;
+}
+.dk-root a {
+  text-decoration: none;
+}
+.dk-root :focus-visible {
+  outline: 2px solid var(--dk-cyan);
+  outline-offset: 2px;
+}
+
+/* ---- Floating controls (bottom-left) ---- */
+.dk-floats {
+  position: fixed;
+  left: 20px;
+  bottom: var(--dk-bottom);
+  z-index: 2147482500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: calc(100vw - 40px);
+  transform: translateY(calc(100% + 40px));
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+}
+.dk-floats.dk-in {
+  transform: none;
+  opacity: 1;
+}
+.dk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 18px 7px 7px;
+  background: var(--dk-cyan);
+  color: var(--dk-ink);
+  font-weight: 700 !important;
+  box-shadow: 0 0 0 6px rgb(34 227 255 / 0.18), 0 18px 40px -12px rgb(0 0 0 / 0.6);
+}
+.dk-in .dk-pill {
+  animation: dk-pulse 1.6s ease-out 0.7s 1;
+}
+.dk-w {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--dk-ink);
+  color: var(--dk-cyan);
+  font-weight: 800;
+}
+.dk-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--dk-line);
+  border-radius: 999px;
+  padding: 7px 16px 7px 8px;
+  background: var(--dk-ink);
+  color: var(--dk-text);
+  font-weight: 700 !important;
+  box-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.7);
+}
+.dk-toggle[aria-pressed="true"] {
+  border-color: var(--dk-cyan);
+  box-shadow: 0 0 30px -6px rgb(34 227 255 / 0.6);
+}
+.dk-switch {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--dk-line);
+  transition: background 0.2s;
+}
+.dk-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dk-text);
+  transition: transform 0.2s;
+}
+[aria-pressed="true"] > .dk-switch {
+  background: var(--dk-cyan);
+}
+[aria-pressed="true"] > .dk-switch::after {
+  background: var(--dk-ink);
+  transform: translateX(14px);
+}
+
+/* ---- Badge card ---- */
+.dk-card {
+  position: relative;
+  width: 340px;
+  max-width: 100%;
+  padding: 18px;
+  border: 1px solid rgb(34 227 255 / 0.45);
+  border-radius: 18px;
+  background: var(--dk-ink);
+  box-shadow: 0 30px 60px -10px rgb(0 0 0 / 0.75), 0 0 40px -12px rgb(34 227 255 / 0.45);
+}
+.dk-card[hidden] {
+  display: none;
+}
+.dk-eyebrow {
+  margin: 0;
+  color: var(--dk-cyan);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.dk-card h2 {
+  margin: 6px 0 0;
+  color: var(--dk-text);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.dk-card p {
+  margin: 6px 0 0;
+  color: var(--dk-muted);
+  font-size: 13px;
+}
+.dk-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--dk-ink-3);
+  font-size: 13px;
+}
+.dk-price strong {
+  font-size: 16px;
+}
+.dk-checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--dk-text);
+  font-size: 12px;
+}
+.dk-checks li::before {
+  content: "✓ ";
+  color: var(--dk-cyan);
+  font-weight: 800;
+}
+.dk-cta {
+  display: block;
+  margin-top: 14px;
+  padding: 11px;
+  border-radius: 999px;
+  background: var(--dk-cyan);
+  color: var(--dk-ink) !important;
+  font-weight: 700;
+  text-align: center;
+}
+.dk-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--dk-muted);
+  font-size: 18px !important;
+  line-height: 1;
+}
+.dk-close:hover {
+  background: var(--dk-ink-3);
+  color: var(--dk-text);
+}
+
+/* ---- X-ray tour ---- */
+.dk-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482000;
+  pointer-events: none;
+}
+.dk-spot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 2px solid var(--dk-cyan);
+  border-radius: 14px;
+  box-shadow: 0 0 0 200vmax rgb(5 6 10 / 0.55), 0 0 30px rgb(34 227 255 / 0.6);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dk-hl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 2px dashed rgb(34 227 255 / 0.7);
+  border-radius: 12px;
+  background: rgb(34 227 255 / 0.05);
+}
+.dk-dot {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--dk-cyan);
+  color: var(--dk-ink);
+  font-weight: 800 !important;
+  box-shadow: 0 0 0 6px rgb(34 227 255 / 0.25);
+  pointer-events: auto;
+}
+.dk-hl.dk-active .dk-dot {
+  animation: dk-pulse 1.8s ease-out infinite;
+}
+.dk-stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 5px 12px;
+  border: 1px solid rgb(34 227 255 / 0.45);
+  border-radius: 999px;
+  background: var(--dk-ink);
+  color: var(--dk-cyan);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dk-panel {
+  position: fixed;
+  top: calc(var(--demo-bar-h, 0px) + 84px);
+  right: 20px;
+  z-index: 2147482600;
+  width: 370px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - var(--demo-bar-h, 0px) - 110px);
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid rgb(34 227 255 / 0.5);
+  border-radius: 18px;
+  background: var(--dk-ink);
+  box-shadow: 0 30px 60px -10px rgb(0 0 0 / 0.8);
+}
+.dk-panel.dk-left {
+  right: auto;
+  left: 20px;
+}
+.dk-panel[hidden] {
+  display: none;
+}
+.dk-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 30px;
+  color: var(--dk-muted);
+  font-size: 12px;
+}
+.dk-panel h2 {
+  margin: 12px 0 0;
+  color: var(--dk-text);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.dk-panel p {
+  margin: 8px 0 0;
+  color: var(--dk-muted);
+}
+.dk-why {
+  margin-top: 12px !important;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--dk-ink-3);
+  color: var(--dk-text) !important;
+  font-size: 13px;
+}
+.dk-why strong {
+  color: var(--dk-cyan);
+}
+.dk-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+}
+.dk-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  border: 1px solid var(--dk-line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  background: transparent;
+  color: var(--dk-text);
+  font-weight: 600 !important;
+}
+.dk-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.dk-btn-primary {
+  border-color: var(--dk-cyan);
+  background: var(--dk-cyan);
+  color: var(--dk-ink);
+}
+.dk-steps {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+}
+.dk-steps i {
+  width: 8px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--dk-line);
+}
+.dk-steps i.dk-on {
+  background: var(--dk-cyan);
+}
+.dk-card .dk-link {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+.dk-short {
+  display: none;
+}
+.dk-link {
+  margin-top: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--dk-cyan);
+  font-weight: 600 !important;
+}
+.dk-blueprint {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.dk-blueprint button {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--dk-line);
+  border-radius: 12px;
+  background: var(--dk-ink-2);
+  color: var(--dk-text);
+  text-align: left;
+}
+.dk-blueprint button:hover {
+  border-color: var(--dk-cyan);
+}
+.dk-blueprint em {
+  display: block;
+  color: var(--dk-cyan);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.dk-blueprint strong {
+  display: block;
+  margin-top: 2px;
+}
+.dk-blueprint span {
+  display: block;
+  margin-top: 2px;
+  color: var(--dk-muted);
+  font-size: 12px;
+}
+
+/* ---- Scroll nudge (part of the demo, in its own colours) ---- */
+.dk-nudge {
+  position: fixed;
+  right: 20px;
+  bottom: var(--dk-bottom);
+  z-index: 2147482400;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 10px 16px;
+  border: 1px solid var(--dk-border, #f08a4b);
+  border-radius: 16px;
+  background: var(--dk-surface, #1b120b);
+  color: var(--dk-surface-text, #fff7ea);
+  font-weight: 600;
+  box-shadow: 0 20px 40px -12px rgb(0 0 0 / 0.6);
+  transform: translateY(calc(100% + 40px));
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+}
+.dk-nudge.dk-in {
+  transform: none;
+  opacity: 1;
+}
+.dk-nudge a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--dk-accent, #ef5d2e);
+  color: var(--dk-accent-text, #1b120b) !important;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.dk-nudge .dk-close {
+  position: static;
+  width: 28px;
+  height: 28px;
+  color: inherit;
+  opacity: 0.7;
+}
+
+/* ---- Mobile action bar (part of the demo, phones only) ---- */
+.dk-mbar {
+  display: none;
+}
+@media (max-width: 639px) {
+  .dk-root {
+    --dk-bottom: 84px;
+  }
+  .dk-mbar {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 2147482300;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.4fr;
+    gap: 6px;
+    padding: 6px;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 18px;
+    background: rgb(5 6 10 / 0.92);
+    backdrop-filter: blur(10px);
+  }
+  .dk-mbar > * {
+    display: grid;
+    place-items: center;
+    min-height: 44px;
+    border: 0;
+    border-radius: 12px;
+    background: #1d2130;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+  }
+  .dk-mbar .dk-wa {
+    background: #1f6b3f;
+  }
+  .dk-mbar .dk-act {
+    background: var(--dk-accent, #ef5d2e);
+    color: var(--dk-accent-text, #1b120b) !important;
+  }
+  html.dk-has-mbar body {
+    padding-bottom: 76px;
+  }
+  .dk-floats {
+    left: 10px;
+  }
+  .dk-toggle,
+  .dk-long {
+    display: none;
+  }
+  .dk-short {
+    display: inline;
+  }
+  .dk-nudge {
+    right: 10px;
+    bottom: calc(var(--dk-bottom) + 56px);
+    left: 10px;
+  }
+  .dk-panel {
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    left: 10px !important;
+    width: auto;
+    max-width: none;
+    max-height: 48vh;
+  }
+  html.dk-xray .dk-floats,
+  html.dk-xray .dk-mbar {
+    display: none;
+  }
+}
+
+@keyframes dk-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(34 227 255 / 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgb(34 227 255 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-floats,
+  .dk-nudge,
+  .dk-spot {
+    transition: none;
+  }
+  .dk-in .dk-pill,
+  .dk-hl.dk-active .dk-dot {
+    animation: none;
+  }
+}
+
+.dk-nudge[hidden],
+.dk-layer[hidden] {
+  display: none;
+}

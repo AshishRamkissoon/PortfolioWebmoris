@@ -24,6 +24,18 @@ The script does three things:
   (one exception: a same-site `method="get"` form marked `data-demo-navigation`, such as a search bar that only opens another demo page)
 - adds a `noindex` meta tag
 
+## Optional: badge, "See why it converts" tour, mobile bar, nudge
+Serve a `demo-tour.json` next to `demo-kit.js`, and copy `demo-kit.css` there too. Without the JSON file, the kit only shows the bar (as before). Lagon Bistro is the reference: `demos/lagon-bistro/src/static/demo-tour.json`.
+
+- **`badge`:** `price` (text, or `null` for "Price on request") and `pitch` (EN/FR).
+- **`stops`:** the tour, in page order. Each stop has a CSS `target` (prefer `data-tour="…"` attributes in the demo's templates) and EN/FR `title`, `text` and `why`. Stops whose element is missing or hidden (for example on phones) are skipped.
+- **`blueprint`:** the page sections as a journey (Attention → Interest → Desire → Trust → Action), each with a `target` section.
+- **`mobileBar`:** phones only. Call and WhatsApp show a "this is a demo" notice, so no real number is ever dialled; `action` links to a page of the demo.
+- **`nudge`:** shown once after the visitor scrolls past the `after` section.
+- **`theme`:** the demo's own colours for the mobile bar and the nudge.
+
+No cookies, no tracking, no requests outside the demo. Everything works with the keyboard (Esc closes, arrow keys move through the tour) and stays still for visitors who turn animations off. The kit speaks French to browsers set to French.
+
 ## 2. Keep demos out of Google (server side)
 The meta tag is only a backup. Set the header on the whole demo subdomain:
 
