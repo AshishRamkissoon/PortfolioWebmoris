@@ -34,6 +34,7 @@ async function picture(key, alt, sizes = "100vw", options = {}) {
 export default function (eleventyConfig) {
   // The reusable Webmoris demo kit (banner, blocked forms, noindex).
   eleventyConfig.addPassthroughCopy({ "../../demo_kit/demo-kit.js": "demo-kit.js" });
+  eleventyConfig.addPassthroughCopy({ "../../demo_kit/demo-kit.css": "demo-kit.css" });
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
   // 2000 px masters, opened by the gallery lightbox (only loaded on click).
   eleventyConfig.addPassthroughCopy({ "src/images/photos": "img/full" });

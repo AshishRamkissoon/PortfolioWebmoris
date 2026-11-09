@@ -24,6 +24,20 @@
   font: inherit;
   cursor: pointer;
 }
+/* Same look on every demo, whatever the demo's own heading styles are. */
+.dk-root h2,
+.dk-root p,
+.dk-root li,
+.dk-root a {
+  font-family: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.dk-root .dk-eyebrow,
+.dk-root .dk-stage {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 .dk-root a {
   text-decoration: none;
 }

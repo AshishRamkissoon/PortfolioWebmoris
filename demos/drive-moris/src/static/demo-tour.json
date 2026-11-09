@@ -1,0 +1,254 @@
+{
+  "theme": {
+    "accent": "linear-gradient(90deg, #ff6b4a, #ffb547)",
+    "accentText": "#ffffff",
+    "surface": "#0e3b4a",
+    "surfaceText": "#ffffff",
+    "border": "#2fd3cf"
+  },
+  "badge": {
+    "pitch": {
+      "en": "Get it for your car rental business, with your logo, colours, fleet and prices. Online in about 2 weeks.",
+      "fr": "Obtenez-le pour votre agence de location, avec votre logo, vos couleurs, votre flotte et vos tarifs. En ligne en 2 semaines environ."
+    }
+  },
+  "mobileBar": {
+    "call": true,
+    "whatsapp": true,
+    "action": {
+      "href": "/book/",
+      "label": {
+        "en": "Book a car",
+        "fr": "Réserver"
+      }
+    }
+  },
+  "nudge": {
+    "after": "section[aria-labelledby=\"cars-title\"]",
+    "text": {
+      "en": "Seen your car?",
+      "fr": "Trouvé votre voiture ?"
+    },
+    "action": {
+      "href": "/book/",
+      "label": {
+        "en": "Book it now →",
+        "fr": "Réservez-la →"
+      }
+    }
+  },
+  "blueprint": [
+    {
+      "target": "[data-hero]",
+      "stage": {
+        "en": "Attention",
+        "fr": "Attention"
+      },
+      "title": {
+        "en": "Hero",
+        "fr": "Accueil"
+      },
+      "text": {
+        "en": "The promise and a price search on the first screen.",
+        "fr": "La promesse et une recherche de prix dès le premier écran."
+      }
+    },
+    {
+      "target": "section[aria-label=\"Why Drive Moris\"]",
+      "stage": {
+        "en": "Interest",
+        "fr": "Intérêt"
+      },
+      "title": {
+        "en": "Why us",
+        "fr": "Pourquoi nous"
+      },
+      "text": {
+        "en": "Insurance, airport pick-up, free cancellation: the reasons to choose.",
+        "fr": "Assurance, aéroport, annulation gratuite : les raisons de choisir."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"cars-title\"]",
+      "stage": {
+        "en": "Desire",
+        "fr": "Désir"
+      },
+      "title": {
+        "en": "The cars",
+        "fr": "Les voitures"
+      },
+      "text": {
+        "en": "Real cars with daily prices make the choice concrete.",
+        "fr": "De vraies voitures avec prix par jour rendent le choix concret."
+      }
+    },
+    {
+      "target": "#faq",
+      "stage": {
+        "en": "Trust",
+        "fr": "Confiance"
+      },
+      "title": {
+        "en": "Questions",
+        "fr": "Questions"
+      },
+      "text": {
+        "en": "Deposit, licence, insurance: doubts cleared before booking.",
+        "fr": "Caution, permis, assurance : les doutes levés avant de réserver."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "stage": {
+        "en": "Action",
+        "fr": "Action"
+      },
+      "title": {
+        "en": "Book",
+        "fr": "Réserver"
+      },
+      "text": {
+        "en": "A last, simple invitation to book.",
+        "fr": "Une dernière invitation simple à réserver."
+      }
+    }
+  ],
+  "stops": [
+    {
+      "target": "header a.btn-primary",
+      "title": {
+        "en": "\"Book a car\" in the menu bar",
+        "fr": "« Réserver » dans le menu"
+      },
+      "text": {
+        "en": "The main action is on every page, always in the same place.",
+        "fr": "L'action principale est sur chaque page, toujours au même endroit."
+      },
+      "why": {
+        "en": "Visitors decide at different moments. Wherever they are on the page, the next step is one tap away.",
+        "fr": "Chaque visiteur se décide à un moment différent. Où qu'il soit sur la page, l'étape suivante est à un clic."
+      }
+    },
+    {
+      "target": "[data-hero] h1",
+      "title": {
+        "en": "Selling the trip, not just the car",
+        "fr": "Vendre le voyage, pas seulement la voiture"
+      },
+      "text": {
+        "en": "\"Explore Mauritius your way\" speaks to what renters really want: freedom.",
+        "fr": "« Explorez Maurice à votre façon » parle de ce que veulent les clients : la liberté."
+      },
+      "why": {
+        "en": "Every rental site shows cars. Talking about the experience makes this one memorable.",
+        "fr": "Tous les sites de location montrent des voitures. Parler de l'expérience rend celui-ci mémorable."
+      }
+    },
+    {
+      "target": "[data-hero] form",
+      "title": {
+        "en": "Prices in seconds",
+        "fr": "Les prix en quelques secondes"
+      },
+      "text": {
+        "en": "Dates and car on the first screen, then \"See prices and book\".",
+        "fr": "Dates et voiture dès le premier écran, puis « Voir les prix et réserver »."
+      },
+      "why": {
+        "en": "Renters compare several sites. The one that shows a price fastest keeps them.",
+        "fr": "Les clients comparent plusieurs sites. Celui qui affiche un prix le plus vite les garde."
+      }
+    },
+    {
+      "target": "section[aria-label=\"Why Drive Moris\"]",
+      "title": {
+        "en": "Fears answered up front",
+        "fr": "Les craintes levées d'emblée"
+      },
+      "text": {
+        "en": "Full insurance included, waiting at arrivals, return anywhere, free cancellation.",
+        "fr": "Assurance complète, accueil à l'arrivée, retour où vous voulez, annulation gratuite."
+      },
+      "why": {
+        "en": "Hidden fees and deposits are the main worries when renting abroad. Saying it clearly builds trust.",
+        "fr": "Frais cachés et caution sont les grandes craintes à l'étranger. Le dire clairement crée la confiance."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"cars-title\"]",
+      "title": {
+        "en": "Cars with a price per day",
+        "fr": "Des voitures avec prix par jour"
+      },
+      "text": {
+        "en": "Photo, seats, gearbox and price on every card.",
+        "fr": "Photo, places, boîte de vitesses et prix sur chaque carte."
+      },
+      "why": {
+        "en": "Clear prices let people choose quickly instead of sending an email to ask.",
+        "fr": "Des prix clairs permettent de choisir vite au lieu d'envoyer un e-mail pour demander."
+      }
+    },
+    {
+      "target": "#how",
+      "title": {
+        "en": "Booking in two minutes",
+        "fr": "Réserver en deux minutes"
+      },
+      "text": {
+        "en": "Three steps from search to keys.",
+        "fr": "Trois étapes de la recherche aux clés."
+      },
+      "why": {
+        "en": "Showing how short the process is removes the last hesitation before booking.",
+        "fr": "Montrer que c'est rapide enlève la dernière hésitation."
+      }
+    },
+    {
+      "target": "#coast-title",
+      "title": {
+        "en": "Inspiration that sells days",
+        "fr": "L'inspiration qui vend des jours"
+      },
+      "text": {
+        "en": "A route around the island shows what you can do with the car.",
+        "fr": "Un itinéraire autour de l'île montre ce qu'on peut faire avec la voiture."
+      },
+      "why": {
+        "en": "Ideas for road trips make people rent for longer, and remember the site.",
+        "fr": "Des idées de balades font louer plus longtemps, et retenir le site."
+      }
+    },
+    {
+      "target": "#faq",
+      "title": {
+        "en": "Questions before you book",
+        "fr": "Les questions avant de réserver"
+      },
+      "text": {
+        "en": "What's included, deposit, licence, fuel, cancelling.",
+        "fr": "Ce qui est inclus, caution, permis, carburant, annulation."
+      },
+      "why": {
+        "en": "Every unanswered question is a reason to leave or to call a competitor. Answering the common ones here saves the sale, and your time.",
+        "fr": "Chaque question sans réponse est une raison de partir ou d'appeler un concurrent. Y répondre ici sauve la vente, et votre temps."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "title": {
+        "en": "A final call, two choices",
+        "fr": "Un dernier appel, deux choix"
+      },
+      "text": {
+        "en": "\"Book a car\" or \"WhatsApp us\".",
+        "fr": "« Réserver » ou « WhatsApp »."
+      },
+      "why": {
+        "en": "Visitors who scroll to the bottom are interested. Give them one clear thing to do, and a second way to ask questions.",
+        "fr": "Ceux qui descendent jusqu'en bas sont intéressés. Donnez-leur une action claire, et un second moyen de poser leurs questions."
+      }
+    }
+  ]
+}

@@ -45,6 +45,7 @@ async function photoUrl(key, width = 960) {
 export default function (eleventyConfig) {
   // The reusable Webmoris demo kit (banner, blocked forms, noindex).
   eleventyConfig.addPassthroughCopy({ "../../demo_kit/demo-kit.js": "demo-kit.js" });
+  eleventyConfig.addPassthroughCopy({ "../../demo_kit/demo-kit.css": "demo-kit.css" });
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
 
   eleventyConfig.addAsyncShortcode("picture", picture);

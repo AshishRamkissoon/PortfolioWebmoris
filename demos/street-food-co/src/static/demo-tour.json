@@ -1,0 +1,254 @@
+{
+  "theme": {
+    "accent": "#f0337f",
+    "accentText": "#ffffff",
+    "surface": "#1c1a18",
+    "surfaceText": "#ffffff",
+    "border": "#ffd21f"
+  },
+  "badge": {
+    "pitch": {
+      "en": "Get it for your food truck, takeaway or snack, with your logo, colours, menu and prices. Online in about 2 weeks.",
+      "fr": "Obtenez-le pour votre food truck, snack ou vente à emporter, avec votre logo, vos couleurs, votre menu et vos prix. En ligne en 2 semaines environ."
+    }
+  },
+  "mobileBar": {
+    "call": true,
+    "whatsapp": true,
+    "action": {
+      "href": "/order/",
+      "label": {
+        "en": "Order now",
+        "fr": "Commander"
+      }
+    }
+  },
+  "nudge": {
+    "after": "section[aria-labelledby=\"best-title\"]",
+    "text": {
+      "en": "Hungry?",
+      "fr": "Une petite faim ?"
+    },
+    "action": {
+      "href": "/order/",
+      "label": {
+        "en": "Order ahead →",
+        "fr": "Commandez →"
+      }
+    }
+  },
+  "blueprint": [
+    {
+      "target": "[data-hero]",
+      "stage": {
+        "en": "Attention",
+        "fr": "Attention"
+      },
+      "title": {
+        "en": "Hero",
+        "fr": "Accueil"
+      },
+      "text": {
+        "en": "Bold colours, the food and \"Order ahead\" on the first screen.",
+        "fr": "Couleurs vives, la nourriture et « Commander » dès le premier écran."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"best-title\"]",
+      "stage": {
+        "en": "Desire",
+        "fr": "Désir"
+      },
+      "title": {
+        "en": "Best sellers",
+        "fr": "Les incontournables"
+      },
+      "text": {
+        "en": "The dishes everyone orders, with prices.",
+        "fr": "Les plats que tout le monde commande, avec les prix."
+      }
+    },
+    {
+      "target": "#how",
+      "stage": {
+        "en": "Interest",
+        "fr": "Intérêt"
+      },
+      "title": {
+        "en": "How it works",
+        "fr": "Comment ça marche"
+      },
+      "text": {
+        "en": "Order in a minute, pick up in fifteen.",
+        "fr": "Commander en une minute, récupérer en quinze."
+      }
+    },
+    {
+      "target": "#where",
+      "stage": {
+        "en": "Trust",
+        "fr": "Confiance"
+      },
+      "title": {
+        "en": "Where we park",
+        "fr": "Où nous trouver"
+      },
+      "text": {
+        "en": "This week's spots, so nobody gets lost.",
+        "fr": "Les emplacements de la semaine, pour ne pas se perdre."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "stage": {
+        "en": "Action",
+        "fr": "Action"
+      },
+      "title": {
+        "en": "Order",
+        "fr": "Commander"
+      },
+      "text": {
+        "en": "A last push to order now.",
+        "fr": "Un dernier coup de pouce pour commander."
+      }
+    }
+  ],
+  "stops": [
+    {
+      "target": "header a.btn-primary",
+      "title": {
+        "en": "Order button with a live basket",
+        "fr": "Le bouton commander, avec le panier"
+      },
+      "text": {
+        "en": "\"Order\" in the menu bar shows how many items are in the basket.",
+        "fr": "« Commander » dans le menu affiche le nombre d'articles du panier."
+      },
+      "why": {
+        "en": "Visitors decide at different moments. Wherever they are on the page, the next step is one tap away.",
+        "fr": "Chaque visiteur se décide à un moment différent. Où qu'il soit sur la page, l'étape suivante est à un clic."
+      }
+    },
+    {
+      "target": "[data-hero] h1",
+      "title": {
+        "en": "Personality in four words",
+        "fr": "De la personnalité en quatre mots"
+      },
+      "text": {
+        "en": "\"Hot, fast & island-made\" says what, how and where.",
+        "fr": "« Chaud, rapide et fait à Maurice » dit quoi, comment et où."
+      },
+      "why": {
+        "en": "A food truck competes on character. A bold, fun style makes it recognisable and shareable.",
+        "fr": "Un food truck se distingue par son caractère. Un style franc et joyeux le rend reconnaissable et partageable."
+      }
+    },
+    {
+      "target": "[data-hero] a.btn-primary",
+      "title": {
+        "en": "Order ahead, skip the queue",
+        "fr": "Commander d'avance, sans file"
+      },
+      "text": {
+        "en": "The main action is on the first screen.",
+        "fr": "L'action principale est dès le premier écran."
+      },
+      "why": {
+        "en": "Hungry people want food fast. Ordering ahead is the strongest reason to use the website instead of queueing.",
+        "fr": "Quand on a faim, on veut manger vite. Commander d'avance est la meilleure raison d'utiliser le site plutôt que la file."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"best-title\"]",
+      "title": {
+        "en": "Best sellers, with prices",
+        "fr": "Les incontournables, avec les prix"
+      },
+      "text": {
+        "en": "Photos and prices of the dishes people order most.",
+        "fr": "Photos et prix des plats les plus commandés."
+      },
+      "why": {
+        "en": "Showing what everyone orders makes choosing easy and quick, which means more orders.",
+        "fr": "Montrer ce que tout le monde commande rend le choix facile et rapide : plus de commandes."
+      }
+    },
+    {
+      "target": "#how",
+      "title": {
+        "en": "Order in a minute, eat in fifteen",
+        "fr": "Commander en une minute, manger en quinze"
+      },
+      "text": {
+        "en": "Three steps, with the waiting time stated.",
+        "fr": "Trois étapes, avec le temps d'attente indiqué."
+      },
+      "why": {
+        "en": "Telling people exactly how long it takes removes the worry of waiting.",
+        "fr": "Dire exactement combien de temps ça prend enlève l'inquiétude de l'attente."
+      }
+    },
+    {
+      "target": "#where",
+      "title": {
+        "en": "Where to find the truck",
+        "fr": "Où trouver le camion"
+      },
+      "text": {
+        "en": "This week's locations and times, on a map.",
+        "fr": "Les emplacements et horaires de la semaine, sur une carte."
+      },
+      "why": {
+        "en": "A food truck moves. If customers can't find it, they can't buy.",
+        "fr": "Un food truck bouge. Si le client ne le trouve pas, il ne peut pas acheter."
+      }
+    },
+    {
+      "target": "#events",
+      "title": {
+        "en": "Catering: a second income",
+        "fr": "Le traiteur : un second revenu"
+      },
+      "text": {
+        "en": "\"Bring the truck to your party\" for weddings and events.",
+        "fr": "« Le camion à votre fête » pour mariages et événements."
+      },
+      "why": {
+        "en": "Events bring bigger orders than single meals. The website sells them while you cook.",
+        "fr": "Les événements rapportent plus qu'un repas seul. Le site les vend pendant que vous cuisinez."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"faq-title\"]",
+      "title": {
+        "en": "Good to know",
+        "fr": "Bon à savoir"
+      },
+      "text": {
+        "en": "Ordering ahead, payment, events, vegetarian options.",
+        "fr": "Commander d'avance, paiement, événements, options végétariennes."
+      },
+      "why": {
+        "en": "Every unanswered question is a reason to leave or to call a competitor. Answering the common ones here saves the sale, and your time.",
+        "fr": "Chaque question sans réponse est une raison de partir ou d'appeler un concurrent. Y répondre ici sauve la vente, et votre temps."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "title": {
+        "en": "\"Your lunch is 15 minutes away\"",
+        "fr": "« Votre déjeuner est à 15 minutes »"
+      },
+      "text": {
+        "en": "A final, hungry call to order.",
+        "fr": "Un dernier appel gourmand à commander."
+      },
+      "why": {
+        "en": "Visitors who scroll to the bottom are interested. Give them one clear thing to do, and a second way to ask questions.",
+        "fr": "Ceux qui descendent jusqu'en bas sont intéressés. Donnez-leur une action claire, et un second moyen de poser leurs questions."
+      }
+    }
+  ]
+}

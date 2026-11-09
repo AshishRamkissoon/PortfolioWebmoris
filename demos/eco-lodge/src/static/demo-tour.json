@@ -1,0 +1,254 @@
+{
+  "theme": {
+    "accent": "linear-gradient(90deg, #d2693f, #e8a94a)",
+    "accentText": "#ffffff",
+    "surface": "#173023",
+    "surfaceText": "#ffffff",
+    "border": "#e8a94a"
+  },
+  "badge": {
+    "pitch": {
+      "en": "Get it for your guesthouse, lodge or villa, with your logo, colours, rooms and photos. Online in about 2 weeks.",
+      "fr": "Obtenez-le pour votre maison d'hôtes, lodge ou villa, avec votre logo, vos couleurs, vos chambres et vos photos. En ligne en 2 semaines environ."
+    }
+  },
+  "mobileBar": {
+    "call": true,
+    "whatsapp": true,
+    "action": {
+      "href": "/book/",
+      "label": {
+        "en": "Check availability",
+        "fr": "Disponibilités"
+      }
+    }
+  },
+  "nudge": {
+    "after": "section[aria-labelledby=\"rooms-title\"]",
+    "text": {
+      "en": "Found your cabin?",
+      "fr": "Trouvé votre cabane ?"
+    },
+    "action": {
+      "href": "/book/",
+      "label": {
+        "en": "Check availability →",
+        "fr": "Voir les disponibilités →"
+      }
+    }
+  },
+  "blueprint": [
+    {
+      "target": "[data-hero]",
+      "stage": {
+        "en": "Attention",
+        "fr": "Attention"
+      },
+      "title": {
+        "en": "Hero",
+        "fr": "Accueil"
+      },
+      "text": {
+        "en": "The setting and an availability search on the first screen.",
+        "fr": "Le cadre et une recherche de disponibilités dès le premier écran."
+      }
+    },
+    {
+      "target": "#direct",
+      "stage": {
+        "en": "Interest",
+        "fr": "Intérêt"
+      },
+      "title": {
+        "en": "Book direct",
+        "fr": "Réserver en direct"
+      },
+      "text": {
+        "en": "Why booking here beats the big booking sites.",
+        "fr": "Pourquoi réserver ici plutôt que sur les grandes plateformes."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"rooms-title\"]",
+      "stage": {
+        "en": "Desire",
+        "fr": "Désir"
+      },
+      "title": {
+        "en": "Rooms",
+        "fr": "Chambres"
+      },
+      "text": {
+        "en": "Each room with photos and a price per night.",
+        "fr": "Chaque chambre avec photos et prix par nuit."
+      }
+    },
+    {
+      "target": "#faq",
+      "stage": {
+        "en": "Trust",
+        "fr": "Confiance"
+      },
+      "title": {
+        "en": "Questions",
+        "fr": "Questions"
+      },
+      "text": {
+        "en": "Access, meals, check-in: the practical doubts cleared.",
+        "fr": "Accès, repas, arrivée : les doutes pratiques levés."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "stage": {
+        "en": "Action",
+        "fr": "Action"
+      },
+      "title": {
+        "en": "Book",
+        "fr": "Réserver"
+      },
+      "text": {
+        "en": "A warm final invitation to check dates.",
+        "fr": "Une dernière invitation chaleureuse à vérifier les dates."
+      }
+    }
+  ],
+  "stops": [
+    {
+      "target": "header a.btn-primary",
+      "title": {
+        "en": "\"Check availability\" always visible",
+        "fr": "« Disponibilités » toujours visible"
+      },
+      "text": {
+        "en": "The booking action is in the menu bar on every page.",
+        "fr": "La réservation est dans la barre de menu sur chaque page."
+      },
+      "why": {
+        "en": "Visitors decide at different moments. Wherever they are on the page, the next step is one tap away.",
+        "fr": "Chaque visiteur se décide à un moment différent. Où qu'il soit sur la page, l'étape suivante est à un clic."
+      }
+    },
+    {
+      "target": "[data-hero] h1",
+      "title": {
+        "en": "Selling the escape",
+        "fr": "Vendre l'évasion"
+      },
+      "text": {
+        "en": "\"Sleep in the hills, wake in the clouds\" with a forest photo.",
+        "fr": "« Dormir dans les collines, se réveiller dans les nuages » avec une photo de forêt."
+      },
+      "why": {
+        "en": "Guests book an experience, not a bed. The first screen sells the feeling of being there.",
+        "fr": "On réserve une expérience, pas un lit. Le premier écran vend la sensation d'y être."
+      }
+    },
+    {
+      "target": "[data-hero] form",
+      "title": {
+        "en": "Dates first",
+        "fr": "Les dates d'abord"
+      },
+      "text": {
+        "en": "Arrival, departure and guests on the first screen.",
+        "fr": "Arrivée, départ et voyageurs dès le premier écran."
+      },
+      "why": {
+        "en": "\"Is it free on my dates?\" is the first question. Letting guests check immediately keeps them from going to a booking site.",
+        "fr": "« Est-ce libre à mes dates ? » est la première question. Vérifier tout de suite évite le détour par une plateforme."
+      }
+    },
+    {
+      "target": "#direct",
+      "title": {
+        "en": "The best price is here",
+        "fr": "Le meilleur prix est ici"
+      },
+      "text": {
+        "en": "A clear reason to book direct: best rate, perks, no middleman.",
+        "fr": "Une raison claire de réserver en direct : meilleur tarif, petits plus, sans intermédiaire."
+      },
+      "why": {
+        "en": "Booking platforms take a big commission. Giving guests a reason to book direct saves you that money on every stay.",
+        "fr": "Les plateformes prennent une grosse commission. Donner une raison de réserver en direct vous fait économiser sur chaque séjour."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"rooms-title\"]",
+      "title": {
+        "en": "Rooms with prices per night",
+        "fr": "Des chambres avec prix par nuit"
+      },
+      "text": {
+        "en": "Photos, capacity and price for each cabin, the treehouse and the villa.",
+        "fr": "Photos, capacité et prix pour chaque cabane, la cabane perchée et la villa."
+      },
+      "why": {
+        "en": "Guests compare options quickly. Clear prices and photos help them choose instead of leaving to think.",
+        "fr": "Les voyageurs comparent vite. Des prix et photos clairs aident à choisir au lieu de partir réfléchir."
+      }
+    },
+    {
+      "target": "#experiences",
+      "title": {
+        "en": "Things to do nearby",
+        "fr": "Que faire autour"
+      },
+      "text": {
+        "en": "Waterfalls, hikes, stars: reasons to stay longer.",
+        "fr": "Cascades, randonnées, étoiles : des raisons de rester plus longtemps."
+      },
+      "why": {
+        "en": "Showing what guests can do turns a one-night stop into a longer stay.",
+        "fr": "Montrer ce qu'on peut faire transforme une nuit de passage en séjour plus long."
+      }
+    },
+    {
+      "target": "#find-us",
+      "title": {
+        "en": "How to get there",
+        "fr": "Comment venir"
+      },
+      "text": {
+        "en": "Map and directions to the lodge.",
+        "fr": "Carte et itinéraire jusqu'au lodge."
+      },
+      "why": {
+        "en": "A place in the hills raises the question \"is it hard to reach?\". Clear directions remove that doubt.",
+        "fr": "Un lieu dans les collines pose la question « est-ce difficile d'accès ? ». Un itinéraire clair lève ce doute."
+      }
+    },
+    {
+      "target": "#faq",
+      "title": {
+        "en": "Questions before you come",
+        "fr": "Les questions avant de venir"
+      },
+      "text": {
+        "en": "Booking direct, getting there, the weather, children, cancellation.",
+        "fr": "Réserver en direct, venir, la météo, les enfants, l'annulation."
+      },
+      "why": {
+        "en": "Every unanswered question is a reason to leave or to call a competitor. Answering the common ones here saves the sale, and your time.",
+        "fr": "Chaque question sans réponse est une raison de partir ou d'appeler un concurrent. Y répondre ici sauve la vente, et votre temps."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "title": {
+        "en": "A last, warm invitation",
+        "fr": "Une dernière invitation chaleureuse"
+      },
+      "text": {
+        "en": "\"Check availability\" or \"WhatsApp us\".",
+        "fr": "« Disponibilités » ou « WhatsApp »."
+      },
+      "why": {
+        "en": "Visitors who scroll to the bottom are interested. Give them one clear thing to do, and a second way to ask questions.",
+        "fr": "Ceux qui descendent jusqu'en bas sont intéressés. Donnez-leur une action claire, et un second moyen de poser leurs questions."
+      }
+    }
+  ]
+}

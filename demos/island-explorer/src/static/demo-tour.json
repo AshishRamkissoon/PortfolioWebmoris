@@ -1,0 +1,254 @@
+{
+  "theme": {
+    "accent": "#ff6b4a",
+    "accentText": "#ffffff",
+    "surface": "#0a2a3d",
+    "surfaceText": "#ffffff",
+    "border": "#ff6b4a"
+  },
+  "badge": {
+    "pitch": {
+      "en": "Get it for your tour or activity business, with your logo, colours, photos, tours and prices. Online in about 2 weeks.",
+      "fr": "Obtenez-le pour votre agence d'excursions, avec votre logo, vos couleurs, vos photos, vos sorties et vos prix. En ligne en 2 semaines environ."
+    }
+  },
+  "mobileBar": {
+    "call": true,
+    "whatsapp": true,
+    "action": {
+      "href": "/tours/",
+      "label": {
+        "en": "Book a tour",
+        "fr": "Réserver"
+      }
+    }
+  },
+  "nudge": {
+    "after": "[data-hscroll]",
+    "text": {
+      "en": "Found your trip?",
+      "fr": "Trouvé votre sortie ?"
+    },
+    "action": {
+      "href": "/tours/",
+      "label": {
+        "en": "See all tours →",
+        "fr": "Toutes les sorties →"
+      }
+    }
+  },
+  "blueprint": [
+    {
+      "target": "[data-hero]",
+      "stage": {
+        "en": "Attention",
+        "fr": "Attention"
+      },
+      "title": {
+        "en": "Hero",
+        "fr": "Accueil"
+      },
+      "text": {
+        "en": "The island in one photo, and a tour finder right away.",
+        "fr": "L'île en une photo, et un moteur de recherche tout de suite."
+      }
+    },
+    {
+      "target": "#intro",
+      "stage": {
+        "en": "Interest",
+        "fr": "Intérêt"
+      },
+      "title": {
+        "en": "Who we are",
+        "fr": "Qui sommes-nous"
+      },
+      "text": {
+        "en": "Local guides, not a call centre: the reason to choose this company.",
+        "fr": "Des guides locaux, pas un centre d'appels : la raison de choisir cette agence."
+      }
+    },
+    {
+      "target": "[data-hscroll]",
+      "stage": {
+        "en": "Desire",
+        "fr": "Désir"
+      },
+      "title": {
+        "en": "Featured tours",
+        "fr": "Sorties phares"
+      },
+      "text": {
+        "en": "The best trips with photos and prices, to make people want to go.",
+        "fr": "Les meilleures sorties avec photos et prix, pour donner envie."
+      }
+    },
+    {
+      "target": "[data-tour=reviews]",
+      "stage": {
+        "en": "Trust",
+        "fr": "Confiance"
+      },
+      "title": {
+        "en": "Reviews",
+        "fr": "Avis"
+      },
+      "text": {
+        "en": "Real Google reviews prove that other travellers loved it.",
+        "fr": "De vrais avis Google prouvent que d'autres voyageurs ont adoré."
+      }
+    },
+    {
+      "target": "#how",
+      "stage": {
+        "en": "Action",
+        "fr": "Action"
+      },
+      "title": {
+        "en": "How it works",
+        "fr": "Comment ça marche"
+      },
+      "text": {
+        "en": "Three simple steps remove the fear of booking online.",
+        "fr": "Trois étapes simples enlèvent la peur de réserver en ligne."
+      }
+    }
+  ],
+  "stops": [
+    {
+      "target": "header a.btn-coral",
+      "title": {
+        "en": "\"Book a tour\" always in reach",
+        "fr": "« Réserver » toujours à portée"
+      },
+      "text": {
+        "en": "The booking button stays in the menu bar on every page.",
+        "fr": "Le bouton de réservation reste dans la barre de menu sur chaque page."
+      },
+      "why": {
+        "en": "Visitors decide at different moments. Wherever they are on the page, the next step is one tap away.",
+        "fr": "Chaque visiteur se décide à un moment différent. Où qu'il soit sur la page, l'étape suivante est à un clic."
+      }
+    },
+    {
+      "target": "[data-hero] h1",
+      "title": {
+        "en": "The island sells itself",
+        "fr": "L'île se vend toute seule"
+      },
+      "text": {
+        "en": "A big lagoon photo and a short promise: \"Mauritius, the way locals see it\".",
+        "fr": "Une grande photo de lagon et une promesse courte, vue par des locaux."
+      },
+      "why": {
+        "en": "Travellers buy a feeling first. A strong photo and a few words do more than a long paragraph about the company.",
+        "fr": "Le voyageur achète d'abord une émotion. Une photo forte et quelques mots font plus qu'un long texte sur l'agence."
+      }
+    },
+    {
+      "target": "nav[aria-label=\"Find a tour\"]",
+      "title": {
+        "en": "Find a tour in one tap",
+        "fr": "Trouver une sortie en un clic"
+      },
+      "text": {
+        "en": "Sea, nature or culture: shortcuts straight to the right tours.",
+        "fr": "Mer, nature ou culture : des raccourcis vers les bonnes sorties."
+      },
+      "why": {
+        "en": "People arrive with a rough idea. Letting them filter immediately keeps them from getting lost or leaving.",
+        "fr": "Le visiteur arrive avec une idée vague. Filtrer tout de suite lui évite de se perdre ou de partir."
+      }
+    },
+    {
+      "target": "[data-hero] a.btn-coral",
+      "title": {
+        "en": "One main action, in coral",
+        "fr": "Une action principale, en corail"
+      },
+      "text": {
+        "en": "\"Explore tours\" is the brightest thing on the screen.",
+        "fr": "« Voir les sorties » est l'élément le plus visible de l'écran."
+      },
+      "why": {
+        "en": "Coral is used only for booking actions, so the eye always knows where to click.",
+        "fr": "Le corail est réservé aux actions de réservation : l'œil sait toujours où cliquer."
+      }
+    },
+    {
+      "target": "[data-hscroll]",
+      "title": {
+        "en": "Tours shown like products",
+        "fr": "Des sorties présentées comme des produits"
+      },
+      "text": {
+        "en": "Photo, duration and price on every card, swipeable on phones.",
+        "fr": "Photo, durée et prix sur chaque carte, à faire glisser sur mobile."
+      },
+      "why": {
+        "en": "Clear prices and durations answer \"is it for me?\" before people have to ask.",
+        "fr": "Des prix et durées clairs répondent à « est-ce pour moi ? » avant qu'on ait à demander."
+      }
+    },
+    {
+      "target": "[data-tour=small-groups]",
+      "title": {
+        "en": "A clear difference",
+        "fr": "Une différence claire"
+      },
+      "text": {
+        "en": "Small groups, local guides: the promise competitors can't copy.",
+        "fr": "Petits groupes, guides locaux : la promesse que les concurrents ne copient pas."
+      },
+      "why": {
+        "en": "When all tours look alike online, the business that explains why it's different wins the booking.",
+        "fr": "Quand toutes les sorties se ressemblent en ligne, celui qui explique sa différence remporte la réservation."
+      }
+    },
+    {
+      "target": "#how",
+      "title": {
+        "en": "Booking explained in 3 steps",
+        "fr": "La réservation en 3 étapes"
+      },
+      "text": {
+        "en": "Choose, book, enjoy: no surprises.",
+        "fr": "Choisir, réserver, profiter : aucune surprise."
+      },
+      "why": {
+        "en": "Many people hesitate to pay online for a service. Showing how simple it is removes that fear.",
+        "fr": "Beaucoup hésitent à payer un service en ligne. Montrer que c'est simple enlève cette crainte."
+      }
+    },
+    {
+      "target": "[data-tour=reviews]",
+      "title": {
+        "en": "Reviews from real travellers",
+        "fr": "Les avis de vrais voyageurs"
+      },
+      "text": {
+        "en": "This section shows your Google reviews on your own site.",
+        "fr": "Cette section affiche vos avis Google sur votre propre site."
+      },
+      "why": {
+        "en": "Travellers trust other travellers more than any advert. On the demo it's an empty frame: we never invent reviews.",
+        "fr": "Les voyageurs font plus confiance aux autres voyageurs qu'à une publicité. Sur la démo, le cadre est vide : nous n'inventons jamais d'avis."
+      }
+    },
+    {
+      "target": "[data-tour=faq]",
+      "title": {
+        "en": "Questions answered before they're asked",
+        "fr": "Les questions, réglées d'avance"
+      },
+      "text": {
+        "en": "Hotel pick-up, bad weather, children, payment.",
+        "fr": "Prise en charge à l'hôtel, mauvais temps, enfants, paiement."
+      },
+      "why": {
+        "en": "Every unanswered question is a reason to leave or to call a competitor. Answering the common ones here saves the sale, and your time.",
+        "fr": "Chaque question sans réponse est une raison de partir ou d'appeler un concurrent. Y répondre ici sauve la vente, et votre temps."
+      }
+    }
+  ]
+}

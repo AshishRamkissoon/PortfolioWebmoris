@@ -1,0 +1,254 @@
+{
+  "theme": {
+    "accent": "linear-gradient(90deg, #f26b4f, #d9b25f)",
+    "accentText": "#ffffff",
+    "surface": "#0b3a30",
+    "surfaceText": "#ffffff",
+    "border": "#d9b25f"
+  },
+  "badge": {
+    "pitch": {
+      "en": "Get it for your real estate agency, with your logo, colours, listings and photos. Online in about 2 weeks.",
+      "fr": "Obtenez-le pour votre agence immobilière, avec votre logo, vos couleurs, vos annonces et vos photos. En ligne en 2 semaines environ."
+    }
+  },
+  "mobileBar": {
+    "call": true,
+    "whatsapp": true,
+    "action": {
+      "href": "/contact/",
+      "label": {
+        "en": "Book a viewing",
+        "fr": "Visiter"
+      }
+    }
+  },
+  "nudge": {
+    "after": "section[aria-labelledby=\"featured-title\"]",
+    "text": {
+      "en": "Seen one you like?",
+      "fr": "Un bien vous plaît ?"
+    },
+    "action": {
+      "href": "/contact/",
+      "label": {
+        "en": "Book a viewing →",
+        "fr": "Réservez une visite →"
+      }
+    }
+  },
+  "blueprint": [
+    {
+      "target": "[data-hero]",
+      "stage": {
+        "en": "Attention",
+        "fr": "Attention"
+      },
+      "title": {
+        "en": "Hero",
+        "fr": "Accueil"
+      },
+      "text": {
+        "en": "A dream home and a property search on the first screen.",
+        "fr": "Une maison de rêve et une recherche dès le premier écran."
+      }
+    },
+    {
+      "target": "section[aria-label=\"Why Villa Select\"]",
+      "stage": {
+        "en": "Interest",
+        "fr": "Intérêt"
+      },
+      "title": {
+        "en": "Why us",
+        "fr": "Pourquoi nous"
+      },
+      "text": {
+        "en": "What makes this agency safer to buy with.",
+        "fr": "Ce qui rend l'achat plus sûr avec cette agence."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"featured-title\"]",
+      "stage": {
+        "en": "Desire",
+        "fr": "Désir"
+      },
+      "title": {
+        "en": "Featured homes",
+        "fr": "Biens à la une"
+      },
+      "text": {
+        "en": "Beautiful listings with prices make people picture themselves there.",
+        "fr": "De belles annonces avec prix font se projeter."
+      }
+    },
+    {
+      "target": "#buying",
+      "stage": {
+        "en": "Trust",
+        "fr": "Confiance"
+      },
+      "title": {
+        "en": "Buying steps",
+        "fr": "Étapes d'achat"
+      },
+      "text": {
+        "en": "The legal process explained, especially for foreign buyers.",
+        "fr": "La démarche expliquée, surtout pour les acheteurs étrangers."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "stage": {
+        "en": "Action",
+        "fr": "Action"
+      },
+      "title": {
+        "en": "Get a shortlist",
+        "fr": "Recevoir une sélection"
+      },
+      "text": {
+        "en": "A personal service as the final step.",
+        "fr": "Un service personnalisé comme dernière étape."
+      }
+    }
+  ],
+  "stops": [
+    {
+      "target": "header a.btn-primary",
+      "title": {
+        "en": "\"Book a viewing\" on every page",
+        "fr": "« Visiter » sur chaque page"
+      },
+      "text": {
+        "en": "The main action stays in the menu bar.",
+        "fr": "L'action principale reste dans la barre de menu."
+      },
+      "why": {
+        "en": "Visitors decide at different moments. Wherever they are on the page, the next step is one tap away.",
+        "fr": "Chaque visiteur se décide à un moment différent. Où qu'il soit sur la page, l'étape suivante est à un clic."
+      }
+    },
+    {
+      "target": "[data-hero] h1",
+      "title": {
+        "en": "A lifestyle, not square metres",
+        "fr": "Un style de vie, pas des mètres carrés"
+      },
+      "text": {
+        "en": "\"Your home in Mauritius, hand-picked\" with a lagoon-view photo.",
+        "fr": "« Votre maison à Maurice, choisie avec soin » avec vue sur le lagon."
+      },
+      "why": {
+        "en": "Buyers fall for a way of life first; the details come later.",
+        "fr": "L'acheteur tombe d'abord amoureux d'un mode de vie ; les détails viennent ensuite."
+      }
+    },
+    {
+      "target": "[data-hero] form",
+      "title": {
+        "en": "Search right away",
+        "fr": "Chercher tout de suite"
+      },
+      "text": {
+        "en": "Area, type and budget on the first screen.",
+        "fr": "Région, type et budget dès le premier écran."
+      },
+      "why": {
+        "en": "Serious buyers want to see what fits their budget, now. A quick search keeps them on your site, not on a portal.",
+        "fr": "Un acheteur sérieux veut voir ce qui entre dans son budget, tout de suite. Une recherche rapide le garde chez vous plutôt que sur un portail."
+      }
+    },
+    {
+      "target": "section[aria-label=\"Why Villa Select\"]",
+      "title": {
+        "en": "Reasons to trust the agency",
+        "fr": "Des raisons de faire confiance"
+      },
+      "text": {
+        "en": "Hand-picked homes, legal checks first, one contact from viewing to keys.",
+        "fr": "Biens sélectionnés, vérifications juridiques, un seul interlocuteur jusqu'aux clés."
+      },
+      "why": {
+        "en": "Buying property is a big, risky decision. Reassurance comes before the listings.",
+        "fr": "Acheter un bien est une décision lourde et risquée. Rassurer passe avant les annonces."
+      }
+    },
+    {
+      "target": "section[aria-labelledby=\"featured-title\"]",
+      "title": {
+        "en": "Listings that sell the view",
+        "fr": "Des annonces qui vendent la vue"
+      },
+      "text": {
+        "en": "Large photos, price, bedrooms and area on every card.",
+        "fr": "Grandes photos, prix, chambres et surface sur chaque carte."
+      },
+      "why": {
+        "en": "People decide in seconds whether to click on a property. Big photos and clear facts make that decision easy.",
+        "fr": "On décide en quelques secondes de cliquer sur un bien. De grandes photos et des infos claires facilitent ce choix."
+      }
+    },
+    {
+      "target": "#map",
+      "title": {
+        "en": "Find your corner of the island",
+        "fr": "Trouver son coin d'île"
+      },
+      "text": {
+        "en": "An interactive map of areas and properties.",
+        "fr": "Une carte interactive des régions et des biens."
+      },
+      "why": {
+        "en": "Location is the first question for buyers. A map answers it visually and invites exploring.",
+        "fr": "L'emplacement est la première question. Une carte y répond visuellement et invite à explorer."
+      }
+    },
+    {
+      "target": "#buying",
+      "title": {
+        "en": "The process, explained",
+        "fr": "La démarche, expliquée"
+      },
+      "text": {
+        "en": "Four steps from first visit to keys.",
+        "fr": "Quatre étapes de la première visite aux clés."
+      },
+      "why": {
+        "en": "Foreign buyers worry about the rules. Explaining the steps turns a scary process into a clear plan.",
+        "fr": "Les acheteurs étrangers s'inquiètent des règles. Expliquer les étapes transforme une démarche intimidante en plan clair."
+      }
+    },
+    {
+      "target": "#faq-title",
+      "title": {
+        "en": "Buyers' questions, answered",
+        "fr": "Les questions des acheteurs"
+      },
+      "text": {
+        "en": "Buying as a foreigner, extra costs, buying from abroad, management.",
+        "fr": "Acheter en tant qu'étranger, frais annexes, achat à distance, gestion."
+      },
+      "why": {
+        "en": "Every unanswered question is a reason to leave or to call a competitor. Answering the common ones here saves the sale, and your time.",
+        "fr": "Chaque question sans réponse est une raison de partir ou d'appeler un concurrent. Y répondre ici sauve la vente, et votre temps."
+      }
+    },
+    {
+      "target": "[data-tour=closing]",
+      "title": {
+        "en": "A personal shortlist",
+        "fr": "Une sélection personnalisée"
+      },
+      "text": {
+        "en": "\"Get my shortlist\" or \"WhatsApp us\".",
+        "fr": "« Recevoir ma sélection » ou « WhatsApp »."
+      },
+      "why": {
+        "en": "Visitors who scroll to the bottom are interested. Give them one clear thing to do, and a second way to ask questions.",
+        "fr": "Ceux qui descendent jusqu'en bas sont intéressés. Donnez-leur une action claire, et un second moyen de poser leurs questions."
+      }
+    }
+  ]
+}

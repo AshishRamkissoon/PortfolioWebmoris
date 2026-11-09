@@ -131,7 +131,7 @@ section: home
     </div>
     <div>
       <p class="eyebrow" data-reveal>Why travel with us</p>
-      <h2 class="mt-4 text-4xl font-semibold sm:text-5xl" data-split>Small groups. Big memories.</h2>
+      <h2 data-tour="small-groups" class="mt-4 text-4xl font-semibold sm:text-5xl" data-split>Small groups. Big memories.</h2>
       <ul class="mt-10 grid gap-8 sm:grid-cols-2">
         {% for promise in site.promises %}
           <li data-reveal>
@@ -165,7 +165,7 @@ section: home
 <section class="container-x mt-32">
   <div class="rounded-card border-2 border-dashed border-ocean-900/15 p-10 text-center sm:p-14" data-reveal>
     <span class="chip bg-lagoon-100!">Feature preview</span>
-    <h2 class="mt-5 text-3xl font-semibold sm:text-4xl">Your Google reviews, shown here</h2>
+    <h2 data-tour="reviews" class="mt-5 text-3xl font-semibold sm:text-4xl">Your Google reviews, shown here</h2>
     <p class="mx-auto mt-3 max-w-xl text-ink-500">On your live website, this section displays your real guest reviews and star rating — automatically kept up to date.</p>
     <div class="mt-10 grid gap-5 text-left md:grid-cols-3" aria-hidden="true">
       {% for i in [1, 2, 3] %}
@@ -183,7 +183,7 @@ section: home
 <section class="container-x mt-32 grid gap-12 lg:grid-cols-[1fr_1.4fr]">
   <div>
     <p class="eyebrow" data-reveal>Good to know</p>
-    <h2 class="mt-4 text-4xl font-semibold sm:text-5xl" data-split>Questions before you go</h2>
+    <h2 data-tour="faq" class="mt-4 text-4xl font-semibold sm:text-5xl" data-split>Questions before you go</h2>
   </div>
   <div class="divide-y divide-sand-200 border-y border-sand-200">
     {% for faq in site.faqs %}
