@@ -98,6 +98,31 @@ def test_home_uses_featured_content(client):
     assert list(response.context["packages"]) == []
 
 
+def _home_sections(content):
+    """Positions of the projects, ready-made and services sections on the home page."""
+    markers = ("data-hscroll", "Launch fast with a ready-made site.", "What we do")
+    return [content.index(marker) for marker in markers]
+
+
+def test_home_leads_with_ready_made_sites_while_work_is_in_progress(client):
+    call_command("seed_demo", stdout=StringIO())
+    Project.objects.update(status=Project.Status.IN_PROGRESS)
+    content = client.get("/en/").content.decode()
+    work, ready, services = _home_sections(content)
+    assert "Work in progress" in content
+    assert ready < services < work
+
+
+def test_home_leads_with_finished_work_once_there_is_a_showcase(client):
+    call_command("seed_demo", stdout=StringIO())
+    ProjectFactory.create_batch(3, status=Project.Status.COMPLETED, is_featured=True)
+    content = client.get("/en/").content.decode()
+    work, ready, services = _home_sections(content)
+    assert "Selected work" in content
+    assert work < ready < services
+    assert content.count("data-hscroll-track") == 1
+
+
 def test_home_with_demo_content(client):
     call_command("seed_demo", stdout=StringIO())
     response = client.get("/en/")

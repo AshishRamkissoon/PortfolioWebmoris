@@ -66,26 +66,23 @@
   </div>
 </section>
 
-{# --- Featured projects: pinned horizontal scroll on desktop, swipe on mobile --- #}
-{% if featured_projects %}
-<section class="mt-28 overflow-hidden" data-hscroll x-data="videoModal" @open-video.window="show($event.detail)">
-  <div class="container-site flex flex-wrap items-end justify-between gap-6">
-    {# Honest framing: only call it a showcase once there are enough finished projects. #}
-    {% if has_showcase %}
-      {% translate "Selected work" as eyebrow %}{% translate "Projects we're proud of." as title %}
-    {% else %}
-      {% translate "Work in progress" as eyebrow %}{% translate "What we're building now." as title %}
-      {% translate "A look at the client projects we're currently designing and developing." as intro %}
-    {% endif %}
+{# Finished projects lead once there are enough; until then the live demos lead (see below). #}
+{% if has_showcase %}{% include "portfolio/partials/home_section.html" %}{% endif %}
+
+{# --- Ready-made websites --- #}
+{% if featured_templates %}
+<section class="container-site mt-28">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    {% translate "Ready-made websites" as eyebrow %}{% translate "Launch fast with a ready-made site." as title %}{% translate "Pick a design for your industry and we'll customise it with your brand, content and domain." as intro %}
     {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
-    <a href="{% url 'portfolio:list' %}" class="btn-ghost">{% translate "View all projects" %} &rarr;</a>
+    <a href="{% url 'readymade:list' %}" class="btn-ghost">{% translate "Browse all" %} &rarr;</a>
   </div>
-  <div data-hscroll-track class="hscroll-track container-site mt-12">
-    {% for project in featured_projects %}
-      <div class="hscroll-item">{% include "portfolio/partials/card.html" %}</div>
+  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for template in featured_templates %}
+      {% cycle "0" "0.1" "0.2" as delay silent %}
+      {% include "readymade/partials/card.html" %}
     {% endfor %}
   </div>
-  {% include "components/video_modal.html" %}
 </section>
 {% endif %}
 
@@ -119,22 +116,7 @@
 </section>
 {% endif %}
 
-{# --- Ready-made websites --- #}
-{% if featured_templates %}
-<section class="container-site mt-28">
-  <div class="flex flex-wrap items-end justify-between gap-6">
-    {% translate "Ready-made websites" as eyebrow %}{% translate "Launch fast with a ready-made site." as title %}{% translate "Pick a design for your industry and we'll customise it with your brand, content and domain." as intro %}
-    {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
-    <a href="{% url 'readymade:list' %}" class="btn-ghost">{% translate "Browse all" %} &rarr;</a>
-  </div>
-  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {% for template in featured_templates %}
-      {% cycle "0" "0.1" "0.2" as delay silent %}
-      {% include "readymade/partials/card.html" %}
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
+{% if not has_showcase %}{% include "portfolio/partials/home_section.html" %}{% endif %}
 
 {% include "components/process.html" %}
 

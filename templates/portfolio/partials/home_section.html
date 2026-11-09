@@ -1,0 +1,23 @@
+{% load i18n %}
+{# Home page projects section: pinned horizontal scroll on desktop, swipe on mobile. #}
+{% if featured_projects %}
+<section class="mt-28 overflow-hidden" data-hscroll x-data="videoModal" @open-video.window="show($event.detail)">
+  <div class="container-site flex flex-wrap items-end justify-between gap-6">
+    {# Honest framing: only call it a showcase once there are enough finished projects. #}
+    {% if has_showcase %}
+      {% translate "Selected work" as eyebrow %}{% translate "Projects we're proud of." as title %}
+    {% else %}
+      {% translate "Work in progress" as eyebrow %}{% translate "What we're building now." as title %}
+      {% translate "A look at the client projects we're currently designing and developing." as intro %}
+    {% endif %}
+    {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
+    <a href="{% url 'portfolio:list' %}" class="btn-ghost">{% translate "View all projects" %} &rarr;</a>
+  </div>
+  <div data-hscroll-track class="hscroll-track container-site mt-12">
+    {% for project in featured_projects %}
+      <div class="hscroll-item">{% include "portfolio/partials/card.html" %}</div>
+    {% endfor %}
+  </div>
+  {% include "components/video_modal.html" %}
+</section>
+{% endif %}
