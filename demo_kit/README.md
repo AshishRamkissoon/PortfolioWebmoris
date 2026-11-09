@@ -25,7 +25,12 @@ The script does three things:
 - adds a `noindex` meta tag
 
 ## Optional: badge, "See why it converts" tour, mobile bar, nudge
-Serve a `demo-tour.json` next to `demo-kit.js`, and copy `demo-kit.css` there too. Without the JSON file, the kit only shows the bar (as before). Lagon Bistro is the reference: `demos/lagon-bistro/src/static/demo-tour.json`.
+Serve a `demo-tour.json` next to `demo-kit.js`, and copy `demo-kit.css` there too. Without the JSON file, the kit only shows the bar (as before). So that the badge appears as soon as the page loads, link both files in the demo's `<head>`:
+
+```html
+<link rel="stylesheet" href="/demo-kit.css">
+<link rel="preload" href="/demo-tour.json" as="fetch" crossorigin="anonymous">
+``` Lagon Bistro is the reference: `demos/lagon-bistro/src/static/demo-tour.json`.
 
 - **`badge`:** `price` (text, or `null` for "Price on request") and `pitch` (EN/FR).
 - **`stops`:** the tour, in page order. Each stop has a CSS `target` (prefer `data-tour="…"` attributes in the demo's templates) and EN/FR `title`, `text` and `why`. Stops whose element is missing or hidden (for example on phones) are skipped.

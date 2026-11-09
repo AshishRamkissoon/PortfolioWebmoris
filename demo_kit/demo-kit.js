@@ -286,21 +286,43 @@
     return node;
   }
 
+  // Runs as soon as the kit loads: the tour file, the styles and the badge data are fetched
+  // in parallel with the page, and the controls appear the moment the page is parsed.
   function loadExtras() {
-    if (!window.fetch || !script.src) return;
-    fetch(new URL("demo-tour.json", script.src).href, { credentials: "omit" })
+    if (!window.fetch || !window.Promise || !script.src) return;
+    // Same request as the <link rel="preload"> in the demo's <head>, so it is reused.
+    var tour = fetch(new URL("demo-tour.json", script.src).href)
       .then(function (response) {
         return response.ok ? response.json() : null;
       })
-      .then(function (tour) {
-        if (!tour) return;
-        var css = document.createElement("link");
+      .catch(function () {
+        return null;
+      });
+    // Demos link demo-kit.css in their <head>; older ones get it added here.
+    var styles = new Promise(function (resolve) {
+      var css = document.querySelector('link[rel="stylesheet"][href$="demo-kit.css"]');
+      if (css && css.sheet) return resolve(true);
+      if (!css) {
+        css = document.createElement("link");
         css.rel = "stylesheet";
         css.href = new URL("demo-kit.css", script.src).href;
-        css.onload = function () {
-          buildExtras(tour, fetchBadgeData());
-        };
         document.head.appendChild(css);
+      }
+      css.addEventListener("load", function () {
+        resolve(true);
+      });
+      css.addEventListener("error", function () {
+        resolve(false);
+      });
+    });
+    var domReady = new Promise(function (resolve) {
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", resolve);
+      else resolve();
+    });
+    var badgeData = fetchBadgeData();
+    Promise.all([styles, domReady])
+      .then(function (results) {
+        if (results[0]) buildExtras(tour, badgeData);
       })
       .catch(function (error) {
         if (window.console) console.warn("Webmoris demo kit:", error);
@@ -320,31 +342,37 @@
       });
   }
 
-  function buildExtras(tour, badgeData) {
+  function buildExtras(tourRequest, badgeData) {
     var root = make("div", "dk-root");
     root.dataset.demoKit = "extras";
-    var theme = tour.theme || {};
-    var vars = { accent: "--dk-accent", accentText: "--dk-accent-text", surface: "--dk-surface", surfaceText: "--dk-surface-text", border: "--dk-border" };
-    Object.keys(vars).forEach(function (key) {
-      if (theme[key]) root.style.setProperty(vars[key], theme[key]);
-    });
     document.body.appendChild(root);
-
     var floats = make("div", "dk-floats");
     root.appendChild(floats);
-    var tourApi = buildTour(tour, root, floats);
-    buildBadge(tour.badge || {}, badgeData, floats, tourApi);
-    if (tour.mobileBar) buildMobileBar(tour.mobileBar, root);
-    if (tour.nudge) buildNudge(tour.nudge, root, tourApi);
+    var badge = buildBadge(badgeData, floats);
 
-    // Slide in after a short pause, so the demo makes its first impression alone.
-    setTimeout(function () {
+    // Next frame, so the short slide-in transition plays (instant with reduced motion).
+    requestAnimationFrame(function () {
       floats.classList.add("dk-in");
-    }, reducedMotion ? 0 : 2500);
+    });
+
+    tourRequest.then(function (tour) {
+      if (!tour) return;
+      var theme = tour.theme || {};
+      var vars = { accent: "--dk-accent", accentText: "--dk-accent-text", surface: "--dk-surface", surfaceText: "--dk-surface-text", border: "--dk-border" };
+      Object.keys(vars).forEach(function (key) {
+        if (theme[key]) root.style.setProperty(vars[key], theme[key]);
+      });
+      if (tour.badge && tour.badge.pitch) badge.setPitch(t(tour.badge.pitch));
+      var tourApi = buildTour(tour, root, floats, badge.pill);
+      badge.connectTour(tourApi);
+      if (tour.mobileBar) buildMobileBar(tour.mobileBar, root);
+      if (tour.nudge) buildNudge(tour.nudge, root, tourApi);
+    });
   }
 
   // ---- "Get this website" badge ----
-  function buildBadge(badge, badgeData, floats, tourApi) {
+  function buildBadge(badgeData, floats) {
+    var tourApi = { stop: function () {} };
     var card = make("div", "dk-card");
     card.id = "dk-card";
     card.hidden = true;
@@ -356,7 +384,8 @@
     card.appendChild(close);
     card.appendChild(make("p", "dk-eyebrow", TEXT.cardEyebrow));
     card.appendChild(make("h2", null, TEXT.cardTitle));
-    card.appendChild(make("p", null, t(badge.pitch) || TEXT.pitch));
+    var pitch = make("p", null, TEXT.pitch);
+    card.appendChild(pitch);
     var price = make("div", "dk-price");
     function showPrice(value) {
       price.textContent = "";
@@ -367,7 +396,7 @@
         price.appendChild(make("span", null, TEXT.priceAsk));
       }
     }
-    showPrice(t(badge.price));
+    showPrice("");
     card.appendChild(price);
     var checks = make("ul", "dk-checks");
     TEXT.checks.forEach(function (item) {
@@ -394,14 +423,6 @@
         actions.appendChild(whatsapp);
       }
     });
-    if (tourApi.available) {
-      var why = button("dk-link", TEXT.toggle + " →");
-      why.addEventListener("click", function () {
-        setOpen(false);
-        tourApi.start();
-      });
-      card.appendChild(why);
-    }
 
     var pill = button("dk-pill");
     pill.setAttribute("aria-expanded", "false");
@@ -433,9 +454,27 @@
     });
     floats.insertBefore(card, floats.firstChild);
     floats.appendChild(pill);
-    tourApi.onStart(function () {
-      setOpen(false);
-    });
+
+    return {
+      pill: pill,
+      setPitch: function (text) {
+        pitch.textContent = text;
+      },
+      // Once the tour is ready: a way into it from the card (the only one on phones).
+      connectTour: function (api) {
+        tourApi = api;
+        if (!api.available) return;
+        var why = button("dk-link", TEXT.toggle + " →");
+        why.addEventListener("click", function () {
+          setOpen(false);
+          api.start();
+        });
+        card.appendChild(why);
+        api.onStart(function () {
+          setOpen(false);
+        });
+      },
+    };
   }
 
   // ---- "See why it converts" tour ----
@@ -443,7 +482,7 @@
     return node && node.getClientRects().length > 0;
   }
 
-  function buildTour(tour, root, floats) {
+  function buildTour(tour, root, floats, pill) {
     var listeners = [];
     var api = {
       available: false,
@@ -476,7 +515,7 @@
     toggle.setAttribute("aria-pressed", "false");
     toggle.appendChild(make("span", "dk-switch"));
     toggle.appendChild(make("span", null, TEXT.toggle));
-    floats.appendChild(toggle);
+    floats.insertBefore(toggle, pill);
 
     var layer, spot, panel, highlights, chips, frame, index = 0, running = false, lastFocus;
 
@@ -751,11 +790,7 @@
   function init() {
     addNoindex();
     addBar();
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", loadExtras);
-    } else {
-      loadExtras();
-    }
+    loadExtras();
   }
   // At the top of <body> the body already exists: add the bar now, before first paint.
   // (Loaded from <head> or with defer, it falls back to waiting for the DOM.)

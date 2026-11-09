@@ -14,6 +14,9 @@
   {% if preload %}{% preloadImage preload.key, preload.sizes, preload.widths %}{% endif %}
   <link rel="stylesheet" href="/assets/fonts.css">
   <link rel="stylesheet" href="/assets/main.css">
+  {# Demo kit: badge styles and tour content load with the page, so the badge shows at once. #}
+  <link rel="stylesheet" href="/demo-kit.css">
+  <link rel="preload" href="/demo-tour.json" as="fetch" crossorigin="anonymous">
   <script type="module" src="/assets/js/main.js"></script>
 </head>
 <body class="{{ bodyClass }}{% if section != 'book' %} has-cta-bar{% endif %}">
