@@ -1,4 +1,5 @@
-"""schema.org JSON-LD for search engines (Organization, CreativeWork, Service, Product/Offer)."""
+"""schema.org JSON-LD for search engines (Organization, CreativeWork, Service, Product/Offer,
+FAQPage)."""
 
 import json
 
@@ -142,3 +143,19 @@ def schema_packages(context, packages):
             )
         items.append(item)
     return _script(context, _with_context({"@graph": items})) if items else ""
+
+
+@register.simple_tag(takes_context=True)
+def schema_faq(context, faqs):
+    data = {
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {"@type": "Answer", "text": faq.answer},
+            }
+            for faq in faqs
+        ],
+    }
+    return _script(context, _with_context(data)) if faqs else ""

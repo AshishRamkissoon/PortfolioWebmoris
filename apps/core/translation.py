@@ -1,6 +1,15 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from .models import AboutPage, HeroBusiness, LegalPage, ProcessStep, SiteSettings, TeamMember
+from .models import (
+    FAQ,
+    AboutPage,
+    HeroBusiness,
+    LegalPage,
+    ProcessStep,
+    SiteSettings,
+    TeamMember,
+    TrustPromise,
+)
 
 
 @register(SiteSettings)
@@ -40,3 +49,13 @@ class LegalPageTranslationOptions(TranslationOptions):
 @register(HeroBusiness)
 class HeroBusinessTranslationOptions(TranslationOptions):
     fields = ("label", "features")
+
+
+@register(TrustPromise)
+class TrustPromiseTranslationOptions(TranslationOptions):
+    fields = ("title", "text")
+
+
+@register(FAQ)
+class FAQTranslationOptions(TranslationOptions):
+    fields = ("question", "answer")

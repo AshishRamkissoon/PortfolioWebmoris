@@ -4,7 +4,15 @@ Team members are clearly marked "(demo)", and the legal pages say they must be r
 neither should ever go live as if it were real.
 """
 
-from .models import AboutPage, HeroBusiness, LegalPage, ProcessStep, TeamMember
+from .models import (
+    FAQ,
+    AboutPage,
+    HeroBusiness,
+    LegalPage,
+    ProcessStep,
+    TeamMember,
+    TrustPromise,
+)
 
 PROCESS = [
     (
@@ -192,3 +200,203 @@ def seed_hero_businesses(stdout=None):
         )
     if stdout:
         stdout.write(f"Hero: {len(HERO_BUSINESSES)} business types.")
+
+
+# Promises: (icon, title EN/FR, text EN/FR). Only promises the agency already keeps.
+PROMISES = [
+    (
+        "check",
+        ("Fixed quote before we start", "Un devis fixe avant de commencer"),
+        (
+            "Price, scope and timeline in writing. No surprise bills.",
+            "Prix, contenu et délais par écrit. Aucune facture surprise.",
+        ),
+    ),
+    (
+        "wallet",
+        ("Pay in stages", "Paiement en plusieurs fois"),
+        (
+            "A deposit to start, the balance at launch. Never everything upfront.",
+            "Un acompte pour commencer, le solde à la mise en ligne. Jamais tout d'avance.",
+        ),
+    ),
+    (
+        "key",
+        ("Your website, your domain", "Votre site, votre domaine"),
+        (
+            "The domain is registered in your name and the website belongs to you.",
+            "Le nom de domaine est à votre nom et le site vous appartient.",
+        ),
+    ),
+    (
+        "clock",
+        ("A reply within one business day", "Une réponse sous un jour ouvré"),
+        (
+            "By email or WhatsApp, from a real person on the team.",
+            "Par e-mail ou WhatsApp, par une vraie personne de l'équipe.",
+        ),
+    ),
+    (
+        "refresh",
+        ("Changes included", "Modifications incluses"),
+        (
+            "Every package includes rounds of changes after you see the preview.",
+            "Chaque formule inclut des séries de modifications après l'aperçu.",
+        ),
+    ),
+    (
+        "shield",
+        ("Support after launch", "Un suivi après la mise en ligne"),
+        (
+            "We stay available after launch, and a Care Plan can look after your site for you.",
+            "Nous restons disponibles après la mise en ligne, et le Care Plan peut gérer votre "
+            "site pour vous.",
+        ),
+    ),
+]
+
+# FAQs: (question EN/FR, answer EN/FR, on Pricing, on Contact).
+FAQS = [
+    (
+        ("How much does a website cost?", "Combien coûte un site web ?"),
+        (
+            "It depends on the number of pages and the features you need. Our packages show "
+            "a starting price. After you send your brief, we reply with a fixed quote, so you "
+            "know the full price before anything starts.",
+            "Cela dépend du nombre de pages et des fonctionnalités. Nos formules indiquent un "
+            "prix de départ. Après votre demande, nous envoyons un devis fixe : vous connaissez "
+            "le prix total avant que quoi que ce soit ne commence.",
+        ),
+        True,
+        False,
+    ),
+    (
+        ("How long does it take?", "Combien de temps faut-il ?"),
+        (
+            "A Starter website is usually online in about 2 weeks. Larger sites and online "
+            "stores take longer; your quote gives you a clear timeline.",
+            "Un site Starter est généralement en ligne en 2 semaines environ. Les sites plus "
+            "grands et les boutiques en ligne prennent plus de temps ; votre devis donne un "
+            "délai clair.",
+        ),
+        True,
+        False,
+    ),
+    (
+        ("How do I pay?", "Comment payer ?"),
+        (
+            "You pay a deposit to start and the balance at launch. You can pay by MCB Juice, "
+            "bank transfer or PayPal.",
+            "Vous payez un acompte pour commencer et le solde à la mise en ligne, par MCB Juice, "
+            "virement bancaire ou PayPal.",
+        ),
+        True,
+        False,
+    ),
+    (
+        ("Who owns the website and the domain?", "À qui appartiennent le site et le domaine ?"),
+        (
+            "You do. The domain is registered in your name, and once the website is paid for, "
+            "it belongs to you.",
+            "À vous. Le nom de domaine est enregistré à votre nom et, une fois payé, le site "
+            "vous appartient.",
+        ),
+        True,
+        False,
+    ),
+    (
+        ("What is a round of changes?", "Qu'est-ce qu'une série de modifications ?"),
+        (
+            "After you see the preview, you send us one list of everything you want changed, "
+            "and we make those changes. Your package says how many rounds are included; extra "
+            "rounds are available if you need them.",
+            "Après l'aperçu, vous nous envoyez une seule liste de tout ce que vous voulez "
+            "modifier, et nous l'appliquons. Votre formule indique le nombre de séries incluses ; "
+            "des séries supplémentaires sont possibles.",
+        ),
+        True,
+        False,
+    ),
+    (
+        ("What happens after launch?", "Que se passe-t-il après la mise en ligne ?"),
+        (
+            "Support after launch is included in our packages. After that, the monthly Care "
+            "Plan covers hosting, backups, small updates and priority help, if you want it.",
+            "Un suivi après la mise en ligne est inclus dans nos formules. Ensuite, le Care Plan "
+            "mensuel couvre l'hébergement, les sauvegardes, les petites mises à jour et une "
+            "aide prioritaire, si vous le souhaitez.",
+        ),
+        True,
+        False,
+    ),
+    (
+        ("Is the quote free?", "Le devis est-il gratuit ?"),
+        (
+            "Yes. The quote is free and you're under no obligation to go ahead.",
+            "Oui. Le devis est gratuit et sans engagement.",
+        ),
+        True,
+        True,
+    ),
+    (
+        ("What happens after I send my brief?", "Que se passe-t-il après l'envoi de ma demande ?"),
+        (
+            "We reply within one business day, usually with a few questions or a short call. "
+            "Then we send a fixed quote. If you're happy with it, a deposit starts the project.",
+            "Nous répondons sous un jour ouvré, souvent avec quelques questions ou un court "
+            "appel. Puis nous envoyons un devis fixe. S'il vous convient, un acompte lance le "
+            "projet.",
+        ),
+        False,
+        True,
+    ),
+    (
+        ("What do I need to prepare?", "Que dois-je préparer ?"),
+        (
+            "Your logo, your texts and some photos, if you have them. If not, don't worry: "
+            "we can help with branding, writing and photos.",
+            "Votre logo, vos textes et quelques photos, si vous les avez. Sinon, pas "
+            "d'inquiétude : nous pouvons vous aider pour l'identité visuelle, les textes et les "
+            "photos.",
+        ),
+        False,
+        True,
+    ),
+    (
+        ("Can you redesign my existing website?", "Pouvez-vous refaire mon site actuel ?"),
+        (
+            "Yes. Add your current website's address to the brief and tell us what isn't "
+            "working. We'll suggest what to keep and what to improve.",
+            "Oui. Indiquez l'adresse de votre site actuel dans la demande et dites-nous ce qui "
+            "ne va pas. Nous vous dirons quoi garder et quoi améliorer.",
+        ),
+        False,
+        True,
+    ),
+]
+
+
+def seed_trust_content(stdout=None):
+    if not TrustPromise.objects.exists():
+        for order, (icon, title, text) in enumerate(PROMISES):
+            TrustPromise.objects.create(
+                icon=icon,
+                title_en=title[0],
+                title_fr=title[1],
+                text_en=text[0],
+                text_fr=text[1],
+                order=order,
+            )
+    if not FAQ.objects.exists():
+        for order, (question, answer, on_pricing, on_contact) in enumerate(FAQS):
+            FAQ.objects.create(
+                question_en=question[0],
+                question_fr=question[1],
+                answer_en=answer[0],
+                answer_fr=answer[1],
+                on_pricing=on_pricing,
+                on_contact=on_contact,
+                order=order,
+            )
+    if stdout:
+        stdout.write(f"Trust: {TrustPromise.objects.count()} promises, {FAQ.objects.count()} FAQs.")

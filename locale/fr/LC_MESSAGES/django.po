@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webmoris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 11:12-0800\n"
+"POT-Creation-Date: 2026-11-23 02:12-0800\n"
 "PO-Revision-Date: 2026-10-31 12:00+0400\n"
 "Last-Translator: Webmoris\n"
 "Language-Team: French\n"
@@ -180,12 +180,13 @@ msgstr ""
 msgid "photo"
 msgstr ""
 
-#: .\apps\core\models.py:180 .\apps\core\models.py:267
+#: .\apps\core\models.py:187 .\apps\core\models.py:321
 msgid "show on site"
 msgstr ""
 
-#: .\apps\core\models.py:181 .\apps\core\models.py:201
-#: .\apps\core\models.py:268 .\apps\portfolio\models.py:14
+#: .\apps\core\models.py:188 .\apps\core\models.py:208
+#: .\apps\core\models.py:236 .\apps\core\models.py:255
+#: .\apps\core\models.py:322 .\apps\portfolio\models.py:14
 #: .\apps\portfolio\models.py:104 .\apps\portfolio\models.py:157
 #: .\apps\portfolio\models.py:185 .\apps\pricing\models.py:93
 #: .\apps\pricing\models.py:299 .\apps\readymade\models.py:23
@@ -195,117 +196,195 @@ msgstr ""
 msgid "order"
 msgstr ""
 
-#: .\apps\core\models.py:185
+#: .\apps\core\models.py:192
 msgid "team member"
 msgstr ""
 
-#: .\apps\core\models.py:186
+#: .\apps\core\models.py:193
 msgid "team members"
 msgstr ""
 
-#: .\apps\core\models.py:199 .\apps\core\models.py:218
-#: .\apps\portfolio\models.py:41 .\apps\services\models.py:47
+#: .\apps\core\models.py:206 .\apps\core\models.py:233
+#: .\apps\core\models.py:272 .\apps\portfolio\models.py:41
+#: .\apps\services\models.py:47
 msgid "title"
 msgstr ""
 
-#: .\apps\core\models.py:200 .\apps\pricing\models.py:164
+#: .\apps\core\models.py:207 .\apps\pricing\models.py:164
 #: .\apps\readymade\models.py:56 .\apps\services\models.py:51
 msgid "description"
 msgstr ""
 
-#: .\apps\core\models.py:205
+#: .\apps\core\models.py:212
 msgid "process step"
 msgstr ""
 
-#: .\apps\core\models.py:206
+#: .\apps\core\models.py:213
 msgid "process steps"
 msgstr ""
 
-#: .\apps\core\models.py:214 .\templates\partials\footer.html:37
-msgid "Privacy Policy"
-msgstr "Politique de confidentialité"
-
-#: .\apps\core\models.py:215 .\templates\partials\footer.html:38
-msgid "Terms & Conditions"
-msgstr "Conditions générales"
-
-#: .\apps\core\models.py:217
-msgid "page"
-msgstr ""
-
-#: .\apps\core\models.py:219
-msgid "content"
-msgstr ""
-
-#: .\apps\core\models.py:219
-msgid "Plain text. Blank lines start paragraphs."
-msgstr ""
-
-#: .\apps\core\models.py:220
-msgid "last updated"
+#: .\apps\core\models.py:223
+msgid "Tick"
 msgstr ""
 
 #: .\apps\core\models.py:224
-msgid "legal page"
+msgid "Shield"
 msgstr ""
 
 #: .\apps\core\models.py:225
+msgid "Key"
+msgstr ""
+
+#: .\apps\core\models.py:226
+msgid "Wallet"
+msgstr ""
+
+#: .\apps\core\models.py:227
+msgid "Clock"
+msgstr ""
+
+#: .\apps\core\models.py:228 .\apps\services\models.py:37
+msgid "Chat"
+msgstr ""
+
+#: .\apps\core\models.py:229 .\apps\services\models.py:35
+msgid "Refresh"
+msgstr ""
+
+#: .\apps\core\models.py:230 .\apps\services\models.py:34
+msgid "Rocket"
+msgstr ""
+
+#: .\apps\core\models.py:232 .\apps\services\models.py:49
+msgid "icon"
+msgstr ""
+
+#: .\apps\core\models.py:234
+msgid "text"
+msgstr ""
+
+#: .\apps\core\models.py:235 .\apps\core\models.py:254
+msgid "show on the site"
+msgstr ""
+
+#: .\apps\core\models.py:240
+msgid "promise"
+msgstr ""
+
+#: .\apps\core\models.py:241
+msgid "promises"
+msgstr ""
+
+#: .\apps\core\models.py:250 .\apps\services\models.py:78
+msgid "question"
+msgstr ""
+
+#: .\apps\core\models.py:251 .\apps\services\models.py:79
+msgid "answer"
+msgstr ""
+
+#: .\apps\core\models.py:251 .\apps\core\models.py:273
+msgid "Plain text. Blank lines start paragraphs."
+msgstr ""
+
+#: .\apps\core\models.py:252
+msgid "show on Pricing"
+msgstr ""
+
+#: .\apps\core\models.py:253
+msgid "show on Contact"
+msgstr ""
+
+#: .\apps\core\models.py:259 .\apps\services\models.py:84
+#: .\templates\components\faq.html:5 .\templates\services\detail.html:67
+msgid "FAQ"
+msgstr "FAQ"
+
+#: .\apps\core\models.py:260 .\apps\services\models.py:85
+msgid "FAQs"
+msgstr ""
+
+#: .\apps\core\models.py:268 .\templates\partials\footer.html:37
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: .\apps\core\models.py:269 .\templates\partials\footer.html:38
+msgid "Terms & Conditions"
+msgstr "Conditions générales"
+
+#: .\apps\core\models.py:271
+msgid "page"
+msgstr ""
+
+#: .\apps\core\models.py:273
+msgid "content"
+msgstr ""
+
+#: .\apps\core\models.py:274
+msgid "last updated"
+msgstr ""
+
+#: .\apps\core\models.py:278
+msgid "legal page"
+msgstr ""
+
+#: .\apps\core\models.py:279
 msgid "legal pages"
 msgstr ""
 
-#: .\apps\core\models.py:237 .\apps\portfolio\models.py:156
+#: .\apps\core\models.py:291 .\apps\portfolio\models.py:156
 msgid "label"
 msgstr ""
 
-#: .\apps\core\models.py:237
+#: .\apps\core\models.py:291
 msgid "E.g. “Restaurant”."
 msgstr ""
 
-#: .\apps\core\models.py:238 .\apps\portfolio\models.py:13
+#: .\apps\core\models.py:292 .\apps\portfolio\models.py:13
 #: .\apps\portfolio\models.py:42 .\apps\pricing\models.py:34
 #: .\apps\readymade\models.py:22 .\apps\readymade\models.py:48
 #: .\apps\services\models.py:12 .\apps\services\models.py:48
 msgid "slug"
 msgstr ""
 
-#: .\apps\core\models.py:240
+#: .\apps\core\models.py:294
 msgid "typical features"
 msgstr ""
 
-#: .\apps\core\models.py:242
+#: .\apps\core\models.py:296
 msgid "One per line, e.g. “Table booking”. The first three float around the preview."
 msgstr ""
 
-#: .\apps\core\models.py:247 .\apps\leads\models.py:102
+#: .\apps\core\models.py:301 .\apps\leads\models.py:102
 #: .\apps\pricing\models.py:99 .\apps\pricing\models.py:252
 msgid "package"
 msgstr ""
 
-#: .\apps\core\models.py:251
+#: .\apps\core\models.py:305
 msgid "Its “From” price is shown when this business type is picked."
 msgstr ""
 
-#: .\apps\core\models.py:255
+#: .\apps\core\models.py:309
 msgid "ready-made demo"
 msgstr ""
 
-#: .\apps\core\models.py:259
+#: .\apps\core\models.py:313
 msgid "Shown in the preview window."
 msgstr ""
 
-#: .\apps\core\models.py:262
+#: .\apps\core\models.py:316
 msgid "project type in the brief"
 msgstr ""
 
-#: .\apps\core\models.py:265
+#: .\apps\core\models.py:319
 msgid "Pre-ticked in the project brief when “Start my website” is clicked."
 msgstr ""
 
-#: .\apps\core\models.py:272
+#: .\apps\core\models.py:326
 msgid "hero business type"
 msgstr ""
 
-#: .\apps\core\models.py:273
+#: .\apps\core\models.py:327
 msgid "hero business types"
 msgstr ""
 
@@ -318,16 +397,16 @@ msgstr ""
 msgid "Use a YouTube or Vimeo video link."
 msgstr ""
 
-#: .\apps\core\views.py:70 .\templates\pages\home.html:59
+#: .\apps\core\views.py:72 .\templates\pages\home.html:70
 msgid "Mobile-ready"
 msgstr "Adapté au mobile"
 
-#: .\apps\core\views.py:71 .\templates\pages\home.html:60
+#: .\apps\core\views.py:73 .\templates\pages\home.html:71
 msgid "English & French"
 msgstr "Anglais & français"
 
-#: .\apps\core\views.py:72 .\apps\leads\models.py:77
-#: .\templates\pages\home.html:61
+#: .\apps\core\views.py:74 .\apps\leads\models.py:77
+#: .\templates\pages\home.html:72
 msgid "WhatsApp button"
 msgstr "Bouton WhatsApp"
 
@@ -1205,20 +1284,8 @@ msgstr ""
 msgid "Shopping cart"
 msgstr ""
 
-#: .\apps\services\models.py:34
-msgid "Rocket"
-msgstr ""
-
-#: .\apps\services\models.py:35
-msgid "Refresh"
-msgstr ""
-
 #: .\apps\services\models.py:36
 msgid "Sparkles"
-msgstr ""
-
-#: .\apps\services\models.py:37
-msgid "Chat"
 msgstr ""
 
 #: .\apps\services\models.py:38
@@ -1245,10 +1312,6 @@ msgstr ""
 msgid "group"
 msgstr ""
 
-#: .\apps\services\models.py:49
-msgid "icon"
-msgstr ""
-
 #: .\apps\services\models.py:52
 msgid "benefits"
 msgstr ""
@@ -1267,22 +1330,6 @@ msgstr ""
 
 #: .\apps\services\models.py:67
 msgid "services"
-msgstr ""
-
-#: .\apps\services\models.py:78
-msgid "question"
-msgstr ""
-
-#: .\apps\services\models.py:79
-msgid "answer"
-msgstr ""
-
-#: .\apps\services\models.py:84 .\templates\services\detail.html:67
-msgid "FAQ"
-msgstr "FAQ"
-
-#: .\apps\services\models.py:85
-msgid "FAQs"
 msgstr ""
 
 #: .\config\settings\base.py:89
@@ -1335,6 +1382,10 @@ msgstr "Demander un devis"
 msgid "Book a call"
 msgstr "Réserver un appel"
 
+#: .\templates\components\faq.html:5 .\templates\services\detail.html:67
+msgid "Questions we often get"
+msgstr "Questions fréquentes"
+
 #: .\templates\components\filter_tabs.html:5
 msgid "All"
 msgstr "Tous"
@@ -1369,6 +1420,19 @@ msgstr "Notre méthode"
 #: .\templates\components\process.html:4
 msgid "From first call to launch — and beyond."
 msgstr "Du premier appel au lancement — et au-delà."
+
+#: .\templates\components\promises.html:6
+#: .\templates\components\promises.html:21
+msgid "Our promises"
+msgstr "Nos engagements"
+
+#: .\templates\components\promises.html:21
+msgid "No surprises, from quote to launch."
+msgstr "Aucune surprise, du devis à la mise en ligne."
+
+#: .\templates\components\promises.html:21
+msgid "Clear commitments you can hold us to."
+msgstr "Des engagements clairs, que vous pouvez nous rappeler."
 
 #: .\templates\emails\lead_auto_reply.html:8
 #: .\templates\emails\lead_auto_reply.txt:1
@@ -1702,56 +1766,56 @@ msgstr "À partir de"
 msgid "Start my website"
 msgstr "Lancer mon site"
 
-#: .\templates\pages\home.html:56
+#: .\templates\pages\home.html:67
 #, python-format
 msgid "Ready-made demo: %(name)s"
 msgstr "Démo de site clé en main : %(name)s"
 
-#: .\templates\pages\home.html:63
+#: .\templates\pages\home.html:74
 msgid "Ready-made demo"
 msgstr "Démo clé en main"
 
-#: .\templates\pages\home.html:63
+#: .\templates\pages\home.html:74
 msgid "Live preview"
 msgstr "Aperçu en direct"
 
-#: .\templates\pages\home.html:76
+#: .\templates\pages\home.html:87
 msgid "Ready-made websites"
 msgstr "Sites clés en main"
 
-#: .\templates\pages\home.html:76
+#: .\templates\pages\home.html:87
 msgid "Launch fast with a ready-made site."
 msgstr "Lancez-vous vite avec un site clés en main."
 
-#: .\templates\pages\home.html:76
+#: .\templates\pages\home.html:87
 msgid "Pick a design for your industry and we'll customise it with your brand, content and domain."
 msgstr "Choisissez un design pour votre secteur et nous l'adaptons à votre marque, vos contenus et votre domaine."
 
-#: .\templates\pages\home.html:78
+#: .\templates\pages\home.html:89
 msgid "Browse all"
 msgstr "Tout voir"
 
-#: .\templates\pages\home.html:92
+#: .\templates\pages\home.html:103
 msgid "What we do"
 msgstr "Ce que nous faisons"
 
-#: .\templates\pages\home.html:92
+#: .\templates\pages\home.html:103
 msgid "Websites, marketing and content, under one roof."
 msgstr "Sites web, marketing et contenu, sous un même toit."
 
-#: .\templates\pages\home.html:126 .\templates\services\list.html:49
+#: .\templates\pages\home.html:139 .\templates\services\list.html:49
 msgid "Packages"
 msgstr "Formules"
 
-#: .\templates\pages\home.html:126
+#: .\templates\pages\home.html:139
 msgid "Tell us about your project. Get a tailored quote."
 msgstr "Parlez-nous de votre projet. Recevez un devis sur mesure."
 
-#: .\templates\pages\home.html:127
+#: .\templates\pages\home.html:140
 msgid "Pick a starting point and answer a few quick questions. We reply with a fixed quote, then you start with a deposit and pay the balance at launch."
 msgstr "Choisissez un point de départ et répondez à quelques questions. Nous vous envoyons un devis fixe ; vous démarrez avec un acompte et réglez le solde à la mise en ligne."
 
-#: .\templates\pages\home.html:129 .\templates\pricing\checkout.html:9
+#: .\templates\pages\home.html:142 .\templates\pricing\checkout.html:9
 #: .\templates\services\list.html:52
 msgid "All packages"
 msgstr "Toutes les formules"
@@ -2383,10 +2447,6 @@ msgstr "Exemples"
 #: .\templates\services\detail.html:53
 msgid "Recent work"
 msgstr "Réalisations récentes"
-
-#: .\templates\services\detail.html:67
-msgid "Questions we often get"
-msgstr "Questions fréquentes"
 
 #: .\templates\services\detail.html:86
 msgid "Other services"

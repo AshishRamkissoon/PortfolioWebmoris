@@ -506,6 +506,23 @@ Same as Phase 10: all pages work on mobile and desktop with no console errors; f
 
 ---
 
+## Phase 16 — Clear Promises and FAQ
+
+**Goal:** make the site more trustworthy by stating clear commitments and answering the questions clients ask before they hire an agency.
+
+**Decisions** (owner, 2026-11-23): add clear promises and an FAQ for now; testimonials and Google reviews come later.
+
+### Tasks
+- "Our promises" managed in admin (icon, title, text, order, on/off): a section on Home and Pricing, a compact panel beside the form on Contact.
+- General FAQs managed in admin, each shown on Pricing and/or Contact; FAQPage structured data for search engines.
+- Seed content in English and French, only promises the agency already keeps; tests.
+
+### Exit criteria
+- Promises and FAQs show on the right pages in English and French, work without JS, and disappear when switched off in admin.
+- All content editable in admin; tests and ruff pass.
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.

@@ -42,6 +42,10 @@
       <p class="px-8 pb-6 text-sm text-ink-400"><a href="{{ site_settings.calendly_url }}" target="_blank" rel="noopener noreferrer" class="underline hover:text-neon-cyan">{% translate "Open the booking page in a new tab" %}</a></p>
     </div>
     {% endif %}{% endwith %}
+
+    {% trust_promises "list" %}
   </aside>
 </div>
+
+{% faq_section "contact" %}
 {% endblock %}

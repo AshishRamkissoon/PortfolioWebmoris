@@ -5,6 +5,7 @@ from django.urls import translate_url
 from django.utils.translation import get_language
 
 from ..booking import booking_embed_url
+from ..models import FAQ, TrustPromise
 
 register = template.Library()
 
@@ -68,3 +69,23 @@ def money(amount, currency=""):
     if amount is None or amount == "":
         return ""
     return f"{currency} {floatformat(amount, '-2g')}".strip()
+
+
+@register.inclusion_tag("components/promises.html", takes_context=True)
+def trust_promises(context, layout="grid"):
+    """The promises from admin: a section with cards ("grid") or a compact side list ("list")."""
+    return {"promises": TrustPromise.objects.filter(is_active=True), "layout": layout}
+
+
+FAQ_PAGES = {"pricing": "on_pricing", "contact": "on_contact"}
+
+
+@register.inclusion_tag("components/faq.html", takes_context=True)
+def faq_section(context, page):
+    """The general FAQs picked for a page in admin, with FAQPage structured data."""
+    faqs = FAQ.objects.filter(is_active=True, **{FAQ_PAGES[page]: True})
+    return {
+        "faqs": list(faqs),
+        "request": context.get("request"),
+        "csp_nonce": context.get("csp_nonce", ""),
+    }

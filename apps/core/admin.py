@@ -4,7 +4,16 @@ from django.urls import reverse
 from django.utils.html import format_html
 from modeltranslation.admin import TabbedTranslationAdmin
 
-from .models import AboutPage, HeroBusiness, LegalPage, ProcessStep, SiteSettings, TeamMember
+from .models import (
+    FAQ,
+    AboutPage,
+    HeroBusiness,
+    LegalPage,
+    ProcessStep,
+    SiteSettings,
+    TeamMember,
+    TrustPromise,
+)
 
 admin.site.site_header = "Webmoris admin"
 admin.site.site_title = "Webmoris admin"
@@ -90,6 +99,19 @@ class TeamMemberAdmin(TabbedTranslationAdmin):
 class ProcessStepAdmin(TabbedTranslationAdmin):
     list_display = ("title", "description", "order")
     list_editable = ("order",)
+
+
+@admin.register(TrustPromise)
+class TrustPromiseAdmin(TabbedTranslationAdmin):
+    list_display = ("title", "icon", "is_active", "order")
+    list_editable = ("is_active", "order")
+
+
+@admin.register(FAQ)
+class FAQAdmin(TabbedTranslationAdmin):
+    list_display = ("question", "on_pricing", "on_contact", "is_active", "order")
+    list_editable = ("on_pricing", "on_contact", "is_active", "order")
+    list_filter = ("on_pricing", "on_contact", "is_active")
 
 
 @admin.register(LegalPage)

@@ -159,3 +159,77 @@ def test_singleton_and_content_admin(client):
     for model in ["teammember", "processstep", "legalpage"]:
         assert client.get(f"{base}{model}/").status_code == 200
         assert client.get(f"{base}{model}/add/").status_code == 200
+
+
+def test_promises_on_home_pricing_and_contact(client):
+    from apps.core.models import TrustPromise
+
+    TrustPromise.objects.create(
+        icon="key", title_en="Your domain", title_fr="Votre domaine", text_en="Yours."
+    )
+    TrustPromise.objects.create(title_en="Hidden promise", text_en="No.", is_active=False)
+    for path in ("/en/", "/en/pricing/", "/en/contact/"):
+        content = client.get(path).content.decode()
+        assert "Our promises" in content and "Your domain" in content, path
+        assert "Hidden promise" not in content, path
+    assert "Votre domaine" in client.get("/fr/pricing/").content.decode()
+
+
+def test_no_promises_no_section(client):
+    assert "Our promises" not in client.get("/en/").content.decode()
+
+
+def test_faqs_are_shown_on_the_pages_picked_in_admin(client):
+    from apps.core.models import FAQ
+
+    FAQ.objects.create(question_en="Pricing only?", answer_en="Yes.", on_pricing=True)
+    FAQ.objects.create(
+        question_en="Contact only?", answer_en="Yes.", on_pricing=False, on_contact=True
+    )
+    FAQ.objects.create(question_en="Hidden?", answer_en="Yes.", on_contact=True, is_active=False)
+    pricing = client.get("/en/pricing/").content.decode()
+    contact = client.get("/en/contact/").content.decode()
+    assert "Pricing only?" in pricing and "Contact only?" not in pricing
+    assert "Contact only?" in contact and "Pricing only?" not in contact
+    assert "Hidden?" not in pricing + contact
+    assert pricing.count('"@type": "FAQPage"') == 1
+
+
+def test_faq_is_escaped_and_structured_data_is_safe(client):
+    from apps.core.models import FAQ
+
+    FAQ.objects.create(question_en="<b>Bold?</b>", answer_en="</script><script>alert(1)</script>")
+    response = client.get("/en/pricing/")
+    content = response.content.decode()
+    assert "<script>alert(1)</script>" not in content
+    assert "&lt;b&gt;Bold?&lt;/b&gt;" in content
+    nonce = response.context["csp_nonce"]
+    assert f'<script type="application/ld+json" nonce="{nonce}">' in content
+
+
+def test_no_faqs_no_section(client):
+    content = client.get("/en/contact/").content.decode()
+    assert "Questions we often get" not in content and "FAQPage" not in content
+
+
+def test_trust_models_are_in_admin():
+    from django.contrib import admin
+
+    from apps.core.models import FAQ, TrustPromise
+
+    assert FAQ in admin.site._registry and TrustPromise in admin.site._registry
+
+
+def test_seed_trust_content_is_idempotent():
+    from apps.core.demo import FAQS, PROMISES, seed_trust_content
+    from apps.core.models import FAQ, TrustPromise
+
+    seed_trust_content()
+    seed_trust_content()
+    assert TrustPromise.objects.count() == len(PROMISES)
+    assert FAQ.objects.count() == len(FAQS)
+    assert (
+        FAQ.objects.filter(on_contact=True).exists()
+        and FAQ.objects.filter(on_pricing=True).exists()
+    )
+    assert not TrustPromise.objects.filter(title_fr="").exists()

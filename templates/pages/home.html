@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n core_tags %}
 
 {% block content %}
 {# --- Hero --- #}
@@ -119,6 +119,8 @@
 {% if not has_showcase %}{% include "portfolio/partials/home_section.html" %}{% endif %}
 
 {% include "components/process.html" %}
+
+{% trust_promises %}
 
 {% if packages %}
 <section class="container-site mt-28">

@@ -26,6 +26,7 @@
 | 13 | Project Brief, Quote-First Pricing and Deposits | ✅ Completed | 2026-11-05 | 2026-11-06 | 2026-11-07 |
 | 14 | Services Page Redesign | ✅ Completed | 2026-11-07 | 2026-11-07 | 2026-11-09 |
 | 15 | Demo Conversion Tour ("See why it converts") | ✅ Completed | 2026-11-09 | 2026-11-09 | 2026-11-09 |
+| 16 | Clear Promises and FAQ | 🔵 Awaiting approval | 2026-11-23 | 2026-11-23 | |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -46,6 +47,11 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-23 — Phase 16 — Ready for review — Clear promises and FAQ (branch `phase/16-trust-promises-faq`, built on the unmerged `tweak/home-order`).
+  - **Promises** (admin → Promises: icon, title, text, order, on/off): "Our promises — No surprises, from quote to launch." section on Home (after "How we work") and Pricing; compact "Our promises" panel beside the form on Contact. Seeded with 6, all matching what the site already offers: fixed quote, pay in stages, your website and domain, reply within one business day, changes included, support after launch.
+  - **FAQ** (admin → FAQs, ticks for "show on Pricing" / "show on Contact"): 7 questions on Pricing (cost, timing, payment, ownership, rounds of changes, after launch, free quote) and 4 on Contact (free quote, what happens after the brief, what to prepare, redesigns). Opens without JS; FAQPage structured data added.
+  - **How to test:** `/en/` and `/fr/`, `/en/pricing/`, `/en/contact/` (desktop and phone); switch a promise or FAQ off in admin and check it disappears. Owner to confirm every promise is one Webmoris can keep. All tests pass; ruff clean.
+- 2026-11-23 — Phase 16 — Started — Clear promises and FAQ (owner's choice from the trust suggestions).
 - 2026-11-09 — Phase 15 — Approved by owner ("merge it") — merged into `main` and pushed. Badge and tour switch now show as soon as a demo loads.
 - 2026-11-09 — Phase 15 — Ready for review — Pilot approved by owner, rolled out to all 6 demos (9 tour stops each for the 5 others, notes written per business and checked against each demo's content). Badge price = the ready-made website's starting price in admin; WhatsApp = Site Settings number (fictional +230 5000 0000 until the owner provides the real one), served by the new public endpoint `/api/demo-badge/<slug>/` (CORS, no cookies); demo CSP examples allow connecting to webmoris.mu. Test: ports 5002–5007, desktop and phone; set a starting price in admin and check the badge (works once webmoris.mu is live; locally only when a demo's data-agency points to http://127.0.0.1:5001).
 - 2026-11-09 — Phase 15 — Pilot ready for owner review (Lagon Bistro only, at the owner's request) — Demo kit extended (`demo_kit/demo-kit.js` + new `demo-kit.css`), driven by `demos/lagon-bistro/src/static/demo-tour.json`: "Get this website" badge and card, "See why it converts" tour (12 stops, page blueprint with 5 stages), mobile Call · WhatsApp · Book bar, "Hungry yet?" nudge. Other demos unchanged until approved. Test: http://127.0.0.1:5003/ on desktop and phone.

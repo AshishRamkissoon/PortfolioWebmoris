@@ -209,6 +209,53 @@ class ProcessStep(models.Model):
         return self.title
 
 
+class TrustPromise(models.Model):
+    """A short commitment ("Fixed quote before we start"), shown on Home, Pricing and Contact."""
+
+    class Icon(models.TextChoices):
+        CHECK = "check", _("Tick")
+        SHIELD = "shield", _("Shield")
+        KEY = "key", _("Key")
+        WALLET = "wallet", _("Wallet")
+        CLOCK = "clock", _("Clock")
+        CHAT = "chat", _("Chat")
+        REFRESH = "refresh", _("Refresh")
+        ROCKET = "rocket", _("Rocket")
+
+    icon = models.CharField(_("icon"), max_length=20, choices=Icon.choices, default=Icon.CHECK)
+    title = models.CharField(_("title"), max_length=80)
+    text = models.CharField(_("text"), max_length=220)
+    is_active = models.BooleanField(_("show on the site"), default=True)
+    order = models.PositiveSmallIntegerField(_("order"), default=0)
+
+    class Meta:
+        ordering = ["order", "pk"]
+        verbose_name = _("promise")
+        verbose_name_plural = _("promises")
+
+    def __str__(self):
+        return self.title
+
+
+class FAQ(models.Model):
+    """A general question, shown on the Pricing and/or Contact page (services have their own)."""
+
+    question = models.CharField(_("question"), max_length=200)
+    answer = models.TextField(_("answer"), help_text=_("Plain text. Blank lines start paragraphs."))
+    on_pricing = models.BooleanField(_("show on Pricing"), default=True)
+    on_contact = models.BooleanField(_("show on Contact"), default=False)
+    is_active = models.BooleanField(_("show on the site"), default=True)
+    order = models.PositiveSmallIntegerField(_("order"), default=0)
+
+    class Meta:
+        ordering = ["order", "pk"]
+        verbose_name = _("FAQ")
+        verbose_name_plural = _("FAQs")
+
+    def __str__(self):
+        return self.question
+
+
 class LegalPage(models.Model):
     class Kind(models.TextChoices):
         PRIVACY = "privacy", _("Privacy Policy")

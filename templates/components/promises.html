@@ -1,0 +1,36 @@
+{% load i18n %}
+{# Usage: {% trust_promises %} for a section with cards, {% trust_promises "list" %} for a side panel. #}
+{% if promises %}
+{% if layout == "list" %}
+<div data-reveal class="rounded-card border border-ink-800 bg-ink-900 p-8">
+  <h2 class="meta-label">{% translate "Our promises" %}</h2>
+  <ul class="mt-5 space-y-4">
+    {% for promise in promises %}
+    <li class="flex gap-3">
+      <span class="grid size-9 shrink-0 place-items-center rounded-lg bg-ink-800 text-neon-cyan">{% include "components/icon.html" with name=promise.icon class="size-5" %}</span>
+      <span>
+        <span class="block font-semibold">{{ promise.title }}</span>
+        <span class="block text-sm text-ink-400">{{ promise.text }}</span>
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% else %}
+<section class="container-site mt-28">
+  {% translate "Our promises" as eyebrow %}{% translate "No surprises, from quote to launch." as title %}{% translate "Clear commitments you can hold us to." as intro %}
+  {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
+  <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for promise in promises %}
+    <li data-reveal data-reveal-delay="{% cycle '0' '0.1' '0.2' %}" class="flex gap-4 rounded-card border border-ink-800 bg-ink-900 p-6">
+      <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-ink-800 text-neon-cyan">{% include "components/icon.html" with name=promise.icon %}</span>
+      <div>
+        <h3 class="font-display text-lg font-bold">{{ promise.title }}</h3>
+        <p class="mt-1 text-sm text-ink-300">{{ promise.text }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endif %}

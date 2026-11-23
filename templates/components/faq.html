@@ -1,0 +1,21 @@
+{% load i18n seo_tags %}
+{# Usage: {% faq_section "pricing" %} or {% faq_section "contact" %}; questions are chosen in admin. #}
+{% if faqs %}
+<section class="container-site mt-28 max-w-4xl">
+  {% translate "FAQ" as eyebrow %}{% translate "Questions we often get" as title %}
+  {% include "components/section_heading.html" with eyebrow=eyebrow title=title only %}
+  <div class="mt-10 divide-y divide-ink-800 border-y border-ink-800">
+    {% for faq in faqs %}
+    {# <details> works without JS and is accessible by default. #}
+    <details data-reveal class="faq group py-2">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 font-display text-lg font-bold">
+        {{ faq.question }}
+        <span aria-hidden="true" class="text-2xl text-neon-cyan transition group-open:rotate-45">+</span>
+      </summary>
+      <div class="prose-site pb-6">{{ faq.answer|linebreaks }}</div>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+{% schema_faq faqs %}
+{% endif %}
