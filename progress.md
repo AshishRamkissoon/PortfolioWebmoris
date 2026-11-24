@@ -27,7 +27,7 @@
 | 14 | Services Page Redesign | ✅ Completed | 2026-11-07 | 2026-11-07 | 2026-11-09 |
 | 15 | Demo Conversion Tour ("See why it converts") | ✅ Completed | 2026-11-09 | 2026-11-09 | 2026-11-09 |
 | 16 | Clear Promises and FAQ | ✅ Completed | 2026-11-23 | 2026-11-23 | 2026-11-24 |
-| 17 | Admin Controls for Home, Promises and FAQ | 🔵 Awaiting approval | 2026-11-24 | 2026-11-24 | |
+| 17 | Admin Controls for Home, Promises and FAQ | ✅ Completed | 2026-11-24 | 2026-11-24 | 2026-11-24 |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -48,6 +48,7 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-24 — Phase 17 — Approved by owner ("merge it") — merged into `main` and pushed.
 - 2026-11-24 — Phase 17 — Ready for review — Admin controls (branch `phase/17-admin-controls`). New groups in admin → Site settings:
   - **Home hero:** eyebrow, headline + coloured end, business picker label, main button text, 3 preview tags (one per line). EN/FR tabs; blank = today's wording, already in French.
   - **Home hero: team badge:** automatic (first team member with a photo), a chosen team member, or hidden; link text ("Talk to me directly").
