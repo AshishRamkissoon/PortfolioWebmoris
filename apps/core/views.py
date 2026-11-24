@@ -62,6 +62,8 @@ def home(request):
             "hero_selected": selected,
             "hero_preview": preview,
             "hero_quote_url": selected["quote_url"] if selected else reverse("leads:contact"),
+            # The first team member with a photo (admin order) is shown as a trust badge.
+            "hero_director": TeamMember.objects.filter(is_active=True).exclude(photo="").first(),
             # Read by the hero script from an auto-escaped data attribute (no inline script).
             "hero_json": json.dumps(
                 {

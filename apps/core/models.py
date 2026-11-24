@@ -176,6 +176,13 @@ class TeamMember(models.Model):
         format="WEBP",
         options={"quality": 82},
     )
+    # Small round avatar (home hero badge); twice the display size for sharp screens.
+    photo_thumb = ImageSpecField(
+        source="photo",
+        processors=[ResizeToFill(112, 112, anchor="t")],
+        format="WEBP",
+        options={"quality": 82},
+    )
     linkedin_url = models.URLField("LinkedIn", blank=True)
     is_active = models.BooleanField(_("show on site"), default=True)
     order = models.PositiveSmallIntegerField(_("order"), default=0)

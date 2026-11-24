@@ -1766,6 +1766,10 @@ msgstr "À partir de"
 msgid "Start my website"
 msgstr "Lancer mon site"
 
+#: .\templates\pages\home.html:56
+msgid "Talk to me directly"
+msgstr "Parlez-moi directement"
+
 #: .\templates\pages\home.html:67
 #, python-format
 msgid "Ready-made demo: %(name)s"

@@ -46,6 +46,17 @@
         </a>
         <a href="{% url 'portfolio:list' %}" class="btn-ghost btn-lg" data-magnetic>{% translate "View Our Work" %}</a>
       </div>
+
+      {% if hero_director %}
+      {# A real face next to the call to action: who the visitor will deal with. #}
+      <a href="{% url 'core:about' %}#team" data-reveal data-reveal-delay="0.4" class="group mt-8 inline-flex items-center gap-3.5 rounded-full border border-ink-800 bg-ink-900/60 py-1.5 pl-1.5 pr-5 transition hover:border-neon-cyan/50">
+        <img src="{{ hero_director.photo_thumb.url }}" alt="{{ hero_director.name }}" width="56" height="56" class="size-14 rounded-full object-cover ring-2 ring-neon-cyan/40">
+        <span class="min-w-0">
+          <span class="block font-display font-semibold text-ink-100">{{ hero_director.name }}</span>
+          <span class="block text-sm text-ink-400">{{ hero_director.role }} · <span class="text-neon-cyan group-hover:underline">{% translate "Talk to me directly" %}</span></span>
+        </span>
+      </a>
+      {% endif %}
     </div>
 
     {% if hero_preview %}

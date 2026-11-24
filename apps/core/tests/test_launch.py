@@ -265,6 +265,28 @@ def test_hero_business_data(client, hero_businesses):
     assert car_rental["image"] == "" and car_rental["price"] == ""
 
 
+def test_hero_director_badge(client):
+    from apps.core.models import TeamMember
+    from apps.core.placeholders import placeholder_image
+
+    # No photo yet: no badge (a face is the point of it).
+    TeamMember.objects.create(name="No Photo", role_en="Designer", order=0)
+    assert "Talk to me directly" not in client.get("/en/").content.decode()
+
+    TeamMember.objects.create(
+        name="Jane Director",
+        role_en="Director",
+        role_fr="Directrice",
+        photo=placeholder_image("jd", size=(80, 120), name="jd.png"),
+        order=1,
+    )
+    content = client.get("/en/").content.decode()
+    assert 'href="/en/about/#team"' in content and "Jane Director" in content
+    assert "Director · " in content and 'alt="Jane Director"' in content
+    assert ".webp" in content  # small thumbnail, not the full upload
+    assert "Parlez-moi directement" in client.get("/fr/").content.decode()
+
+
 def test_hero_without_business_types_or_demos(client):
     content = client.get("/en/").content.decode()
     assert "hero-chip" not in content and "hero-stage" not in content

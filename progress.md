@@ -47,6 +47,7 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-24 — Phase 16 — Addition (owner: "push the director badge") — Home hero shows the first team member with a photo (admin order) as a badge next to the buttons: round photo, name, role and "Talk to me directly", linking to the team on the About page. Hidden when no team member has a photo. Test: `/en/` and `/fr/`.
 - 2026-11-23 — Phase 16 — Ready for review — Clear promises and FAQ (branch `phase/16-trust-promises-faq`, built on the unmerged `tweak/home-order`).
   - **Promises** (admin → Promises: icon, title, text, order, on/off): "Our promises — No surprises, from quote to launch." section on Home (after "How we work") and Pricing; compact "Our promises" panel beside the form on Contact. Seeded with 6, all matching what the site already offers: fixed quote, pay in stages, your website and domain, reply within one business day, changes included, support after launch.
   - **FAQ** (admin → FAQs, ticks for "show on Pricing" / "show on Contact"): 7 questions on Pricing (cost, timing, payment, ownership, rounds of changes, after launch, free quote) and 4 on Contact (free quote, what happens after the brief, what to prepare, redesigns). Opens without JS; FAQPage structured data added.
