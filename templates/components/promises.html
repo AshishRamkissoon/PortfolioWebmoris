@@ -1,9 +1,9 @@
 {% load i18n %}
-{# Usage: {% trust_promises %} for a section with cards, {% trust_promises "list" %} for a side panel. #}
+{# Usage: {% trust_promises "home" %} for a section with cards, {% trust_promises "contact" "list" %} for a side panel. #}
 {% if promises %}
 {% if layout == "list" %}
 <div data-reveal class="rounded-card border border-ink-800 bg-ink-900 p-8">
-  <h2 class="meta-label">{% translate "Our promises" %}</h2>
+  <h2 class="meta-label">{{ eyebrow }}</h2>
   <ul class="mt-5 space-y-4">
     {% for promise in promises %}
     <li class="flex gap-3">
@@ -18,7 +18,6 @@
 </div>
 {% else %}
 <section class="container-site mt-28">
-  {% translate "Our promises" as eyebrow %}{% translate "No surprises, from quote to launch." as title %}{% translate "Clear commitments you can hold us to." as intro %}
   {% include "components/section_heading.html" with eyebrow=eyebrow title=title intro=intro only %}
   <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {% for promise in promises %}

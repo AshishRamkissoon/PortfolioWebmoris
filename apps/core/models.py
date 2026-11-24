@@ -96,12 +96,168 @@ class SiteSettings(SingletonModel):
         help_text=_("Bank, account name, account number, IBAN/SWIFT — shown at checkout."),
     )
 
+    # Home hero. Blank texts fall back to the default wording (translated).
+    hero_eyebrow = models.CharField(
+        _("hero eyebrow"),
+        max_length=120,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    hero_title = models.CharField(
+        _("hero headline"),
+        max_length=120,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    hero_highlight = models.CharField(
+        _("hero headline, coloured end"),
+        max_length=60,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    hero_picker_label = models.CharField(
+        _("business picker label"),
+        max_length=80,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    hero_cta_label = models.CharField(
+        _("main button text"),
+        max_length=40,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    hero_tags = models.TextField(
+        _("preview tags"),
+        blank=True,
+        help_text=_(
+            "3 short points, one per line, shown on the demo preview before a visitor picks "
+            "a business type. Missing lines use the default text."
+        ),
+    )
+
+    class HeroBadge(models.TextChoices):
+        AUTO = "auto", _("First team member with a photo")
+        CHOSEN = "chosen", _("The team member chosen below")
+        OFF = "off", _("Hidden")
+
+    hero_badge = models.CharField(
+        _("team badge in the hero"),
+        max_length=10,
+        choices=HeroBadge.choices,
+        default=HeroBadge.AUTO,
+    )
+    hero_badge_member = models.ForeignKey(
+        "TeamMember",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
+        verbose_name=_("team member on the badge"),
+        help_text=_("Needs a photo and must be shown on the site."),
+    )
+    hero_badge_text = models.CharField(
+        _("badge link text"),
+        max_length=60,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+
+    # Home sections
+    class ProjectsPosition(models.TextChoices):
+        AUTO = "auto", _("Automatic: first once there are enough finished projects")
+        TOP = "top", _("Right after the hero")
+        AFTER_SERVICES = "after_services", _("After ready-made websites and services")
+
+    home_projects_position = models.CharField(
+        _("projects section on Home"),
+        max_length=20,
+        choices=ProjectsPosition.choices,
+        default=ProjectsPosition.AUTO,
+    )
+    showcase_min_completed = models.PositiveSmallIntegerField(
+        _("finished projects needed for a showcase"),
+        default=3,
+        help_text=_(
+            'From this many finished projects, the section is called "Selected work" instead '
+            'of "Work in progress" (and moves first when set to automatic).'
+        ),
+    )
+
+    # Promises and FAQ sections
+    promises_on_home = models.BooleanField(_("show promises on Home"), default=True)
+    promises_on_pricing = models.BooleanField(_("show promises on Pricing"), default=True)
+    promises_on_contact = models.BooleanField(_("show promises on Contact"), default=True)
+    promises_eyebrow = models.CharField(
+        _("promises eyebrow"),
+        max_length=60,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    promises_title = models.CharField(
+        _("promises heading"),
+        max_length=120,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    promises_intro = models.CharField(
+        _("promises intro"),
+        max_length=200,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    faq_eyebrow = models.CharField(
+        _("FAQ eyebrow"),
+        max_length=60,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+    faq_title = models.CharField(
+        _("FAQ heading"),
+        max_length=120,
+        blank=True,
+        help_text=_("Leave blank to use the default text."),
+    )
+
     class Meta:
         verbose_name = _("site settings")
         verbose_name_plural = _("site settings")
 
     def __str__(self):
         return str(self._meta.verbose_name)
+
+    @staticmethod
+    def text_or(value, default):
+        """An admin text, or the default wording when it's left blank."""
+        return value.strip() if value and value.strip() else default
+
+    @property
+    def hero_texts(self):
+        defaults = [_("Mobile-ready"), _("English & French"), _("WhatsApp button")]
+        tags = [line.strip() for line in (self.hero_tags or "").splitlines() if line.strip()]
+        return {
+            "eyebrow": self.text_or(
+                self.hero_eyebrow, _("Web development & AI marketing · Mauritius")
+            ),
+            "title": self.text_or(self.hero_title, _("We build websites that")),
+            "highlight": self.text_or(self.hero_highlight, _("win clients.")),
+            "picker_label": self.text_or(
+                self.hero_picker_label, _("See what we could build for you")
+            ),
+            "cta": self.text_or(self.hero_cta_label, _("Start my website")),
+            # Always three: a missing line keeps the default for that position.
+            "tags": [str(t) for t in (tags[:3] + defaults[len(tags[:3]) :])],
+            "badge": self.text_or(self.hero_badge_text, _("Talk to me directly")),
+        }
+
+    def hero_badge_person(self):
+        """The team member shown on the hero badge, or None."""
+        if self.hero_badge == self.HeroBadge.OFF:
+            return None
+        team = TeamMember.objects.filter(is_active=True).exclude(photo="")
+        if self.hero_badge == self.HeroBadge.CHOSEN:
+            return team.filter(pk=self.hero_badge_member_id).first()
+        return team.first()
 
     def whatsapp_link_for(self, message=None):
         """Click-to-chat link with ``message`` (or the default message) pre-filled."""

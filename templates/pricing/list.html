@@ -52,7 +52,7 @@
   <p data-reveal class="text-center text-sm text-ink-400">{% translate "Prices in MUR. Every quote is fixed before we start. Pay by PayPal, MCB Juice or bank transfer. Need something different?" %} <a href="{% url 'leads:contact' %}" class="underline hover:text-neon-cyan">{% translate "Tell us what you need" %}</a>.</p>
 </section>
 
-{% trust_promises %}
+{% trust_promises "pricing" %}
 
 {% faq_section "pricing" %}
 

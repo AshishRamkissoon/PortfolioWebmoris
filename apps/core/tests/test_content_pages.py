@@ -233,3 +233,129 @@ def test_seed_trust_content_is_idempotent():
         and FAQ.objects.filter(on_pricing=True).exists()
     )
     assert not TrustPromise.objects.filter(title_fr="").exists()
+
+
+# --- Phase 17: Site settings control the recent Home, promises and FAQ changes
+
+
+def _settings(**fields):
+    from apps.core.models import SiteSettings
+
+    s = SiteSettings.load()
+    for name, value in fields.items():
+        setattr(s, name, value)
+    s.save()
+    return s
+
+
+def test_hero_texts_from_site_settings_with_defaults(client):
+    content = client.get("/en/").content.decode()
+    assert "We build websites that" in content and "Start my website" in content
+    _settings(
+        hero_title_en="Websites for",
+        hero_highlight_en="island businesses.",
+        hero_cta_label_en="Get my quote",
+        hero_tags_en="Fast\nBilingual",
+    )
+    s = _settings()
+    assert s.hero_texts["tags"] == ["Fast", "Bilingual", "WhatsApp button"]
+    content = client.get("/en/").content.decode()
+    assert "Websites for" in content and "island businesses." in content
+    assert "Get my quote" in content and "We build websites that" not in content
+    # French left blank: falls back to the English text (modeltranslation), never empty.
+    assert "Websites for" in client.get("/fr/").content.decode()
+
+
+def test_hero_badge_auto_chosen_and_off(client):
+    from apps.core.models import TeamMember
+    from apps.core.placeholders import placeholder_image
+
+    first = TeamMember.objects.create(
+        name="First Face",
+        role_en="Director",
+        order=0,
+        photo=placeholder_image("a", size=(80, 80), name="a.png"),
+    )
+    second = TeamMember.objects.create(
+        name="Second Face",
+        role_en="Designer",
+        order=1,
+        photo=placeholder_image("b", size=(80, 80), name="b.png"),
+    )
+    no_photo = TeamMember.objects.create(name="No Photo", role_en="Writer", order=2)
+    assert "First Face" in client.get("/en/").content.decode()
+
+    _settings(hero_badge="chosen", hero_badge_member=second, hero_badge_text_en="Say hi")
+    content = client.get("/en/").content.decode()
+    assert "Second Face" in content and "Say hi" in content and "First Face" not in content
+
+    _settings(hero_badge_member=no_photo)
+    assert "Say hi" not in client.get("/en/").content.decode()
+
+    _settings(hero_badge="off", hero_badge_member=first)
+    assert "First Face" not in client.get("/en/").content.decode()
+
+
+def test_projects_position_and_showcase_threshold(client):
+    call_command("seed_demo", stdout=StringIO())
+    Project.objects.update(status=Project.Status.IN_PROGRESS)
+
+    def order():
+        work, ready, services = _home_sections(client.get("/en/").content.decode())
+        return work < ready
+
+    assert order() is False  # automatic, nothing finished: ready-made first
+    _settings(home_projects_position="top")
+    assert order() is True
+    _settings(home_projects_position="auto", showcase_min_completed=1)
+    Project.objects.filter(pk=Project.objects.first().pk).update(status=Project.Status.COMPLETED)
+    content = client.get("/en/").content.decode()
+    assert "Selected work" in content and order() is True
+    _settings(home_projects_position="after_services")
+    assert order() is False
+
+
+def test_promises_pages_and_heading_from_site_settings(client):
+    from apps.core.models import TrustPromise
+
+    TrustPromise.objects.create(title_en="Fixed quote", text_en="Always.")
+    _settings(promises_on_pricing=False, promises_title_en="What you can count on")
+    home = client.get("/en/").content.decode()
+    assert "What you can count on" in home and "No surprises" not in home
+    assert "Fixed quote" not in client.get("/en/pricing/").content.decode()
+    assert "Fixed quote" in client.get("/en/contact/").content.decode()
+    _settings(promises_on_contact=False)
+    assert "Fixed quote" not in client.get("/en/contact/").content.decode()
+
+
+def test_faq_heading_from_site_settings(client):
+    from apps.core.models import FAQ
+
+    FAQ.objects.create(question_en="Is it free?", answer_en="Yes.")
+    assert "Questions we often get" in client.get("/en/pricing/").content.decode()
+    _settings(faq_title_en="Good to know")
+    content = client.get("/en/pricing/").content.decode()
+    assert "Good to know" in content and "Questions we often get" not in content
+    assert "Questions fréquentes" not in client.get("/fr/pricing/").content.decode()
+
+
+def test_site_settings_admin_shows_the_new_controls(admin_client):
+    from django.urls import reverse
+
+    from apps.core.models import SiteSettings
+
+    url = reverse("admin:core_sitesettings_change", args=[SiteSettings.load().pk])
+    content = admin_client.get(url).content.decode()
+    for text in [
+        "Home hero",
+        "Home hero: team badge",
+        "Home sections",
+        "Promises and FAQ",
+        'name="hero_title_fr"',
+        'name="hero_badge_member"',
+        'name="home_projects_position"',
+        'name="showcase_min_completed"',
+        'name="promises_on_contact"',
+        'name="faq_title_en"',
+    ]:
+        assert text in content, text

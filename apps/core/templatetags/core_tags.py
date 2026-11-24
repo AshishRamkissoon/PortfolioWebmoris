@@ -3,9 +3,10 @@ from django.conf import settings
 from django.template.defaultfilters import floatformat
 from django.urls import translate_url
 from django.utils.translation import get_language
+from django.utils.translation import gettext as _
 
 from ..booking import booking_embed_url
-from ..models import FAQ, TrustPromise
+from ..models import FAQ, SiteSettings, TrustPromise
 
 register = template.Library()
 
@@ -71,10 +72,26 @@ def money(amount, currency=""):
     return f"{currency} {floatformat(amount, '-2g')}".strip()
 
 
+def _site_settings(context):
+    return context.get("site_settings") or SiteSettings.load()
+
+
 @register.inclusion_tag("components/promises.html", takes_context=True)
-def trust_promises(context, layout="grid"):
-    """The promises from admin: a section with cards ("grid") or a compact side list ("list")."""
-    return {"promises": TrustPromise.objects.filter(is_active=True), "layout": layout}
+def trust_promises(context, page, layout="grid"):
+    """The promises from admin: a section with cards ("grid") or a compact side list ("list").
+
+    Site settings decide on which pages they appear and the section heading.
+    """
+    s = _site_settings(context)
+    if not getattr(s, f"promises_on_{page}"):
+        return {"promises": []}
+    return {
+        "promises": TrustPromise.objects.filter(is_active=True),
+        "layout": layout,
+        "eyebrow": s.text_or(s.promises_eyebrow, _("Our promises")),
+        "title": s.text_or(s.promises_title, _("No surprises, from quote to launch.")),
+        "intro": s.text_or(s.promises_intro, _("Clear commitments you can hold us to.")),
+    }
 
 
 FAQ_PAGES = {"pricing": "on_pricing", "contact": "on_contact"}
@@ -84,8 +101,11 @@ FAQ_PAGES = {"pricing": "on_pricing", "contact": "on_contact"}
 def faq_section(context, page):
     """The general FAQs picked for a page in admin, with FAQPage structured data."""
     faqs = FAQ.objects.filter(is_active=True, **{FAQ_PAGES[page]: True})
+    s = _site_settings(context)
     return {
         "faqs": list(faqs),
+        "eyebrow": s.text_or(s.faq_eyebrow, _("FAQ")),
+        "title": s.text_or(s.faq_title, _("Questions we often get")),
         "request": context.get("request"),
         "csp_nonce": context.get("csp_nonce", ""),
     }

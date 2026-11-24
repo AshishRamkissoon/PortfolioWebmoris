@@ -23,6 +23,18 @@ class SiteSettingsTranslationOptions(TranslationOptions):
         "whatsapp_message",
         "seo_title",
         "seo_description",
+        "hero_eyebrow",
+        "hero_title",
+        "hero_highlight",
+        "hero_picker_label",
+        "hero_cta_label",
+        "hero_tags",
+        "hero_badge_text",
+        "promises_eyebrow",
+        "promises_title",
+        "promises_intro",
+        "faq_eyebrow",
+        "faq_title",
     )
 
 

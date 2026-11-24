@@ -71,6 +71,42 @@ class SiteSettingsAdmin(SingletonAdminMixin, TabbedTranslationAdmin):
             "Payments (MCB Juice & bank transfer)",
             {"fields": ("juice_number", "juice_account_name", "juice_qr", "bank_details")},
         ),
+        (
+            "Home hero",
+            {
+                "description": "Leave a text blank to keep the default wording "
+                "(already translated into French).",
+                "fields": (
+                    "hero_eyebrow",
+                    "hero_title",
+                    "hero_highlight",
+                    "hero_picker_label",
+                    "hero_cta_label",
+                    "hero_tags",
+                ),
+            },
+        ),
+        (
+            "Home hero: team badge",
+            {"fields": ("hero_badge", "hero_badge_member", "hero_badge_text")},
+        ),
+        ("Home sections", {"fields": ("home_projects_position", "showcase_min_completed")}),
+        (
+            "Promises and FAQ",
+            {
+                "description": "The promises and questions themselves are under Promises and FAQs.",
+                "fields": (
+                    "promises_on_home",
+                    "promises_on_pricing",
+                    "promises_on_contact",
+                    "promises_eyebrow",
+                    "promises_title",
+                    "promises_intro",
+                    "faq_eyebrow",
+                    "faq_title",
+                ),
+            },
+        ),
     )
 
 

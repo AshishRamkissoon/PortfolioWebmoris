@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils.http import urlencode
-from django.utils.translation import gettext as _
 from django.views.decorators.http import require_GET
 
 from apps.portfolio.models import Project
@@ -12,12 +11,8 @@ from apps.pricing.models import Package
 from apps.readymade.models import WebsiteTemplate
 from apps.services.views import published_groups
 
-from .models import AboutPage, HeroBusiness, LegalPage, ProcessStep, TeamMember
+from .models import AboutPage, HeroBusiness, LegalPage, ProcessStep, SiteSettings, TeamMember
 from .templatetags.core_tags import money
-
-# Below this many completed projects, Home presents the work as "in progress"
-# instead of claiming a showcase of finished projects.
-SHOWCASE_MIN_COMPLETED = 3
 
 
 def hero_businesses():
@@ -45,7 +40,19 @@ def hero_businesses():
     return items
 
 
+def projects_first(site_settings, has_showcase):
+    """Whether the projects section comes right after the hero (Site settings → Home sections)."""
+    position = site_settings.home_projects_position
+    if position == site_settings.ProjectsPosition.AUTO:
+        return has_showcase
+    return position == site_settings.ProjectsPosition.TOP
+
+
 def home(request):
+    site_settings = SiteSettings.load()
+    texts = site_settings.hero_texts
+    # Below this many finished projects, the work is presented as "in progress".
+    has_showcase = Project.objects.completed().count() >= site_settings.showcase_min_completed
     businesses = hero_businesses()
     selected = next((b for b in businesses if b["slug"] == request.GET.get("business")), None)
     # Until a visitor picks a business type, the preview shows the first demo.
@@ -62,21 +69,19 @@ def home(request):
             "hero_selected": selected,
             "hero_preview": preview,
             "hero_quote_url": selected["quote_url"] if selected else reverse("leads:contact"),
-            # The first team member with a photo (admin order) is shown as a trust badge.
-            "hero_director": TeamMember.objects.filter(is_active=True).exclude(photo="").first(),
+            "hero_text": texts,
+            # A real face next to the call to action (Site settings → team badge).
+            "hero_director": site_settings.hero_badge_person(),
             # Read by the hero script from an auto-escaped data attribute (no inline script).
             "hero_json": json.dumps(
                 {
                     "businesses": businesses,
-                    "defaultFeatures": [
-                        _("Mobile-ready"),
-                        _("English & French"),
-                        _("WhatsApp button"),
-                    ],
+                    "defaultFeatures": texts["tags"],
                 }
             ),
             "featured_projects": Project.objects.featured().prefetch_related("categories")[:6],
-            "has_showcase": Project.objects.completed().count() >= SHOWCASE_MIN_COMPLETED,
+            "has_showcase": has_showcase,
+            "projects_first": projects_first(site_settings, has_showcase),
             "service_groups": published_groups(),
             "featured_templates": WebsiteTemplate.objects.featured().select_related("industry")[:3],
             "process_steps": ProcessStep.objects.all(),

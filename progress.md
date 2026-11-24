@@ -27,6 +27,7 @@
 | 14 | Services Page Redesign | ✅ Completed | 2026-11-07 | 2026-11-07 | 2026-11-09 |
 | 15 | Demo Conversion Tour ("See why it converts") | ✅ Completed | 2026-11-09 | 2026-11-09 | 2026-11-09 |
 | 16 | Clear Promises and FAQ | ✅ Completed | 2026-11-23 | 2026-11-23 | 2026-11-24 |
+| 17 | Admin Controls for Home, Promises and FAQ | 🔵 Awaiting approval | 2026-11-24 | 2026-11-24 | |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -47,6 +48,13 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-24 — Phase 17 — Ready for review — Admin controls (branch `phase/17-admin-controls`). New groups in admin → Site settings:
+  - **Home hero:** eyebrow, headline + coloured end, business picker label, main button text, 3 preview tags (one per line). EN/FR tabs; blank = today's wording, already in French.
+  - **Home hero: team badge:** automatic (first team member with a photo), a chosen team member, or hidden; link text ("Talk to me directly").
+  - **Home sections:** projects section automatic / after the hero / after ready-made and services; number of finished projects for "Selected work" (was fixed at 3).
+  - **Promises and FAQ:** show promises on Home, Pricing, Contact (each on/off); promises eyebrow, heading and intro; FAQ eyebrow and heading. (Promises and questions themselves were already under Promises and FAQs.)
+  - **How to test:** change a setting in admin → Site settings, reload `/en/` (or Pricing/Contact) and check; clear it and the default comes back. All tests pass; ruff clean.
+- 2026-11-24 — Phase 17 — Started — Make the Phase 14–16 changes configurable in admin (owner's request).
 - 2026-11-24 — Phase 16 — Approved by owner ("merge it") — merged into `main` and pushed, together with the Home reorder (ready-made websites before work in progress) and the hero director badge.
 - 2026-11-24 — Phase 16 — Addition (owner: "push the director badge") — Home hero shows the first team member with a photo (admin order) as a badge next to the buttons: round photo, name, role and "Talk to me directly", linking to the team on the About page. Hidden when no team member has a photo. Test: `/en/` and `/fr/`.
 - 2026-11-23 — Phase 16 — Ready for review — Clear promises and FAQ (branch `phase/16-trust-promises-faq`, built on the unmerged `tweak/home-order`).

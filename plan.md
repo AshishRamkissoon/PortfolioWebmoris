@@ -523,6 +523,25 @@ Same as Phase 10: all pages work on mobile and desktop with no console errors; f
 
 ---
 
+## Phase 17 — Admin Controls for Home, Promises and FAQ
+
+**Goal:** everything added in Phases 14–16 can be changed from the admin, without code.
+
+**Decision** (owner, 2026-11-24): "admin should be able to configure all changes via the backend."
+
+### Tasks
+- Site settings → Home hero: eyebrow, headline and coloured end, business picker label, main button text, the 3 preview tags (EN/FR; blank keeps the default wording).
+- Site settings → team badge: automatic (first team member with a photo), a chosen team member, or hidden; link text.
+- Site settings → Home sections: where the projects section goes (automatic, after the hero, after ready-made and services) and how many finished projects make a showcase.
+- Site settings → Promises and FAQ: on/off for Home, Pricing and Contact; section headings.
+- Tests; French defaults kept.
+
+### Exit criteria
+- Each setting changes the site as described, in English and French; blank texts keep today's wording.
+- Tests and ruff pass.
+
+---
+
 ## Future Phases (post-v1, from requirements §11)
 - AI chatbot on the Webmoris site (lead capture).
 - Testimonials, client logo strip and Google reviews. **Recommended first**, because they help most with trust.
