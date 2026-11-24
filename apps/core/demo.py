@@ -221,14 +221,6 @@ PROMISES = [
         ),
     ),
     (
-        "key",
-        ("Your website, your domain", "Votre site, votre domaine"),
-        (
-            "The domain is registered in your name and the website belongs to you.",
-            "Le nom de domaine est à votre nom et le site vous appartient.",
-        ),
-    ),
-    (
         "clock",
         ("A reply within one business day", "Une réponse sous un jour ouvré"),
         (
