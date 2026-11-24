@@ -26,7 +26,7 @@
 | 13 | Project Brief, Quote-First Pricing and Deposits | ✅ Completed | 2026-11-05 | 2026-11-06 | 2026-11-07 |
 | 14 | Services Page Redesign | ✅ Completed | 2026-11-07 | 2026-11-07 | 2026-11-09 |
 | 15 | Demo Conversion Tour ("See why it converts") | ✅ Completed | 2026-11-09 | 2026-11-09 | 2026-11-09 |
-| 16 | Clear Promises and FAQ | 🔵 Awaiting approval | 2026-11-23 | 2026-11-23 | |
+| 16 | Clear Promises and FAQ | ✅ Completed | 2026-11-23 | 2026-11-23 | 2026-11-24 |
 
 ## Open Decisions / Blockers
 - [ ] Brand assets needed: logo, colours and fonts. Placeholder design tokens are in `frontend/src/css/main.css`.
@@ -47,6 +47,7 @@
 
 ## Activity Log
 <!-- Newest entry first. Format: YYYY-MM-DD — Phase N — event — short note -->
+- 2026-11-24 — Phase 16 — Approved by owner ("merge it") — merged into `main` and pushed, together with the Home reorder (ready-made websites before work in progress) and the hero director badge.
 - 2026-11-24 — Phase 16 — Addition (owner: "push the director badge") — Home hero shows the first team member with a photo (admin order) as a badge next to the buttons: round photo, name, role and "Talk to me directly", linking to the team on the About page. Hidden when no team member has a photo. Test: `/en/` and `/fr/`.
 - 2026-11-23 — Phase 16 — Ready for review — Clear promises and FAQ (branch `phase/16-trust-promises-faq`, built on the unmerged `tweak/home-order`).
   - **Promises** (admin → Promises: icon, title, text, order, on/off): "Our promises — No surprises, from quote to launch." section on Home (after "How we work") and Pricing; compact "Our promises" panel beside the form on Contact. Seeded with 5, all matching what the site already offers: fixed quote, pay in stages, reply within one business day, changes included, support after launch ("Your website, your domain" removed at the owner's request, 2026-11-24).
